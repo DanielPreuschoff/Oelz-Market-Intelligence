@@ -1,0 +1,134 @@
+import Link from 'next/link'
+import { format } from 'date-fns'
+import { createClient } from '@/lib/supabase/server'
+import { Badge } from '@/components/ui/badge'
+import { buttonVariants } from '@/components/ui/button-variants'
+import { cn } from '@/lib/utils'
+import type { Edition } from '@/types/database'
+import { ChevronRight } from 'lucide-react'
+
+export default async function EditionsPage() {
+  const supabase = await createClient()
+
+  const { data: editions } = await supabase
+    .from('editions')
+    .select('*')
+    .eq('status', 'published')
+    .order('period_month', { ascending: false })
+
+  const { data: profile } = await supabase
+    .from('user_profiles')
+    .select('is_admin')
+    .single()
+
+  const isAdmin = profile?.is_admin ?? false
+
+  const editionIds = (editions ?? []).map((e: Edition) => e.id)
+  const { data: counts } = editionIds.length > 0
+    ? await supabase
+        .from('edition_signals')
+        .select('edition_id')
+        .in('edition_id', editionIds)
+    : { data: [] }
+
+  const countMap: Record<string, number> = {}
+  ;(counts ?? []).forEach((row: { edition_id: string }) => {
+    countMap[row.edition_id] = (countMap[row.edition_id] ?? 0) + 1
+  })
+
+  if (!editions || editions.length === 0) {
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold">Intelligence Editions</h1>
+          {isAdmin && (
+            <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
+              New Edition
+            </Link>
+          )}
+        </div>
+        <div className="text-center py-24 text-muted-foreground">
+          <p className="text-lg font-medium">No editions published yet</p>
+          <p className="text-sm mt-1">
+            {isAdmin ? 'Create your first edition in the admin panel.' : 'Check back soon.'}
+          </p>
+        </div>
+      </div>
+    )
+  }
+
+  const [latest, ...archive] = editions as Edition[]
+
+  return (
+    <div className="space-y-8">
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Intelligence Editions</h1>
+        {isAdmin && (
+          <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
+            New Edition
+          </Link>
+        )}
+      </div>
+
+      {/* Latest edition — featured */}
+      <Link href={`/editions/${latest.id}`} className="block group">
+        <div className="border rounded-xl p-6 bg-white hover:shadow-md transition-shadow space-y-3">
+          <div className="flex items-center gap-2">
+            <Badge variant="secondary" className="text-xs">Latest</Badge>
+            <span className="text-xs text-muted-foreground">
+              {format(new Date(latest.period_month), 'MMMM yyyy')}
+            </span>
+          </div>
+          <h2 className="text-xl font-semibold group-hover:text-primary/80 transition-colors">
+            {latest.title}
+          </h2>
+          {latest.editorial_summary && (
+            <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
+              {latest.editorial_summary}
+            </p>
+          )}
+          <div className="flex items-center gap-3 pt-1">
+            <span className="text-sm text-muted-foreground">
+              {countMap[latest.id] ?? 0} signals
+            </span>
+            {latest.published_at && (
+              <span className="text-sm text-muted-foreground">
+                Published {format(new Date(latest.published_at), 'MMM d, yyyy')}
+              </span>
+            )}
+            <span className="ml-auto text-sm font-medium flex items-center gap-0.5 group-hover:gap-1 transition-all">
+              Read edition <ChevronRight className="w-4 h-4" />
+            </span>
+          </div>
+        </div>
+      </Link>
+
+      {/* Archive */}
+      {archive.length > 0 && (
+        <div className="space-y-3">
+          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
+            Archive
+          </h2>
+          <div className="divide-y border rounded-xl bg-white overflow-hidden">
+            {archive.map((edition: Edition) => (
+              <Link
+                key={edition.id}
+                href={`/editions/${edition.id}`}
+                className="flex items-center justify-between px-5 py-3.5 hover:bg-secondary/40 transition-colors group"
+              >
+                <div className="space-y-0.5">
+                  <p className="text-sm font-medium">{edition.title}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {format(new Date(edition.period_month), 'MMMM yyyy')} ·{' '}
+                    {countMap[edition.id] ?? 0} signals
+                  </p>
+                </div>
+                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}

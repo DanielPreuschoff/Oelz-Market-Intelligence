@@ -1,0 +1,146 @@
+export type ModuleStatus = 'active' | 'coming_soon'
+
+export interface IntelligenceModule {
+  id: string
+  name: string
+  description: string
+  icon: string
+  status: ModuleStatus
+  href: string
+  iconBg: string
+  iconColor: string
+  eta?: string
+  plannedContent?: string[]
+}
+
+export const MODULES: IntelligenceModule[] = [
+  {
+    id: 'wettbewerb',
+    name: 'Wettbewerbsradar',
+    description: 'Aktivitäten der wichtigsten Wettbewerber — neue Produkte, Claims, Kampagnen und strategische Bewegungen.',
+    icon: 'Target',
+    status: 'active',
+    href: '/editions',
+    iconBg: 'bg-blue-100',
+    iconColor: 'text-blue-700',
+  },
+  {
+    id: 'produkt',
+    name: 'Produkt- & Innovationsradar',
+    description: 'Neue Produktkonzepte, Claims und Sortimentsimpulse im Markt für Backwaren und Convenience.',
+    icon: 'Lightbulb',
+    status: 'coming_soon',
+    href: '/produkt-radar',
+    iconBg: 'bg-emerald-100',
+    iconColor: 'text-emerald-700',
+    eta: 'Q1 2027',
+    plannedContent: [
+      'Neue Produktlaunches im Markt',
+      'Ernährungstrends & Health Claims',
+      'Sortimentsimpulse und Formatinnovationen',
+      'Claim-Entwicklungen (Protein, Fibre, Clean Label)',
+    ],
+  },
+  {
+    id: 'retailer',
+    name: 'Retailer-Radar',
+    description: 'Neue Listungen, Handelsaktivitäten, Eigenmarken und Promotion-Signale aus dem Handel.',
+    icon: 'ShoppingCart',
+    status: 'coming_soon',
+    href: '/retailer-radar',
+    iconBg: 'bg-orange-100',
+    iconColor: 'text-orange-700',
+    eta: 'Q1 2027',
+    plannedContent: [
+      'Neue Listungen & Auslistungen',
+      'Eigenmarken-Entwicklungen',
+      'Handelsaktivitäten & Promotions',
+      'Category-Management-Signale',
+    ],
+  },
+  {
+    id: 'trend',
+    name: 'Trend-Radar',
+    description: 'Health, Convenience, Snacking, Nachhaltigkeit, Protein, Fibre — relevante Verbrauchertrends im Blick.',
+    icon: 'TrendingUp',
+    status: 'coming_soon',
+    href: '/trend-radar',
+    iconBg: 'bg-purple-100',
+    iconColor: 'text-purple-700',
+    eta: '2027',
+    plannedContent: [
+      'Health & Nutrition-Trends',
+      'Convenience & Snacking-Signale',
+      'Nachhaltigkeitsthemen',
+      'Verbraucherverhalten & Lifestyle',
+    ],
+  },
+  {
+    id: 'packaging',
+    name: 'Packaging- & Claim-Radar',
+    description: 'Verpackungsdesign, Packungsgrößen, Nutzenversprechen und Nährwertkommunikation im Wettbewerbsumfeld.',
+    icon: 'Package',
+    status: 'coming_soon',
+    href: '/packaging-radar',
+    iconBg: 'bg-violet-100',
+    iconColor: 'text-violet-700',
+    eta: '2027',
+    plannedContent: [
+      'Verpackungsdesign-Entwicklungen',
+      'Packungsgrößen & Formate',
+      'Claim-Kommunikation',
+      'Nährwertkennzeichnung & Logos',
+    ],
+  },
+  {
+    id: 'laender',
+    name: 'Länder- & CEE-Radar',
+    description: 'Relevante Entwicklungen in Österreich, Deutschland, Schweiz, Tschechien, Slowakei und Slowenien.',
+    icon: 'Globe',
+    status: 'coming_soon',
+    href: '/laender-radar',
+    iconBg: 'bg-sky-100',
+    iconColor: 'text-sky-700',
+    eta: '2027',
+    plannedContent: [
+      'Marktentwicklungen je Land',
+      'Länderspezifische Wettbewerbsbewegungen',
+      'Regulatorische Entwicklungen',
+      'Retail-Signale pro Markt',
+    ],
+  },
+  {
+    id: 'snapshot',
+    name: 'Management-Snapshot',
+    description: 'Monatliche Verdichtung der wichtigsten Signale für Führungskräfte — kompakt und entscheidungsrelevant.',
+    icon: 'BarChart3',
+    status: 'coming_soon',
+    href: '/management-snapshot',
+    iconBg: 'bg-slate-100',
+    iconColor: 'text-slate-700',
+    eta: 'Q3 2026',
+    plannedContent: [
+      'Monatliches Top-10-Signal-Briefing',
+      'Wettbewerber-Bewegungen auf einen Blick',
+      'Strategisch relevante Trends',
+      'Handlungsempfehlungen',
+    ],
+  },
+  {
+    id: 'social',
+    name: 'Social Listening Radar',
+    description: 'Relevante Marken- und Produktdiskussionen in sozialen Medien — Stimmungen, Reichweiten und Trends im Blick.',
+    icon: 'Radio',
+    status: 'coming_soon',
+    href: '/social-radar',
+    iconBg: 'bg-rose-100',
+    iconColor: 'text-rose-700',
+    eta: '2027',
+    plannedContent: [
+      'Social-Media-Erwähnungen relevanter Marken',
+      'Sentiment-Analyse zu Produktthemen',
+      'Influencer- und Community-Signale',
+      'Trend-Hashtags & virale Inhalte im Segment',
+    ],
+  },
+]
