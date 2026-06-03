@@ -24,9 +24,9 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
   return (
     <article
       className={cn(
-        'bg-white border rounded-xl p-5 space-y-3 transition-shadow hover:shadow-sm',
-        signal.importance === '3' && 'border-red-200 bg-red-50/30',
-        isRoleHighlighted && 'ring-1 ring-primary/20'
+        'bg-card border border-border/80 rounded-xl p-5 space-y-3 transition-all duration-300 hover:shadow-md hover:border-primary/10 relative',
+        signal.importance === '3' && 'border-primary/20 bg-primary/[0.02] dark:bg-primary/[0.04]',
+        isRoleHighlighted && 'border-l-4 border-l-accent pl-4 rounded-l-none'
       )}
     >
       {/* Header row */}
@@ -34,32 +34,32 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
         <div className="flex flex-wrap items-center gap-1.5 min-w-0">
           <Badge
             variant="secondary"
-            className={cn('text-xs font-medium shrink-0', CATEGORY_COLORS[signal.category])}
+            className={cn('text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full shrink-0', CATEGORY_COLORS[signal.category])}
           >
             {CATEGORY_LABELS[signal.category]}
           </Badge>
           <Badge
             variant="secondary"
-            className={cn('text-xs shrink-0', IMPORTANCE_COLORS[signal.importance])}
+            className={cn('text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full shrink-0', IMPORTANCE_COLORS[signal.importance])}
           >
             {IMPORTANCE_LABELS[signal.importance]}
           </Badge>
           {signal.competitor && (
             <Link
               href={`/competitors/${signal.competitor.id}`}
-              className="text-xs text-muted-foreground hover:text-foreground transition-colors shrink-0"
+              className="text-xs font-semibold text-muted-foreground hover:text-primary transition-colors shrink-0"
             >
               {signal.competitor.short_name}
             </Link>
           )}
           {signal.country && (
-            <span className="text-xs text-muted-foreground shrink-0">
-              {signal.country.name}
+            <span className="text-xs text-muted-foreground/80 shrink-0 flex items-center gap-1">
+              • {signal.country.name}
             </span>
           )}
         </div>
         {signal.signal_date && (
-          <time className="text-xs text-muted-foreground shrink-0">
+          <time className="text-xs text-muted-foreground shrink-0 font-medium">
             {format(new Date(signal.signal_date), 'MMM d, yyyy')}
           </time>
         )}
@@ -67,8 +67,8 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
 
       {/* Headline */}
       <h3 className={cn(
-        'font-semibold leading-snug',
-        variant === 'compact' ? 'text-sm' : 'text-base'
+        'font-serif font-bold text-foreground leading-snug tracking-wide',
+        variant === 'compact' ? 'text-sm' : 'text-base sm:text-[17px]'
       )}>
         {signal.headline}
       </h3>
@@ -87,8 +87,10 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
             <span
               key={role}
               className={cn(
-                'text-xs px-1.5 py-0.5 rounded bg-secondary text-muted-foreground',
-                role === highlightRole && 'bg-primary text-primary-foreground'
+                'text-[9px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded border transition-colors',
+                role === highlightRole
+                  ? 'bg-primary text-primary-foreground border-primary shadow-sm'
+                  : 'bg-secondary/40 text-muted-foreground border-border/40'
               )}
             >
               {ROLE_LABELS[role]}
@@ -97,21 +99,21 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
         </div>
         <div className="flex items-center gap-2">
           {signal.ai_generated && (
-            <span className="text-xs text-muted-foreground/60">AI</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60 px-1 py-0.5 rounded bg-muted/30">AI</span>
           )}
           {signal.source_url && (
             <a
               href={signal.source_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-0.5"
+              className="text-xs font-medium text-muted-foreground hover:text-primary flex items-center gap-0.5 transition-colors"
             >
               {signal.source_name ?? 'Source'}
               <ExternalLink className="w-3 h-3" />
             </a>
           )}
           {!signal.source_url && signal.source_name && (
-            <span className="text-xs text-muted-foreground">{signal.source_name}</span>
+            <span className="text-xs text-muted-foreground font-medium">{signal.source_name}</span>
           )}
         </div>
       </div>

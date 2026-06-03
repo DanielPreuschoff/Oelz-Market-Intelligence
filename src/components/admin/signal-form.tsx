@@ -114,7 +114,7 @@ export function SignalForm({ competitors, countries, initialValues, signalId }: 
         summary: data.summary ?? prev.summary,
         category: data.category ?? prev.category,
         competitor_id: matchedCompetitor?.id ?? prev.competitor_id,
-        country_id: data.country_code ?? prev.country_id,
+        country_id: countries.some((c) => c.id === data.country_code) ? data.country_code : prev.country_id,
         importance: String(data.importance ?? prev.importance) as ImportanceLevel,
         source_name: data.source_name ?? prev.source_name,
         signal_date: data.signal_date ?? prev.signal_date,

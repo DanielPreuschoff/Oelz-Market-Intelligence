@@ -5,16 +5,19 @@ import { ArrowLeft } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { SignalCard } from '@/components/signal-card/signal-card'
 import type { EditionWithSignals, UserRole } from '@/types/database'
-import { CATEGORY_LABELS, ROLE_LABELS } from '@/types/database'
+import { CATEGORY_LABELS } from '@/types/database'
+
+const PAGE_SIZE = 20
 
 interface PageProps {
   params: Promise<{ id: string }>
-  searchParams: Promise<{ role?: string; category?: string; competitor?: string }>
+  searchParams: Promise<{ role?: string; category?: string; competitor?: string; page?: string }>
 }
 
 export default async function EditionPage({ params, searchParams }: PageProps) {
   const { id } = await params
-  const { role: roleFilter, category: categoryFilter, competitor: competitorFilter } = await searchParams
+  const { role: roleFilter, category: categoryFilter, competitor: competitorFilter, page: pageParam } = await searchParams
+  const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1)
 
   const supabase = await createClient()
 
@@ -64,19 +67,22 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
   })
 
   const hasFilters = roleFilter || categoryFilter || competitorFilter
+  const totalPages = Math.ceil(filteredRows.length / PAGE_SIZE)
+  const paginatedRows = filteredRows.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
 
   function buildUrl(patch: Record<string, string | undefined>) {
-    const current = { role: roleFilter, category: categoryFilter, competitor: competitorFilter }
+    const current = { role: roleFilter, category: categoryFilter, competitor: competitorFilter, page: pageParam }
     const merged = { ...current, ...patch }
     const params = new URLSearchParams()
-    Object.entries(merged).forEach(([k, v]) => { if (v) params.set(k, v) })
+    Object.entries(merged).forEach(([k, v]) => { if (v && !(k === 'page' && v === '1')) params.set(k, v) })
     const str = params.toString()
     return `/editions/${id}${str ? `?${str}` : ''}`
   }
 
   function toggle(key: string, value: string) {
     const current = { role: roleFilter, category: categoryFilter, competitor: competitorFilter }
-    return buildUrl({ [key]: current[key as keyof typeof current] === value ? undefined : value })
+    // Reset to page 1 when changing filters
+    return buildUrl({ [key]: current[key as keyof typeof current] === value ? undefined : value, page: '1' })
   }
 
   return (
@@ -103,7 +109,7 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
             </>
           )}
         </div>
-        <h1 className="text-3xl font-semibold">{edition.title}</h1>
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold tracking-wide text-foreground leading-tight">{edition.title}</h1>
         {edition.editorial_summary && (
           <p className="text-base text-muted-foreground leading-relaxed max-w-3xl">
             {edition.editorial_summary}
@@ -113,32 +119,6 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
 
       {/* Filters */}
       <div className="space-y-2">
-        {/* Role */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-muted-foreground font-medium w-16">Role</span>
-          {(Object.keys(ROLE_LABELS) as UserRole[]).map((role) => (
-            <a
-              key={role}
-              href={toggle('role', role)}
-              className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
-                roleFilter === role
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'border-border hover:bg-secondary'
-              }`}
-            >
-              {ROLE_LABELS[role]}
-            </a>
-          ))}
-          {userRole && roleFilter !== userRole && (
-            <a
-              href={toggle('role', userRole)}
-              className="text-xs px-2.5 py-1 rounded-full border border-dashed border-primary/40 text-primary/70 hover:border-primary hover:text-primary transition-colors"
-            >
-              My role
-            </a>
-          )}
-        </div>
-
         {/* Category */}
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="text-xs text-muted-foreground font-medium w-16">Category</span>
@@ -194,13 +174,43 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
         </p>
       ) : (
         <div className="space-y-4">
-          {filteredRows.map((row) => (
+          {paginatedRows.map((row) => (
             <SignalCard
               key={row.id}
               signal={row.signal}
               highlightRole={userRole ?? undefined}
             />
           ))}
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="flex items-center justify-between pt-2 border-t">
+          <span className="text-xs text-muted-foreground">
+            {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filteredRows.length)} von {filteredRows.length} Signals
+          </span>
+          <div className="flex items-center gap-1">
+            {currentPage > 1 && (
+              <Link
+                href={buildUrl({ page: String(currentPage - 1) })}
+                className="px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
+              >
+                ← Zurück
+              </Link>
+            )}
+            <span className="px-3 py-1.5 text-xs text-muted-foreground">
+              Seite {currentPage} / {totalPages}
+            </span>
+            {currentPage < totalPages && (
+              <Link
+                href={buildUrl({ page: String(currentPage + 1) })}
+                className="px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
+              >
+                Weiter →
+              </Link>
+            )}
+          </div>
         </div>
       )}
     </div>

@@ -5,8 +5,8 @@ export default function ModuleHubPage() {
   return (
     <div className="space-y-8">
       <div className="space-y-1">
-        <h1 className="text-2xl font-semibold">Ölz Market Intelligence</h1>
-        <p className="text-sm text-muted-foreground">
+        <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Ölz Market Intelligence</h1>
+        <p className="text-sm text-muted-foreground/80">
           Plattform-Übersicht — wähle ein Modul, um loszulegen.
         </p>
       </div>

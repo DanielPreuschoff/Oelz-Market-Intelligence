@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
@@ -35,11 +36,27 @@ export function AppNav({ profile }: AppNavProps) {
   }
 
   return (
-    <header className="border-b bg-white sticky top-0 z-40">
-      <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
+    <header className="border-b border-border/80 bg-white/90 dark:bg-card/90 backdrop-blur-md sticky top-0 z-40 shadow-[0_1px_3px_0_rgba(34,28,26,0.04)]">
+      <div className="w-full px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <Link href="/" className="font-semibold text-sm tracking-tight">
-            Ölz Intelligence
+          <Link href="/" className="flex items-center gap-3 group">
+            <Image
+              src="/oelz-logo.png"
+              alt="Rudolf Ölz Meisterbäcker"
+              width={42}
+              height={32}
+              className="object-contain transition-transform group-hover:scale-[1.03] duration-300"
+              priority
+            />
+            <div className="hidden sm:block h-6 w-[1px] bg-border/80" />
+            <div className="flex flex-col">
+              <span className="font-serif text-[15px] font-bold tracking-wide text-foreground leading-tight">
+                Ölz Meisterbäcker
+              </span>
+              <span className="text-[9px] uppercase tracking-[0.18em] font-semibold text-muted-foreground">
+                Market &amp; Competitor Intelligence
+              </span>
+            </div>
           </Link>
         </div>
 
@@ -83,10 +100,6 @@ export function AppNav({ profile }: AppNavProps) {
               }
             />
             <DropdownMenuContent align="end">
-              <DropdownMenuItem render={<Link href="/profile" />}>
-                Profile &amp; Role
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleSignOut}>
                 Sign out
               </DropdownMenuItem>

@@ -139,25 +139,25 @@ export const ROLE_LABELS: Record<UserRole, string> = {
 }
 
 export const CATEGORY_COLORS: Record<SignalCategory, string> = {
-  product_launch: 'bg-emerald-100 text-emerald-800',
-  packaging_change: 'bg-violet-100 text-violet-800',
-  distribution: 'bg-blue-100 text-blue-800',
-  production_capacity: 'bg-orange-100 text-orange-800',
-  m_and_a: 'bg-red-100 text-red-800',
-  campaign: 'bg-pink-100 text-pink-800',
-  pricing: 'bg-yellow-100 text-yellow-800',
-  hiring_signal: 'bg-slate-100 text-slate-800',
-  technology: 'bg-cyan-100 text-cyan-800',
-  sustainability: 'bg-green-100 text-green-800',
-  startup_signal: 'bg-purple-100 text-purple-800',
-  regulatory: 'bg-amber-100 text-amber-800',
-  partnership: 'bg-indigo-100 text-indigo-800',
+  product_launch: 'bg-emerald-50/50 text-emerald-800 border border-emerald-200/50 dark:bg-emerald-950/20 dark:text-emerald-400 dark:border-emerald-900/30',
+  packaging_change: 'bg-violet-50/50 text-violet-800 border border-violet-200/50 dark:bg-violet-950/20 dark:text-violet-400 dark:border-violet-900/30',
+  distribution: 'bg-blue-50/50 text-blue-800 border border-blue-200/50 dark:bg-blue-950/20 dark:text-blue-400 dark:border-blue-900/30',
+  production_capacity: 'bg-orange-50/50 text-orange-800 border border-orange-200/50 dark:bg-orange-950/20 dark:text-orange-400 dark:border-orange-900/30',
+  m_and_a: 'bg-red-50/50 text-red-800 border border-red-200/50 dark:bg-red-950/20 dark:text-red-400 dark:border-red-900/30',
+  campaign: 'bg-pink-50/50 text-pink-800 border border-pink-200/50 dark:bg-pink-950/20 dark:text-pink-400 dark:border-pink-900/30',
+  pricing: 'bg-yellow-50/50 text-yellow-800 border border-yellow-200/50 dark:bg-yellow-950/20 dark:text-yellow-400 dark:border-yellow-900/30',
+  hiring_signal: 'bg-slate-50/50 text-slate-800 border border-slate-200/50 dark:bg-slate-950/20 dark:text-slate-400 dark:border-slate-900/30',
+  technology: 'bg-cyan-50/50 text-cyan-800 border border-cyan-200/50 dark:bg-cyan-950/20 dark:text-cyan-400 dark:border-cyan-900/30',
+  sustainability: 'bg-green-50/50 text-green-800 border border-green-200/50 dark:bg-green-950/20 dark:text-green-400 dark:border-green-900/30',
+  startup_signal: 'bg-purple-50/50 text-purple-800 border border-purple-200/50 dark:bg-purple-950/20 dark:text-purple-400 dark:border-purple-900/30',
+  regulatory: 'bg-amber-50/50 text-amber-800 border border-amber-200/50 dark:bg-amber-950/20 dark:text-amber-400 dark:border-amber-900/30',
+  partnership: 'bg-indigo-50/50 text-indigo-800 border border-indigo-200/50 dark:bg-indigo-950/20 dark:text-indigo-400 dark:border-indigo-900/30',
 }
 
 export const IMPORTANCE_COLORS: Record<ImportanceLevel, string> = {
-  '1': 'bg-slate-100 text-slate-600',
-  '2': 'bg-amber-100 text-amber-700',
-  '3': 'bg-red-100 text-red-700',
+  '1': 'bg-secondary text-muted-foreground border border-border/60 dark:bg-zinc-800 dark:text-zinc-300 dark:border-zinc-700/50',
+  '2': 'bg-amber-50/50 text-amber-800 border border-amber-200/50 dark:bg-amber-950/20 dark:text-amber-400 dark:border-amber-900/30',
+  '3': 'bg-primary/5 text-primary border border-primary/20 dark:bg-red-950/20 dark:text-red-400 dark:border-red-900/30',
 }
 
 // ============================================================
