@@ -6,7 +6,7 @@ import {
 import { cn } from '@/lib/utils'
 import { MODULES } from '@/lib/modules'
 
-const ICONS: Record<string, React.ComponentType<{ className?: string }>> = {
+const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
   Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio,
 }
 
