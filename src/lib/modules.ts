@@ -127,6 +127,16 @@ export const MODULES: IntelligenceModule[] = [
     ],
   },
   {
+    id: 'studien',
+    name: 'Ad-hoc Studien',
+    description: 'Gezielte Markt- und Trendstudien zu aktuellen Fragestellungen — durchsuchbar und als PDF abrufbar.',
+    icon: 'BookOpen',
+    status: 'active',
+    href: '/studien',
+    iconBg: 'bg-amber-100',
+    iconColor: 'text-amber-700',
+  },
+  {
     id: 'social',
     name: 'Social Listening Radar',
     description: 'Relevante Marken- und Produktdiskussionen in sozialen Medien — Stimmungen, Reichweiten und Trends im Blick.',

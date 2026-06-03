@@ -4,14 +4,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
   Target, Lightbulb, ShoppingCart, TrendingUp,
-  Package, Globe, BarChart3, Radio, Lock,
+  Package, Globe, BarChart3, Radio, BookOpen, Lock,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { MODULES } from '@/lib/modules'
 import type { IntelligenceModule } from '@/lib/modules'
 
 const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
-  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio,
+  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen,
 }
 
 const WETTBEWERB_ROUTES = ['/editions', '/signals', '/competitors', '/countries']

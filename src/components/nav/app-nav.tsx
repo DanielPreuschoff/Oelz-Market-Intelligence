@@ -19,6 +19,7 @@ const ADMIN_NAV_ITEMS = [
   { href: '/admin/research', label: 'Research Agent' },
   { href: '/admin/signals/new', label: 'New Signal' },
   { href: '/admin/editions/new', label: 'New Edition' },
+  { href: '/admin/studien/new', label: 'Studie hochladen' },
 ]
 
 interface AppNavProps {

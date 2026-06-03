@@ -21,10 +21,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Ölz Intelligence Radar",
   description: "Market and competitor intelligence for Rudolf Ölz Meisterbäcker",
-  icons: {
-    icon: "/oelz-logo.png",
-    apple: "/oelz-logo.png",
-  },
 };
 
 export default function RootLayout({

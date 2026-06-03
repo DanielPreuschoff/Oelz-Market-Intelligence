@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import {
   Target, Lightbulb, ShoppingCart, TrendingUp,
-  Package, Globe, BarChart3, Radio, Lock, ArrowLeft, CheckCircle2,
+  Package, Globe, BarChart3, Radio, BookOpen, Lock, ArrowLeft, CheckCircle2,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { MODULES } from '@/lib/modules'
 
 const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
-  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio,
+  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen,
 }
 
 interface ModulePlaceholderProps {
