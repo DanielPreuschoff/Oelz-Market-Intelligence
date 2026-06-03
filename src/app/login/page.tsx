@@ -68,7 +68,7 @@ export default function LoginPage() {
             <p className="text-sm text-destructive">{error}</p>
           )}
 
-          <Button type="submit" className="w-full" disabled={loading}>
+          <Button type="submit" className="w-full bg-[#F07D00] hover:bg-[#D66D00] text-white border-transparent" disabled={loading}>
             {loading ? 'Signing in...' : 'Sign in'}
           </Button>
         </form>
