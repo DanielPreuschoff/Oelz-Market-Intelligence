@@ -53,11 +53,9 @@ function buildPerplexityRequest(
     model: 'sonar-pro',
     messages: [{ role: 'user', content: prompt }],
     max_tokens: 2000,
-    // @ts-expect-error — Perplexity-specific fields not in OpenAI schema
     search_after_date_filter: fmtDate(fromDate),
-    // @ts-expect-error — Perplexity-specific fields not in OpenAI schema
     search_before_date_filter: fmtDate(toDate),
-  })
+  } as any)
 }
 
 async function searchViaPerplexityNews(
