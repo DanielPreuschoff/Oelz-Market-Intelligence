@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -34,9 +35,21 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="w-full max-w-sm space-y-8 px-4">
-        <div className="text-center space-y-1">
-          <div className="text-2xl font-semibold tracking-tight">Ölz Intelligence</div>
-          <p className="text-sm text-muted-foreground">Market & Competitor Radar</p>
+        <div className="text-center space-y-4">
+          <div className="flex justify-center">
+            <Image
+              src="/oelz-logo.png"
+              alt="Rudolf Ölz Meisterbäcker"
+              width={120}
+              height={90}
+              className="object-contain"
+              priority
+            />
+          </div>
+          <div className="space-y-1">
+            <div className="text-2xl font-semibold tracking-tight">Ölz Intelligence</div>
+            <p className="text-sm text-muted-foreground">Market & Competitor Radar</p>
+          </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
