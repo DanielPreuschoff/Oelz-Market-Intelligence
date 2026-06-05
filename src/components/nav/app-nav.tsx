@@ -20,6 +20,7 @@ const ADMIN_NAV_ITEMS = [
   { href: '/admin/signals/new', label: 'New Signal' },
   { href: '/admin/editions/new', label: 'New Edition' },
   { href: '/admin/studien/new', label: 'Studie hochladen' },
+  { href: '/admin/produkt-radar/new', label: 'Impuls hinzufügen' },
 ]
 
 interface AppNavProps {

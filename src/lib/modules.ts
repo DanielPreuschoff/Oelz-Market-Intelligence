@@ -29,17 +29,10 @@ export const MODULES: IntelligenceModule[] = [
     name: 'Produkt- & Innovationsradar',
     description: 'Neue Produktkonzepte, Claims und Sortimentsimpulse im Markt für Backwaren und Convenience.',
     icon: 'Lightbulb',
-    status: 'coming_soon',
+    status: 'active',
     href: '/produkt-radar',
     iconBg: 'bg-emerald-100',
     iconColor: 'text-emerald-700',
-    eta: 'Q1 2027',
-    plannedContent: [
-      'Neue Produktlaunches im Markt',
-      'Ernährungstrends & Health Claims',
-      'Sortimentsimpulse und Formatinnovationen',
-      'Claim-Entwicklungen (Protein, Fibre, Clean Label)',
-    ],
   },
   {
     id: 'retailer',
