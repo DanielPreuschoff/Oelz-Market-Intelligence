@@ -128,7 +128,7 @@ function ImpulseModal({ impulse }: { impulse: InnovationImpulse }) {
 
       {/* Ölz relevance */}
       {impulse.oelz_development_relevance && (
-        <Section label="Relevanz für Ölz Produktentwicklung">{impulse.oelz_development_relevance}</Section>
+        <Section label="Relevanz für Ölz">{impulse.oelz_development_relevance}</Section>
       )}
 
       {/* Transfer */}
@@ -137,23 +137,6 @@ function ImpulseModal({ impulse }: { impulse: InnovationImpulse }) {
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Möglicher Ölz-Transfer</p>
           <div className="border-l-2 border-foreground/20 pl-3 text-sm italic text-foreground/80">
             {impulse.possible_oelz_transfer}
-          </div>
-        </div>
-      )}
-
-      {/* Ratings */}
-      {impulse.ratings && (
-        <div className="space-y-2">
-          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Bewertung</p>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-xs">
-            <RatingRow label="Fit zu Ölz" value={impulse.ratings.fitToOelz} />
-            <RatingRow label="Neuigkeitswert" value={impulse.ratings.novelty} />
-            <RatingRow label="Umsetzbarkeit" value={impulse.ratings.feasibility} />
-            <RatingRow label="Claim-Potenzial" value={impulse.ratings.claimPotential} />
-          </div>
-          <div className="flex items-center gap-2 text-xs">
-            <span className="text-muted-foreground">Priorität</span>
-            <PriorityBadge priority={impulse.ratings.priority} />
           </div>
         </div>
       )}
