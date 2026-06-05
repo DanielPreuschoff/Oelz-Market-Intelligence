@@ -396,52 +396,12 @@ export function ImpulseForm({ initialValues, impulseId }: ImpulseFormProps) {
       {/* Ölz transfer + relevance */}
       <div className="space-y-4 border-t pt-6">
         <div className="space-y-1.5">
-          <Label htmlFor="oelz_development_relevance">Relevanz für Ölz Produktentwicklung</Label>
+          <Label htmlFor="oelz_development_relevance">Relevanz für Ölz</Label>
           <Textarea id="oelz_development_relevance" value={form.oelz_development_relevance} onChange={(e) => setField('oelz_development_relevance', e.target.value)} rows={3} placeholder="2-3 Sätze aus Sicht Produktentwicklung / Innovation" />
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="possible_oelz_transfer">Möglicher Ölz-Transfer</Label>
           <Input id="possible_oelz_transfer" value={form.possible_oelz_transfer} onChange={(e) => setField('possible_oelz_transfer', e.target.value)} placeholder="Konkrete Prüffrage oder Produktidee" />
-        </div>
-      </div>
-
-      {/* Ratings */}
-      <div className="space-y-4 border-t pt-6">
-        <h3 className="text-sm font-semibold text-muted-foreground">Bewertung (1-5)</h3>
-        <div className="grid grid-cols-2 gap-4">
-          {([['fitToOelz', 'Fit zu Ölz'], ['novelty', 'Neuigkeitswert'], ['feasibility', 'Umsetzbarkeit'], ['claimPotential', 'Claim-Potenzial']] as const).map(([key, label]) => (
-            <div key={key} className="space-y-1.5">
-              <Label htmlFor={key}>{label}</Label>
-              <Input
-                id={key}
-                type="number"
-                min={1}
-                max={5}
-                value={form.ratings[key]}
-                onChange={(e) => setRating(key, Math.min(5, Math.max(1, parseInt(e.target.value) || 3)))}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="space-y-1.5">
-          <Label>Priorität</Label>
-          <div className="flex gap-2">
-            {PRIORITY_OPTIONS.map((p) => (
-              <button
-                key={p}
-                type="button"
-                onClick={() => setRating('priority', p)}
-                className={cn(
-                  'text-xs px-3 py-1.5 rounded-full border transition-colors',
-                  form.ratings.priority === p
-                    ? 'bg-foreground text-background border-foreground'
-                    : 'border-border hover:bg-secondary'
-                )}
-              >
-                {p}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
