@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { format } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 import { de } from 'date-fns/locale'
 import Link from 'next/link'
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -103,7 +103,7 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
           {edition.published_at && (
             <>
               <span>·</span>
-              <span>Veröffentlicht am {format(new Date(edition.published_at), 'd. MMM yyyy', { locale: de })}</span>
+              <span>vor {formatDistanceToNow(new Date(edition.published_at), { locale: de })}</span>
             </>
           )}
         </div>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { format } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 import { de } from 'date-fns/locale'
-import { ChevronRight, ArrowRight } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { MODULES } from '@/lib/modules'
 import { ModuleCard } from '@/components/module-card'
@@ -56,6 +56,11 @@ export default async function ModuleHubPage() {
                     <span className="text-xs text-muted-foreground">
                       {format(new Date(latestEdition.period_month), 'MMMM yyyy', { locale: de })}
                     </span>
+                    {latestEdition.published_at && (
+                      <span className="ml-auto text-xs text-muted-foreground/60">
+                        vor {formatDistanceToNow(new Date(latestEdition.published_at), { locale: de })}
+                      </span>
+                    )}
                   </div>
                   <div className="space-y-1.5">
                     <p className="text-xs text-muted-foreground font-medium">Neueste Edition</p>
@@ -81,18 +86,17 @@ export default async function ModuleHubPage() {
                 <div className="flex items-center justify-between">
                   <p className="text-xs text-muted-foreground font-medium">Neueste Impulse</p>
                   <Link href="/produkt-radar" className="text-xs text-primary hover:underline flex items-center gap-0.5">
-                    Alle <ArrowRight className="w-3 h-3" />
+                    Alle <ChevronRight className="w-3 h-3" />
                   </Link>
                 </div>
                 <div className="divide-y border rounded-xl bg-white overflow-hidden">
                   {recentImpulses.map((impulse) => {
                     const colors = RADAR_TYPE_COLORS[impulse.radar_type]
                     return (
-                      <button
+                      <Link
                         key={impulse.id}
-                        onClick={() => {}}
+                        href="/produkt-radar"
                         className="w-full text-left flex items-center gap-3 px-4 py-3 hover:bg-secondary/40 transition-colors group"
-                        title={impulse.title}
                       >
                         {impulse.image_url ? (
                           <div className="relative w-10 h-10 rounded-lg overflow-hidden shrink-0">
@@ -110,7 +114,7 @@ export default async function ModuleHubPage() {
                           <p className="text-xs text-muted-foreground truncate">{impulse.radar_type}</p>
                         </div>
                         <ChevronRight className="w-3.5 h-3.5 text-muted-foreground shrink-0 group-hover:translate-x-0.5 transition-transform" />
-                      </button>
+                      </Link>
                     )
                   })}
                 </div>

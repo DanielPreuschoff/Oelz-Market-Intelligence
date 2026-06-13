@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { format } from 'date-fns'
+import { format, formatDistanceToNow } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/server'
 import { Badge } from '@/components/ui/badge'
@@ -94,7 +94,7 @@ export default async function EditionsPage() {
             </span>
             {latest.published_at && (
               <span className="text-sm text-muted-foreground">
-                Veröffentlicht am {format(new Date(latest.published_at), 'd. MMM yyyy', { locale: de })}
+                vor {formatDistanceToNow(new Date(latest.published_at), { locale: de })}
               </span>
             )}
             <span className="ml-auto text-sm font-medium flex items-center gap-0.5 group-hover:gap-1 transition-all text-primary">

@@ -1,5 +1,10 @@
 export type ModuleStatus = 'active' | 'coming_soon'
 
+export interface ModuleSubItem {
+  label: string
+  href: string
+}
+
 export interface IntelligenceModule {
   id: string
   name: string
@@ -11,6 +16,7 @@ export interface IntelligenceModule {
   iconColor: string
   eta?: string
   plannedContent?: string[]
+  subItems?: ModuleSubItem[]
 }
 
 export const MODULES: IntelligenceModule[] = [
@@ -23,6 +29,10 @@ export const MODULES: IntelligenceModule[] = [
     href: '/editions',
     iconBg: 'bg-blue-100',
     iconColor: 'text-blue-700',
+    subItems: [
+      { label: 'Editions', href: '/editions' },
+      { label: 'Wettbewerber', href: '/competitors' },
+    ],
   },
   {
     id: 'produkt',
