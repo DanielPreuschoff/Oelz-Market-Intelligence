@@ -48,7 +48,7 @@ export default function LoginPage() {
           </div>
           <div className="space-y-1">
             <div className="text-2xl font-semibold tracking-tight">Ölz Intelligence</div>
-            <p className="text-sm text-muted-foreground">Market & Competitor Radar</p>
+            <p className="text-sm text-muted-foreground">Market Intelligence Plattform</p>
           </div>
         </div>
 
@@ -81,13 +81,13 @@ export default function LoginPage() {
             <p className="text-sm text-destructive">{error}</p>
           )}
 
-          <Button type="submit" className="w-full" style={{ backgroundColor: '#F07D00', borderColor: '#F07D00', color: 'white' }} disabled={loading}>
-            {loading ? 'Signing in...' : 'Sign in'}
+          <Button type="submit" className="w-full bg-primary text-primary-foreground hover:bg-primary/90" disabled={loading}>
+            {loading ? 'Anmeldung läuft…' : 'Anmelden'}
           </Button>
         </form>
 
         <p className="text-center text-xs text-muted-foreground">
-          Access restricted to Ölz team members.
+          Zugang nur für autorisierte Ölz-Mitarbeitende.
         </p>
       </div>
     </div>

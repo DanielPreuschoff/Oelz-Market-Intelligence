@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { format } from 'date-fns'
+import { de } from 'date-fns/locale'
 import {
   CATEGORY_LABELS,
   CATEGORY_COLORS,
@@ -10,7 +11,7 @@ import {
 } from '@/types/database'
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
-import { ExternalLink } from 'lucide-react'
+import { ExternalLink, Sparkles } from 'lucide-react'
 
 interface SignalCardProps {
   signal: SignalWithRelations
@@ -25,8 +26,8 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
     <article
       className={cn(
         'bg-card border border-border/80 rounded-xl p-5 space-y-3 transition-all duration-300 hover:shadow-md hover:border-primary/10 relative',
-        signal.importance === '3' && 'border-primary/20 bg-primary/[0.02] dark:bg-primary/[0.04]',
-        isRoleHighlighted && 'border-l-4 border-l-accent pl-4 rounded-l-none'
+        signal.importance === '3' && 'border-l-4 border-l-primary pl-4 rounded-l-none',
+        signal.importance !== '3' && isRoleHighlighted && 'border-l-4 border-l-accent pl-4 rounded-l-none'
       )}
     >
       {/* Header row */}
@@ -60,7 +61,7 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
         </div>
         {signal.signal_date && (
           <time className="text-xs text-muted-foreground shrink-0 font-medium">
-            {format(new Date(signal.signal_date), 'MMM d, yyyy')}
+            {format(new Date(signal.signal_date), 'd. MMM yyyy', { locale: de })}
           </time>
         )}
       </div>
@@ -99,7 +100,9 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
         </div>
         <div className="flex items-center gap-2">
           {signal.ai_generated && (
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60 px-1 py-0.5 rounded bg-muted/30">AI</span>
+            <span className="inline-flex items-center gap-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60 px-1 py-0.5 rounded bg-muted/30">
+              <Sparkles className="w-2.5 h-2.5" />AI
+            </span>
           )}
           {signal.source_url && (
             <a
@@ -108,7 +111,7 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
               rel="noopener noreferrer"
               className="text-xs font-medium text-muted-foreground hover:text-primary flex items-center gap-0.5 transition-colors"
             >
-              {signal.source_name ?? 'Source'}
+              {signal.source_name ?? 'Quelle'}
               <ExternalLink className="w-3 h-3" />
             </a>
           )}

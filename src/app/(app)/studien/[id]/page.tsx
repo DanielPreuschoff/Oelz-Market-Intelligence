@@ -56,8 +56,7 @@ export default async function StudyDetailPage({ params }: { params: Promise<{ id
           href={s.pdf_url}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm text-white transition-opacity hover:opacity-90"
-          style={{ backgroundColor: '#F07D00' }}
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-semibold text-sm bg-primary text-primary-foreground transition-opacity hover:opacity-90"
         >
           <ExternalLink className="w-4 h-4" />
           Studie als PDF öffnen

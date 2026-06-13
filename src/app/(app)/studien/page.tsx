@@ -47,7 +47,7 @@ export default async function StudienPage({ searchParams }: PageProps) {
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <h1 className="text-2xl font-semibold">Ad-hoc Studien</h1>
+        <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Ad-hoc Studien</h1>
         <p className="text-sm text-muted-foreground">
           Gezielte Markt- und Trendstudien zu aktuellen Fragestellungen für Innovation, Produktentwicklung und Strategie.
         </p>

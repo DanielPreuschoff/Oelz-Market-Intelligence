@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 import { format } from 'date-fns'
+import { de } from 'date-fns/locale'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { SignalCard } from '@/components/signal-card/signal-card'
 import type { EditionWithSignals, UserRole } from '@/types/database'
@@ -49,7 +50,6 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
   const sortedSignalRows = (edition as EditionWithSignals).edition_signals
     .sort((a, b) => a.position - b.position)
 
-  // Apply filters
   const filteredRows = sortedSignalRows.filter((row) => {
     const signal = row.signal
     if (roleFilter && !signal.role_relevance.includes(roleFilter as UserRole)) return false
@@ -58,7 +58,6 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
     return true
   })
 
-  // Collect unique categories, competitors and countries present in this edition
   const categories = [...new Set(sortedSignalRows.map((r) => r.signal.category))]
 
   const competitorMap = new Map<string, string>()
@@ -81,7 +80,6 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
 
   function toggle(key: string, value: string) {
     const current = { role: roleFilter, category: categoryFilter, competitor: competitorFilter }
-    // Reset to page 1 when changing filters
     return buildUrl({ [key]: current[key as keyof typeof current] === value ? undefined : value, page: '1' })
   }
 
@@ -93,19 +91,19 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
-        Editions
+        Alle Editions
       </Link>
 
       {/* Edition header */}
       <div className="space-y-3">
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <span>{format(new Date(edition.period_month), 'MMMM yyyy')}</span>
+          <span>{format(new Date(edition.period_month), 'MMMM yyyy', { locale: de })}</span>
           <span>·</span>
-          <span>{sortedSignalRows.length} signals</span>
+          <span>{sortedSignalRows.length} Signale</span>
           {edition.published_at && (
             <>
               <span>·</span>
-              <span>Published {format(new Date(edition.published_at), 'MMM d, yyyy')}</span>
+              <span>Veröffentlicht am {format(new Date(edition.published_at), 'd. MMM yyyy', { locale: de })}</span>
             </>
           )}
         </div>
@@ -117,11 +115,11 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
         )}
       </div>
 
-      {/* Filters */}
+      {/* Filter */}
       <div className="space-y-2">
-        {/* Category */}
+        {/* Kategorie */}
         <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-muted-foreground font-medium w-16">Category</span>
+          <span className="text-xs text-muted-foreground font-medium w-20">Kategorie</span>
           {categories.map((cat) => (
             <a
               key={cat}
@@ -137,10 +135,10 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
           ))}
         </div>
 
-        {/* Competitor */}
+        {/* Wettbewerber */}
         {competitorMap.size > 0 && (
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-xs text-muted-foreground font-medium w-16">Competitor</span>
+            <span className="text-xs text-muted-foreground font-medium w-20">Wettbewerber</span>
             {[...competitorMap.entries()].map(([cid, name]) => (
               <a
                 key={cid}
@@ -162,16 +160,17 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
             href={`/editions/${id}`}
             className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
           >
-            Clear all filters
+            Alle Filter zurücksetzen
           </a>
         )}
       </div>
 
-      {/* Signal cards */}
+      {/* Signal-Karten */}
       {filteredRows.length === 0 ? (
-        <p className="text-sm text-muted-foreground py-12 text-center">
-          No signals match the current filters.
-        </p>
+        <div className="py-12 text-center text-muted-foreground text-sm border rounded-xl bg-white">
+          <p className="font-medium">Keine Signale für diese Filter</p>
+          <p className="text-xs mt-1">Passe die Filter an oder setze sie zurück.</p>
+        </div>
       ) : (
         <div className="space-y-4">
           {paginatedRows.map((row) => (
@@ -188,26 +187,26 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
       {totalPages > 1 && (
         <div className="flex items-center justify-between pt-2 border-t">
           <span className="text-xs text-muted-foreground">
-            {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filteredRows.length)} von {filteredRows.length} Signals
+            {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filteredRows.length)} von {filteredRows.length} Signalen
           </span>
           <div className="flex items-center gap-1">
             {currentPage > 1 && (
               <Link
                 href={buildUrl({ page: String(currentPage - 1) })}
-                className="px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
               >
-                ← Zurück
+                <ChevronLeft className="w-3.5 h-3.5" /> Zurück
               </Link>
             )}
             <span className="px-3 py-1.5 text-xs text-muted-foreground">
-              Seite {currentPage} / {totalPages}
+              {currentPage} / {totalPages}
             </span>
             {currentPage < totalPages && (
               <Link
                 href={buildUrl({ page: String(currentPage + 1) })}
-                className="px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
+                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
               >
-                Weiter →
+                Weiter <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             )}
           </div>

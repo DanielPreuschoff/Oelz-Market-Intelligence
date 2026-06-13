@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { format } from 'date-fns'
+import { de } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/server'
 import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button-variants'
@@ -43,14 +44,14 @@ export default async function EditionsPage() {
           <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Intelligence Editions</h1>
           {isAdmin && (
             <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
-              New Edition
+              Neue Edition
             </Link>
           )}
         </div>
         <div className="text-center py-24 text-muted-foreground">
-          <p className="text-lg font-medium">No editions published yet</p>
+          <p className="text-lg font-medium">Noch keine Editions veröffentlicht</p>
           <p className="text-sm mt-1">
-            {isAdmin ? 'Create your first edition in the admin panel.' : 'Check back soon.'}
+            {isAdmin ? 'Erstelle die erste Edition im Admin-Bereich.' : 'Neue Inhalte folgen in Kürze.'}
           </p>
         </div>
       </div>
@@ -65,18 +66,18 @@ export default async function EditionsPage() {
         <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Intelligence Editions</h1>
         {isAdmin && (
           <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
-            New Edition
+            Neue Edition
           </Link>
         )}
       </div>
 
-      {/* Latest edition — featured */}
+      {/* Aktuelle Edition — featured */}
       <Link href={`/editions/${latest.id}`} className="block group">
         <div className="border rounded-xl p-6 bg-white hover:shadow-md transition-shadow space-y-3">
           <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="text-xs">Latest</Badge>
+            <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">Aktuelle Ausgabe</Badge>
             <span className="text-xs text-muted-foreground">
-              {format(new Date(latest.period_month), 'MMMM yyyy')}
+              {format(new Date(latest.period_month), 'MMMM yyyy', { locale: de })}
             </span>
           </div>
           <h2 className="font-serif text-xl sm:text-2xl font-bold group-hover:text-primary transition-colors tracking-wide">
@@ -89,25 +90,25 @@ export default async function EditionsPage() {
           )}
           <div className="flex items-center gap-3 pt-1">
             <span className="text-sm text-muted-foreground">
-              {countMap[latest.id] ?? 0} signals
+              {countMap[latest.id] ?? 0} Signale
             </span>
             {latest.published_at && (
               <span className="text-sm text-muted-foreground">
-                Published {format(new Date(latest.published_at), 'MMM d, yyyy')}
+                Veröffentlicht am {format(new Date(latest.published_at), 'd. MMM yyyy', { locale: de })}
               </span>
             )}
-            <span className="ml-auto text-sm font-medium flex items-center gap-0.5 group-hover:gap-1 transition-all">
-              Read edition <ChevronRight className="w-4 h-4" />
+            <span className="ml-auto text-sm font-medium flex items-center gap-0.5 group-hover:gap-1 transition-all text-primary">
+              Zur Edition <ChevronRight className="w-4 h-4" />
             </span>
           </div>
         </div>
       </Link>
 
-      {/* Archive */}
+      {/* Archiv */}
       {archive.length > 0 && (
         <div className="space-y-3">
-          <h2 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-            Archive
+          <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            Archiv
           </h2>
           <div className="divide-y border rounded-xl bg-white overflow-hidden">
             {archive.map((edition: Edition) => (
@@ -119,8 +120,8 @@ export default async function EditionsPage() {
                 <div className="space-y-0.5">
                   <p className="text-sm font-medium">{edition.title}</p>
                   <p className="text-xs text-muted-foreground">
-                    {format(new Date(edition.period_month), 'MMMM yyyy')} ·{' '}
-                    {countMap[edition.id] ?? 0} signals
+                    {format(new Date(edition.period_month), 'MMMM yyyy', { locale: de })} ·{' '}
+                    {countMap[edition.id] ?? 0} Signale
                   </p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />

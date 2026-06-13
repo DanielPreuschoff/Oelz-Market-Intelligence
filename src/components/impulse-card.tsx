@@ -186,8 +186,8 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
     <Dialog>
       <DialogTrigger className="block text-left w-full group">
         <div className="border rounded-xl overflow-hidden bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
-          {/* Image */}
-          {impulse.image_url && (
+          {/* Image or color fallback */}
+          {impulse.image_url ? (
             <div className="relative w-full aspect-[4/3] overflow-hidden">
               <Image
                 src={impulse.image_url}
@@ -195,6 +195,15 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
                 fill
                 className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
               />
+            </div>
+          ) : (
+            <div className={cn(
+              'w-full aspect-[4/3] flex items-center justify-center',
+              RADAR_TYPE_COLORS[impulse.radar_type].bg
+            )}>
+              <span className={cn('text-3xl font-serif font-bold opacity-20', RADAR_TYPE_COLORS[impulse.radar_type].text)}>
+                {impulse.radar_type.slice(0, 1)}
+              </span>
             </div>
           )}
 
@@ -244,7 +253,7 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
       </DialogTrigger>
 
       <DialogContent
-        className="sm:max-w-lg max-h-[90vh]"
+        className="sm:max-w-xl max-h-[90vh]"
         showCloseButton
       >
         <ImpulseModal impulse={impulse} />

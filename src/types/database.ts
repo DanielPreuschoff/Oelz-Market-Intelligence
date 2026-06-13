@@ -132,10 +132,10 @@ export const IMPORTANCE_LABELS: Record<ImportanceLevel, string> = {
 
 export const ROLE_LABELS: Record<UserRole, string> = {
   management: 'Management',
-  sales: 'Sales',
+  sales: 'Vertrieb',
   innovation: 'Innovation',
   marketing: 'Marketing',
-  packaging: 'Packaging',
+  packaging: 'Verpackung',
 }
 
 export const CATEGORY_COLORS: Record<SignalCategory, string> = {

@@ -43,7 +43,10 @@ export default async function CompetitorsPage() {
 
   return (
     <div className="space-y-8">
-      <h1 className="text-2xl font-semibold">Competitors</h1>
+      <div className="space-y-1">
+        <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Wettbewerber-Profile</h1>
+        <p className="text-sm text-muted-foreground">Aktive Wettbewerber im Backwaren- und Convenience-Segment — geordnet nach Beobachtungsintensität.</p>
+      </div>
 
       {(['high', 'medium', 'low'] as const).map((priority) => {
         const list = grouped[priority]
@@ -51,7 +54,7 @@ export default async function CompetitorsPage() {
         return (
           <div key={priority} className="space-y-3">
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              {priority} priority
+              {priority === 'high' ? 'Intensiv beobachtet' : priority === 'medium' ? 'Im Blick' : 'Auf dem Radar'}
             </h2>
             <div className="divide-y border rounded-xl overflow-hidden bg-white">
               {list.map((competitor: Competitor) => (
@@ -72,7 +75,7 @@ export default async function CompetitorsPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="text-xs text-muted-foreground">
-                      {countMap[competitor.id] ?? 0} signals
+                      {countMap[competitor.id] ?? 0} Signale
                     </span>
                     <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
                   </div>

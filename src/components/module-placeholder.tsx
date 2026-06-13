@@ -37,7 +37,7 @@ export function ModulePlaceholder({ moduleId }: ModulePlaceholderProps) {
 
         <div className="space-y-2">
           <div className="flex items-center gap-2.5">
-            <h1 className="text-2xl font-semibold">{module.name}</h1>
+            <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">{module.name}</h1>
             <span className="text-xs font-medium bg-muted text-muted-foreground px-2 py-0.5 rounded-full flex items-center gap-1">
               <Lock className="w-3 h-3" />
               {module.eta ? `Demnächst ${module.eta}` : 'Demnächst'}

@@ -38,14 +38,10 @@ export function ModuleCard({ module }: ModuleCardProps) {
         )}>
           <Icon className="w-5 h-5" />
         </div>
-        {isActive ? (
-          <span className="text-xs font-semibold bg-emerald-50 text-emerald-800 dark:bg-emerald-950/20 dark:text-emerald-400 px-2.5 py-0.5 rounded-full border border-emerald-100 dark:border-emerald-900/30">
-            Aktiv
-          </span>
-        ) : (
+        {!isActive && (
           <span className="text-xs font-medium bg-muted/60 text-muted-foreground/80 px-2.5 py-0.5 rounded-full border border-border/30 flex items-center gap-1">
             <Lock className="w-3 h-3" />
-            {module.eta ? `Demnächst ${module.eta}` : 'Demnächst'}
+            {module.eta ? `Ab ${module.eta}` : 'Bald'}
           </span>
         )}
       </div>

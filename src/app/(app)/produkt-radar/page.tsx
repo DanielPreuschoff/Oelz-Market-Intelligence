@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { ImpulseCard } from '@/components/impulse-card'
 import { RADAR_TYPES, IMPULSE_TAGS, type InnovationImpulse } from '@/types/innovation'
@@ -54,15 +55,15 @@ export default async function ProduktRadarPage({ searchParams }: PageProps) {
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <h1 className="text-2xl font-semibold">Produkt- & Innovationsradar</h1>
+        <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Produkt- & Innovationsradar</h1>
         <p className="text-sm text-muted-foreground">
           Kuratiertes Scouting für neue Backwarenformate, Claims, Rezepturideen und Handelsadaptionen — übersetzt in konkrete Prüffragen für die Ölz Produktentwicklung.
         </p>
       </div>
 
-      {/* Filters */}
+      {/* Filter */}
       <div className="space-y-2.5">
-        {/* Search */}
+        {/* Suche */}
         <form action="/produkt-radar" method="get">
           {typeFilter && <input type="hidden" name="type" value={typeFilter} />}
           {tagFilter && <input type="hidden" name="tag" value={tagFilter} />}
@@ -74,7 +75,7 @@ export default async function ProduktRadarPage({ searchParams }: PageProps) {
           />
         </form>
 
-        {/* Radar type filter */}
+        {/* Radar-Typ-Filter */}
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="text-xs text-muted-foreground font-medium w-10">Typ</span>
           {RADAR_TYPES.map((type) => (
@@ -83,7 +84,7 @@ export default async function ProduktRadarPage({ searchParams }: PageProps) {
               href={toggleFilter('type', type)}
               className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
                 typeFilter === type
-                  ? 'bg-foreground text-background border-foreground'
+                  ? 'bg-primary text-primary-foreground border-primary'
                   : 'border-border hover:bg-secondary'
               }`}
             >
@@ -92,34 +93,53 @@ export default async function ProduktRadarPage({ searchParams }: PageProps) {
           ))}
         </div>
 
-        {/* Tag filter */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-muted-foreground font-medium w-10">Tags</span>
-          {IMPULSE_TAGS.map((tag) => (
-            <a
-              key={tag}
-              href={toggleFilter('tag', tag)}
-              className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
-                tagFilter === tag
-                  ? 'bg-foreground text-background border-foreground'
-                  : 'border-border hover:bg-secondary'
-              }`}
-            >
-              {tag}
-            </a>
-          ))}
-        </div>
+        {/* Tag-Filter — kollabierbar via details/summary (kein JS nötig) */}
+        <details className="group" open={!!tagFilter}>
+          <summary className="flex items-center gap-1.5 cursor-pointer list-none select-none">
+            <span className="text-xs text-muted-foreground font-medium">Tags</span>
+            {tagFilter && (
+              <span className="text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded-full border border-primary/20 font-medium">
+                {tagFilter}
+              </span>
+            )}
+            <span className="text-xs text-muted-foreground/60 group-open:hidden ml-1">anzeigen ↓</span>
+            <span className="text-xs text-muted-foreground/60 hidden group-open:inline ml-1">ausblenden ↑</span>
+          </summary>
+          <div className="flex flex-wrap gap-1.5 mt-2 pl-0">
+            {IMPULSE_TAGS.map((tag) => (
+              <a
+                key={tag}
+                href={toggleFilter('tag', tag)}
+                className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
+                  tagFilter === tag
+                    ? 'bg-primary text-primary-foreground border-primary'
+                    : 'border-border hover:bg-secondary'
+                }`}
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        </details>
 
-        {hasFilters && (
-          <a href="/produkt-radar" className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground">
-            Filter zurücksetzen
-          </a>
-        )}
+        <div className="flex items-center justify-between">
+          <span className="text-xs text-muted-foreground">
+            {filtered.length} {filtered.length === 1 ? 'Impuls' : 'Impulse'} gefunden
+          </span>
+          {hasFilters && (
+            <a href="/produkt-radar" className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground">
+              Alle Filter zurücksetzen
+            </a>
+          )}
+        </div>
       </div>
 
       {/* Grid */}
       {filtered.length === 0 ? (
-        <div className="py-16 text-center text-muted-foreground text-sm">Keine Impulse gefunden.</div>
+        <div className="py-16 text-center border rounded-xl bg-white text-muted-foreground">
+          <p className="font-medium text-sm">Keine Impulse gefunden</p>
+          <p className="text-xs mt-1">Passe die Filter an oder setze sie zurück.</p>
+        </div>
       ) : (
         <div className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -135,16 +155,16 @@ export default async function ProduktRadarPage({ searchParams }: PageProps) {
               </span>
               <div className="flex items-center gap-1">
                 {currentPage > 1 && (
-                  <Link href={buildUrl({ page: String(currentPage - 1) })} className="px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors">
-                    ← Zurück
+                  <Link href={buildUrl({ page: String(currentPage - 1) })} className="inline-flex items-center gap-1 px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors">
+                    <ChevronLeft className="w-3.5 h-3.5" /> Zurück
                   </Link>
                 )}
                 <span className="px-3 py-1.5 text-xs text-muted-foreground">
-                  Seite {currentPage} / {totalPages}
+                  {currentPage} / {totalPages}
                 </span>
                 {currentPage < totalPages && (
-                  <Link href={buildUrl({ page: String(currentPage + 1) })} className="px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors">
-                    Weiter →
+                  <Link href={buildUrl({ page: String(currentPage + 1) })} className="inline-flex items-center gap-1 px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors">
+                    Weiter <ChevronRight className="w-3.5 h-3.5" />
                   </Link>
                 )}
               </div>
