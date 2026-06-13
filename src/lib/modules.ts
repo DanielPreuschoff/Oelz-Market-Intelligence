@@ -29,10 +29,6 @@ export const MODULES: IntelligenceModule[] = [
     href: '/editions',
     iconBg: 'bg-blue-100',
     iconColor: 'text-blue-700',
-    subItems: [
-      { label: 'Editions', href: '/editions' },
-      { label: 'Wettbewerber', href: '/competitors' },
-    ],
   },
   {
     id: 'produkt',

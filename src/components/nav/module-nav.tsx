@@ -34,40 +34,19 @@ export function ModuleNav() {
           const active = isModuleActive(module, pathname)
 
           return (
-            <div key={module.id}>
-              <Link
-                href={module.href}
-                className={cn(
-                  'flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-all duration-200 w-full relative',
-                  active
-                    ? 'bg-primary/10 text-primary font-semibold pl-4 before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1 before:rounded-r before:bg-primary'
-                    : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
-                )}
-              >
-                <Icon className="w-4 h-4 shrink-0" />
-                <span className="truncate flex-1">{module.name}</span>
-              </Link>
-
-              {/* Sub-Navigation wenn Modul aktiv */}
-              {active && module.subItems && (
-                <div className="ml-4 mt-0.5 mb-1 border-l border-border/50 pl-3 flex flex-col gap-0.5">
-                  {module.subItems.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className={cn(
-                        'py-1.5 px-2 text-xs rounded-md transition-colors',
-                        pathname.startsWith(item.href)
-                          ? 'text-primary font-semibold'
-                          : 'text-muted-foreground hover:text-foreground hover:bg-secondary/40'
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
+            <Link
+              key={module.id}
+              href={module.href}
+              className={cn(
+                'flex items-center gap-2.5 px-3 py-2 rounded-md text-sm transition-all duration-200 w-full relative',
+                active
+                  ? 'bg-primary/10 text-primary font-semibold pl-4 before:absolute before:left-0 before:top-2 before:bottom-2 before:w-1 before:rounded-r before:bg-primary'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
               )}
-            </div>
+            >
+              <Icon className="w-4 h-4 shrink-0" />
+              <span className="truncate flex-1">{module.name}</span>
+            </Link>
           )
         })}
       </nav>
