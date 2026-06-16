@@ -19,7 +19,12 @@ export default async function AdminStudienPage() {
   const { data: studies } = await supabase
     .from('studies')
     .select('*')
-    .order('created_at', { ascending: false })
+
+  const sortedStudies = (studies as Study[] ?? []).sort((a, b) => {
+    const dateA = a.date_published || a.created_at
+    const dateB = b.date_published || b.created_at
+    return new Date(dateB).getTime() - new Date(dateA).getTime()
+  })
 
   return (
     <div className="space-y-6">
@@ -30,11 +35,11 @@ export default async function AdminStudienPage() {
         </Link>
       </div>
 
-      {!studies?.length ? (
+      {!sortedStudies.length ? (
         <div className="py-16 text-center text-muted-foreground text-sm">Noch keine Studien angelegt.</div>
       ) : (
         <div className="divide-y border rounded-xl bg-white overflow-hidden">
-          {(studies as Study[]).map((study) => (
+          {sortedStudies.map((study) => (
             <div key={study.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-secondary/30 transition-colors">
               <div className="space-y-0.5 flex-1 min-w-0">
                 <p className="text-sm font-medium truncate">{study.title}</p>

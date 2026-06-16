@@ -14,15 +14,19 @@ export default async function StudienPage({ searchParams }: PageProps) {
     .from('studies')
     .select('*')
     .eq('status', 'published')
-    .order('date_published', { ascending: false, nullsFirst: false })
-    .order('created_at', { ascending: false })
 
   if (tagFilter) query = query.contains('topic_tags', [tagFilter])
 
   const { data: studies } = await query
 
+  const sortedStudies = (studies ?? []).sort((a: Study, b: Study) => {
+    const dateA = a.date_published || a.created_at
+    const dateB = b.date_published || b.created_at
+    return new Date(dateB).getTime() - new Date(dateA).getTime()
+  })
+
   // Client-side text search (title + summary)
-  const filtered = (studies ?? []).filter((s: Study) => {
+  const filtered = sortedStudies.filter((s: Study) => {
     if (!search) return true
     const q = search.toLowerCase()
     return s.title.toLowerCase().includes(q) || (s.summary ?? '').toLowerCase().includes(q)
