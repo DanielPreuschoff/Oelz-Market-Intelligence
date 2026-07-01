@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import Link from 'next/link'
 import { format, formatDistanceToNow } from 'date-fns'
 import { de } from 'date-fns/locale'
