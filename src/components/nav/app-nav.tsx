@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { OelzWave } from '@/components/nav/oelz-wave'
 import type { UserProfile } from '@/types/database'
 import { ROLE_LABELS } from '@/types/database'
 
@@ -21,6 +22,7 @@ const ADMIN_NAV_ITEMS = [
   { href: '/admin/editions/new', label: 'New Edition' },
   { href: '/admin/studien/new', label: 'Studie hochladen' },
   { href: '/admin/produkt-radar/new', label: 'Impuls hinzufügen' },
+  { href: '/admin/rohstoff-radar/new', label: 'Rohstoffsignal hinzufügen' },
 ]
 
 interface AppNavProps {
@@ -38,7 +40,7 @@ export function AppNav({ profile }: AppNavProps) {
   }
 
   return (
-    <header className="border-b border-border/80 bg-white/90 dark:bg-card/90 backdrop-blur-md sticky top-0 z-40 shadow-[0_1px_3px_0_rgba(34,28,26,0.04)]">
+    <header className="sticky top-0 z-40 bg-oelz-orange">
       <div className="w-full px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-3 group">
@@ -50,12 +52,14 @@ export function AppNav({ profile }: AppNavProps) {
               className="object-contain transition-transform group-hover:scale-[1.03] duration-300"
               priority
             />
-            <div className="hidden sm:block h-6 w-[1px] bg-border/80" />
-            <div className="flex flex-col">
-              <span className="font-serif text-[15px] font-bold tracking-wide text-foreground leading-tight">
+            <div className="hidden sm:block h-6 w-[1px] bg-oelz-on-orange/25" />
+            {/* Unter sm bleibt nur das Logo — der Schriftzug bräche sonst um und
+                liefe aus dem 64px hohen Balken heraus. */}
+            <div className="hidden sm:flex flex-col text-oelz-on-orange">
+              <span className="font-display text-[15px] font-bold tracking-wide leading-tight">
                 Ölz Meisterbäcker
               </span>
-              <span className="text-[9px] uppercase tracking-[0.18em] font-semibold text-muted-foreground">
+              <span className="font-display text-[9px] uppercase tracking-[0.18em] font-bold opacity-80">
                 Market &amp; Competitor Intelligence
               </span>
             </div>
@@ -65,7 +69,17 @@ export function AppNav({ profile }: AppNavProps) {
         <div className="flex items-center gap-2">
           {profile?.is_admin && (
             <DropdownMenu>
-              <DropdownMenuTrigger render={<Button variant="outline" size="sm">Admin</Button>} />
+              <DropdownMenuTrigger
+                render={
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-oelz-on-orange/30 bg-white/20 text-oelz-on-orange hover:bg-white/35 hover:text-oelz-on-orange"
+                  >
+                    Admin
+                  </Button>
+                }
+              />
               <DropdownMenuContent align="end">
                 {ADMIN_NAV_ITEMS.map((item) => (
                   <DropdownMenuItem key={item.href} render={<Link href={item.href} />}>
@@ -82,6 +96,9 @@ export function AppNav({ profile }: AppNavProps) {
                 <DropdownMenuItem render={<Link href="/admin/competitors" />}>
                   Manage Competitors
                 </DropdownMenuItem>
+                <DropdownMenuItem render={<Link href="/admin/rohstoff-radar" />}>
+                  Manage Rohstoffsignale
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}
@@ -89,12 +106,16 @@ export function AppNav({ profile }: AppNavProps) {
           <DropdownMenu>
             <DropdownMenuTrigger
               render={
-                <Button variant="ghost" size="sm" className="gap-1.5">
-                  <span className="hidden sm:block text-muted-foreground">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="gap-1.5 text-oelz-on-orange hover:bg-white/25 hover:text-oelz-on-orange"
+                >
+                  <span className="hidden sm:block opacity-80">
                     {profile?.full_name ?? profile?.role ?? 'Account'}
                   </span>
                   {profile?.role && (
-                    <span className="text-xs bg-secondary px-1.5 py-0.5 rounded">
+                    <span className="text-xs bg-white/30 px-1.5 py-0.5 rounded">
                       {ROLE_LABELS[profile.role]}
                     </span>
                   )}
@@ -109,6 +130,10 @@ export function AppNav({ profile }: AppNavProps) {
           </DropdownMenu>
         </div>
       </div>
+
+      {/* Wellenbogen: läuft unter dem Balken aus, ohne die Höhe zu verändern
+          (die Sidebar hängt an top-16 / h-[calc(100vh-4rem)]). */}
+      <OelzWave className="absolute inset-x-0 top-full h-3.5 w-full text-oelz-orange pointer-events-none" />
     </header>
   )
 }

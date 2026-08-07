@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import {
   Target, Lightbulb, ShoppingCart, TrendingUp,
-  Package, Globe, BarChart3, Radio, BookOpen, Lock, ArrowLeft, CheckCircle2,
+  Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Lock, ArrowLeft, CheckCircle2,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { MODULES } from '@/lib/modules'
 
 const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
-  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen,
+  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical,
 }
 
 interface ModulePlaceholderProps {
@@ -37,7 +37,7 @@ export function ModulePlaceholder({ moduleId }: ModulePlaceholderProps) {
 
         <div className="space-y-2">
           <div className="flex items-center gap-2.5">
-            <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">{module.name}</h1>
+            <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">{module.name}</h1>
             <span className="text-xs font-medium bg-muted text-muted-foreground px-2 py-0.5 rounded-full flex items-center gap-1">
               <Lock className="w-3 h-3" />
               {module.eta ? `Demnächst ${module.eta}` : 'Demnächst'}

@@ -3,13 +3,13 @@
 import Link from 'next/link'
 import {
   Target, Lightbulb, ShoppingCart, TrendingUp,
-  Package, Globe, BarChart3, Radio, BookOpen, Lock, ArrowRight,
+  Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Lock, ArrowRight,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { IntelligenceModule } from '@/lib/modules'
 
 const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
-  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen,
+  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical,
 }
 
 interface ModuleCardProps {
@@ -47,7 +47,7 @@ export function ModuleCard({ module }: ModuleCardProps) {
       </div>
 
       <div className="space-y-2 flex-1">
-        <h3 className="font-serif font-bold text-[15px] text-foreground tracking-wide leading-snug">
+        <h3 className="font-display font-bold text-[15px] text-foreground tracking-wide leading-snug">
           {module.name}
         </h3>
         <p className="text-xs text-muted-foreground leading-relaxed">
