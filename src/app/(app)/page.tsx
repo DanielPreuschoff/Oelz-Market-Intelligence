@@ -3,7 +3,7 @@ import { format, formatDistanceToNow } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { MODULES } from '@/lib/modules'
+import { visibleModules } from '@/lib/modules'
 import { ModuleCard } from '@/components/module-card'
 import type { Edition } from '@/types/database'
 import type { InnovationImpulse } from '@/types/innovation'
@@ -12,8 +12,9 @@ import Image from 'next/image'
 
 export default async function ModuleHubPage() {
   const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
 
-  const [{ data: editions }, { data: impulses }] = await Promise.all([
+  const [{ data: editions }, { data: impulses }, { data: profile }] = await Promise.all([
     supabase
       .from('editions')
       .select('*')
@@ -26,11 +27,13 @@ export default async function ModuleHubPage() {
       .eq('status', 'published')
       .order('created_at', { ascending: false })
       .limit(3),
+    supabase.from('user_profiles').select('is_admin').eq('id', user?.id ?? '').maybeSingle(),
   ])
 
   const latestEdition = editions?.[0] as Edition | undefined
   const recentImpulses = (impulses ?? []) as InnovationImpulse[]
   const hasContent = latestEdition || recentImpulses.length > 0
+  const isAdmin = !!(profile as { is_admin?: boolean } | null)?.is_admin
 
   return (
     <div className="space-y-10">
@@ -134,7 +137,7 @@ export default async function ModuleHubPage() {
       <div className="space-y-4">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Module</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {MODULES.map((module) => (
+          {visibleModules(isAdmin).map((module) => (
             <ModuleCard key={module.id} module={module} />
           ))}
         </div>

@@ -26,7 +26,7 @@ export default async function AppLayout({
     <div className="min-h-screen bg-background">
       <AppNav profile={profile as UserProfile | null} />
       <div className="flex">
-        <ModuleNav />
+        <ModuleNav isAdmin={!!(profile as UserProfile | null)?.is_admin} />
         <main className="flex-1 min-w-0 px-8 py-8 max-w-5xl">
           {children}
         </main>

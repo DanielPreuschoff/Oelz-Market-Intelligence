@@ -11,12 +11,25 @@ export interface IntelligenceModule {
   description: string
   icon: string
   status: ModuleStatus
+  /**
+   * Ausrollstufe: Modul ist fertig, aber vorerst nur für Admins erreichbar.
+   * Blendet den Sidebar-Eintrag und die Kachel auf der Startseite aus; die
+   * Route und die RLS-Policies müssen zusätzlich gesperrt sein, sonst ist es
+   * nur Verstecken. Zum Freischalten hier entfernen — siehe
+   * docs/rohstoff-radar-spec.md, Abschnitt „Ausrollstufe".
+   */
+  adminOnly?: boolean
   href: string
   iconBg: string
   iconColor: string
   eta?: string
   plannedContent?: string[]
   subItems?: ModuleSubItem[]
+}
+
+/** Module, die dieser Nutzer sehen darf. */
+export function visibleModules(isAdmin: boolean): IntelligenceModule[] {
+  return MODULES.filter((m) => !m.adminOnly || isAdmin)
 }
 
 export const MODULES: IntelligenceModule[] = [
@@ -46,6 +59,7 @@ export const MODULES: IntelligenceModule[] = [
     description: 'Rohstoffe, Ingredients, Technologien und Verfahren mit strategischer Bedeutung für Produktentwicklung und Portfolio.',
     icon: 'FlaskConical',
     status: 'active',
+    adminOnly: true,
     href: '/rohstoff-radar',
     iconBg: 'bg-teal-100',
     iconColor: 'text-teal-700',

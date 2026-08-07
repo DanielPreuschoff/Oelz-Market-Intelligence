@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/server'
@@ -30,6 +31,18 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
   } = await searchParams
 
   const supabase = await createClient()
+
+  // Ausrollstufe: das Modul ist vorerst nur für Admins erreichbar.
+  // notFound() statt redirect, damit die Route für andere Nutzer nicht einmal
+  // als existierend erkennbar ist. Zum Freischalten diesen Block entfernen und
+  // `adminOnly` in src/lib/modules.ts streichen — siehe Spec, „Ausrollstufe".
+  const { data: { user } } = await supabase.auth.getUser()
+  const { data: profile } = await supabase
+    .from('user_profiles')
+    .select('is_admin')
+    .eq('id', user?.id ?? '')
+    .maybeSingle()
+  if (!profile?.is_admin) notFound()
 
   let query = supabase
     .from('ingredient_signals')

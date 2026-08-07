@@ -76,12 +76,24 @@ CREATE TRIGGER update_ingredient_signals_updated_at
 -- diese vier Policies darauf umgestellt werden.
 ALTER TABLE ingredient_signals ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "ingredient_signals_read_published" ON ingredient_signals
+-- AUSROLLSTUFE: Das Modul ist vorerst nur für Admins sichtbar. Lesen ist
+-- deshalb komplett auf Admins beschränkt — ein reines Ausblenden in der
+-- Oberfläche würde die Daten weiterhin über die Supabase-API preisgeben.
+CREATE POLICY "ingredient_signals_read_admin_only" ON ingredient_signals
   FOR SELECT TO authenticated
-  USING (
-    status = 'published'
-    OR EXISTS (SELECT 1 FROM user_profiles WHERE id = auth.uid() AND is_admin = true)
-  );
+  USING (EXISTS (SELECT 1 FROM user_profiles WHERE id = auth.uid() AND is_admin = true));
+
+-- Zum Freischalten für alle Nutzer: obige Policy in einer neuen Migration
+-- durch diese ersetzen, dazu `adminOnly` in src/lib/modules.ts und den
+-- notFound()-Block in src/app/(app)/rohstoff-radar/page.tsx entfernen.
+--
+--   DROP POLICY "ingredient_signals_read_admin_only" ON ingredient_signals;
+--   CREATE POLICY "ingredient_signals_read_published" ON ingredient_signals
+--     FOR SELECT TO authenticated
+--     USING (
+--       status = 'published'
+--       OR EXISTS (SELECT 1 FROM user_profiles WHERE id = auth.uid() AND is_admin = true)
+--     );
 
 CREATE POLICY "ingredient_signals_admin_insert" ON ingredient_signals
   FOR INSERT TO authenticated

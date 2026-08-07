@@ -100,6 +100,28 @@ Standdatum zeigt — genau die zuletzt erhobenen Signale wären dann nirgends me
 damit ein später erneut veröffentlichtes Altsignal nicht wieder als neu gilt und den Stand des
 ganzen Moduls nach vorn zieht.
 
+## 5a. Ausrollstufe — vorerst nur für Admins
+
+Das Modul ist fertig, aber zunächst **nur für Admins** erreichbar. Gesperrt wird an drei Stellen,
+weil eine allein nicht reicht:
+
+| Ebene | Wo | Wirkung |
+|---|---|---|
+| Registry | `adminOnly: true` in `src/lib/modules.ts` | Kein Sidebar-Eintrag, keine Kachel auf der Startseite |
+| Route | `notFound()` in `src/app/(app)/rohstoff-radar/page.tsx` | Direkte URL liefert 404 statt Weiterleitung — die Route ist nicht als existierend erkennbar |
+| Daten | RLS-Policy `ingredient_signals_read_admin_only` (Migration 007) | Auch über die Supabase-API nicht lesbar |
+
+Nur die Registry zu setzen wäre bloßes Verstecken: die Route bliebe aufrufbar und die Daten über
+die API lesbar. Nur die Route zu sperren ließe die Daten offen.
+
+**Zum Freischalten für alle Nutzer** (drei Handgriffe, alle in derselben Reihenfolge rückgängig
+machbar): `adminOnly` aus dem Modul-Eintrag streichen, den `notFound()`-Block aus der Übersicht
+entfernen, und die Lese-Policy per neuer Migration auf „published oder Admin" umstellen — das
+fertige SQL dafür steht als Kommentar am Ende von Migration 007.
+
+Die Admin-Routen unter `/admin/rohstoff-radar` sind vom Admin-Gate im Layout ohnehin geschützt und
+bleiben unverändert.
+
 ## 6. Filterdimensionen
 
 Bewusst drei plus Suche (Filter-Overload-Befund aus dem Produkt-Radar nicht wiederholen):
