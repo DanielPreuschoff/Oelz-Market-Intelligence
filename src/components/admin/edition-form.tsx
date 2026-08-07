@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
+import { MonthPicker } from '@/components/admin/month-picker'
 import type { Edition } from '@/types/database'
 import { Loader2 } from 'lucide-react'
 
@@ -71,21 +72,18 @@ export function EditionForm({ initialValues, editionId }: EditionFormProps) {
 
       <div className="space-y-2">
         <Label htmlFor="period">Period (month)</Label>
-        <Input
-          id="period"
-          type="month"
-          value={periodMonth}
-          onChange={(e) => setPeriodMonth(e.target.value)}
-        />
+        <MonthPicker id="period" value={periodMonth} onChange={setPeriodMonth} />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="summary">Editorial Summary</Label>
+        <Label htmlFor="summary">
+          Editorial Summary <span className="font-normal text-muted-foreground">— optional</span>
+        </Label>
         <Textarea
           id="summary"
           value={editorialSummary}
           onChange={(e) => setEditorialSummary(e.target.value)}
-          placeholder="2–3 paragraph opening that frames the key themes of this edition..."
+          placeholder="Optional: 2–3 paragraph opening that frames the key themes of this edition. Can be added later."
           rows={6}
         />
       </div>
