@@ -26,9 +26,14 @@ export default async function AdminRohstoffRadarPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Rohstoff-Radar</h1>
-        <Link href="/admin/rohstoff-radar/new" className={cn(buttonVariants({ size: 'sm' }))}>
-          Rohstoffsignal hinzufügen
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link href="/admin/rohstoff-radar/import" className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}>
+            Importieren
+          </Link>
+          <Link href="/admin/rohstoff-radar/new" className={cn(buttonVariants({ size: 'sm' }))}>
+            Rohstoffsignal hinzufügen
+          </Link>
+        </div>
       </div>
 
       {signals.length === 0 ? (
