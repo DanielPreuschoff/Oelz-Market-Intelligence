@@ -16,6 +16,24 @@ interface EditionFormProps {
   editionId?: string
 }
 
+const ENGLISH_MONTHS = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+]
+
+/**
+ * "July 2026" aus einem `YYYY-MM`-Wert. Englische Monatsnamen, weil die
+ * bisherigen Ausgaben so heissen — im Reader wird der Monat separat und auf
+ * Deutsch aus `period_month` angezeigt.
+ */
+function englishMonthLabel(periodMonth: string): string {
+  const monthIndex = Number(periodMonth?.slice(5, 7)) - 1
+  const fallback = new Date()
+  return ENGLISH_MONTHS[monthIndex] && periodMonth
+    ? `${ENGLISH_MONTHS[monthIndex]} ${periodMonth.slice(0, 4)}`
+    : `${ENGLISH_MONTHS[fallback.getMonth()]} ${fallback.getFullYear()}`
+}
+
 export function EditionForm({ initialValues, editionId }: EditionFormProps) {
   const router = useRouter()
   const [title, setTitle] = useState(initialValues?.title ?? '')
@@ -25,6 +43,12 @@ export function EditionForm({ initialValues, editionId }: EditionFormProps) {
   const [editorialSummary, setEditorialSummary] = useState(initialValues?.editorial_summary ?? '')
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  // Beispieltitel folgt dem bisherigen Schema der Ausgaben
+  // ("July 2026: Competitor Monitoring") und zieht den Monat aus der Auswahl,
+  // damit dort steht, was man tatsaechlich tippen wuerde. Bewusst nur
+  // Platzhalter, nicht vorausgefuellt — der Titel bleibt eine Entscheidung.
+  const titlePlaceholder = `e.g. ${englishMonthLabel(periodMonth)}: Competitor Monitoring`
 
   async function handleSave() {
     if (!title || !periodMonth) return
@@ -66,7 +90,7 @@ export function EditionForm({ initialValues, editionId }: EditionFormProps) {
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="e.g. March 2026 — Market Intelligence"
+          placeholder={titlePlaceholder}
         />
       </div>
 
