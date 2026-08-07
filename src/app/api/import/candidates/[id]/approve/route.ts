@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
+import { deriveRoleRelevance } from '@/lib/role-relevance'
+import type { ImportanceLevel, SignalCategory } from '@/types/database'
 
 export async function POST(
   _request: Request,
@@ -33,15 +35,21 @@ export async function POST(
   }
 
   // Promote to signals table
+  const category = (candidate.category ?? 'product_launch') as SignalCategory
+  const importance = (candidate.importance ?? '1') as ImportanceLevel
+
   const { data: signal, error: signalError } = await supabase
     .from('signals')
     .insert({
       headline: candidate.headline ?? '',
       summary: candidate.summary ?? '',
-      category: candidate.category ?? 'product_launch',
+      category,
       competitor_id: candidate.competitor_id,
       country_id: candidate.country_id,
-      importance: candidate.importance,
+      importance,
+      // Wurde hier bisher gar nicht gesetzt — jedes uebernommene Signal kam
+      // ohne Rollenzuordnung in den Reader. Siehe src/lib/role-relevance.ts.
+      role_relevance: deriveRoleRelevance(category, importance),
       source_url: candidate.source_url,
       source_name: candidate.source_name,
       signal_date: candidate.signal_date,

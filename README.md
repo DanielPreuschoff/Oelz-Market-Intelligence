@@ -19,7 +19,7 @@ npm run dev
 - **Frontend:** Next.js 15 (App Router), Tailwind CSS, shadcn/ui
 - **Backend:** Next.js API Routes
 - **Database:** Supabase (PostgreSQL + Auth + Storage)
-- **AI:** Anthropic Claude API (on-demand signal extraction)
+- **AI:** OpenAI API (on-demand extraction of signals, studies, impulses)
 - **Deployment:** Vercel
 
 ## Project structure
@@ -47,4 +47,24 @@ src/
 
 ## Workflow
 
-Source → paste into admin → AI extraction → human review → edition assembly → publish → readers
+**Monthly, in bulk** — the main path for competitor signals:
+
+```
+Deep research per competitor (outside the app)
+  → one report file per competitor in research/JJJJ-MM/
+  → extract to JSON
+  → paste at /admin/import
+  → candidates
+  → review one by one, bulk-reject the rest
+  → edition assembly → publish → readers
+```
+
+The research prompt lives in `prompts/wettbewerber-deep-research.md`. Approving a
+candidate derives its `role_relevance` from category and importance — see
+`src/lib/role-relevance.ts` and `docs/role-definitions.md`.
+
+**Ad hoc, single signal** — still available at `/admin/signals/new`:
+
+```
+Source → paste into admin → AI extraction → human review → publish
+```

@@ -166,7 +166,12 @@ export const IMPORTANCE_COLORS: Record<ImportanceLevel, string> = {
 
 export type ResearchRunStatus = 'running' | 'completed' | 'failed'
 export type CandidateStatus = 'pending' | 'approved' | 'rejected'
-export type ResearchSource = 'perplexity' | 'google_news_rss' | 'mixed'
+/**
+ * Herkunft eines Kandidaten. Die ersten drei stammen vom entfernten
+ * Perplexity-Agenten und kommen nur noch in Altdaten vor; neue Kandidaten
+ * entstehen ausschliesslich per `manual_import`.
+ */
+export type ResearchSource = 'perplexity' | 'google_news_rss' | 'mixed' | 'manual_import'
 
 export interface ResearchRun {
   id: string
@@ -178,6 +183,8 @@ export interface ResearchRun {
   competitors_searched: string[]
   candidates_found: number
   error_message: string | null
+  /** Bezeichnung eines Importlaufs, z.B. „August 2026". Bei Agentenläufen leer. */
+  label: string | null
   created_at: string
 }
 

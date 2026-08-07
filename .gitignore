@@ -43,3 +43,6 @@ next-env.d.ts
 # Claude Code worktrees (vollständige Repo-Kopien) und lokale Einstellungen
 .claude/worktrees/
 .claude/settings.local.json
+
+# Deep-Research-Berichte — fremde Inhalte, gehoeren nicht ins Repo
+/research/

@@ -17,7 +17,7 @@ import type { UserProfile } from '@/types/database'
 import { ROLE_LABELS } from '@/types/database'
 
 const ADMIN_NAV_ITEMS = [
-  { href: '/admin/research', label: 'Research Agent' },
+  { href: '/admin/import', label: 'Signal-Import' },
   { href: '/admin/signals/new', label: 'New Signal' },
   { href: '/admin/editions/new', label: 'New Edition' },
   { href: '/admin/studien/new', label: 'Studie hochladen' },

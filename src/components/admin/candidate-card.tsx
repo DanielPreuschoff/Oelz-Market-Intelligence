@@ -19,23 +19,32 @@ interface CandidateCardProps {
   onApprove: (id: string) => Promise<void>
   onReject: (id: string) => Promise<void>
   isAdmin?: boolean
+  /** Auswahl für die Sammel-Ablehnung. Fehlt sie, wird keine Checkbox gezeigt. */
+  selected?: boolean
+  onSelectedChange?: (id: string, selected: boolean) => void
+  /** Von aussen gesetzter Status, wenn die Karte per Sammelaktion erledigt wurde. */
+  overrideStatus?: SignalCandidateWithRelations['status']
 }
 
-export function CandidateCard({ candidate, onApprove, onReject, isAdmin }: CandidateCardProps) {
-  const [status, setStatus] = useState(candidate.status)
+export function CandidateCard({
+  candidate, onApprove, onReject, isAdmin,
+  selected, onSelectedChange, overrideStatus,
+}: CandidateCardProps) {
+  const [localStatus, setLocalStatus] = useState(candidate.status)
+  const status = overrideStatus ?? localStatus
   const [isPending, startTransition] = useTransition()
 
   function handleApprove() {
     startTransition(async () => {
       await onApprove(candidate.id)
-      setStatus('approved')
+      setLocalStatus('approved')
     })
   }
 
   function handleReject() {
     startTransition(async () => {
       await onReject(candidate.id)
-      setStatus('rejected')
+      setLocalStatus('rejected')
     })
   }
 
@@ -49,6 +58,15 @@ export function CandidateCard({ candidate, onApprove, onReject, isAdmin }: Candi
       )}
     >
       <div className="flex items-start gap-4">
+        {onSelectedChange && !isDone && (
+          <input
+            type="checkbox"
+            checked={!!selected}
+            onChange={(e) => onSelectedChange(candidate.id, e.target.checked)}
+            aria-label={`${candidate.headline ?? 'Kandidat'} für Sammel-Ablehnung auswählen`}
+            className="mt-1 h-4 w-4 shrink-0 accent-[var(--oelz-orange)] cursor-pointer"
+          />
+        )}
         <div className="flex-1 min-w-0 space-y-2">
           {/* Badges */}
           <div className="flex flex-wrap items-center gap-1.5">
@@ -73,7 +91,9 @@ export function CandidateCard({ candidate, onApprove, onReject, isAdmin }: Candi
             )}
             {isAdmin && candidate.research_source && (
               <span className="text-[10px] font-mono text-muted-foreground/50 border border-muted-foreground/20 rounded px-1 py-0.5">
-                {candidate.research_source === 'google_news_rss' ? 'Google News' : candidate.research_source === 'mixed' ? 'Mixed' : 'Perplexity'}
+                {candidate.research_source === 'manual_import' ? 'Deep Research'
+                  : candidate.research_source === 'google_news_rss' ? 'Google News'
+                  : candidate.research_source === 'mixed' ? 'Mixed' : 'Perplexity'}
               </span>
             )}
           </div>
