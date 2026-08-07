@@ -21,8 +21,8 @@ fällt beim Durchsehen auf.
 
 | | |
 |---|---|
-| Bisherige Explorationsläufe | 0 |
-| Nächste Linse | **1 — Verfahren und Prozesstechnik** |
+| Bisherige Explorationsläufe | 1 |
+| Nächste Linse | **2 — Nebenströme und Regionales** |
 
 Die Linse rotiert nach Zahl der Läufe, nicht nach Kalendermonat — ein ausgefallener Monat
 verschiebt die Reihenfolge dadurch nicht. Reihenfolge siehe
@@ -32,11 +32,115 @@ verschiebt die Reihenfolge dadurch nicht. Reihenfolge siehe
 
 ## Erfasste Gegenstände
 
-Noch keine. Die Tabelle füllt sich mit dem ersten Import.
+Stand nach der ersten Erhebung (August 2026, Zeitraum Januar–August, 24 Berichte aus
+3 Anbietern, 135 Blöcke → 96 Signale nach Zusammenführung und Bereinigung).
 
 | Gegenstand | Art | Erhebung | Funktionen | Ergebnis |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| ADM Pea Flour | Ingredient | 2026-08 | Proteinanreicherung, Ballaststoffanreicherung | Entwurf |
+| Alfalfa-Proteinkonzentrat, Rapsprotein-Isolat, Mungbohnenprotein-Isolat | Ingredient | 2026-08 | Proteinanreicherung | Entwurf |
+| Alpha-Amylase NZYM-SB (Extension of Use) | Ingredient | 2026-08 | Zuckerreduktion, Frischhaltung, Prozessstabilität | Entwurf |
+| Alternansucrase (SEBake SR) | Ingredient | 2026-08 | Zuckerreduktion, Frischhaltung, Ballaststoffanreicherung | Entwurf |
+| avanté 25 | Ingredient | 2026-08 | Zuckerreduktion, Ballaststoffanreicherung, Textur & Mundgefühl | Entwurf |
+| C-terminal verkürzte Aspergillus-oryzae-α-Amylase AoAmyB1 | Ingredient | 2026-08 | Frischhaltung, Textur & Mundgefühl | Entwurf |
+| Casein phosphopeptide (CPP) | Ingredient | 2026-08 | Frischhaltung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Citrose | Ingredient | 2026-08 | Zuckerreduktion, Clean Label | Entwurf |
+| Citrusfaser CEAMFIBRE / Finix | Ingredient | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Cys-CGH, durch Plasteinreaktion mit Cystein modifiziertes Maisglutelinhydrolysat | Ingredient | 2026-08 | Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Durch Shiitake-Myzel fermentiertes Erbsen- und Reisprotein | Ingredient | 2026-08 | Proteinanreicherung, Textur & Mundgefühl | Entwurf |
+| Dutch Gum | Ingredient | 2026-08 | Ballaststoffanreicherung, Clean Label | Entwurf |
+| Enconzym Fresh D50 maltogene Amylase für verlängerte Frischhaltung | Ingredient | 2026-08 | Frischhaltung | Entwurf |
+| Entöltes Lecithin (Cargill Infuse) | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
+| Entöltes Lecithin sowie kombinierte Lecithin-Enzym-Systeme als Ersatz für Mono- und Diglyceride beziehungsweise DATEM | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
+| EPS-produzierende Milchsäurebakterien (L. brevis, L. coryniformis, L. plantarum) | Ingredient | 2026-08 | Frischhaltung, Textur & Mundgefühl, Clean Label | Entwurf |
+| Fermentativ produzierter Mönchsfrucht-Süßstoff mit optimiertem Mogrosidprofil | Ingredient | 2026-08 | Zuckerreduktion, Prozessstabilität | Entwurf |
+| Fermentierter glutenfreier Brot-Binder von Ferm Food | Ingredient | 2026-08 | Frischhaltung, Clean Label | Entwurf |
+| Fermotein (EU-Novel-Food) | Ingredient | 2026-08 | Proteinanreicherung, Ballaststoffanreicherung | Entwurf |
+| FIBERTEX CF / Citri-Fi | Ingredient | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Clean Label | Entwurf |
+| Fresh-Mate, fermentiertes Ingredient auf Basis von Tapiokastärke | Ingredient | 2026-08 | Frischhaltung, Clean Label | Entwurf |
+| Galactolipase nach europäischer Patentanmeldung EP4694689A1 | Ingredient | 2026-08 | Textur & Mundgefühl, Prozessstabilität, Clean Label | Entwurf |
+| GemPro Max | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
+| GOOD NatureRelax | Ingredient | 2026-08 | Textur & Mundgefühl, Prozessstabilität, Clean Label | Entwurf |
+| Groundbaker | Ingredient | 2026-08 | Proteinanreicherung, Textur & Mundgefühl, Clean Label | Entwurf |
+| HI-GF XTEND B | Ingredient | 2026-08 | Frischhaltung, Textur & Mundgefühl | Entwurf |
+| Hi-Maize 260, Novelose 330, Novelose 8490, Fibersym RW (RS-II, RS-III, RS-IV resistente Stärken in Brotanwendungen) | Ingredient | 2026-08 | Ballaststoffanreicherung, Frischhaltung | Entwurf |
+| IFF In-situ-Enzymsysteme (ENOVERA) | Ingredient | 2026-08 | Prozessstabilität, Clean Label | Entwurf |
+| Inulin-Propionat-Ester (IPE) als Novel-Food-Zutat | Ingredient | 2026-08 | Ballaststoffanreicherung | Entwurf |
+| Isomalt (Polyol) | Ingredient | 2026-08 | Zuckerreduktion, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Kemin-Enzymmischung als Ersatz für DATEM/Monoglyceride in Dough-Conditionern | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
+| Kerry Enzymsysteme (Biobake) | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
+| Kestose / Fibernova (kristalline Fructooligosaccharid-Dietary-Fiber von Samyang) | Ingredient | 2026-08 | Zuckerreduktion, Ballaststoffanreicherung, Prozessstabilität | Entwurf |
+| Koji Cocoa aus fermentierten Kakaoschalen | Ingredient | 2026-08 | Textur & Mundgefühl, Clean Label | Entwurf |
+| LEVAIR Optimize 7000 | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
+| Meltec von HiFood | Ingredient | 2026-08 | Zuckerreduktion, Ballaststoffanreicherung, Textur & Mundgefühl | Entwurf |
+| Oat Okara Sourdough | Ingredient | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| one.bio 01 oat fiber | Ingredient | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl | Entwurf |
+| Optiva LS Prime | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
+| OvoPro, präzisionsfermentiertes Eiklarprotein | Ingredient | 2026-08 | Proteinanreicherung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Pandezyme SR+ BG | Ingredient | 2026-08 | Zuckerreduktion, Frischhaltung | Entwurf |
+| Peanut (Arachis hypogaea) protein powder | Ingredient | 2026-08 | Proteinanreicherung | Entwurf |
+| Pektinreicher Arabica-Extrakt (Ballaststoffadditiv aus Coffea arabica-Frucht) | Ingredient | 2026-08 | Ballaststoffanreicherung, Clean Label | Entwurf |
+| Pflanzliche Proteinisolate (Vergleich zwischen Erbse und Reis) | Ingredient | 2026-08 | Proteinanreicherung, Textur & Mundgefühl | Entwurf |
+| POWERFRESH ACE 2000 | Ingredient | 2026-08 | Frischhaltung, Textur & Mundgefühl, Clean Label | Entwurf |
+| Puratos Acti- und Intens-Systeme als clean-label-Enzymlösungen für Patisserie und laminierte Hefeteige | Ingredient | 2026-08 | Frischhaltung, Clean Label | Entwurf |
+| Rhamnogalacturonan-I angereicherter Karottenextrakt (cRG-I) | Ingredient | 2026-08 | Ballaststoffanreicherung, Clean Label | Entwurf |
+| Rubisco-Proteinkonzentrat (Leaft) | Ingredient | 2026-08 | Proteinanreicherung, Textur & Mundgefühl, Clean Label | Entwurf |
+| Soluble edestin from Cannabis sativa L | Ingredient | 2026-08 | Proteinanreicherung | Entwurf |
+| SternEnzym Inulinase-Enzymsystem | Ingredient | 2026-08 | Zuckerreduktion, Ballaststoffanreicherung, Prozessstabilität | Entwurf |
+| Synthetische Antifrost-Proteine (AFP) / Polymer-Biomimikry | Ingredient | 2026-08 | Textur & Mundgefühl, Prozessstabilität, Clean Label | Entwurf |
+| VITESSENCE Pea 100 HD | Ingredient | 2026-08 | Proteinanreicherung, Frischhaltung | Entwurf |
+| Zukora Honey Truffle Sweet Protein + Reb M Stevia | Ingredient | 2026-08 | Zuckerreduktion, Textur & Mundgefühl | Entwurf |
+| AngeoPro Yeast Protein Hi90-A | Rohstoff | 2026-08 | Proteinanreicherung, Textur & Mundgefühl | Entwurf |
+| Aus Apfel- und Mandarinenabfällen extrahiertes Pektin | Rohstoff | 2026-08 | Frischhaltung, Textur & Mundgefühl, Clean Label | Entwurf |
+| Binäre Weizen-Hafer-Mehlmischungen (mit Haferkleie oder gekeimtem Hafermehl) | Rohstoff | 2026-08 | Proteinanreicherung, Ballaststoffanreicherung, Prozessstabilität | Entwurf |
+| Endo-1,4-β-Xylanase (Trichoderma reesei AR-999) | Rohstoff | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Entfettetes Rapspulver (EU-Novel-Food) | Rohstoff | 2026-08 | Proteinanreicherung, Ballaststoffanreicherung | Entwurf |
+| Getrockneter und vermahlener Brauereitreber als Mehlersatz | Rohstoff | 2026-08 | Proteinanreicherung, Ballaststoffanreicherung, Textur & Mundgefühl | Entwurf |
+| Glucan-1,4-α-Maltohydrolase (EFSA-Bewertung) | Rohstoff | 2026-08 | Frischhaltung, Textur & Mundgefühl | Entwurf |
+| Goldenes Kiwifruchtmehl (Actinidia chinensis) | Rohstoff | 2026-08 | Ballaststoffanreicherung, Frischhaltung, Clean Label | Entwurf |
+| High-Amylose-Weizen („Wise Wheat“-Mehl von CSIRO/Allied Pinnacle) | Rohstoff | 2026-08 | Ballaststoffanreicherung, Clean Label | Entwurf |
+| Mehl aus gekeimten Samen (Dinkel, Hafer) | Rohstoff | 2026-08 | Ballaststoffanreicherung, Frischhaltung, Clean Label | Entwurf |
+| Neu entwickelte Weißweizenlinien YxV-071A, YxV-104, YxV-010 und YxV-078 | Rohstoff | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl | Entwurf |
+| Protein-Inhaltsstoffe aus aufbereiteten Brau- und Destillationsnebenprodukten (Co-Products) | Rohstoff | 2026-08 | Proteinanreicherung | Entwurf |
+| T60/T80-Nebenfraktionen aus TVP-Herstellung | Rohstoff | 2026-08 | Proteinanreicherung, Textur & Mundgefühl | Entwurf |
+| TagaLite, Tagatose-Süßungsmittel | Rohstoff | 2026-08 | Zuckerreduktion | Entwurf |
+| Unreifes Kochbananen- und Erdmandelmehl (Composite Flour) | Rohstoff | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Clean Label | Entwurf |
+| Alpha-Amylase aus genmodifiziertem Aspergillus niger (Stamm NZYM-SB) | Technologie | 2026-08 | Frischhaltung, Prozessstabilität | Entwurf |
+| BENEO High Protein Fibre Bread Concept | Technologie | 2026-08 | Proteinanreicherung, Ballaststoffanreicherung, Textur & Mundgefühl | Entwurf |
+| Carbon Crafted Spezialfette für Backwaren | Technologie | 2026-08 | Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Frozen Dough 3.0 & High-Sugar Tolerant Instant Dry Yeast | Technologie | 2026-08 | Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| In Produktionslinien integrierte KI-Bildverarbeitung von Rademaker und Sensure | Technologie | 2026-08 | Prozessstabilität | Entwurf |
+| KI-unterstützte Gestaltung synthetischer mikrobieller Gemeinschaften (SynComs) für Sauerteigfermentation | Technologie | 2026-08 | Frischhaltung, Prozessstabilität | Entwurf |
+| Kommerzielle Xylanase-Systeme für optimierte Krume und Prozessleistung im Weißbrot | Technologie | 2026-08 | Frischhaltung, Prozessstabilität | Entwurf |
+| Laktase-Enzyme (Lactose Hydrolysis) | Technologie | 2026-08 | Zuckerreduktion, Textur & Mundgefühl, Clean Label | Entwurf |
+| Multivariates Analyse- und Klassifikationsmodell für Weizenmehl auf Basis von Proteinfraktionen, Stärke- und Fasermerkmalen | Technologie | 2026-08 | Prozessstabilität | Entwurf |
+| Nexture Generate 2026, Frühphasenprogramm für Frische- und Weichhalteenzyme, Gluten-Technologien sowie funktionelle Proteine und Fasern | Technologie | 2026-08 | Proteinanreicherung, Frischhaltung, Prozessstabilität | Entwurf |
+| PEF-Behandlung während des Gefrierens von Weizenteig | Technologie | 2026-08 | Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Rademaker Radini‑Plattform und Koenig Artisan SFE EC Dough‑Sheeting‑Line | Technologie | 2026-08 | Prozessstabilität | Entwurf |
+| Rheology-guided flour and dough mapping | Technologie | 2026-08 | Prozessstabilität | Entwurf |
+| Sucralose (E 955) als Hochintensiv-Süßstoff für zuckerreduzierte Produkte | Technologie | 2026-08 | Zuckerreduktion | Entwurf |
+| Tastesense Sweet Reduction | Technologie | 2026-08 | Zuckerreduktion, Frischhaltung, Prozessstabilität | Entwurf |
+| Array Vibrating-Plate Ultrasound Treatment | Verfahren | 2026-08 | Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Feststofffermentierte Weizenkleie (mittels Teekulturen QD und FY) | Verfahren | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Gekeimtes Kichererbsen- und weißes Kidneybohnenmehl in Kombination mit Phospholipase und Natriumstearoyl-2-lactylat | Verfahren | 2026-08 | Proteinanreicherung, Frischhaltung, Textur & Mundgefühl | Entwurf |
+| Hyfé-Fraktionierungsplattform für feste pflanzliche Nebenströme | Verfahren | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Clean Label | Entwurf |
+| Integrierte Teigraumsteuerung mit präziser Rohstoffdosierung, kontrollierter Restteigrückführung, Mehlstaubrückgewinnung und digitaler Prozessintegration | Verfahren | 2026-08 | Prozessstabilität | Entwurf |
+| Kombinierte Xylanase- und β-Glucanasebehandlung in einem Weizen-Hochlandgersten-Teig | Verfahren | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Leuconostoc citreum DSM 5577 | Verfahren | 2026-08 | Zuckerreduktion, Textur & Mundgefühl, Clean Label | Entwurf |
+| Mechanical Aeration Methods (Mechanische Teigbelüftung) | Verfahren | 2026-08 | Prozessstabilität, Clean Label | Entwurf |
+| Proteinreiche Sauerteigverfahren auf Basis von Hülsenfrüchten („pulse-based sourdough innovations“) | Verfahren | 2026-08 | Proteinanreicherung | Entwurf |
+| Schrittweise Entfernung von Monocalciumphosphat, Natriumhydrogencarbonat sowie Mono- und Diglyceriden aus einer glutenfreien Brotrezeptur | Verfahren | 2026-08 | Frischhaltung, Textur & Mundgefühl, Clean Label | Entwurf |
+| Sensorisch geführtes Consumer-Rejection-Threshold-Verfahren für die schrittweise Saccharosereduktion | Verfahren | 2026-08 | Zuckerreduktion, Textur & Mundgefühl | Entwurf |
+| Teilbackverfahren mit Tiefkühllagerung und späterer Endbackung | Verfahren | 2026-08 | Frischhaltung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
+| Vor-Emulgierung von Sonnenblumenöl mit anschließender Lipasewirkung im Kuchenteig | Verfahren | 2026-08 | Textur & Mundgefühl, Prozessstabilität, Clean Label | Entwurf |
+| Verfahren zum Backen mit thermostabilen AMG-Glucosidasevaria | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
+| Modifizierter Malzprozess zur Herstellung maltogenenzym-ange | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
+| Maltogenic-enzyme-enriched malted flour aus modifiziertem Ma | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
+| Enzymatische Methode mit maltose α‑Amylase zur Reduktion von | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
+| Verfahren mit thermostabiler Glucoamylase für Backwaren mit  | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
+| Enzym Alternansucrase zur Zuckerreduktion in Backwaren (US20 | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
+| Thermostabile AMG-Glucoamylase-Varianten für zuckerreduziert | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
+| Zuckerersatz-Mischung für Backwaren und Feinbackgebäck (US12 | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
 
 **Ergebnis** ist einer von:
 `veröffentlicht` · `Entwurf` · `verworfen: <Grund>` · `wartet auf Funktion: <welche>`
