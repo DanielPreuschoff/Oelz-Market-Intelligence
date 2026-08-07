@@ -60,7 +60,8 @@ Stand hinausgeht, melde es und schreib dazu, was daran neu ist.
 QUELLEN
 Herstellerankündigungen, Fachpublikationen, Patente, regulatorische Bekanntmachungen,
 Start-up- und Finanzierungsmeldungen, Messeberichte. Suche bewusst auch ausserhalb der
-Backwaren-Fachpresse.
+Backwaren-Fachpresse — und deutsch- wie englischsprachig; Fachliteratur und
+Herstellermeldungen sind überwiegend englisch.
 
 WAS NICHT ZÄHLT
 Allgemeine Trendberichte ohne konkreten Rohstoff oder konkretes Verfahren. Marketingtexte
@@ -101,7 +102,9 @@ REGELN
 - Trenne strikt Befund und Schlussfolgerung.
 - Erfinde keine Zahlen, Daten, Firmennamen oder URLs.
 - Höchstens sechs Signale.
-- Deutsch.
+- Deutsch, auch wenn die Quellen englisch sind.
+- Der Bericht besteht ausschließlich aus den SIGNAL-Blöcken und der Endzeile —
+  keine Einleitung, keine Zusammenfassung, kein Fazit.
 ```
 
 ---

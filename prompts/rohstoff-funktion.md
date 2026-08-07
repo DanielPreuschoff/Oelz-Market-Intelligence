@@ -48,6 +48,9 @@ QUELLEN — decke möglichst mehrere dieser Arten ab, nicht nur die erste:
 - Start-ups und Frühphasentechnologien
 - Messeneuheiten (FiE, iba, Anuga FoodTec, IBA)
 
+Suche deutsch- und englischsprachig. Fachliteratur und Herstellermeldungen sind
+überwiegend englisch — beschränke dich nicht auf deutsche Quellen.
+
 WAS NICHT ZÄHLT
 Eine Meldung, dass ein Rohstoff existiert oder neu am Markt ist, ohne dass klar wird,
 welche Funktion er ermöglicht und welches Problem er löst. Marketingtexte ohne
@@ -100,6 +103,8 @@ REGELN
 - Erfinde keine Zahlen, Daten, Firmennamen oder URLs.
 - Höchstens sechs Signale. Lieber drei belastbare als sechs aufgefüllte.
 - Deutsch, auch wenn die Quellen englisch sind.
+- Der Bericht besteht ausschließlich aus den SIGNAL-Blöcken und der Endzeile —
+  keine Einleitung, keine Zusammenfassung, kein Fazit.
 ```
 
 ---
