@@ -33,7 +33,8 @@ verschiebt die Reihenfolge dadurch nicht. Reihenfolge siehe
 ## Erfasste Gegenstände
 
 Stand nach der ersten Erhebung (August 2026, Zeitraum Januar–August, 24 Berichte aus
-3 Anbietern, 135 Blöcke → 96 Signale nach Zusammenführung und Bereinigung).
+3 Anbietern nach Korrektur eines Ablagefehlers, 140 Blöcke → 98 Signale nach
+Zusammenführung und Bereinigung).
 
 | Gegenstand | Art | Erhebung | Funktionen | Ergebnis |
 |---|---|---|---|---|
@@ -81,12 +82,14 @@ Stand nach der ersten Erhebung (August 2026, Zeitraum Januar–August, 24 Berich
 | Peanut (Arachis hypogaea) protein powder | Ingredient | 2026-08 | Proteinanreicherung | Entwurf |
 | Pektinreicher Arabica-Extrakt (Ballaststoffadditiv aus Coffea arabica-Frucht) | Ingredient | 2026-08 | Ballaststoffanreicherung, Clean Label | Entwurf |
 | Pflanzliche Proteinisolate (Vergleich zwischen Erbse und Reis) | Ingredient | 2026-08 | Proteinanreicherung, Textur & Mundgefühl | Entwurf |
+| Polydextrose als partieller Saccharoseersatz | Ingredient | 2026-08 | Zuckerreduktion, Ballaststoffanreicherung, Textur & Mundgefühl | Entwurf |
 | POWERFRESH ACE 2000 | Ingredient | 2026-08 | Frischhaltung, Textur & Mundgefühl, Clean Label | Entwurf |
 | Puratos Acti- und Intens-Systeme als clean-label-Enzymlösungen für Patisserie und laminierte Hefeteige | Ingredient | 2026-08 | Frischhaltung, Clean Label | Entwurf |
 | Rhamnogalacturonan-I angereicherter Karottenextrakt (cRG-I) | Ingredient | 2026-08 | Ballaststoffanreicherung, Clean Label | Entwurf |
 | Rubisco-Proteinkonzentrat (Leaft) | Ingredient | 2026-08 | Proteinanreicherung, Textur & Mundgefühl, Clean Label | Entwurf |
 | Soluble edestin from Cannabis sativa L | Ingredient | 2026-08 | Proteinanreicherung | Entwurf |
 | SternEnzym Inulinase-Enzymsystem | Ingredient | 2026-08 | Zuckerreduktion, Ballaststoffanreicherung, Prozessstabilität | Entwurf |
+| sweelin, präzisionsfermentiertes Süßprotein (Amai Proteins) | Ingredient | 2026-08 | Zuckerreduktion | Entwurf |
 | Synthetische Antifrost-Proteine (AFP) / Polymer-Biomimikry | Ingredient | 2026-08 | Textur & Mundgefühl, Prozessstabilität, Clean Label | Entwurf |
 | VITESSENCE Pea 100 HD | Ingredient | 2026-08 | Proteinanreicherung, Frischhaltung | Entwurf |
 | Zukora Honey Truffle Sweet Protein + Reb M Stevia | Ingredient | 2026-08 | Zuckerreduktion, Textur & Mundgefühl | Entwurf |
