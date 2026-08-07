@@ -72,7 +72,7 @@ function ImpulseModal({ impulse }: { impulse: InnovationImpulse }) {
             </span>
           )}
         </div>
-        <DialogTitle className="font-serif text-xl font-bold leading-tight">
+        <DialogTitle className="font-display text-xl font-bold leading-tight">
           {impulse.title}
         </DialogTitle>
         {impulse.tags.length > 0 && (
@@ -201,7 +201,7 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
               'w-full aspect-[4/3] flex items-center justify-center',
               RADAR_TYPE_COLORS[impulse.radar_type].bg
             )}>
-              <span className={cn('text-3xl font-serif font-bold opacity-20', RADAR_TYPE_COLORS[impulse.radar_type].text)}>
+              <span className={cn('text-3xl font-display font-bold opacity-20', RADAR_TYPE_COLORS[impulse.radar_type].text)}>
                 {impulse.radar_type.slice(0, 1)}
               </span>
             </div>
@@ -219,7 +219,7 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
             </div>
 
             <div className="space-y-1.5">
-              <h3 className="font-serif font-bold text-base leading-snug group-hover:text-primary/80 transition-colors">
+              <h3 className="font-display font-bold text-base leading-snug group-hover:text-primary/80 transition-colors">
                 {impulse.title}
               </h3>
               {impulse.short_signal && (

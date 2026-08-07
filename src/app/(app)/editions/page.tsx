@@ -43,7 +43,7 @@ export default async function EditionsPage() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Intelligence Editions</h1>
+          <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Intelligence Editions</h1>
           {isAdmin && (
             <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
               Neue Edition
@@ -65,7 +65,7 @@ export default async function EditionsPage() {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Intelligence Editions</h1>
+        <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Intelligence Editions</h1>
         {isAdmin && (
           <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
             Neue Edition
@@ -82,7 +82,7 @@ export default async function EditionsPage() {
               {format(new Date(latest.period_month), 'MMMM yyyy', { locale: de })}
             </span>
           </div>
-          <h2 className="font-serif text-xl sm:text-2xl font-bold group-hover:text-primary transition-colors tracking-wide">
+          <h2 className="font-display text-xl sm:text-2xl font-bold group-hover:text-primary transition-colors tracking-wide">
             {latest.title}
           </h2>
           {latest.editorial_summary && (

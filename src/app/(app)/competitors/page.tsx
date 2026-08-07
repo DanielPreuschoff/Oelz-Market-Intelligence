@@ -44,7 +44,7 @@ export default async function CompetitorsPage() {
   return (
     <div className="space-y-8">
       <div className="space-y-1">
-        <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Wettbewerber-Profile</h1>
+        <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Wettbewerber-Profile</h1>
         <p className="text-sm text-muted-foreground">Aktive Wettbewerber im Backwaren- und Convenience-Segment — geordnet nach Beobachtungsintensität.</p>
       </div>
 

@@ -35,7 +35,7 @@ export default async function ModuleHubPage() {
   return (
     <div className="space-y-10">
       <div className="space-y-1">
-        <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">Ölz Market Intelligence</h1>
+        <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Ölz Market Intelligence</h1>
         <p className="text-sm text-muted-foreground/80">
           Plattform-Übersicht — wähle ein Modul, um loszulegen.
         </p>
@@ -64,7 +64,7 @@ export default async function ModuleHubPage() {
                   </div>
                   <div className="space-y-1.5">
                     <p className="text-xs text-muted-foreground font-medium">Neueste Edition</p>
-                    <h3 className="font-serif font-bold text-[17px] leading-snug group-hover:text-primary transition-colors">
+                    <h3 className="font-display font-bold text-[17px] leading-snug group-hover:text-primary transition-colors">
                       {latestEdition.title}
                     </h3>
                     {latestEdition.editorial_summary && (

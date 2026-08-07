@@ -44,7 +44,7 @@ export default async function StudyDetailPage({ params }: { params: Promise<{ id
             </span>
           )}
         </div>
-        <h1 className="font-serif text-3xl font-bold leading-tight">{s.title}</h1>
+        <h1 className="font-display text-3xl font-bold leading-tight">{s.title}</h1>
         {s.summary && (
           <p className="text-base text-muted-foreground leading-relaxed">{s.summary}</p>
         )}

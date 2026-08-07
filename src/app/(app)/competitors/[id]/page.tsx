@@ -67,7 +67,7 @@ export default async function CompetitorDetailPage({ params }: PageProps) {
       <div className="space-y-3">
         <div className="flex items-start justify-between">
           <div className="space-y-1">
-            <h1 className="font-serif text-3xl font-bold tracking-wide text-foreground">{typedCompetitor.short_name}</h1>
+            <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">{typedCompetitor.short_name}</h1>
             <p className="text-sm text-muted-foreground">{typedCompetitor.name}</p>
           </div>
           <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${PRIORITY_BADGE_COLORS[priority] ?? 'bg-secondary text-muted-foreground'}`}>

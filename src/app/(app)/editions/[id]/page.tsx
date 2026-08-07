@@ -107,7 +107,7 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
             </>
           )}
         </div>
-        <h1 className="font-serif text-3xl sm:text-4xl font-bold tracking-wide text-foreground leading-tight">{edition.title}</h1>
+        <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-wide text-foreground leading-tight">{edition.title}</h1>
         {edition.editorial_summary && (
           <p className="text-base text-muted-foreground leading-relaxed max-w-3xl">
             {edition.editorial_summary}

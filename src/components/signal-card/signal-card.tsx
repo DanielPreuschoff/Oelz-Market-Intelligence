@@ -68,7 +68,7 @@ export function SignalCard({ signal, variant = 'default', highlightRole }: Signa
 
       {/* Headline */}
       <h3 className={cn(
-        'font-serif font-bold text-foreground leading-snug tracking-wide',
+        'font-display font-bold text-foreground leading-snug tracking-wide',
         variant === 'compact' ? 'text-sm' : 'text-base sm:text-[17px]'
       )}>
         {signal.headline}

@@ -30,7 +30,7 @@ export function StudyCard({ study }: StudyCardProps) {
         </div>
 
         <div className="space-y-1.5">
-          <h3 className="font-serif font-bold text-lg leading-snug group-hover:text-primary/80 transition-colors">
+          <h3 className="font-display font-bold text-lg leading-snug group-hover:text-primary/80 transition-colors">
             {study.title}
           </h3>
           {study.summary && (

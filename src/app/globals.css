@@ -8,7 +8,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
-  --font-serif: var(--font-serif);
+  /* font-display = MADE Tommy Soft, die Ölz CI-Schrift (Headlines, Navigation) */
+  --font-display: var(--font-display);
   --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -35,6 +36,12 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
+  --color-oelz-orange: var(--oelz-orange);
+  --color-oelz-orange-print: var(--oelz-orange-print);
+  --color-oelz-orange-dark: var(--oelz-orange-dark);
+  --color-oelz-braun: var(--oelz-braun);
+  --color-oelz-rot: var(--oelz-rot);
+  --color-oelz-on-orange: var(--oelz-on-orange);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
@@ -48,73 +55,100 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/*
+ * Ölz Corporate Design — Werte aus 2023_Oelz_CD_Manual_V1_09_2023.pdf (S. 3–5).
+ * Siehe docs/brand/README.md für die Herleitung.
+ *   Orange "Fläche Online"  M50/Y100  = #F39200  (verbindlich für Bildschirm)
+ *   Orange "Fläche Print"   M45/Y95   = #F59D0F  (nur Druck, hier als Verlaufston)
+ *   Ölz Braun  Pantone 477c / RAL 8011 Nussbraun = #5A3A29
+ *   Ölz Rot    Pantone 1795c / RAL 3000 Feuerrot = #C1272D  (nur Logo-Banderole)
+ */
 :root {
+  --oelz-orange: oklch(0.745 0.167 64.8);
+  --oelz-orange-print: oklch(0.767 0.164 69.4);
+  --oelz-orange-dark: oklch(0.665 0.163 57);
+  --oelz-braun: oklch(0.382 0.053 48.6);
+  --oelz-rot: oklch(0.529 0.189 25);
+  /* Textfarbe auf orangener Fläche — Weiss erreicht auf #F39200 nur 2.35:1 und
+     ist laut CD-Manual Display-Größen vorbehalten. Dieses Braun liefert 6.2:1. */
+  --oelz-on-orange: oklch(0.284 0.042 45.2);
+
   --background: oklch(0.985 0.006 80);
-  --foreground: oklch(0.22 0.02 25);
+  --foreground: oklch(0.24 0.032 48);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.02 25);
+  --card-foreground: oklch(0.24 0.032 48);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.02 25);
-  --primary: oklch(0.70 0.19 48);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.94 0.02 75);
-  --secondary-foreground: oklch(0.22 0.02 25);
+  --popover-foreground: oklch(0.24 0.032 48);
+  --primary: oklch(0.745 0.167 64.8);
+  /* Braun statt Weiss: Weiss auf Ölz-Orange erreicht nur 2.35:1 (WCAG-Minimum
+     für Fließtext ist 4.5:1). Das CD-Manual setzt Weiss auf Orange ebenfalls
+     nur in Display-Größe (46 pt) ein. Dieses Braun liefert 6.2:1. */
+  --primary-foreground: oklch(0.284 0.042 45.2);
+  --secondary: oklch(0.94 0.02 70);
+  --secondary-foreground: oklch(0.24 0.032 48);
   --muted: oklch(0.97 0.008 80);
-  --muted-foreground: oklch(0.55 0.015 65);
-  --accent: oklch(0.94 0.02 75);
-  --accent-foreground: oklch(0.22 0.02 25);
-  --destructive: oklch(0.50 0.18 25);
-  --border: oklch(0.92 0.012 75);
-  --input: oklch(0.92 0.012 75);
-  --ring: oklch(0.70 0.19 48);
-  --chart-1: oklch(0.70 0.19 48);
-  --chart-2: oklch(0.77 0.13 75.0);
+  --muted-foreground: oklch(0.52 0.022 55);
+  --accent: oklch(0.94 0.02 70);
+  --accent-foreground: oklch(0.24 0.032 48);
+  --destructive: oklch(0.529 0.189 25);
+  --border: oklch(0.92 0.012 70);
+  --input: oklch(0.92 0.012 70);
+  --ring: oklch(0.745 0.167 64.8);
+  --chart-1: oklch(0.745 0.167 64.8);
+  --chart-2: oklch(0.382 0.053 48.6);
   --chart-3: oklch(0.45 0.11 145.0);
   --chart-4: oklch(0.92 0.04 220.0);
-  --chart-5: oklch(0.55 0.015 65);
+  --chart-5: oklch(0.52 0.022 55);
   --radius: 0.75rem;
   --sidebar: oklch(0.985 0.006 80);
-  --sidebar-foreground: oklch(0.22 0.02 25);
-  --sidebar-primary: oklch(0.70 0.19 48);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.94 0.02 75);
-  --sidebar-accent-foreground: oklch(0.22 0.02 25);
-  --sidebar-border: oklch(0.92 0.012 75);
-  --sidebar-ring: oklch(0.70 0.19 48);
+  --sidebar-foreground: oklch(0.24 0.032 48);
+  --sidebar-primary: oklch(0.745 0.167 64.8);
+  --sidebar-primary-foreground: oklch(0.284 0.042 45.2);
+  --sidebar-accent: oklch(0.94 0.02 70);
+  --sidebar-accent-foreground: oklch(0.24 0.032 48);
+  --sidebar-border: oklch(0.92 0.012 70);
+  --sidebar-ring: oklch(0.745 0.167 64.8);
 }
 
 .dark {
-  --background: oklch(0.16 0.012 25);
+  --oelz-orange: oklch(0.745 0.167 64.8);
+  --oelz-orange-print: oklch(0.767 0.164 69.4);
+  --oelz-orange-dark: oklch(0.665 0.163 57);
+  --oelz-braun: oklch(0.62 0.055 48.6);
+  --oelz-rot: oklch(0.60 0.185 25);
+  --oelz-on-orange: oklch(0.284 0.042 45.2);
+
+  --background: oklch(0.16 0.014 45);
   --foreground: oklch(0.985 0.006 80);
-  --card: oklch(0.21 0.015 25);
+  --card: oklch(0.21 0.017 45);
   --card-foreground: oklch(0.985 0.006 80);
-  --popover: oklch(0.21 0.015 25);
+  --popover: oklch(0.21 0.017 45);
   --popover-foreground: oklch(0.985 0.006 80);
-  --primary: oklch(0.70 0.19 48);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.26 0.018 25);
+  --primary: oklch(0.745 0.167 64.8);
+  --primary-foreground: oklch(0.284 0.042 45.2);
+  --secondary: oklch(0.26 0.02 45);
   --secondary-foreground: oklch(0.985 0.006 80);
-  --muted: oklch(0.26 0.018 25);
-  --muted-foreground: oklch(0.65 0.012 65);
-  --accent: oklch(0.26 0.018 25);
+  --muted: oklch(0.26 0.02 45);
+  --muted-foreground: oklch(0.68 0.018 55);
+  --accent: oklch(0.26 0.02 45);
   --accent-foreground: oklch(0.985 0.006 80);
   --destructive: oklch(0.62 0.17 25);
-  --border: oklch(0.26 0.018 25);
-  --input: oklch(0.26 0.018 25);
-  --ring: oklch(0.70 0.19 48);
-  --chart-1: oklch(0.70 0.19 48);
-  --chart-2: oklch(0.79 0.12 75.0);
+  --border: oklch(0.26 0.02 45);
+  --input: oklch(0.26 0.02 45);
+  --ring: oklch(0.745 0.167 64.8);
+  --chart-1: oklch(0.745 0.167 64.8);
+  --chart-2: oklch(0.62 0.055 48.6);
   --chart-3: oklch(0.50 0.12 145.0);
   --chart-4: oklch(0.85 0.06 220.0);
-  --chart-5: oklch(0.65 0.012 65);
-  --sidebar: oklch(0.16 0.012 25);
+  --chart-5: oklch(0.68 0.018 55);
+  --sidebar: oklch(0.16 0.014 45);
   --sidebar-foreground: oklch(0.985 0.006 80);
-  --sidebar-primary: oklch(0.70 0.19 48);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.26 0.018 25);
+  --sidebar-primary: oklch(0.745 0.167 64.8);
+  --sidebar-primary-foreground: oklch(0.284 0.042 45.2);
+  --sidebar-accent: oklch(0.26 0.02 45);
   --sidebar-accent-foreground: oklch(0.985 0.006 80);
-  --sidebar-border: oklch(0.26 0.018 25);
-  --sidebar-ring: oklch(0.70 0.19 48);
+  --sidebar-border: oklch(0.26 0.02 45);
+  --sidebar-ring: oklch(0.745 0.167 64.8);
 }
 
 @layer base {
