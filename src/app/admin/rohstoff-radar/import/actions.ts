@@ -6,6 +6,21 @@ import { extractJson, type ImportIssue } from '@/lib/signal-import'
 import { validateIngredientImport } from '@/lib/ingredient-import'
 import { missingForPublish } from '@/types/ingredient-signals'
 
+/**
+ * Dublettenschlüssel. Preis der Paarung mit dem Gegenstand: derselbe Fund mit
+ * abweichend geschriebenem Gegenstand rutscht durch — das fällt in der
+ * Entwurfsliste auf und ist billiger als der stille Verlust echter Signale.
+ */
+function dupeKey(url: string, subject: string): string {
+  const s = subject
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]/g, '')
+    .slice(0, 24)
+  return `${url}::${s}`
+}
+
 export type IngredientImportResult =
   | { ok: false; error: string }
   | {
@@ -38,27 +53,31 @@ export async function importIngredientSignals(rawJson: string): Promise<Ingredie
     return { ok: false, error: `Kein gültiges Signal in der Eingabe (${issues.length} fehlerhaft).` }
   }
 
-  // Dublettenprüfung über die Quelle, gegen den Bestand und innerhalb der Datei.
+  // Dublettenprüfung über Quelle UND Gegenstand, gegen den Bestand und
+  // innerhalb der Datei. Nur die URL reicht nicht: Sammelartikel und
+  // EU-Konsultationsseiten tragen mehrere Gegenstände unter einer Adresse —
+  // beim ersten Import gingen so vier eigenständige Signale verloren.
   const urls = valid.map((s) => s.source_url).filter((u): u is string => !!u)
   const seen = new Set<string>()
   if (urls.length > 0) {
     const { data: existing } = await supabase
       .from('ingredient_signals')
-      .select('source_url')
+      .select('source_url, subject_name')
       .in('source_url', urls)
     for (const row of existing ?? []) {
-      if (row.source_url) seen.add(row.source_url)
+      if (row.source_url) seen.add(dupeKey(row.source_url, row.subject_name ?? ''))
     }
   }
 
   const duplicates: { title: string; source_url: string }[] = []
   const rows = []
   for (const draft of valid) {
-    if (draft.source_url && seen.has(draft.source_url)) {
-      duplicates.push({ title: draft.title, source_url: draft.source_url })
+    const key = draft.source_url ? dupeKey(draft.source_url, draft.subject_name) : null
+    if (key && seen.has(key)) {
+      duplicates.push({ title: draft.title, source_url: draft.source_url! })
       continue
     }
-    if (draft.source_url) seen.add(draft.source_url)
+    if (key) seen.add(key)
     rows.push({
       ...draft,
       // Import legt immer Entwürfe an. Die Veröffentlichungs-Hürde ist der

@@ -33,8 +33,8 @@ verschiebt die Reihenfolge dadurch nicht. Reihenfolge siehe
 ## Erfasste Gegenstände
 
 Stand nach der ersten Erhebung (August 2026, Zeitraum Januar–August, 24 Berichte aus
-3 Anbietern nach Korrektur eines Ablagefehlers, 140 Blöcke → 98 Signale nach
-Zusammenführung und Bereinigung).
+3 Anbietern nach Korrektur eines Ablagefehlers, 140 Blöcke → 96 importierte Entwürfe:
+94 im Erstimport, 2 im Nachtrag; 2 weitere beim Import als Dubletten erkannt).
 
 | Gegenstand | Art | Erhebung | Funktionen | Ergebnis |
 |---|---|---|---|---|
@@ -52,7 +52,7 @@ Zusammenführung und Bereinigung).
 | Dutch Gum | Ingredient | 2026-08 | Ballaststoffanreicherung, Clean Label | Entwurf |
 | Enconzym Fresh D50 maltogene Amylase für verlängerte Frischhaltung | Ingredient | 2026-08 | Frischhaltung | Entwurf |
 | Entöltes Lecithin (Cargill Infuse) | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
-| Entöltes Lecithin sowie kombinierte Lecithin-Enzym-Systeme als Ersatz für Mono- und Diglyceride beziehungsweise DATEM | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | Entwurf |
+| Entöltes Lecithin sowie kombinierte Lecithin-Enzym-Systeme als Ersatz für Mono- und Diglyceride beziehungsweise DATEM | Ingredient | 2026-08 | Frischhaltung, Prozessstabilität, Clean Label | verworfen: Dublette von „Entöltes Lecithin (Cargill Infuse)“ |
 | EPS-produzierende Milchsäurebakterien (L. brevis, L. coryniformis, L. plantarum) | Ingredient | 2026-08 | Frischhaltung, Textur & Mundgefühl, Clean Label | Entwurf |
 | Fermentativ produzierter Mönchsfrucht-Süßstoff mit optimiertem Mogrosidprofil | Ingredient | 2026-08 | Zuckerreduktion, Prozessstabilität | Entwurf |
 | Fermentierter glutenfreier Brot-Binder von Ferm Food | Ingredient | 2026-08 | Frischhaltung, Clean Label | Entwurf |
@@ -131,7 +131,7 @@ Zusammenführung und Bereinigung).
 | Kombinierte Xylanase- und β-Glucanasebehandlung in einem Weizen-Hochlandgersten-Teig | Verfahren | 2026-08 | Ballaststoffanreicherung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
 | Leuconostoc citreum DSM 5577 | Verfahren | 2026-08 | Zuckerreduktion, Textur & Mundgefühl, Clean Label | Entwurf |
 | Mechanical Aeration Methods (Mechanische Teigbelüftung) | Verfahren | 2026-08 | Prozessstabilität, Clean Label | Entwurf |
-| Proteinreiche Sauerteigverfahren auf Basis von Hülsenfrüchten („pulse-based sourdough innovations“) | Verfahren | 2026-08 | Proteinanreicherung | Entwurf |
+| Proteinreiche Sauerteigverfahren auf Basis von Hülsenfrüchten („pulse-based sourdough innovations“) | Verfahren | 2026-08 | Proteinanreicherung | verworfen: Dublette (gleiche Quelle wie „Protein-Inhaltsstoffe aus Brau- und Malz-Nebenströmen“) |
 | Schrittweise Entfernung von Monocalciumphosphat, Natriumhydrogencarbonat sowie Mono- und Diglyceriden aus einer glutenfreien Brotrezeptur | Verfahren | 2026-08 | Frischhaltung, Textur & Mundgefühl, Clean Label | Entwurf |
 | Sensorisch geführtes Consumer-Rejection-Threshold-Verfahren für die schrittweise Saccharosereduktion | Verfahren | 2026-08 | Zuckerreduktion, Textur & Mundgefühl | Entwurf |
 | Teilbackverfahren mit Tiefkühllagerung und späterer Endbackung | Verfahren | 2026-08 | Frischhaltung, Textur & Mundgefühl, Prozessstabilität | Entwurf |
