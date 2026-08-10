@@ -63,21 +63,29 @@ Start-up- und Finanzierungsmeldungen, Messeberichte. Suche bewusst auch ausserha
 Backwaren-Fachpresse — und deutsch- wie englischsprachig; Fachliteratur und
 Herstellermeldungen sind überwiegend englisch.
 
-WAS NICHT ZÄHLT — WICHTIG
-Ein Signal verlangt ein Ereignis, nicht nur einen Artikel. Melde NICHT:
-- Seit Jahren etablierte Standardtechnologie, nur weil eine neue Studie oder ein
-  Marktbericht darüber erschienen ist (Beispiele fuer solche Klassiker: Laktase,
-  Isomalt, Xylanase, Teilbackverfahren, Standard-Proteinisolate).
-- Vergleichsstudien ueber laengst verfuegbare Zutaten. Neu ist dort die Untersuchung,
-  nicht der Rohstoff.
-- Marktberichte, die bestaetigen, dass etwas Bekanntes funktioniert oder waechst.
-Pruefe bei jedem Fund: WAS hat sich geaendert? Gibt es keine Antwort ausser "es wurde
-darueber publiziert", ist es kein Signal.
-Ausnahme: Regulatorische Entscheidungen zu bekannten Stoffen (Zulassung, Neubewertung,
-erweiterte Anwendung) sind Signale — dort ist die Entscheidung das Ereignis.
+WAS EIN SIGNAL AUSMACHT
+Der Test: Kann Oelz nach dieser Meldung etwas tun oder wissen, was vorher nicht ging?
+Nur dann ist es ein Signal. Der Rohstoff selbst muss dafuer nicht neu sein — die
+Entscheidungslage muss sich geaendert haben.
 
-Zum REIFEGRAD "Etabliert": nur verwenden, wenn etwas im Beobachtungszeitraum etabliert
-GEWORDEN ist. Was seit Jahren Standard ist, gehoert gar nicht in den Bericht.
+Vier Arten von Aenderung zaehlen:
+- VERFUEGBARKEIT: neu am Markt, neu lieferbar, erstmals im Industriemassstab herstellbar
+- ERLAUBNIS: Zulassung, Neubewertung, geaenderte Grenzwerte, erweiterte Anwendungsbereiche
+- NACHWEIS: erstmals unabhaengig belegt, was vorher nur Herstellerbehauptung war
+- FAEHIGKEIT: ein bekannter Stoff oder ein bekanntes Verfahren kann nachweislich etwas,
+  das vorher nicht ging
+
+Keine Signale sind:
+- Studien, die Bekanntes vergleichen oder beschreiben, ohne dass sich daraus etwas Neues
+  tun laesst
+- Marktberichte, die bestaetigen, dass etwas Bekanntes funktioniert oder waechst
+- Uebersichts- und Trendartikel ohne konkretes Ereignis
+
+Beginne WAS_IST_NEU mit der Aenderung selbst, in einem Satz: was ging vorher nicht, was
+jetzt geht. Faellt dieser Satz schwer, ist es meist kein Signal.
+
+Zum REIFEGRAD "Etabliert": nur fuer etwas, das im Beobachtungszeitraum etabliert GEWORDEN
+ist — nicht fuer langjaehrigen Standard.
 
 AUSSERDEM NICHT
 Allgemeine Trendberichte ohne konkreten Rohstoff oder konkretes Verfahren. Marketingtexte
