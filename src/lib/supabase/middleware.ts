@@ -23,7 +23,24 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  const { data: { user } } = await supabase.auth.getUser()
+  // getClaims() statt getUser(): das Projekt signiert seine Sitzungstoken mit
+  // ES256 und veroeffentlicht den oeffentlichen Schluessel unter
+  // /auth/v1/.well-known/jwks.json. Die Signatur laesst sich damit lokal
+  // pruefen — getUser() dagegen fragt bei jedem Aufruf den Auth-Server, und
+  // diese Middleware laeuft bei jeder Anfrage, auch bei den Vorablade-Anfragen
+  // hinter jedem <Link>. Das war eine Netzwerkrunde pro ueberfahrenem Menuepunkt.
+  //
+  // Die Sitzungserneuerung bleibt erhalten: getClaims() holt den Token intern
+  // ueber getSession(), und das erneuert einen abgelaufenen Token wie zuvor.
+  // Der Schluessel wird modulweit zwischengespeichert (GLOBAL_JWKS), nur die
+  // erste Anfrage einer kalten Instanz holt ihn.
+  //
+  // Bewusste Abwaegung: ein lokal geprueftes Token gilt bis zu seinem Ablauf,
+  // auch nach einer Abmeldung. Fuer die Weiterleitung hier ist das unkritisch —
+  // die Zugriffsrechte setzt RLS in der Datenbank durch, und das Layout prueft
+  // zusaetzlich serverseitig ueber getCurrentProfile().
+  const { data: claims } = await supabase.auth.getClaims()
+  const user = claims?.claims ?? null
 
   const pathname = request.nextUrl.pathname
 

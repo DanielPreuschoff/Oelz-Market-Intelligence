@@ -3,6 +3,7 @@ import { format, formatDistanceToNow } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
+import { getCurrentProfile } from '@/lib/auth/current-profile'
 import { visibleModules } from '@/lib/modules'
 import { ModuleCard } from '@/components/module-card'
 import type { Edition } from '@/types/database'
@@ -12,9 +13,8 @@ import Image from 'next/image'
 
 export default async function ModuleHubPage() {
   const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
 
-  const [{ data: editions }, { data: impulses }, { data: profile }] = await Promise.all([
+  const [{ data: editions }, { data: impulses }, profile] = await Promise.all([
     supabase
       .from('editions')
       .select('*')
@@ -27,13 +27,14 @@ export default async function ModuleHubPage() {
       .eq('status', 'published')
       .order('created_at', { ascending: false })
       .limit(3),
-    supabase.from('user_profiles').select('is_admin').eq('id', user?.id ?? '').maybeSingle(),
+    // Aus dem Anfrage-Zwischenspeicher des Layouts — kostet hier nichts mehr.
+    getCurrentProfile(),
   ])
 
   const latestEdition = editions?.[0] as Edition | undefined
   const recentImpulses = (impulses ?? []) as InnovationImpulse[]
   const hasContent = latestEdition || recentImpulses.length > 0
-  const isAdmin = !!(profile as { is_admin?: boolean } | null)?.is_admin
+  const isAdmin = !!profile?.is_admin
 
   return (
     <div className="space-y-10">

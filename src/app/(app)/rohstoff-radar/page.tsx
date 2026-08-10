@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/server'
+import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
 import { IngredientSignalGrid } from '@/components/ingredient-signal/ingredient-signal-grid'
 import { STRATEGIC_THEMES } from '@/types/strategic-themes'
 import {
@@ -44,13 +45,8 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
   // notFound() statt redirect, damit die Route für andere Nutzer nicht einmal
   // als existierend erkennbar ist. Zum Freischalten diesen Block entfernen und
   // `adminOnly` in src/lib/modules.ts streichen — siehe Spec, „Ausrollstufe".
-  const { data: { user } } = await supabase.auth.getUser()
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('is_admin')
-    .eq('id', user?.id ?? '')
-    .maybeSingle()
-  if (!profile?.is_admin) notFound()
+  // Nutzt die Antwort, die das Layout in dieser Anfrage bereits geholt hat.
+  if (!(await isCurrentUserAdmin())) notFound()
 
   let query = supabase
     .from('ingredient_signals')

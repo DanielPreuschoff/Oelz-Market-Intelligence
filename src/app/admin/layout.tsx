@@ -1,29 +1,23 @@
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
 import { AppNav } from '@/components/nav/app-nav'
-import type { UserProfile } from '@/types/database'
+import { getCurrentUser, getCurrentProfile } from '@/lib/auth/current-profile'
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-
+  const user = await getCurrentUser()
   if (!user) redirect('/login')
 
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single()
-
+  // Teilt sich die Auth-Runde mit getCurrentUser(); die Admin-Seiten darunter
+  // erben dieselbe Antwort, statt sie ein drittes Mal zu holen.
+  const profile = await getCurrentProfile()
   if (!profile?.is_admin) redirect('/')
 
   return (
     <div className="min-h-screen bg-background">
-      <AppNav profile={profile as UserProfile} />
+      <AppNav profile={profile} />
       <main className="max-w-7xl mx-auto px-4 py-8">
         {children}
       </main>
