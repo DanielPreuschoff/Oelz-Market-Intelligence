@@ -4,6 +4,7 @@ import { ArrowLeft } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { SignalCard } from '@/components/signal-card/signal-card'
 import type { Competitor, SignalWithRelations, UserRole } from '@/types/database'
+import { getCurrentProfile } from '@/lib/auth/current-profile'
 
 const PRIORITY_LABELS: Record<string, string> = {
   high: 'Intensiv beobachtet',
@@ -34,7 +35,7 @@ export default async function CompetitorDetailPage({ params }: PageProps) {
   const { id } = await params
   const supabase = await createClient()
 
-  const [{ data: competitor }, { data: signals }, { data: profile }] = await Promise.all([
+  const [{ data: competitor }, { data: signals }, profile] = await Promise.all([
     supabase.from('competitors').select('*').eq('id', id).single(),
     supabase
       .from('signals')
@@ -43,7 +44,7 @@ export default async function CompetitorDetailPage({ params }: PageProps) {
       .eq('status', 'published')
       .order('signal_date', { ascending: false, nullsFirst: false })
       .order('created_at', { ascending: false }),
-    supabase.from('user_profiles').select('role').single(),
+    getCurrentProfile(),
   ])
 
   if (!competitor) notFound()

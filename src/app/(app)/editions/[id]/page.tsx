@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/server'
 import { SignalCard } from '@/components/signal-card/signal-card'
 import type { EditionWithSignals, UserRole } from '@/types/database'
 import { CATEGORY_LABELS } from '@/types/database'
+import { getCurrentProfile } from '@/lib/auth/current-profile'
 
 const PAGE_SIZE = 20
 
@@ -40,10 +41,7 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
 
   if (!edition) notFound()
 
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('role, is_admin')
-    .single()
+  const profile = await getCurrentProfile()
 
   const userRole = (profile?.role ?? null) as UserRole | null
 

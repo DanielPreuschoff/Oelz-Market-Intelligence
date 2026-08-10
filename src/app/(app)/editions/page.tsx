@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { buttonVariants } from '@/components/ui/button-variants'
 import { cn } from '@/lib/utils'
 import type { Edition } from '@/types/database'
+import { getCurrentProfile } from '@/lib/auth/current-profile'
 import { ChevronRight } from 'lucide-react'
 
 export default async function EditionsPage() {
@@ -19,10 +20,7 @@ export default async function EditionsPage() {
     .eq('status', 'published')
     .order('period_month', { ascending: false })
 
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('is_admin')
-    .single()
+  const profile = await getCurrentProfile()
 
   const isAdmin = profile?.is_admin ?? false
 

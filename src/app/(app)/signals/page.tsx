@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { SignalCard } from '@/components/signal-card/signal-card'
 import type { SignalWithRelations, SignalCategory, UserRole } from '@/types/database'
 import { CATEGORY_LABELS, ROLE_LABELS } from '@/types/database'
+import { getCurrentProfile } from '@/lib/auth/current-profile'
 
 interface PageProps {
   searchParams: Promise<{
@@ -33,10 +34,10 @@ export default async function SignalsPage({ searchParams }: PageProps) {
 
   const { data: signals } = await query
 
-  const [{ data: competitors }, { data: countries }, { data: profile }] = await Promise.all([
+  const [{ data: competitors }, { data: countries }, profile] = await Promise.all([
     supabase.from('competitors').select('id, short_name').eq('active', true).order('short_name'),
     supabase.from('countries').select('id, name').eq('active', true).order('name'),
-    supabase.from('user_profiles').select('role').single(),
+    getCurrentProfile(),
   ])
 
   const userRole = (profile?.role ?? null) as UserRole | null

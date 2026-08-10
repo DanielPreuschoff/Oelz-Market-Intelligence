@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { SignalCard } from '@/components/signal-card/signal-card'
 import type { Country, SignalWithRelations, UserRole } from '@/types/database'
+import { getCurrentProfile } from '@/lib/auth/current-profile'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -11,7 +12,7 @@ export default async function CountryDetailPage({ params }: PageProps) {
   const { id } = await params
   const supabase = await createClient()
 
-  const [{ data: country }, { data: signals }, { data: profile }] = await Promise.all([
+  const [{ data: country }, { data: signals }, profile] = await Promise.all([
     supabase.from('countries').select('*').eq('id', id.toUpperCase()).single(),
     supabase
       .from('signals')
@@ -20,7 +21,7 @@ export default async function CountryDetailPage({ params }: PageProps) {
       .eq('status', 'published')
       .order('signal_date', { ascending: false, nullsFirst: false })
       .order('created_at', { ascending: false }),
-    supabase.from('user_profiles').select('role').single(),
+    getCurrentProfile(),
   ])
 
   if (!country) notFound()
