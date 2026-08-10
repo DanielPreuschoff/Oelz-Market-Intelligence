@@ -1,4 +1,6 @@
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/server'
@@ -18,8 +20,12 @@ interface PageProps {
     reifegrad?: string
     q?: string
     signal?: string
+    page?: string
   }>
 }
+
+/** Kacheln je Seite. Drei Reihen à drei Spalten im breiten Layout. */
+const PAGE_SIZE = 9
 
 export default async function RohstoffRadarPage({ searchParams }: PageProps) {
   const {
@@ -28,7 +34,9 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
     reifegrad: maturityFilter,
     q: search,
     signal: openId,
+    page: pageParam,
   } = await searchParams
+  const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1)
 
   const supabase = await createClient()
 
@@ -89,6 +97,10 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
     )
   })
 
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
+  const page = Math.min(currentPage, totalPages)
+  const paginated = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+
   const hasFilters = !!(functionFilter || themeFilter || maturityFilter || search)
   const moduleIsEmpty = published.length === 0
   const stand = maxPublishedAt(published)
@@ -100,11 +112,12 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
       thema: themeFilter,
       reifegrad: maturityFilter,
       q: search,
+      page: pageParam,
       ...patch,
     }
     const params = new URLSearchParams()
     Object.entries(merged).forEach(([k, v]) => {
-      if (v) params.set(k, v)
+      if (v && !(k === 'page' && v === '1')) params.set(k, v)
     })
     const str = params.toString()
     return `/rohstoff-radar${str ? `?${str}` : ''}`
@@ -112,7 +125,7 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
 
   function toggleFilter(key: 'funktion' | 'thema' | 'reifegrad', value: string) {
     const current = { funktion: functionFilter, thema: themeFilter, reifegrad: maturityFilter }
-    return buildUrl({ [key]: current[key] === value ? undefined : value })
+    return buildUrl({ [key]: current[key] === value ? undefined : value, page: undefined })
   }
 
   const filterRows: {
@@ -207,7 +220,39 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
           <p className="text-xs mt-1">Passe die Filter an oder setze sie zurück.</p>
         </div>
       ) : (
-        <IngredientSignalGrid signals={filtered} stand={stand} openSignal={openSignal} />
+        <div className="space-y-6">
+          <IngredientSignalGrid signals={paginated} stand={stand} openSignal={openSignal} />
+
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between pt-2 border-t">
+              <span className="text-xs text-muted-foreground">
+                {(page - 1) * PAGE_SIZE + 1}–{Math.min(page * PAGE_SIZE, filtered.length)} von{' '}
+                {filtered.length} Signalen
+              </span>
+              <div className="flex items-center gap-1">
+                {page > 1 && (
+                  <Link
+                    href={buildUrl({ page: String(page - 1) })}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
+                  >
+                    <ChevronLeft className="w-3.5 h-3.5" /> Zurück
+                  </Link>
+                )}
+                <span className="px-3 py-1.5 text-xs text-muted-foreground">
+                  {page} / {totalPages}
+                </span>
+                {page < totalPages && (
+                  <Link
+                    href={buildUrl({ page: String(page + 1) })}
+                    className="inline-flex items-center gap-1 px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
+                  >
+                    Weiter <ChevronRight className="w-3.5 h-3.5" />
+                  </Link>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
       )}
     </div>
   )
