@@ -90,3 +90,36 @@ export type ImpulseTag = typeof IMPULSE_TAGS[number]
 
 export const PRIORITY_OPTIONS = ['Beobachten', 'Prüfen', 'Pilotieren'] as const
 export type Priority = typeof PRIORITY_OPTIONS[number]
+
+/**
+ * Felder, ohne die eine Impulskarte für den Leser nicht trägt.
+ *
+ * Anders als beim Rohstoff-Radar steht das **nicht** als CHECK in der Datenbank:
+ * `innovation_impulses` kennt keine Veröffentlichungs-Hürde, und eine
+ * nachträglich hinzugefügte würde an den bereits veröffentlichten Impulsen
+ * scheitern. Das hier ist deshalb eine Hilfe für die Durchsicht, keine Sperre —
+ * der Import meldet, was fehlt, verhindert aber nichts.
+ */
+const IMPULSE_REQUIREMENTS: { label: string; ok: (i: ImpulseCandidate) => boolean }[] = [
+  { label: 'Kurzsignal', ok: (i) => !!i.short_signal?.trim() },
+  { label: 'Was ist neu', ok: (i) => !!i.what_is_new?.trim() },
+  { label: 'Marktsignal', ok: (i) => !!i.market_signal?.trim() },
+  { label: 'Markt', ok: (i) => !!i.market?.trim() },
+  { label: 'Ölz-Relevanz', ok: (i) => !!i.oelz_development_relevance?.trim() },
+  { label: 'möglicher Transfer', ok: (i) => !!i.possible_oelz_transfer?.trim() },
+  { label: 'Quellen-URL', ok: (i) => !!i.source_url?.trim() },
+  { label: 'Quellendatum', ok: (i) => !!i.source_date },
+]
+
+type ImpulseCandidate = Partial<
+  Pick<
+    InnovationImpulse,
+    | 'short_signal' | 'what_is_new' | 'market_signal' | 'market'
+    | 'oelz_development_relevance' | 'possible_oelz_transfer'
+    | 'source_url' | 'source_date'
+  >
+>
+
+export function missingForImpulse(impulse: ImpulseCandidate): string[] {
+  return IMPULSE_REQUIREMENTS.filter((r) => !r.ok(impulse)).map((r) => r.label)
+}

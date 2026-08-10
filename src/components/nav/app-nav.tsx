@@ -18,13 +18,17 @@ import type { UserProfile } from '@/types/database'
 import type { ModuleStats } from '@/lib/module-stats'
 import { ROLE_LABELS } from '@/types/database'
 
+/**
+ * Nur die Aktionen des Monatslaufs. Die Einzelformulare (neues Signal, neuer
+ * Impuls, neues Rohstoffsignal) sind bewusst raus — sie bleiben über die
+ * jeweilige Verwalten-Seite erreichbar, gehören aber nicht in den Schnellzugriff:
+ * Signale und Rohstoffsignale entstehen im Regelfall über die Importe, Impulse
+ * künftig ebenso (docs/produkt-radar-erhebung.md, Abschnitt 7).
+ */
 const ADMIN_NAV_ITEMS = [
   { href: '/admin/import', label: 'Signal-Import' },
-  { href: '/admin/signals/new', label: 'Neues Signal' },
   { href: '/admin/editions/new', label: 'Neue Edition' },
   { href: '/admin/studien/new', label: 'Studie hochladen' },
-  { href: '/admin/produkt-radar/new', label: 'Impuls hinzufügen' },
-  { href: '/admin/rohstoff-radar/new', label: 'Rohstoffsignal hinzufügen' },
 ]
 
 interface AppNavProps {
@@ -101,8 +105,14 @@ export function AppNav({ profile, moduleStats }: AppNavProps) {
                 <DropdownMenuItem render={<Link href="/admin/competitors" />}>
                   Wettbewerber verwalten
                 </DropdownMenuItem>
+                <DropdownMenuItem render={<Link href="/admin/produkt-radar" />}>
+                  Impulse verwalten
+                </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/admin/rohstoff-radar" />}>
                   Rohstoffsignale verwalten
+                </DropdownMenuItem>
+                <DropdownMenuItem render={<Link href="/admin/studien" />}>
+                  Studien verwalten
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

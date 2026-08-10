@@ -23,9 +23,19 @@ export default async function AdminProduktRadarPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Produkt- & Innovationsradar</h1>
-        <Link href="/admin/produkt-radar/new" className={cn(buttonVariants({ size: 'sm' }))}>
-          Impuls hinzufügen
-        </Link>
+        <div className="flex items-center gap-2">
+          {/* Der Import ist der Regelweg (Monatslauf), das Einzelformular der
+              Ausnahmefall — deshalb steht er vorn und trägt die Hauptfarbe. */}
+          <Link href="/admin/produkt-radar/import" className={cn(buttonVariants({ size: 'sm' }))}>
+            Impulse importieren
+          </Link>
+          <Link
+            href="/admin/produkt-radar/new"
+            className={cn(buttonVariants({ size: 'sm', variant: 'outline' }))}
+          >
+            Einzeln hinzufügen
+          </Link>
+        </div>
       </div>
 
       {!impulses?.length ? (
