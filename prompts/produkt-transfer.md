@@ -69,7 +69,9 @@ AUSGABEFORMAT
 Für jeden Fund genau diesen Block:
 
 ## IMPULS
-TITEL: Das Konzept und sein Sprung in einem Satz.
+TITEL: Konzept und Sprung als Überschrift, höchstens 70 Zeichen. Kein Analysesatz.
+KURZSIGNAL: Ein Satz, höchstens 100 Zeichen, der etwas ANDERES sagt als der Titel —
+  die konkreteste Zahl oder Beobachtung des Sprungs. Keine Wiederholung der Überschrift.
 PRODUKTBEISPIEL: Konkretes Produkt und Anbieter im Zielmarkt
 RADAR_TYP: Internationaler Vorläufer
 KATEGORIE: Produktkategorie in 2-4 Worten

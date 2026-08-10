@@ -75,7 +75,11 @@ AUSGABEFORMAT
 Für jeden Fund genau diesen Block:
 
 ## IMPULS
-TITEL: Das Konzept in einem Satz — was es ist, nicht wer es macht.
+TITEL: Das Konzept als Überschrift, höchstens 70 Zeichen. Kein Analysesatz —
+  "Croissant als Eishülle erreicht den Handel", nicht "Die gastronomische Praxis,
+  Croissants als Trägerhülle für Speiseeis zu nutzen, springt in den Handel".
+KURZSIGNAL: Ein Satz, höchstens 100 Zeichen, der etwas ANDERES sagt als der Titel —
+  die konkreteste Zahl oder Beobachtung des Funds. Keine Wiederholung der Überschrift.
 PRODUKTBEISPIEL: Konkretes Produkt und Anbieter (z.B. "Crookie — Boulangerie Louvard, Paris")
 RADAR_TYP: Format | Claim | Rezeptur & Genuss | Occasion | Verpackung | Saison | Handel
 KATEGORIE: Produktkategorie in 2-4 Worten

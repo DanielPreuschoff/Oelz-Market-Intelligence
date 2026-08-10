@@ -72,7 +72,7 @@ Trendberichte ohne konkretes Produkt.
 
 | Berichtsfeld | Datenbankfeld | Anmerkung |
 |---|---|---|
-| TITEL | `title` | |
+| TITEL | `title` | höchstens 70 Zeichen; die Kachel kappt bei zwei Zeilen |
 | PRODUKTBEISPIEL | `product_example` | |
 | RADAR_TYP | `radar_type` | Transferradar immer „Internationaler Vorläufer" |
 | KATEGORIE | `category` | |
@@ -85,7 +85,7 @@ Trendberichte ohne konkretes Produkt.
 | TRANSFERSTATUS + ÖLZ_RELEVANZ | `oelz_development_relevance` | |
 | MÖGLICHER_TRANSFER | `possible_oelz_transfer` | |
 | PRIORITÄT | `ratings.priority` | übrige Bewertungen redaktionell |
-| TITEL (kurz) | `short_signal` | bei der Aufbereitung verdichtet |
+| KURZSIGNAL | `short_signal` | eigenes Feld im Bericht — muss etwas anderes sagen als der Titel, sonst steht er auf der Kachel doppelt |
 | — | `tags` | bei der Aufbereitung aus `IMPULSE_TAGS` vergeben |
 | — | `image_url` | manuell nachgepflegt |
 

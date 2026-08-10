@@ -184,8 +184,12 @@ interface ImpulseCardProps {
 export function ImpulseCard({ impulse }: ImpulseCardProps) {
   return (
     <Dialog>
-      <DialogTrigger className="block text-left w-full group">
-        <div className="border rounded-xl overflow-hidden bg-card hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+      {/* h-full auf Auslöser UND Karte: das Raster streckt seine Zellen bereits
+          auf gleiche Höhe, die Karte darin hörte aber dort auf, wo ihr Inhalt
+          endete. Genau das liess nebeneinanderliegende Kacheln verschieden hoch
+          aussehen. */}
+      <DialogTrigger className="block text-left w-full h-full group">
+        <div className="border rounded-xl overflow-hidden bg-card hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer h-full flex flex-col">
           {/* Image or color fallback */}
           {impulse.image_url ? (
             <div className="relative w-full aspect-[4/3] overflow-hidden">
@@ -207,8 +211,9 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
             </div>
           )}
 
-          {/* Content */}
-          <div className="p-4 space-y-3">
+          {/* Content — wächst in die verbleibende Höhe, damit die Fusszeile
+              unten andocken kann statt dem Text zu folgen. */}
+          <div className="p-4 space-y-3 flex-1 flex flex-col">
             <div className="flex items-start justify-between gap-2">
               <RadarTypeBadge type={impulse.radar_type} />
               {impulse.source_date && (
@@ -219,7 +224,10 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
             </div>
 
             <div className="space-y-1.5">
-              <h3 className="font-display font-bold text-base leading-snug group-hover:text-primary/80 transition-colors">
+              {/* Auf zwei Zeilen gekappt wie Kurzsignal und Relevanz auch.
+                  Ohne das reicht der Titel je nach Fund von zwei bis fünf
+                  Zeilen und erzeugt allein schon den Höhenunterschied. */}
+              <h3 className="font-display font-bold text-base leading-snug line-clamp-2 group-hover:text-primary/80 transition-colors">
                 {impulse.title}
               </h3>
               {impulse.short_signal && (
@@ -245,7 +253,11 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
               </div>
             )}
 
-            <div className="flex items-center gap-1 text-xs text-muted-foreground group-hover:text-foreground transition-colors pt-1">
+            {/* mt-auto heftet die Fusszeile an den unteren Rand — dadurch steht
+                sie über alle Karten hinweg auf einer Linie, auch wenn eine
+                Karte weniger Text trägt. Das wirkt stärker als die blosse
+                gleiche Höhe. */}
+            <div className="mt-auto flex items-center gap-1 text-xs text-muted-foreground group-hover:text-foreground transition-colors pt-1">
               Detail ansehen <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
             </div>
           </div>
