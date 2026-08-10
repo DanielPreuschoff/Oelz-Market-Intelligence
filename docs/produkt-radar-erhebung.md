@@ -89,10 +89,15 @@ Trendberichte ohne konkretes Produkt.
 | — | `tags` | bei der Aufbereitung aus `IMPULSE_TAGS` vergeben |
 | — | `image_url` | manuell nachgepflegt |
 
-## 7. Offene Baustelle
+## 7. Stand
 
-**Sammelimport für Impulse existiert noch nicht** — heute gibt es nur das
-Einzelformular mit KI-Extraktion. Bis der Import gebaut ist (Muster:
-`/admin/rohstoff-radar/import`), werden aufbereitete Impulse einzeln über das
-Formular erfasst; bei 5–10 je Monat ist das vertretbar, aber der Import ist der
-Plan. Umsetzung vor dem ersten Lauf am 1. September.
+Der Sammelimport liegt unter `/admin/produkt-radar/import` (gebaut August 2026,
+Muster: der Rohstoff-Import). Das Einzelformular bleibt für Ausnahmefälle.
+
+Offen bis zum ersten regulären Lauf am 1. September:
+
+- Die 7 Impulse aus der Zeit vor diesem Ablauf fehlen im Register — ohne
+  Nachtrag meldet die Recherche sie erneut.
+- `image_url` und `ratings` setzt der Import bewusst nicht. Bewertungen werden
+  derzeit nirgends angezeigt; erfundene Platzhalterzahlen wären schlechter als
+  gar keine.
