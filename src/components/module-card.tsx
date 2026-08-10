@@ -73,7 +73,7 @@ export function ModuleCard({ module, stats }: ModuleCardProps) {
         <div className="mt-auto space-y-2">
           {hasStats && (
             <p className="text-[11px] text-muted-foreground pt-1 border-t border-border/60">
-              {stats.total} {stats.total === 1 ? 'Eintrag' : 'Einträge'}
+              {stats.total} {stats.total === 1 ? stats.unit.one : stats.unit.many}
               {stats.stand && (
                 <>
                   <span className="mx-1.5">·</span>
