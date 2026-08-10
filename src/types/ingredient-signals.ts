@@ -94,6 +94,26 @@ export function isNewSignal(
   return distance >= 0 && distance <= NEW_WINDOW_DAYS * 86_400_000
 }
 
+/**
+ * Ob eine Erhebung überhaupt noch als frisch gilt.
+ *
+ * Bewusst getrennt von `isNewSignal`: Das sind zwei verschiedene Fragen.
+ * *Welche* Einträge zu einer Erhebung gehören, misst sich am Stand — sonst
+ * verlöre eine Erhebungspause rückwirkend ihre Neuheitsmarkierung. *Ob* die
+ * Erhebung noch als neu ausgewiesen wird, muss sich dagegen an heute messen.
+ *
+ * Ohne diese zweite Frage zählt der jüngste Eintrag immer mit — sein Abstand
+ * zum Stand ist per Definition null — und das Neu-Abzeichen verschwände nie.
+ * Ein Hinweis, der dauerhaft leuchtet, ist keiner mehr.
+ *
+ * `now` ist einsetzbar, damit die Funktion prüfbar bleibt.
+ */
+export function isCollectionRecent(standIso: string | null, now: number = Date.now()): boolean {
+  if (!standIso) return false
+  const age = now - Date.parse(standIso)
+  return age >= 0 && age <= NEW_WINDOW_DAYS * 86_400_000
+}
+
 /** Die sechs Glieder der Relevanzkette plus die Belege, die sie tragen. */
 const PUBLISH_REQUIREMENTS: { label: string; ok: (s: PublishCandidate) => boolean }[] = [
   { label: 'Beschreibung des Signals', ok: (s) => !!s.what_is_new?.trim() },

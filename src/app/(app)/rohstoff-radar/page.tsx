@@ -11,6 +11,7 @@ import {
   INGREDIENT_FUNCTIONS,
   MATURITY_LEVELS,
   isNewSignal,
+  isCollectionRecent,
   type IngredientSignal,
 } from '@/types/ingredient-signals'
 
@@ -100,7 +101,12 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
   const hasFilters = !!(functionFilter || themeFilter || maturityFilter || search)
   const moduleIsEmpty = published.length === 0
   const stand = maxPublishedAt(published)
-  const newCount = published.filter((s) => isNewSignal(s, stand)).length
+  // Liegt die letzte Erhebung länger zurück als das Neu-Fenster, gilt nichts
+  // mehr als neu — sonst bliebe die jüngste Erhebung für immer markiert.
+  const collectionIsRecent = isCollectionRecent(stand)
+  const newCount = collectionIsRecent
+    ? published.filter((s) => isNewSignal(s, stand)).length
+    : 0
 
   function buildUrl(patch: Record<string, string | undefined>) {
     const merged: Record<string, string | undefined> = {
@@ -217,7 +223,14 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
         </div>
       ) : (
         <div className="space-y-6">
-          <IngredientSignalGrid signals={paginated} stand={stand} openSignal={openSignal} />
+          {/* Ohne Stand setzt das Grid keine Neu-Marker. Genau das ist gewollt,
+              sobald die letzte Erhebung aus dem Neu-Fenster gelaufen ist —
+              sonst widerspräche die Kachel dem Zähler im Kopf. */}
+          <IngredientSignalGrid
+            signals={paginated}
+            stand={collectionIsRecent ? stand : null}
+            openSignal={openSignal}
+          />
 
           {totalPages > 1 && (
             <div className="flex items-center justify-between pt-2 border-t">

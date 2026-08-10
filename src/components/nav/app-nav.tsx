@@ -13,7 +13,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { OelzWave } from '@/components/nav/oelz-wave'
+import { MobileModuleNav } from '@/components/nav/mobile-module-nav'
 import type { UserProfile } from '@/types/database'
+import type { ModuleStats } from '@/lib/module-stats'
 import { ROLE_LABELS } from '@/types/database'
 
 const ADMIN_NAV_ITEMS = [
@@ -27,9 +29,11 @@ const ADMIN_NAV_ITEMS = [
 
 interface AppNavProps {
   profile: UserProfile | null
+  /** Für die Neu-Zähler in der Schublade auf schmalen Bildschirmen. */
+  moduleStats?: Record<string, ModuleStats>
 }
 
-export function AppNav({ profile }: AppNavProps) {
+export function AppNav({ profile, moduleStats }: AppNavProps) {
   const router = useRouter()
 
   async function handleSignOut() {
@@ -42,7 +46,8 @@ export function AppNav({ profile }: AppNavProps) {
   return (
     <header className="sticky top-0 z-40 bg-oelz-orange">
       <div className="w-full px-4 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-2 sm:gap-8">
+          <MobileModuleNav isAdmin={!!profile?.is_admin} stats={moduleStats} />
           <Link href="/" className="flex items-center gap-3 group">
             <Image
               src="/oelz-logo.png"

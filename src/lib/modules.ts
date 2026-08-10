@@ -8,6 +8,13 @@ export interface ModuleSubItem {
 export interface IntelligenceModule {
   id: string
   name: string
+  /**
+   * Kurzform für die Navigation. Der volle Name passt dort nicht in die Spalte
+   * und wurde bisher stumm abgeschnitten („Produkt- & Innovati…"). Eine eigene
+   * Kurzform ist ehrlicher als eine Ellipse: sie ist gewählt, nicht gekappt.
+   * Fehlt sie, gilt `name`.
+   */
+  shortName?: string
   description: string
   icon: string
   status: ModuleStatus
@@ -46,6 +53,7 @@ export const MODULES: IntelligenceModule[] = [
   {
     id: 'produkt',
     name: 'Produkt- & Innovationsradar',
+    shortName: 'Produktradar',
     description: 'Neue Produktkonzepte, Claims und Sortimentsimpulse im Markt für Backwaren und Convenience.',
     icon: 'Lightbulb',
     status: 'active',
@@ -84,6 +92,7 @@ export const MODULES: IntelligenceModule[] = [
   {
     id: 'packaging',
     name: 'Packaging- & Claim-Radar',
+    shortName: 'Packaging-Radar',
     description: 'Verpackungsdesign, Packungsgrößen, Nutzenversprechen und Nährwertkommunikation im Wettbewerbsumfeld.',
     icon: 'Package',
     status: 'coming_soon',
@@ -101,6 +110,7 @@ export const MODULES: IntelligenceModule[] = [
   {
     id: 'laender',
     name: 'Länder- & CEE-Radar',
+    shortName: 'Länder-Radar',
     description: 'Relevante Entwicklungen in Österreich, Deutschland, Schweiz, Tschechien, Slowakei und Slowenien.',
     icon: 'Globe',
     status: 'coming_soon',
@@ -135,6 +145,7 @@ export const MODULES: IntelligenceModule[] = [
   {
     id: 'social',
     name: 'Social Listening Radar',
+    shortName: 'Social Listening',
     description: 'Relevante Marken- und Produktdiskussionen in sozialen Medien — Stimmungen, Reichweiten und Trends im Blick.',
     icon: 'Radio',
     status: 'coming_soon',

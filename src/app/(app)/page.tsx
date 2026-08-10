@@ -4,6 +4,7 @@ import { de } from 'date-fns/locale'
 import { ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { getCurrentProfile } from '@/lib/auth/current-profile'
+import { getModuleStats } from '@/lib/module-stats'
 import { visibleModules } from '@/lib/modules'
 import { ModuleCard } from '@/components/module-card'
 import type { Edition } from '@/types/database'
@@ -14,7 +15,7 @@ import Image from 'next/image'
 export default async function ModuleHubPage() {
   const supabase = await createClient()
 
-  const [{ data: editions }, { data: impulses }, profile] = await Promise.all([
+  const [{ data: editions }, { data: impulses }, profile, moduleStats] = await Promise.all([
     supabase
       .from('editions')
       .select('*')
@@ -29,6 +30,7 @@ export default async function ModuleHubPage() {
       .limit(3),
     // Aus dem Anfrage-Zwischenspeicher des Layouts — kostet hier nichts mehr.
     getCurrentProfile(),
+    getModuleStats(),
   ])
 
   const latestEdition = editions?.[0] as Edition | undefined
@@ -139,7 +141,7 @@ export default async function ModuleHubPage() {
         <h2 className="text-xs font-semibold uppercase tracking-wider text-oelz-orange-text">Module</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {visibleModules(isAdmin).map((module) => (
-            <ModuleCard key={module.id} module={module} />
+            <ModuleCard key={module.id} module={module} stats={moduleStats[module.id]} />
           ))}
         </div>
       </div>
