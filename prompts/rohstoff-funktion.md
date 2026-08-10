@@ -51,7 +51,23 @@ QUELLEN — decke möglichst mehrere dieser Arten ab, nicht nur die erste:
 Suche deutsch- und englischsprachig. Fachliteratur und Herstellermeldungen sind
 überwiegend englisch — beschränke dich nicht auf deutsche Quellen.
 
-WAS NICHT ZÄHLT
+WAS NICHT ZÄHLT — WICHTIG
+Ein Signal verlangt ein Ereignis, nicht nur einen Artikel. Melde NICHT:
+- Seit Jahren etablierte Standardtechnologie, nur weil eine neue Studie oder ein
+  Marktbericht darüber erschienen ist (Beispiele fuer solche Klassiker: Laktase,
+  Isomalt, Xylanase, Teilbackverfahren, Standard-Proteinisolate).
+- Vergleichsstudien ueber laengst verfuegbare Zutaten. Neu ist dort die Untersuchung,
+  nicht der Rohstoff.
+- Marktberichte, die bestaetigen, dass etwas Bekanntes funktioniert oder waechst.
+Pruefe bei jedem Fund: WAS hat sich geaendert? Gibt es keine Antwort ausser "es wurde
+darueber publiziert", ist es kein Signal.
+Ausnahme: Regulatorische Entscheidungen zu bekannten Stoffen (Zulassung, Neubewertung,
+erweiterte Anwendung) sind Signale — dort ist die Entscheidung das Ereignis.
+
+Zum REIFEGRAD "Etabliert": nur verwenden, wenn etwas im Beobachtungszeitraum etabliert
+GEWORDEN ist. Was seit Jahren Standard ist, gehoert gar nicht in den Bericht.
+
+AUSSERDEM NICHT
 Eine Meldung, dass ein Rohstoff existiert oder neu am Markt ist, ohne dass klar wird,
 welche Funktion er ermöglicht und welches Problem er löst. Marketingtexte ohne
 überprüfbare Aussage. Rohstoffe, die für Feinbackwaren technisch nicht in Frage kommen.
