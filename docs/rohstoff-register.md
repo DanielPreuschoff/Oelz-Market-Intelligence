@@ -152,3 +152,23 @@ Der letzte Wert steht für Funde, die in keine der sieben Funktionen passen und 
 nicht veröffentlicht werden können. Häufen sie sich mit demselben Nenner, ist das der
 Anlass, die Taxonomie zu erweitern — siehe `prompts/rohstoff-exploration.md`,
 Abschnitt „Wenn nichts passt".
+
+---
+
+## Bekannte Aufbereitungsfallen
+
+**ChatGPT-Zitatmarker.** Deep-Research-Ausgaben von ChatGPT enthalten unsichtbare
+Steuerzeichen der Private Use Area (`U+E200`, `U+E201`, `U+E202`), die einen
+Zitatverweis einrahmen. Im Editor werden sie als Buchstabensalat sichtbar
+(`citeturn3search8`), im Rohtext stehen sie zwischen den Buchstaben — ein
+Muster wie `citeturn\S+` greift deshalb **nicht**.
+
+Beim Aufbereiten immer zuerst entfernen:
+
+```python
+re.sub(".*?", "", text)      # ganzer Marker
+re.sub("[-]", "", text)      # versprengte Einzelzeichen
+```
+
+Bei der ersten Erhebung nachträglich aufgefallen: 32 von 100 Signalen betroffen,
+korrigiert per `research/2026-08/bereinigung-zitatmarker.sql`.
