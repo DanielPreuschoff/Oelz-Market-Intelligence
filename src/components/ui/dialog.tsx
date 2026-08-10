@@ -47,10 +47,28 @@ function DialogContent({
 }: DialogPrimitive.Popup.Props & {
   showCloseButton?: boolean
 }) {
+  /**
+   * Der Dialog setzt den Fokus beim Öffnen sonst auf das erste anklickbare
+   * Element im Inhalt. Bei langen, scrollbaren Inhalten liegt das weit unten —
+   * im Impuls-Dialog war es der Quellenlink —, und der Browser scrollt dorthin.
+   * Das Fenster öffnete dadurch am Ende statt am Anfang.
+   *
+   * Stattdessen den Rahmen selbst fokussieren: Der steht immer am Anfang, und
+   * der Fokus bleibt im Dialog gefangen — Tastaturbedienung und Escape
+   * funktionieren unverändert. `tabIndex` macht ihn dafür fokussierbar.
+   *
+   * Steht vor `{...props}`, damit ein Aufrufer es bei Bedarf überschreiben kann
+   * (etwa ein Dialog mit Formular, der ins erste Feld springen soll).
+   */
+  const popupRef = React.useRef<HTMLDivElement>(null)
+
   return (
     <DialogPortal>
       <DialogOverlay />
       <DialogPrimitive.Popup
+        ref={popupRef}
+        initialFocus={popupRef}
+        tabIndex={-1}
         data-slot="dialog-content"
         className={cn(
           "fixed top-1/2 left-1/2 z-50 grid w-full max-w-[calc(100%-2rem)] -translate-x-1/2 -translate-y-1/2 gap-4 rounded-xl bg-background p-4 text-sm ring-1 ring-foreground/10 duration-100 outline-none sm:max-w-sm data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
