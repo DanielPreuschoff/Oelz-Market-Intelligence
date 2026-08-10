@@ -165,7 +165,7 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
 
       {/* Signal-Karten */}
       {filteredRows.length === 0 ? (
-        <div className="py-12 text-center text-muted-foreground text-sm border rounded-xl bg-white">
+        <div className="py-12 text-center text-muted-foreground text-sm border rounded-xl bg-card">
           <p className="font-medium">Keine Signale für diese Filter</p>
           <p className="text-xs mt-1">Passe die Filter an oder setze sie zurück.</p>
         </div>

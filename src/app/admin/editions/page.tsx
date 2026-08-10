@@ -29,11 +29,11 @@ export default async function AdminEditionsPage() {
         <h1 className="text-2xl font-semibold">Editions</h1>
         <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }), 'gap-1')}>
           <Plus className="w-4 h-4" />
-          New Edition
+          Neue Edition
         </Link>
       </div>
 
-      <div className="border rounded-xl bg-white overflow-hidden">
+      <div className="border rounded-xl bg-card overflow-hidden">
         {(!editions || editions.length === 0) ? (
           <div className="p-12 text-center text-muted-foreground text-sm">
             No editions yet. Create your first one.

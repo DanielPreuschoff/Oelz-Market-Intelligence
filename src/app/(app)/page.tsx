@@ -48,13 +48,13 @@ export default async function ModuleHubPage() {
       {/* Briefing-Sektion */}
       {hasContent && (
         <div className="space-y-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Zuletzt aktualisiert</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-oelz-orange-text">Zuletzt aktualisiert</h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Neueste Edition */}
             {latestEdition && (
               <Link href={`/editions/${latestEdition.id}`} className="group block">
-                <div className="border rounded-xl p-5 bg-white hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 space-y-3 h-full">
+                <div className="border rounded-xl p-5 bg-card hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 space-y-3 h-full">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-bold uppercase tracking-widest text-blue-600 bg-blue-50 border border-blue-100 px-2 py-0.5 rounded-full">Wettbewerbsradar</span>
                     <span className="text-xs text-muted-foreground">
@@ -93,7 +93,7 @@ export default async function ModuleHubPage() {
                     Alle <ChevronRight className="w-3 h-3" />
                   </Link>
                 </div>
-                <div className="divide-y border rounded-xl bg-white overflow-hidden">
+                <div className="divide-y border rounded-xl bg-card overflow-hidden">
                   {recentImpulses.map((impulse) => {
                     const colors = RADAR_TYPE_COLORS[impulse.radar_type]
                     return (
@@ -136,7 +136,7 @@ export default async function ModuleHubPage() {
 
       {/* Modul-Grid */}
       <div className="space-y-4">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Module</h2>
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-oelz-orange-text">Module</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {visibleModules(isAdmin).map((module) => (
             <ModuleCard key={module.id} module={module} />

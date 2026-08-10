@@ -108,7 +108,7 @@ function SignalDetail({ signal }: { signal: IngredientSignal }) {
       {/* Zone „Befund". Steht im gestapelten Dialog vor der Kette — sonst liest
           man fünf Einschätzungen, bevor klar ist, worum es überhaupt geht. */}
       <div className="px-6 py-5 bg-muted/40 border-b border-border">
-        <h3 className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground font-bold mb-2.5">
+        <h3 className="text-[11px] uppercase tracking-[0.14em] text-oelz-orange-text font-bold mb-2.5">
           Grundlage
         </h3>
         {signal.what_is_new && (
@@ -138,7 +138,7 @@ function SignalDetail({ signal }: { signal: IngredientSignal }) {
 
       {/* Zone „Einschätzung" — die Relevanzkette als verbundener Fluss. */}
       <div className="px-6 py-6">
-        <h3 className="text-[11px] uppercase tracking-[0.14em] text-muted-foreground font-bold mb-5">
+        <h3 className="text-[11px] uppercase tracking-[0.14em] text-oelz-orange-text font-bold mb-5">
           Was wir daraus machen
         </h3>
         {chainShown.map(([label, value], i) => (

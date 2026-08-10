@@ -60,7 +60,7 @@ export default async function SignalsPage({ searchParams }: PageProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Signal Library</h1>
+        <h1 className="text-2xl font-semibold">Signal-Bibliothek</h1>
         <span className="text-sm text-muted-foreground">
           {(signals ?? []).length} signals
         </span>

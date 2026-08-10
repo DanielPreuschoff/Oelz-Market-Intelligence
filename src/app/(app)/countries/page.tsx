@@ -28,9 +28,9 @@ export default async function CountriesPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Countries</h1>
+      <h1 className="text-2xl font-semibold">Länder</h1>
 
-      <div className="divide-y border rounded-xl bg-white overflow-hidden">
+      <div className="divide-y border rounded-xl bg-card overflow-hidden">
         {(countries ?? []).map((country: Country) => (
           <Link
             key={country.id}

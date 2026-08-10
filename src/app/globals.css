@@ -39,6 +39,7 @@
   --color-oelz-orange: var(--oelz-orange);
   --color-oelz-orange-print: var(--oelz-orange-print);
   --color-oelz-orange-dark: var(--oelz-orange-dark);
+  --color-oelz-orange-text: var(--oelz-orange-text);
   --color-oelz-braun: var(--oelz-braun);
   --color-oelz-rot: var(--oelz-rot);
   --color-oelz-on-orange: var(--oelz-on-orange);
@@ -72,12 +73,23 @@
   /* Textfarbe auf orangener Fläche — Weiss erreicht auf #F39200 nur 2.35:1 und
      ist laut CD-Manual Display-Größen vorbehalten. Dieses Braun liefert 6.2:1. */
   --oelz-on-orange: oklch(0.284 0.042 45.2);
+  /* Orange als Schriftfarbe. Das Manual sieht sie ausdrücklich vor (S. 19–20,
+     „Orange Schrift auf beigem/weissem Font"), aber #F39200 erreicht auf hellem
+     Grund nur 2.31:1 — selbst für Grosstext zu wenig. Dieser abgedunkelte Ton
+     liefert 4.81:1 auf der Karte und 4.58:1 auf dem Hintergrund, ist damit
+     auch für Kleinschrift (Dachzeilen) zulässig. */
+  --oelz-orange-text: oklch(0.56 0.14 50);
 
-  --background: oklch(0.985 0.006 80);
+  /* Papierweiss statt Bildschirmweiss. Das Manual unterlegt Textflächen
+     bewusst mit Y3/K1, „um ein kaltes, hartes WEISS im Hintergrund zu
+     vermeiden" (S. 19). Karte und Hintergrund sind deshalb beide warm
+     getönt; ihr Helligkeitsabstand (1.051) ist grösser als vorher (1.04),
+     die Karten heben sich also besser ab, nicht schlechter. */
+  --background: oklch(0.976 0.009 80);
   --foreground: oklch(0.24 0.032 48);
-  --card: oklch(1 0 0);
+  --card: oklch(0.993 0.006 85);
   --card-foreground: oklch(0.24 0.032 48);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.993 0.006 85);
   --popover-foreground: oklch(0.24 0.032 48);
   --primary: oklch(0.745 0.167 64.8);
   /* Braun statt Weiss: Weiss auf Ölz-Orange erreicht nur 2.35:1 (WCAG-Minimum
@@ -117,6 +129,9 @@
   --oelz-braun: oklch(0.62 0.055 48.6);
   --oelz-rot: oklch(0.60 0.185 25);
   --oelz-on-orange: oklch(0.284 0.042 45.2);
+  /* Im Dunkelmodus kehrt sich die Kontrastfrage um: hier braucht die
+     Schriftfarbe Helligkeit, nicht Tiefe. */
+  --oelz-orange-text: oklch(0.78 0.145 62);
 
   --background: oklch(0.16 0.014 45);
   --foreground: oklch(0.985 0.006 80);

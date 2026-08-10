@@ -18,8 +18,8 @@ import { ROLE_LABELS } from '@/types/database'
 
 const ADMIN_NAV_ITEMS = [
   { href: '/admin/import', label: 'Signal-Import' },
-  { href: '/admin/signals/new', label: 'New Signal' },
-  { href: '/admin/editions/new', label: 'New Edition' },
+  { href: '/admin/signals/new', label: 'Neues Signal' },
+  { href: '/admin/editions/new', label: 'Neue Edition' },
   { href: '/admin/studien/new', label: 'Studie hochladen' },
   { href: '/admin/produkt-radar/new', label: 'Impuls hinzufügen' },
   { href: '/admin/rohstoff-radar/new', label: 'Rohstoffsignal hinzufügen' },
@@ -88,16 +88,16 @@ export function AppNav({ profile }: AppNavProps) {
                 ))}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem render={<Link href="/admin/signals" />}>
-                  Manage Signals
+                  Signale verwalten
                 </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/admin/editions" />}>
-                  Manage Editions
+                  Editionen verwalten
                 </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/admin/competitors" />}>
-                  Manage Competitors
+                  Wettbewerber verwalten
                 </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/admin/rohstoff-radar" />}>
-                  Manage Rohstoffsignale
+                  Rohstoffsignale verwalten
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -124,7 +124,7 @@ export function AppNav({ profile }: AppNavProps) {
             />
             <DropdownMenuContent align="end">
               <DropdownMenuItem onClick={handleSignOut}>
-                Sign out
+                Abmelden
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -132,8 +132,10 @@ export function AppNav({ profile }: AppNavProps) {
       </div>
 
       {/* Wellenbogen: läuft unter dem Balken aus, ohne die Höhe zu verändern
-          (die Sidebar hängt an top-16 / h-[calc(100vh-4rem)]). */}
-      <OelzWave className="absolute inset-x-0 top-full h-3.5 w-full text-oelz-orange pointer-events-none" />
+          (die Sidebar hängt an top-16 / h-[calc(100vh-4rem)]).
+          h-5 statt h-3.5: die weisse Begleitlinie aus dem Manual braucht Platz
+          innerhalb der Fläche, sonst fällt sie mit der Unterkante zusammen. */}
+      <OelzWave className="absolute inset-x-0 top-full h-5 w-full text-oelz-orange pointer-events-none" />
     </header>
   )
 }

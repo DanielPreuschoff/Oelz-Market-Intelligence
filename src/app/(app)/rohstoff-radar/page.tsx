@@ -204,14 +204,14 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
       )}
 
       {moduleIsEmpty ? (
-        <div className="py-16 text-center border rounded-xl bg-white text-muted-foreground">
+        <div className="py-16 text-center border rounded-xl bg-card text-muted-foreground">
           <p className="font-medium text-sm">Noch keine Rohstoffsignale veröffentlicht</p>
           <p className="text-xs mt-1">
             Die erste Erhebung steht noch aus. Sobald Signale freigegeben sind, erscheinen sie hier.
           </p>
         </div>
       ) : filtered.length === 0 && !openSignal ? (
-        <div className="py-16 text-center border rounded-xl bg-white text-muted-foreground">
+        <div className="py-16 text-center border rounded-xl bg-card text-muted-foreground">
           <p className="font-medium text-sm">Keine Signale für diese Auswahl</p>
           <p className="text-xs mt-1">Passe die Filter an oder setze sie zurück.</p>
         </div>

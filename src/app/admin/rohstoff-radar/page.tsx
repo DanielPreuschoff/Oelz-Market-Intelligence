@@ -41,7 +41,7 @@ export default async function AdminRohstoffRadarPage() {
           Noch keine Rohstoffsignale angelegt.
         </div>
       ) : (
-        <div className="divide-y border rounded-xl bg-white overflow-hidden">
+        <div className="divide-y border rounded-xl bg-card overflow-hidden">
           {signals.map((signal) => {
             const missing = missingForPublish(signal)
             return (

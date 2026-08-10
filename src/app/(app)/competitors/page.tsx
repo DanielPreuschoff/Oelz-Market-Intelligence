@@ -6,8 +6,8 @@ import { cn } from '@/lib/utils'
 
 const PRIORITY_COLORS = {
   high: 'bg-red-50 border-red-100',
-  medium: 'bg-white',
-  low: 'bg-white',
+  medium: 'bg-card',
+  low: 'bg-card',
 }
 
 export default async function CompetitorsPage() {
@@ -56,7 +56,7 @@ export default async function CompetitorsPage() {
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               {priority === 'high' ? 'Intensiv beobachtet' : priority === 'medium' ? 'Im Blick' : 'Auf dem Radar'}
             </h2>
-            <div className="divide-y border rounded-xl overflow-hidden bg-white">
+            <div className="divide-y border rounded-xl overflow-hidden bg-card">
               {list.map((competitor: Competitor) => (
                 <Link
                   key={competitor.id}

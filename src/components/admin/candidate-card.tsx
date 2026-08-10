@@ -53,7 +53,7 @@ export function CandidateCard({
   return (
     <div
       className={cn(
-        'border rounded-xl p-5 bg-white transition-opacity',
+        'border rounded-xl p-5 bg-card transition-opacity',
         isDone && 'opacity-40'
       )}
     >

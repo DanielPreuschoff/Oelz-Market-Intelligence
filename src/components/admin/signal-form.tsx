@@ -182,7 +182,7 @@ export function SignalForm({ competitors, countries, initialValues, signalId }: 
           value={rawText}
           onChange={(e) => setRawText(e.target.value)}
           rows={4}
-          className="bg-white text-sm"
+          className="bg-card text-sm"
         />
         {extractError && (
           <p className="text-xs text-destructive">{extractError}</p>

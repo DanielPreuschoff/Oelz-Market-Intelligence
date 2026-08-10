@@ -38,7 +38,7 @@ export default async function AdminStudienPage() {
       {!sortedStudies.length ? (
         <div className="py-16 text-center text-muted-foreground text-sm">Noch keine Studien angelegt.</div>
       ) : (
-        <div className="divide-y border rounded-xl bg-white overflow-hidden">
+        <div className="divide-y border rounded-xl bg-card overflow-hidden">
           {sortedStudies.map((study) => (
             <div key={study.id} className="flex items-center justify-between px-5 py-3.5 hover:bg-secondary/30 transition-colors">
               <div className="space-y-0.5 flex-1 min-w-0">

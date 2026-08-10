@@ -196,7 +196,7 @@ export function EditionBuilder({ edition, unaddedSignals }: EditionBuilderProps)
               return (
                 <div
                   key={row.signal_id}
-                  className="border rounded-xl px-4 py-3 bg-white flex items-start gap-3"
+                  className="border rounded-xl px-4 py-3 bg-card flex items-start gap-3"
                 >
                   <div className="flex flex-col gap-0.5 pt-0.5">
                     <button
@@ -262,7 +262,7 @@ export function EditionBuilder({ edition, unaddedSignals }: EditionBuilderProps)
               <button
                 key={signal.id}
                 onClick={() => addSignal(signal)}
-                className="w-full text-left border rounded-lg px-3 py-2.5 bg-white hover:bg-secondary/60 transition-colors space-y-1 group"
+                className="w-full text-left border rounded-lg px-3 py-2.5 bg-card hover:bg-secondary/60 transition-colors space-y-1 group"
               >
                 <div className="flex items-center gap-1.5 flex-wrap">
                   <Badge

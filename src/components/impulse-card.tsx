@@ -185,7 +185,7 @@ export function ImpulseCard({ impulse }: ImpulseCardProps) {
   return (
     <Dialog>
       <DialogTrigger className="block text-left w-full group">
-        <div className="border rounded-xl overflow-hidden bg-white hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
+        <div className="border rounded-xl overflow-hidden bg-card hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer">
           {/* Image or color fallback */}
           {impulse.image_url ? (
             <div className="relative w-full aspect-[4/3] overflow-hidden">

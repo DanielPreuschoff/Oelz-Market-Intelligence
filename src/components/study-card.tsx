@@ -10,7 +10,7 @@ interface StudyCardProps {
 export function StudyCard({ study }: StudyCardProps) {
   return (
     <Link href={`/studien/${study.id}`} className="block group">
-      <div className="border rounded-xl p-5 bg-white hover:shadow-md hover:border-foreground/20 transition-all duration-200 space-y-3">
+      <div className="border rounded-xl p-5 bg-card hover:shadow-md hover:border-foreground/20 transition-all duration-200 space-y-3">
         <div className="flex items-start justify-between gap-3">
           <div className="flex items-center gap-2 flex-wrap">
             {study.topic_tags.map((tag) => (

@@ -102,7 +102,7 @@ export default async function CompetitorDetailPage({ params }: PageProps) {
           Aktuelle Signale <span className="text-muted-foreground font-normal">({(signals ?? []).length})</span>
         </h2>
         {(!signals || signals.length === 0) ? (
-          <div className="py-12 text-center text-muted-foreground text-sm border rounded-xl bg-white">
+          <div className="py-12 text-center text-muted-foreground text-sm border rounded-xl bg-card">
             <p className="font-medium">Noch keine Signale veröffentlicht</p>
             <p className="text-xs mt-1">Neue Signale erscheinen nach der nächsten Recherche.</p>
           </div>

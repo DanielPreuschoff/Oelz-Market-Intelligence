@@ -42,11 +42,11 @@ export default async function AdminSignalsPage() {
         </div>
         <Link href="/admin/signals/new" className={cn(buttonVariants({ size: 'sm' }), 'gap-1')}>
           <Plus className="w-4 h-4" />
-          New Signal
+          Neues Signal
         </Link>
       </div>
 
-      <div className="border rounded-xl bg-white overflow-hidden">
+      <div className="border rounded-xl bg-card overflow-hidden">
         {(!signals || signals.length === 0) ? (
           <div className="p-12 text-center text-muted-foreground text-sm">
             No signals yet. Create your first one.

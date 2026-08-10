@@ -15,7 +15,7 @@ export default async function ProfilePage() {
   return (
     <div className="max-w-md space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold">Profile & Role</h1>
+        <h1 className="text-2xl font-semibold">Profil & Rolle</h1>
         <p className="text-sm text-muted-foreground mt-1">
           Set your role to see signals most relevant to you.
         </p>

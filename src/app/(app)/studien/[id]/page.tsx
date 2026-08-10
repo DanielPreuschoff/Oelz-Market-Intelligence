@@ -67,13 +67,13 @@ export default async function StudyDetailPage({ params }: { params: Promise<{ id
       <div className="space-y-6 border-t pt-6">
         {s.research_question && (
           <div className="space-y-1.5">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Fragestellung / Ausgangslage</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-oelz-orange-text">Fragestellung / Ausgangslage</h2>
             <p className="text-sm leading-relaxed">{s.research_question}</p>
           </div>
         )}
         {s.methodology && (
           <div className="space-y-1.5">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Methodik / Vorgehen</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-oelz-orange-text">Methodik / Vorgehen</h2>
             <p className="text-sm leading-relaxed">{s.methodology}</p>
           </div>
         )}

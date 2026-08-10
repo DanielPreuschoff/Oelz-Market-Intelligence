@@ -48,7 +48,7 @@ export function IngredientSignalCard({
       <h3 className="font-display font-bold leading-tight mb-1">{signal.title}</h3>
       <p className="text-xs text-muted-foreground mb-4">{signal.subject_name}</p>
 
-      <p className="text-[9px] uppercase tracking-[0.14em] text-muted-foreground/70 font-semibold mb-1.5">
+      <p className="text-[9px] uppercase tracking-[0.14em] text-oelz-orange-text/85 font-semibold mb-1.5">
         Einschätzung der Redaktion
       </p>
       <div className="border-l-2 border-primary/25 pl-3 space-y-2.5">

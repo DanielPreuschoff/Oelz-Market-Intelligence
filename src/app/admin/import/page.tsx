@@ -77,7 +77,7 @@ export default async function ImportPage() {
         {!runs?.length ? (
           <p className="text-sm text-muted-foreground">Noch nichts importiert.</p>
         ) : (
-          <div className="divide-y border rounded-xl bg-white overflow-hidden">
+          <div className="divide-y border rounded-xl bg-card overflow-hidden">
             {runs.map((run) => (
               <Link
                 key={run.id}

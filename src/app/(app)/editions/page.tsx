@@ -41,7 +41,7 @@ export default async function EditionsPage() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Intelligence Editions</h1>
+          <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Wettbewerbsradar</h1>
           {isAdmin && (
             <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
               Neue Edition
@@ -63,7 +63,7 @@ export default async function EditionsPage() {
   return (
     <div className="space-y-8">
       <div className="flex items-center justify-between">
-        <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Intelligence Editions</h1>
+        <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Wettbewerbsradar</h1>
         {isAdmin && (
           <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
             Neue Edition
@@ -73,7 +73,7 @@ export default async function EditionsPage() {
 
       {/* Aktuelle Edition — featured */}
       <Link href={`/editions/${latest.id}`} className="block group">
-        <div className="border rounded-xl p-6 bg-white hover:shadow-md transition-shadow space-y-3">
+        <div className="border rounded-xl p-6 bg-card hover:shadow-md transition-shadow space-y-3">
           <div className="flex items-center gap-2">
             <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">Aktuelle Ausgabe</Badge>
             <span className="text-xs text-muted-foreground">
@@ -110,7 +110,7 @@ export default async function EditionsPage() {
           <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             Archiv
           </h2>
-          <div className="divide-y border rounded-xl bg-white overflow-hidden">
+          <div className="divide-y border rounded-xl bg-card overflow-hidden">
             {archive.map((edition: Edition) => (
               <Link
                 key={edition.id}

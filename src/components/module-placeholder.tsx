@@ -48,7 +48,7 @@ export function ModulePlaceholder({ moduleId }: ModulePlaceholderProps) {
       </div>
 
       {module.plannedContent && module.plannedContent.length > 0 && (
-        <div className="border rounded-xl p-5 space-y-3 bg-white">
+        <div className="border rounded-xl p-5 space-y-3 bg-card">
           <h2 className="text-sm font-medium">Geplante Inhalte</h2>
           <ul className="space-y-2">
             {module.plannedContent.map((item) => (

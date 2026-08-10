@@ -23,7 +23,7 @@ export default async function AdminCompetitorsPage() {
     <div className="space-y-6">
       <h1 className="text-2xl font-semibold">Competitors</h1>
 
-      <div className="border rounded-xl bg-white overflow-hidden">
+      <div className="border rounded-xl bg-card overflow-hidden">
         {(competitors ?? []).map((competitor: Competitor) => (
           <div
             key={competitor.id}
