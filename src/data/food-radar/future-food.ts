@@ -5,7 +5,7 @@
  * Quelle: foodRegio Innovation / FIBRES, öffentliches Embed, gelesen 2026-08-10.
  * Texte maschinell ins Deutsche übersetzt (gpt-4o-mini).
  *
- * 34 Einträge · größter Radius im Original: 0.972
+ * 34 Einträge · größter Radius im Original: 1.000
  */
 import type { RadarTafel } from './types'
 
@@ -16,15 +16,15 @@ export const FUTURE_FOOD: RadarTafel = {
   "ringe": [
     {
       "name": "Mainstream (heute)",
-      "bis": 0.25
+      "bis": 0.4
     },
     {
       "name": "Maturing (1–3 J.)",
-      "bis": 0.5
+      "bis": 0.6
     },
     {
       "name": "Growing (3–5 J.)",
-      "bis": 0.75
+      "bis": 0.8
     },
     {
       "name": "Emerging (5–10 J.)",
@@ -48,7 +48,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 130.77,
-      "radius": 0.6799,
+      "radius": 0.7139,
       "daten": "Aug 15th 2024  2 years ago",
       "titelOriginal": "Dairy 3D printing"
     },
@@ -60,7 +60,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 143.16,
-      "radius": 0.7482,
+      "radius": 0.7856,
       "daten": "Oct 20th 2023  5 months ago",
       "titelOriginal": "Large-scale 3D printed food production"
     },
@@ -72,7 +72,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 116.17,
-      "radius": 0.7248,
+      "radius": 0.761,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "Insect protein for human consumption"
     },
@@ -84,7 +84,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 134.69,
-      "radius": 0.7624,
+      "radius": 0.8005,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "Customized 3D-printed confectionery"
     },
@@ -96,7 +96,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 108.48,
-      "radius": 0.7605,
+      "radius": 0.7985,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "Fungal proteins as meat replacements"
     },
@@ -108,7 +108,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "l",
       "winkel": 146.73,
-      "radius": 0.7209,
+      "radius": 0.7569,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "3D printing for personalized nutrition"
     },
@@ -120,7 +120,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "l",
       "winkel": 158.84,
-      "radius": 0.6497,
+      "radius": 0.6822,
       "daten": "Oct 20th 2023  5 months ago",
       "titelOriginal": "AI-optimized crop breeding"
     },
@@ -132,7 +132,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 105.11,
-      "radius": 0.7247,
+      "radius": 0.7609,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "Plant-based protein diversity"
     },
@@ -144,7 +144,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 122.63,
-      "radius": 0.7684,
+      "radius": 0.8068,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "3D food printing in high-end restaurants"
     },
@@ -156,7 +156,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 175.15,
-      "radius": 0.7429,
+      "radius": 0.78,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "AI-driven crop monitoring"
     },
@@ -168,7 +168,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 97.86,
-      "radius": 0.7179,
+      "radius": 0.7538,
       "daten": "newspaper Mar 13th 2025  Apr 10th 2025  a year ago",
       "titelOriginal": "Ingredients for the future: Bringing the biotech revolution to food"
     },
@@ -180,7 +180,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 140.43,
-      "radius": 0.77,
+      "radius": 0.8085,
       "daten": "newspaper Oct 10th 2024  Mar 6th 2025  a year ago"
     },
     {
@@ -191,7 +191,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 172.92,
-      "radius": 0.6772,
+      "radius": 0.7111,
       "daten": "Aug 15th 2024  a year ago",
       "titelOriginal": "AI Dairy Farming"
     },
@@ -203,7 +203,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 154.09,
-      "radius": 0.5741,
+      "radius": 0.6028,
       "daten": "newspaper Jan 2nd 2020  Jan 31st 2020  a year ago",
       "titelOriginal": "AI-powered fridges that recognize food"
     },
@@ -215,7 +215,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "l",
       "winkel": 77.54,
-      "radius": 0.668,
+      "radius": 0.7014,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "Nutrigenomics-based sports nutrition"
     },
@@ -227,7 +227,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 100.74,
-      "radius": 0.7676,
+      "radius": 0.806,
       "daten": "Jan 31st 2020  2 years ago",
       "titelOriginal": "Beans, Peas & Other Legumes"
     },
@@ -239,7 +239,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 126.79,
-      "radius": 0.9717,
+      "radius": 1,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "Space and Mars colonisation"
     },
@@ -251,7 +251,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 129.92,
-      "radius": 0.7536,
+      "radius": 0.7913,
       "daten": "newspaper Dec 1st 2024  Mar 6th 2025  a year ago"
     },
     {
@@ -262,7 +262,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 168.12,
-      "radius": 0.7742,
+      "radius": 0.8129,
       "daten": "newspaper Apr 19th 2023  Feb 23rd 2024  a year ago",
       "titelOriginal": "AI Precision Farming"
     },
@@ -274,7 +274,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 69.3,
-      "radius": 0.6622,
+      "radius": 0.6953,
       "daten": "Nov 27th 2019  5 months ago",
       "titelOriginal": "Personalised Nutrition"
     },
@@ -286,7 +286,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 94.66,
-      "radius": 0.7718,
+      "radius": 0.8104,
       "daten": "Aug 14th 2019  2 years ago",
       "titelOriginal": "Lab-grown Meat & Insects"
     },
@@ -298,7 +298,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 98.83,
-      "radius": 0.3182,
+      "radius": 0.3341,
       "daten": "Feb 23rd 2024  2 years ago",
       "titelOriginal": "Making alt-protein sensational"
     },
@@ -310,7 +310,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 128.92,
-      "radius": 0.9169,
+      "radius": 0.9627,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "3D-printed vertical farms"
     },
@@ -322,7 +322,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 141.89,
-      "radius": 0.6741,
+      "radius": 0.7078,
       "daten": "Aug 14th 2019  5 months ago",
       "titelOriginal": "Food from 3D printer"
     },
@@ -334,7 +334,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 170.94,
-      "radius": 0.5487,
+      "radius": 0.5761,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "AI Farm Management Systems"
     },
@@ -346,7 +346,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 153.65,
-      "radius": 0.7536,
+      "radius": 0.7913,
       "daten": "newspaper Jul 1st 2024  Aug 15th 2024  2 years ago",
       "titelOriginal": "AI Veterinary Technology"
     },
@@ -358,7 +358,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 96.76,
-      "radius": 0.4516,
+      "radius": 0.4742,
       "daten": "Aug 15th 2019  2 months ago",
       "titelOriginal": "Protein Sources"
     },
@@ -370,7 +370,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "s",
       "winkel": 67.69,
-      "radius": 0.5706,
+      "radius": 0.5991,
       "daten": "newspaper Jun 18th 2018  Aug 15th 2024  2 years ago",
       "titelOriginal": "Customization of products"
     },
@@ -382,7 +382,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "s",
       "winkel": 45.68,
-      "radius": 0.288,
+      "radius": 0.3024,
       "daten": "newspaper Apr 3rd 2024  Aug 15th 2024  2 years ago",
       "titelOriginal": "Biodegradable packaging"
     },
@@ -394,7 +394,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 40.74,
-      "radius": 0.4868,
+      "radius": 0.5111,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "Smart packaging with food quality sensors"
     },
@@ -406,7 +406,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "cluster",
       "groesse": "s",
       "winkel": 157.24,
-      "radius": 0.5019,
+      "radius": 0.527,
       "daten": "Oct 20th 2023  a year ago",
       "titelOriginal": "AI Food Waste Reduction"
     },
@@ -418,7 +418,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "l",
       "winkel": 82.25,
-      "radius": 0.7483,
+      "radius": 0.7857,
       "daten": "Oct 20th 2023  5 months ago",
       "titelOriginal": "Gut microbiome-targeted foods"
     },
@@ -430,7 +430,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 69.4,
-      "radius": 0.7154,
+      "radius": 0.7512,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "DNA-based diets and meal plans"
     },
@@ -442,7 +442,7 @@ export const FUTURE_FOOD: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 138.19,
-      "radius": 0.7708,
+      "radius": 0.8093,
       "daten": "Feb 20th 2024  5 months ago",
       "titelOriginal": "3D Printing of Food"
     }

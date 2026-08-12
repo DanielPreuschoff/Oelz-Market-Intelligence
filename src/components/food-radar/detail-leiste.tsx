@@ -29,7 +29,13 @@ export function DetailLeiste({
   const ring = ringFuer(tafel, eintrag.radius)
 
   return (
-    <div className="flex flex-col h-full">
+    /* `flex-1 min-h-0` statt `h-full`: Die Leiste hängt in einem Behälter, der
+       nur eine Maximalhöhe hat. `height: 100%` löst sich gegen eine solche
+       Elternhöhe nicht auf — der Inhalt wuchs deshalb über den Rahmen hinaus,
+       statt zu scrollen. Auf schmalen Bildschirmen ist der Behälter keine
+       Flexbox; dort greifen beide Angaben nicht und der Text fließt einfach,
+       was dort auch richtig ist. */
+    <div className="flex flex-col min-h-0 flex-1">
       <div className="relative h-32 shrink-0 bg-gradient-to-br from-oelz-orange/25 to-oelz-orange/5 flex items-center justify-center">
         <span className="font-display text-5xl font-bold text-oelz-orange/30" aria-hidden="true">
           {eintrag.titel.slice(0, 1)}
@@ -47,7 +53,10 @@ export function DetailLeiste({
         </button>
       </div>
 
-      <div className="p-5 space-y-4 overflow-y-auto">
+      {/* min-h-0 ist Pflicht: In einer Spalten-Flexbox schrumpft ein Kind sonst
+          nicht unter seine Inhaltshöhe, und overflow-y-auto bleibt wirkungslos —
+          der Text war dadurch abgeschnitten und nicht scrollbar. */}
+      <div className="p-5 space-y-4 overflow-y-auto min-h-0 flex-1">
         <h2 className="font-display text-lg font-bold leading-snug">{eintrag.titel}</h2>
 
         <div className="flex items-center gap-2 flex-wrap text-xs">

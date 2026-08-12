@@ -5,26 +5,30 @@
  * Quelle: foodRegio Innovation / FIBRES, öffentliches Embed, gelesen 2026-08-10.
  * Texte maschinell ins Deutsche übersetzt (gpt-4o-mini).
  *
- * 356 Einträge · größter Radius im Original: 0.780
+ * 356 Einträge · größter Radius im Original: 0.820
  */
 import type { RadarTafel } from './types'
 
 export const FOOD_AI: RadarTafel = {
   "key": "food-ai",
   "name": "Food AI",
-  "achsenName": "Maturity",
+  "achsenName": "Time to Impact",
   "ringe": [
     {
-      "name": "< 3 Jahre",
-      "bis": 0.25
+      "name": "Maturity (heute)",
+      "bis": 0.3333
     },
     {
-      "name": "Growing (3–5 J.)",
+      "name": "< 3 Jahre",
       "bis": 0.5
     },
     {
+      "name": "Growing (3–5 J.)",
+      "bis": 0.6667
+    },
+    {
       "name": "Emerging (5–10 J.)",
-      "bis": 0.75
+      "bis": 0.8333
     },
     {
       "name": "10+ Jahre",
@@ -49,7 +53,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 138.81,
-      "radius": 0.4505,
+      "radius": 0.473,
       "daten": "Feb 12th 2025  5 months ago",
       "titelOriginal": "AI Ingredients Discovery"
     },
@@ -61,7 +65,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "trend",
       "groesse": "l",
       "winkel": 149.03,
-      "radius": 0.3825,
+      "radius": 0.4016,
       "daten": "Feb 12th 2025  a year ago",
       "titelOriginal": "AI for Consumer Insights"
     },
@@ -73,7 +77,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "trend",
       "groesse": "l",
       "winkel": 137.17,
-      "radius": 0.4389,
+      "radius": 0.4608,
       "daten": "Jan 27th 2025  a year ago",
       "titelOriginal": "AI Product Launches"
     },
@@ -85,7 +89,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 134.48,
-      "radius": 0.4097,
+      "radius": 0.4302,
       "daten": "newspaper Jul 18th 2024  Apr 27th 2025  a year ago",
       "titelOriginal": "AI4FoodDB: a database for personalized e-Health nutrition and lifestyle through wearable devices and AI"
     },
@@ -97,7 +101,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 139.61,
-      "radius": 0.4526,
+      "radius": 0.4752,
       "daten": "newspaper Oct 28th 2021  Feb 21st 2024  5 months ago",
       "titelOriginal": "AI supported Protein Design"
     },
@@ -109,7 +113,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 134.37,
-      "radius": 0.4371,
+      "radius": 0.459,
       "daten": "newspaper Feb 22nd 2023  Feb 21st 2024  a year ago",
       "titelOriginal": "ImaginDairy Start-Up: Tired of just imagining?"
     },
@@ -121,7 +125,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 148.09,
-      "radius": 0.408,
+      "radius": 0.4284,
       "daten": "Sep 10th 2019  a year ago",
       "titelOriginal": "Food-derived peptides discovered by AI"
     },
@@ -133,7 +137,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 133.79,
-      "radius": 0.4167,
+      "radius": 0.4375,
       "daten": "newspaper Jul 8th 2026  Jul 31st 2026  12 days ago",
       "titelOriginal": "Polysense raises $10.7M to scale AI quality control for food manufacturers"
     },
@@ -145,7 +149,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 134.56,
-      "radius": 0.4411,
+      "radius": 0.4632,
       "daten": "newspaper Jul 6th 2026  Jul 31st 2026  12 days ago",
       "titelOriginal": "Brainr secures additional €1.5m from Portugal Ventures to support international expansion"
     },
@@ -157,7 +161,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 139.95,
-      "radius": 0.4608,
+      "radius": 0.4838,
       "daten": "newspaper May 26th 2026  May 28th 2026  2 months ago",
       "titelOriginal": "Cargill is Using AI to Divert Thousands of Pounds of Meat Back on the Table"
     },
@@ -169,7 +173,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 58.73,
-      "radius": 0.4061,
+      "radius": 0.4264,
       "daten": "May 18th 2025  a year ago",
       "titelOriginal": "Kitchen Appliances Integrated with AI"
     },
@@ -181,7 +185,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 144.66,
-      "radius": 0.3772,
+      "radius": 0.3961,
       "daten": "Jan 20th 2026  7 months ago",
       "titelOriginal": "Winemakers use AI for sales intel"
     },
@@ -193,7 +197,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 69.66,
-      "radius": 0.454,
+      "radius": 0.4767,
       "daten": "May 23rd 2025  a year ago"
     },
     {
@@ -204,7 +208,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 135.31,
-      "radius": 0.4461,
+      "radius": 0.4684,
       "daten": "newspaper Nov 20th 2025  Nov 25th 2025  9 months ago",
       "titelOriginal": "AKA Foods secures $17.2m to launch AI system for food innovation"
     },
@@ -216,7 +220,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 66.31,
-      "radius": 0.4141,
+      "radius": 0.4348,
       "daten": "Apr 16th 2025  a year ago",
       "titelOriginal": "AI emotion recognition based on facial expression"
     },
@@ -228,7 +232,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 138.53,
-      "radius": 0.4255,
+      "radius": 0.4468,
       "daten": "Nov 25th 2025  9 months ago",
       "titelOriginal": "Barry Callebaut Taps NotCo AI to Boost Chocolate Innovation"
     },
@@ -240,7 +244,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 68.47,
-      "radius": 0.4156,
+      "radius": 0.4364,
       "daten": "May 12th 2025  a year ago",
       "titelOriginal": "Mood-Responsive Vending AI"
     },
@@ -252,7 +256,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 139.68,
-      "radius": 0.4277,
+      "radius": 0.4491,
       "daten": "newspaper Jul 18th 2025  Aug 22nd 2025  a year ago",
       "titelOriginal": "How AI is Disrupting Food Innovation – Here’s Why You Should be Paying Attention"
     },
@@ -264,7 +268,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 56.22,
-      "radius": 0.4221,
+      "radius": 0.4432,
       "daten": "May 12th 2025  a year ago",
       "titelOriginal": "Smart Lunch via Wearables"
     },
@@ -276,7 +280,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 135.71,
-      "radius": 0.3914,
+      "radius": 0.411,
       "daten": "newspaper May 6th 2019  Jul 13th 2025  a year ago",
       "titelOriginal": "AI robots boost profits in Chinese food factories, paving way for mass use"
     },
@@ -288,7 +292,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 59.3,
-      "radius": 0.4045,
+      "radius": 0.4247,
       "daten": "newspaper Jun 22nd 2026  Jun 30th 2026  a month ago",
       "titelOriginal": "Foodics completes full takeover of Greek data intelligence startup Norma AI"
     },
@@ -300,7 +304,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 144.98,
-      "radius": 0.412,
+      "radius": 0.4326,
       "daten": "newspaper Jun 24th 2025  Jun 29th 2025  a year ago",
       "titelOriginal": "AI-led ingredient discovery: Mycelium Meat Startup Libre Foods"
     },
@@ -312,7 +316,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 70.54,
-      "radius": 0.3725,
+      "radius": 0.3911,
       "daten": "Jun 2nd 2026  2 months ago",
       "titelOriginal": "Munich’s allO raises €12 million Series A to expand its AI operating system for restaurants across Europe"
     },
@@ -324,7 +328,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 146,
-      "radius": 0.3825,
+      "radius": 0.4016,
       "daten": "newspaper Jun 26th 2025  Jun 29th 2025  5 months ago",
       "titelOriginal": "Could AI Be the Solution for Cheap Cultivated Meat?"
     },
@@ -336,7 +340,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 61.4,
-      "radius": 0.448,
+      "radius": 0.4704,
       "daten": "May 28th 2026  2 months ago",
       "titelOriginal": "AI-Enabled Waste Tracking in Commercial Kitchens"
     },
@@ -348,7 +352,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 147.39,
-      "radius": 0.4515,
+      "radius": 0.4741,
       "daten": "newspaper Jun 23rd 2025  Jun 29th 2025  7 months ago",
       "titelOriginal": "Natural GLP‑1–stimulating proteins via AI platform and protein library"
     },
@@ -360,7 +364,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 65.58,
-      "radius": 0.4644,
+      "radius": 0.4876,
       "daten": "May 28th 2026  2 months ago",
       "titelOriginal": "Afresh: Replacing Manual Forecasting with AI in Fresh Grocery"
     },
@@ -372,7 +376,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 136.37,
-      "radius": 0.4249,
+      "radius": 0.4461,
       "daten": "newspaper Jun 26th 2025  Jun 29th 2025  a year ago",
       "titelOriginal": "Using AI & Fermentation to Create Deforestation-Free Fats"
     },
@@ -384,7 +388,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 60.11,
-      "radius": 0.4464,
+      "radius": 0.4687,
       "daten": "newspaper Apr 7th 2026  Apr 14th 2026  4 months ago",
       "titelOriginal": "AI ordering layer for FMCG brands and distributors"
     },
@@ -396,7 +400,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 141.21,
-      "radius": 0.4221,
+      "radius": 0.4432,
       "daten": "Jun 26th 2025  a year ago"
     },
     {
@@ -407,7 +411,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 60.65,
-      "radius": 0.3856,
+      "radius": 0.4049,
       "daten": "newspaper May 30th 2018  Mar 19th 2026  5 months ago",
       "titelOriginal": "How An Obscure Academic Project May Have Just Started A Kitchen Robot Revolution"
     },
@@ -419,7 +423,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 142.29,
-      "radius": 0.4624,
+      "radius": 0.4855,
       "daten": "newspaper Jun 6th 2025  Jun 16th 2025  a year ago",
       "titelOriginal": "How AI Is Reshaping Product Development"
     },
@@ -431,7 +435,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 57.03,
-      "radius": 0.4154,
+      "radius": 0.4362,
       "daten": "newspaper Mar 12th 2026  Mar 19th 2026  5 months ago",
       "titelOriginal": "Why hundreds of people in L.A. are strapping cameras on their bodies to do chores"
     },
@@ -443,7 +447,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 135.84,
-      "radius": 0.4346,
+      "radius": 0.4563,
       "daten": "Jun 14th 2025  9 months ago",
       "titelOriginal": "AI based demand forecasting and purchasing for end-to-end optimisation of cream cheese manufacturing"
     },
@@ -455,7 +459,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 58.41,
-      "radius": 0.3929,
+      "radius": 0.4125,
       "daten": "newspaper Feb 25th 2026  Mar 5th 2026  5 months ago",
       "titelOriginal": "Slang AI raises $36m to advance hospitality voice platform"
     },
@@ -467,7 +471,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 147.53,
-      "radius": 0.376,
+      "radius": 0.3948,
       "daten": "Jun 14th 2025  a year ago",
       "titelOriginal": "Smart AI Orchestrator"
     },
@@ -479,7 +483,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 69.95,
-      "radius": 0.4044,
+      "radius": 0.4246,
       "daten": "newspaper Apr 26th 2024  Jan 6th 2026  7 months ago",
       "titelOriginal": "Automated Hot Food Kiosks"
     },
@@ -491,7 +495,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 135.59,
-      "radius": 0.375,
+      "radius": 0.3938,
       "daten": "Jun 14th 2025  a year ago",
       "titelOriginal": "REACH Agrifood AI-supported Visual Quality Control"
     },
@@ -503,7 +507,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 72.29,
-      "radius": 0.386,
+      "radius": 0.4053,
       "daten": "newspaper Sep 21st 2025  Jan 6th 2026  2 months ago",
       "titelOriginal": "Upgraded AI-Powered Grocer Platforms"
     },
@@ -515,7 +519,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 136.82,
-      "radius": 0.4531,
+      "radius": 0.4758,
       "daten": "newspaper May 15th 2024  Jun 14th 2025  a year ago",
       "titelOriginal": "EggAI: AI-Driven Solution for Reducing Food Waste in the Food Processing SME"
     },
@@ -527,7 +531,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 69.36,
-      "radius": 0.4428,
+      "radius": 0.4649,
       "daten": "newspaper Nov 28th 2025  Dec 10th 2025  8 months ago",
       "titelOriginal": "AI-powered food subscription operations"
     },
@@ -539,7 +543,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 134.19,
-      "radius": 0.4347,
+      "radius": 0.4564,
       "daten": "newspaper Apr 9th 2025  Apr 19th 2025  9 months ago",
       "titelOriginal": "NotCo opens access to its AI technology to speed product innovation"
     },
@@ -551,7 +555,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 60.14,
-      "radius": 0.4614,
+      "radius": 0.4845,
       "daten": "newspaper Jun 12th 2025  Jun 26th 2025  a year ago",
       "titelOriginal": "Starbucks Unveils Green Dot Assist, a Generative AI Virtual Assistant for Coffee Shop Employees"
     },
@@ -563,7 +567,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 142.07,
-      "radius": 0.4161,
+      "radius": 0.4369,
       "daten": "newspaper Apr 16th 2018  Apr 16th 2025  a year ago",
       "titelOriginal": "1 Blockchain’s roles in meeting key supply chain management objectives"
     },
@@ -575,7 +579,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.46,
-      "radius": 0.408,
+      "radius": 0.4284,
       "daten": "newspaper Dec 5th 2022  Jun 3rd 2025  a year ago",
       "titelOriginal": "AI Robot Chefs: The Future of Cooking?"
     },
@@ -587,7 +591,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 137.67,
-      "radius": 0.4199,
+      "radius": 0.4409,
       "daten": "newspaper Jul 19th 2023  Apr 15th 2025  a year ago",
       "titelOriginal": "AI4FoodDB: A Database for Personalized e-Health Nutrition and Lifestyle through Wearable Devices and Artificial Intelligence"
     },
@@ -599,7 +603,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 60.38,
-      "radius": 0.4037,
+      "radius": 0.4239,
       "daten": "newspaper Dec 18th 2024  Jun 3rd 2025  a year ago",
       "titelOriginal": "AI-powered robots transform cooking with convenience and efficiency"
     },
@@ -611,7 +615,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 146.77,
-      "radius": 0.373,
+      "radius": 0.3916,
       "daten": "Apr 15th 2025  9 months ago",
       "titelOriginal": "NotCo Brings AI-Developed Vegan Chicken to Burger King"
     },
@@ -623,7 +627,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 62.96,
-      "radius": 0.4502,
+      "radius": 0.4727,
       "daten": "newspaper Mar 12th 2025  Mar 25th 2025  a year ago",
       "titelOriginal": "AI-Driven Probiotic Campaigns"
     },
@@ -635,7 +639,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 147.08,
-      "radius": 0.4417,
+      "radius": 0.4638,
       "daten": "newspaper Mar 13th 2024  Apr 14th 2025  a year ago",
       "titelOriginal": "Rivalz showcases nutritious snacking with “AI you can taste”"
     },
@@ -647,7 +651,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 62.27,
-      "radius": 0.415,
+      "radius": 0.4357,
       "daten": "newspaper Sep 25th 2024  Mar 18th 2025  a year ago",
       "titelOriginal": "Gamified In-Airport Activations"
     },
@@ -659,7 +663,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 149.53,
-      "radius": 0.3765,
+      "radius": 0.3953,
       "daten": "Apr 10th 2025  a year ago",
       "titelOriginal": "AI-powered food innovation"
     },
@@ -671,7 +675,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.34,
-      "radius": 0.4335,
+      "radius": 0.4552,
       "daten": "newspaper Mar 17th 2025  Mar 18th 2025  a year ago",
       "titelOriginal": "Advanced Robotic Baristas"
     },
@@ -683,7 +687,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 133.58,
-      "radius": 0.407,
+      "radius": 0.4274,
       "daten": "newspaper Nov 14th 2024  Feb 25th 2025  a year ago",
       "titelOriginal": "AI-Powered Cultivated Meat Chatbot"
     },
@@ -695,7 +699,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 56.17,
-      "radius": 0.5458,
+      "radius": 0.5731,
       "daten": "May 18th 2025  a year ago",
       "titelOriginal": "Solar-Powered Portable Appliances for Cooking"
     },
@@ -707,7 +711,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.93,
-      "radius": 0.4115,
+      "radius": 0.4321,
       "daten": "newspaper Sep 24th 2024  Mar 11th 2025  2 months ago",
       "titelOriginal": "Beverage Service Robots"
     },
@@ -719,7 +723,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 142.58,
-      "radius": 0.405,
+      "radius": 0.4253,
       "daten": "newspaper Oct 10th 2024  Feb 25th 2025  a year ago",
       "titelOriginal": "AI-Powered Bakery Pop-Ups"
     },
@@ -731,7 +735,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "trend",
       "groesse": "m",
       "winkel": 141.81,
-      "radius": 0.2156,
+      "radius": 0.2264,
       "daten": "Feb 12th 2025  8 months ago",
       "titelOriginal": "AI Food R&D and Optimisation"
     },
@@ -743,7 +747,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 68.63,
-      "radius": 0.568,
+      "radius": 0.5964,
       "daten": "May 18th 2025  a year ago",
       "titelOriginal": "AI and Drones: Transforming the Future of Food Delivery"
     },
@@ -755,7 +759,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 63.31,
-      "radius": 0.4174,
+      "radius": 0.4383,
       "daten": "newspaper Mar 6th 2025  Mar 7th 2025  a year ago",
       "titelOriginal": "Yum's Taco Bell shows off AI tool for fast-food managers"
     },
@@ -767,7 +771,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 136.08,
-      "radius": 0.4422,
+      "radius": 0.4643,
       "daten": "newspaper Apr 18th 2023  Feb 16th 2025  a year ago",
       "titelOriginal": "AI Palette unveils generative AI tool to speed up new product development"
     },
@@ -779,7 +783,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 140.93,
-      "radius": 0.2581,
+      "radius": 0.271,
       "daten": "newspaper Jul 15th 2026  Jul 31st 2026  12 days ago",
       "titelOriginal": "Terraflos acquires +NUTRI Co in an eight-figure deal"
     },
@@ -791,7 +795,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 63.39,
-      "radius": 0.5593,
+      "radius": 0.5873,
       "daten": "May 18th 2025  a year ago",
       "titelOriginal": "AI Integrated Apps for Foraging"
     },
@@ -803,7 +807,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 67.58,
-      "radius": 0.4197,
+      "radius": 0.4407,
       "daten": "newspaper Mar 6th 2025  Mar 7th 2025  a year ago",
       "titelOriginal": "McDonald’s is Creating Virtual ‘AI Managers’"
     },
@@ -815,7 +819,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 142.75,
-      "radius": 0.3995,
+      "radius": 0.4195,
       "daten": "newspaper Aug 23rd 2019  Feb 16th 2025  a year ago",
       "titelOriginal": "AI Palette will revolutionize FMCG industry with FoodGPT"
     },
@@ -827,7 +831,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 144.61,
-      "radius": 0.2081,
+      "radius": 0.2185,
       "daten": "newspaper Mar 12th 2025  Jul 24th 2025  a year ago",
       "titelOriginal": "AI-Generated Recipe Challenges"
     },
@@ -839,7 +843,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 71.64,
-      "radius": 0.5678,
+      "radius": 0.5962,
       "daten": "May 17th 2025  a year ago",
       "titelOriginal": "AI-Powered Inventory Management For Restaurants"
     },
@@ -851,7 +855,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 70.47,
-      "radius": 0.4565,
+      "radius": 0.4793,
       "daten": "newspaper Nov 6th 2024  Mar 6th 2025  a year ago"
     },
     {
@@ -862,7 +866,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 139.12,
-      "radius": 0.4491,
+      "radius": 0.4716,
       "daten": "newspaper Mar 5th 2024  Feb 16th 2025  a year ago",
       "titelOriginal": "Ai Palette powered insights platform FoodGPT chatbot"
     },
@@ -874,7 +878,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 144.8,
-      "radius": 0.17,
+      "radius": 0.1785,
       "daten": "newspaper Jul 3rd 2025  Jul 15th 2025  a year ago",
       "titelOriginal": "IFT’s AI Tool For Food Scientists"
     },
@@ -886,7 +890,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 70.37,
-      "radius": 0.5551,
+      "radius": 0.5829,
       "daten": "newspaper Feb 16th 2024  May 23rd 2025  a year ago",
       "titelOriginal": "Restaurants are set to win big with mixed reality experiences thanks to Apple"
     },
@@ -898,7 +902,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 70.33,
-      "radius": 0.4574,
+      "radius": 0.4803,
       "daten": "newspaper Nov 10th 2023  Feb 28th 2025  a year ago",
       "titelOriginal": "Cafe X Robot Barista is Now Slinging Coffee in Tesla’s Berlin Giga Factory"
     },
@@ -910,7 +914,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 145.3,
-      "radius": 0.4615,
+      "radius": 0.4846,
       "daten": "newspaper Feb 24th 2023  Feb 15th 2025  8 months ago",
       "titelOriginal": "How AI May Improve Food Safety: Rapid Bacteria Detection"
     },
@@ -922,7 +926,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 141.82,
-      "radius": 0.2438,
+      "radius": 0.256,
       "daten": "newspaper Oct 25th 2023  Jun 19th 2025  a year ago"
     },
     {
@@ -933,7 +937,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 66.93,
-      "radius": 0.6057,
+      "radius": 0.636,
       "daten": "May 23rd 2025  a year ago"
     },
     {
@@ -944,7 +948,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 70.83,
-      "radius": 0.4287,
+      "radius": 0.4501,
       "daten": "newspaper Dec 12th 2024  Feb 19th 2025  a year ago",
       "titelOriginal": "Yelp, now with more AI"
     },
@@ -956,7 +960,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 136.63,
-      "radius": 0.3992,
+      "radius": 0.4192,
       "daten": "newspaper Apr 11th 2023  Feb 13th 2025  9 months ago",
       "titelOriginal": "AI-powered plant-based cheese"
     },
@@ -968,7 +972,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 139.18,
-      "radius": 0.266,
+      "radius": 0.2793,
       "daten": "Apr 16th 2025  a year ago",
       "titelOriginal": "EU Rapid Alert System for Food and Feed applies a Bayesian network model to predict food fraud"
     },
@@ -980,7 +984,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 46.43,
-      "radius": 0.4479,
+      "radius": 0.4703,
       "daten": "newspaper Dec 22nd 2025  Apr 1st 2026  4 months ago",
       "titelOriginal": "AI Vision Wine Cellars"
     },
@@ -992,7 +996,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 63.31,
-      "radius": 0.6067,
+      "radius": 0.637,
       "daten": "May 23rd 2025  a year ago",
       "titelOriginal": "Food as Fashion + personalized assistant"
     },
@@ -1004,7 +1008,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.85,
-      "radius": 0.4163,
+      "radius": 0.4371,
       "daten": "newspaper Oct 31st 2019  Feb 15th 2025  5 months ago",
       "titelOriginal": "McDonald’s drive-thru AI knows what you want before you order"
     },
@@ -1016,7 +1020,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 132.12,
-      "radius": 0.5667,
+      "radius": 0.595,
       "daten": "Jan 20th 2026  7 months ago",
       "titelOriginal": "Snacking Reimagined Through AI"
     },
@@ -1028,7 +1032,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 141.93,
-      "radius": 0.3844,
+      "radius": 0.4036,
       "daten": "newspaper Jul 25th 2023  Feb 13th 2025  a year ago",
       "titelOriginal": "Unilever uses AI for In Silico Testing"
     },
@@ -1040,7 +1044,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 144.64,
-      "radius": 0.172,
+      "radius": 0.1806,
       "daten": "newspaper Dec 20th 2017  Feb 13th 2025  5 months ago",
       "titelOriginal": "Nuritas AI Ingredient Discovery Platform"
     },
@@ -1052,7 +1056,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 160.7,
-      "radius": 0.408,
+      "radius": 0.4284,
       "daten": "Aug 15th 2024  a year ago",
       "titelOriginal": "AI Dairy Farming"
     },
@@ -1064,7 +1068,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 31.22,
-      "radius": 0.428,
+      "radius": 0.4494,
       "daten": "newspaper Apr 25th 2025  Oct 21st 2025  2 months ago",
       "titelOriginal": "AI-Powered Food Databases"
     },
@@ -1076,7 +1080,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 60.76,
-      "radius": 0.6113,
+      "radius": 0.6419,
       "daten": "newspaper Aug 17th 2012  Apr 21st 2025  a year ago",
       "titelOriginal": "Restaurant's New Rule: Give Up Cell Phone, Receive Discount"
     },
@@ -1088,7 +1092,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 65.86,
-      "radius": 0.394,
+      "radius": 0.4137,
       "daten": "newspaper Jul 11th 2024  Jan 29th 2025  4 months ago",
       "titelOriginal": "Chef Robotics Launches AI-Powered Food Robot"
     },
@@ -1100,7 +1104,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 147.05,
-      "radius": 0.5412,
+      "radius": 0.5683,
       "daten": "newspaper Feb 24th 2025  Dec 2nd 2025  8 months ago",
       "titelOriginal": "Using AI to detect pathogens in CPG factories"
     },
@@ -1112,7 +1116,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 145.36,
-      "radius": 0.3999,
+      "radius": 0.4199,
       "daten": "newspaper Jul 25th 2023  Feb 13th 2025  a year ago",
       "titelOriginal": "AI Unilever analyses Gut Microbiome"
     },
@@ -1124,7 +1128,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 140.11,
-      "radius": 0.2079,
+      "radius": 0.2183,
       "daten": "newspaper Feb 23rd 2022  Feb 13th 2025  9 months ago",
       "titelOriginal": "AI Product Development Platform Heinz Kraft"
     },
@@ -1136,7 +1140,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 173.4,
-      "radius": 0.3811,
+      "radius": 0.4002,
       "daten": "newspaper Apr 19th 2023  Feb 23rd 2024  a year ago",
       "titelOriginal": "AI Precision Farming"
     },
@@ -1148,7 +1152,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 39.47,
-      "radius": 0.4028,
+      "radius": 0.4229,
       "daten": "newspaper Oct 1st 2025  Oct 7th 2025  10 months ago",
       "titelOriginal": "Desire-Detecting Chocolate Experiences"
     },
@@ -1160,7 +1164,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.88,
-      "radius": 0.5479,
+      "radius": 0.5753,
       "daten": "Apr 21st 2025  a year ago"
     },
     {
@@ -1171,7 +1175,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 71.6,
-      "radius": 0.446,
+      "radius": 0.4683,
       "daten": "newspaper Jun 17th 2022  Jan 29th 2025  2 years ago",
       "titelOriginal": "Americana Restaurants Partners With Miso Robotics - Customized Robotics"
     },
@@ -1183,7 +1187,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 63.91,
-      "radius": 0.208,
+      "radius": 0.2184,
       "daten": "newspaper Nov 19th 2025  Apr 29th 2026  3 months ago",
       "titelOriginal": "AI-Enhanced Recipe Cards"
     },
@@ -1195,7 +1199,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 140.62,
-      "radius": 0.5522,
+      "radius": 0.5798,
       "daten": "newspaper Nov 13th 2025  Nov 18th 2025  9 months ago",
       "titelOriginal": "Nectar: About Their Plans to Build an AI for Better Tasting Alt Proteins"
     },
@@ -1207,7 +1211,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 137.54,
-      "radius": 0.3766,
+      "radius": 0.3954,
       "daten": "newspaper Jul 18th 2023  Feb 12th 2025  a year ago",
       "titelOriginal": "AI support IP Development"
     },
@@ -1219,7 +1223,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 143.81,
-      "radius": 0.2534,
+      "radius": 0.2661,
       "daten": "newspaper Jul 25th 2023  Feb 13th 2025  a year ago",
       "titelOriginal": "Unilever uses AI for Reformulation"
     },
@@ -1231,7 +1235,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 171,
-      "radius": 0.4502,
+      "radius": 0.4727,
       "daten": "newspaper Jul 8th 2026  Jul 31st 2026  12 days ago",
       "titelOriginal": "Cambridge AI robotics group Dogtooth scores £14m investment"
     },
@@ -1243,7 +1247,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 45.07,
-      "radius": 0.404,
+      "radius": 0.4242,
       "daten": "newspaper Aug 28th 2025  Sep 30th 2025  10 months ago",
       "titelOriginal": "AI-Powered Recipe Appliances"
     },
@@ -1255,7 +1259,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.47,
-      "radius": 0.5918,
+      "radius": 0.6214,
       "daten": "newspaper Jul 5th 2023  Apr 21st 2025  a year ago",
       "titelOriginal": "Viral Video Shows Restaurant Offering Discounts to Patrons Who Can Fit Through Bars"
     },
@@ -1267,7 +1271,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 68.07,
-      "radius": 0.4502,
+      "radius": 0.4727,
       "daten": "newspaper Apr 12th 2022  Jan 29th 2025  a year ago",
       "titelOriginal": "Panera Bread is testing automated coffee brewing with Miso Robotics"
     },
@@ -1279,7 +1283,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 61.58,
-      "radius": 0.2872,
+      "radius": 0.3016,
       "daten": "newspaper Nov 15th 2025  Apr 29th 2026  3 months ago",
       "titelOriginal": "AI-Powered Grocer Nutrition Assistants"
     },
@@ -1291,7 +1295,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 141.31,
-      "radius": 0.5805,
+      "radius": 0.6095,
       "daten": "newspaper Oct 7th 2025  Nov 18th 2025  9 months ago",
       "titelOriginal": "Climax Foods Rebrands to Bettani Farms & Raises $6.5M for Protein-Rich Vegan Cheese"
     },
@@ -1303,7 +1307,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 144.64,
-      "radius": 0.3829,
+      "radius": 0.402,
       "daten": "newspaper Jul 14th 2023  Feb 12th 2025  2 months ago",
       "titelOriginal": "AI supported protein development"
     },
@@ -1315,7 +1319,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 141.58,
-      "radius": 0.2878,
+      "radius": 0.3022,
       "daten": "newspaper Apr 13th 2023  Feb 13th 2025  a year ago",
       "titelOriginal": "ADM and Brightseed use AI to expand microbiome potential"
     },
@@ -1327,7 +1331,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 161.32,
-      "radius": 0.3859,
+      "radius": 0.4052,
       "daten": "newspaper Jun 18th 2026  Jun 23rd 2026  2 months ago",
       "titelOriginal": "OneSoil secures €1M to expand AI-powered farming assistant"
     },
@@ -1339,7 +1343,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 37.14,
-      "radius": 0.424,
+      "radius": 0.4452,
       "daten": "newspaper Sep 1st 2025  Sep 14th 2025  a year ago",
       "titelOriginal": "Sugar Reduction Tools"
     },
@@ -1351,7 +1355,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 72.16,
-      "radius": 0.6123,
+      "radius": 0.6429,
       "daten": "newspaper Apr 18th 2023  May 18th 2023  2 years ago",
       "titelOriginal": "AI in Retail, online grocery, and virtual stores"
     },
@@ -1363,7 +1367,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 70.86,
-      "radius": 0.392,
+      "radius": 0.4116,
       "daten": "newspaper Jun 14th 2024  Jan 26th 2025  a year ago",
       "titelOriginal": "CaliExpress by Flippy"
     },
@@ -1375,7 +1379,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 67.15,
-      "radius": 0.1959,
+      "radius": 0.2057,
       "daten": "newspaper Jan 14th 2026  Jan 21st 2026  7 months ago",
       "titelOriginal": "AI-Powered Pizza Ordering Systems"
     },
@@ -1387,7 +1391,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 134.14,
-      "radius": 0.6194,
+      "radius": 0.6504,
       "daten": "newspaper Jun 22nd 2025  Jun 29th 2025  5 months ago",
       "titelOriginal": "AI‑Powered GLP‑1 Peptide for Slimming – Israeli startup Lembas unveils food additive for slimming"
     },
@@ -1399,7 +1403,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 142.79,
-      "radius": 0.4585,
+      "radius": 0.4814,
       "daten": "newspaper Jul 21st 2023  Feb 12th 2025  a year ago",
       "titelOriginal": "Brightseed in the News"
     },
@@ -1411,7 +1415,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 141.24,
-      "radius": 0.2807,
+      "radius": 0.2947,
       "daten": "newspaper Jun 14th 2023  Feb 13th 2025  a year ago",
       "titelOriginal": "AI designs soda for Swiss market"
     },
@@ -1423,7 +1427,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 164.29,
-      "radius": 0.4484,
+      "radius": 0.4708,
       "daten": "newspaper May 25th 2026  May 27th 2026  3 months ago",
       "titelOriginal": "Denmark’s Perplant raises €1 million for AI-based precision farming system"
     },
@@ -1435,7 +1439,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 43.28,
-      "radius": 0.4031,
+      "radius": 0.4233,
       "daten": "newspaper Feb 6th 2025  Aug 22nd 2025  a year ago",
       "titelOriginal": "AI-Powered Nutrition Tracking Tools"
     },
@@ -1447,7 +1451,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.99,
-      "radius": 0.591,
+      "radius": 0.6206,
       "daten": "May 12th 2025  a year ago",
       "titelOriginal": "Gamified Workplace Meals"
     },
@@ -1459,7 +1463,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 61.1,
-      "radius": 0.4176,
+      "radius": 0.4385,
       "daten": "Jan 26th 2025  2 years ago",
       "titelOriginal": "Aniai: Automated Cooking"
     },
@@ -1471,7 +1475,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 63.96,
-      "radius": 0.2305,
+      "radius": 0.242,
       "daten": "newspaper Jun 11th 2025  Jun 26th 2025  a year ago",
       "titelOriginal": "Starbucks brews up AI to support baristas instead of replace them"
     },
@@ -1483,7 +1487,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 145.44,
-      "radius": 0.5965,
+      "radius": 0.6263,
       "daten": "newspaper Aug 12th 2023  Jun 16th 2025  a year ago",
       "titelOriginal": "Revolutionizing Yogurt with AI"
     },
@@ -1495,7 +1499,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 146.79,
-      "radius": 0.4417,
+      "radius": 0.4638,
       "daten": "Feb 12th 2025  a year ago",
       "titelOriginal": "AI created Proteins and Enzymes"
     },
@@ -1507,7 +1511,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 138.06,
-      "radius": 0.2208,
+      "radius": 0.2318,
       "daten": "newspaper May 5th 2022  Feb 12th 2025  a year ago",
       "titelOriginal": "AI supported Biomass Fermentation"
     },
@@ -1519,7 +1523,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 163.41,
-      "radius": 0.4534,
+      "radius": 0.4761,
       "daten": "Jan 6th 2026  7 months ago",
       "titelOriginal": "North American Agtech BinSentry Clinches $25M From CIBC Innovation Banking"
     },
@@ -1531,7 +1535,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 36.99,
-      "radius": 0.4564,
+      "radius": 0.4792,
       "daten": "newspaper Jul 9th 2025  Jul 15th 2025  a year ago",
       "titelOriginal": "Thermomix Has Long Been a Leader in Cooking Automation, But Now They’re Going Full Robot"
     },
@@ -1543,7 +1547,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 61.15,
-      "radius": 0.6133,
+      "radius": 0.644,
       "daten": "May 12th 2025  a year ago",
       "titelOriginal": "Team-Aware Cafeteria Menus"
     },
@@ -1555,7 +1559,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 69.06,
-      "radius": 0.3767,
+      "radius": 0.3955,
       "daten": "newspaper Nov 5th 2024  Jan 25th 2025  4 months ago",
       "titelOriginal": "AI Restaurant Servers"
     },
@@ -1567,7 +1571,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.68,
-      "radius": 0.233,
+      "radius": 0.2447,
       "daten": "newspaper Mar 30th 2023  Feb 15th 2025  a year ago",
       "titelOriginal": "AI Restaurant Reservations: OpenTable + ChatGPT"
     },
@@ -1579,7 +1583,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 132.9,
-      "radius": 0.5567,
+      "radius": 0.5845,
       "daten": "newspaper Jun 17th 2024  May 6th 2025  a year ago",
       "titelOriginal": "AI Dairy Sensing Solutions"
     },
@@ -1591,7 +1595,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 134.76,
-      "radius": 0.397,
+      "radius": 0.4169,
       "daten": "Feb 12th 2025  a year ago",
       "titelOriginal": "AI created Proteins & Enzymes"
     },
@@ -1603,7 +1607,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 142.49,
-      "radius": 0.2439,
+      "radius": 0.2561,
       "daten": "Feb 12th 2025  a year ago",
       "titelOriginal": "Gastrograph: World’s largest sensory database"
     },
@@ -1615,7 +1619,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 160.8,
-      "radius": 0.4349,
+      "radius": 0.4566,
       "daten": "newspaper Mar 6th 2025  Mar 7th 2025  a year ago",
       "titelOriginal": "AI-powered plant breeding startup Avalo partners with Coca Cola to future proof sugarcane production"
     },
@@ -1627,7 +1631,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 34.31,
-      "radius": 0.5388,
+      "radius": 0.5657,
       "daten": "newspaper Jan 8th 2026  Apr 1st 2026  4 months ago",
       "titelOriginal": "AI Cooking Agents"
     },
@@ -1639,7 +1643,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 45.78,
-      "radius": 0.4546,
+      "radius": 0.4773,
       "daten": "newspaper May 26th 2023  Apr 29th 2025  a year ago",
       "titelOriginal": "AI-Powered Cooking Appliances"
     },
@@ -1651,7 +1655,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 62.27,
-      "radius": 0.6285,
+      "radius": 0.6599,
       "daten": "newspaper Oct 7th 2025  Nov 18th 2025  9 months ago",
       "titelOriginal": "Italy’s Tuidi secures €3 million to optimise grocery retail through AI-driven store management"
     },
@@ -1663,7 +1667,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 62.95,
-      "radius": 0.4057,
+      "radius": 0.426,
       "daten": "newspaper Oct 30th 2024  Jan 25th 2025  a year ago",
       "titelOriginal": "Food Robotics Market Size, Share and Trends 2024 to 2034"
     },
@@ -1675,7 +1679,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 62.83,
-      "radius": 0.2443,
+      "radius": 0.2565,
       "daten": "newspaper Feb 23rd 2024  Feb 15th 2025  a year ago",
       "titelOriginal": "'Facial recognition' message on vending machine"
     },
@@ -1687,7 +1691,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 143.67,
-      "radius": 0.5484,
+      "radius": 0.5758,
       "daten": "newspaper Feb 6th 2025  May 6th 2025  a year ago",
       "titelOriginal": "AI-Powered Cultivated Meat Fermenters"
     },
@@ -1699,7 +1703,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 138,
-      "radius": 0.4343,
+      "radius": 0.456,
       "daten": "Feb 12th 2025  2 months ago",
       "titelOriginal": "biteAI: Food Image Recognition"
     },
@@ -1711,7 +1715,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 141.36,
-      "radius": 0.2251,
+      "radius": 0.2364,
       "daten": "newspaper Dec 28th 2024  Feb 3rd 2025  a year ago"
     },
     {
@@ -1722,7 +1726,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 174.89,
-      "radius": 0.4528,
+      "radius": 0.4754,
       "daten": "newspaper Jul 23rd 2022  Feb 15th 2025  a year ago",
       "titelOriginal": "GreenView: Neural net computer vision pattern recognition to automatically detect ripeness"
     },
@@ -1734,7 +1738,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 37.15,
-      "radius": 0.5747,
+      "radius": 0.6034,
       "daten": "Mar 5th 2026  5 months ago",
       "titelOriginal": "AI powered machine turns photos into smells"
     },
@@ -1746,7 +1750,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 45.09,
-      "radius": 0.3655,
+      "radius": 0.3838,
       "daten": "Apr 29th 2025  a year ago",
       "titelOriginal": "Seergrills Unveils AI-Powered Perfecta Grill at CES 2024"
     },
@@ -1758,7 +1762,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 71.85,
-      "radius": 0.408,
+      "radius": 0.4284,
       "daten": "newspaper Dec 2nd 2024  Jan 25th 2025  2 years ago",
       "titelOriginal": "Central Food Retail Group debuts AI-powered Tops Chef Bot"
     },
@@ -1770,7 +1774,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 67.81,
-      "radius": 0.2448,
+      "radius": 0.257,
       "daten": "newspaper Jun 27th 2018  Feb 14th 2025  a year ago",
       "titelOriginal": "TGI Fridays Using Out-of-the-Box AI"
     },
@@ -1782,7 +1786,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 150.79,
-      "radius": 0.5969,
+      "radius": 0.6267,
       "daten": "newspaper Mar 28th 2025  Apr 16th 2025  a year ago",
       "titelOriginal": "AI for creating a sustainable and healthy future"
     },
@@ -1794,7 +1798,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 140.51,
-      "radius": 0.4287,
+      "radius": 0.4501,
       "daten": "newspaper Mar 2nd 2022  Feb 12th 2025  a year ago",
       "titelOriginal": "Tastewise: AI supported new product development"
     },
@@ -1806,7 +1810,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 142.36,
-      "radius": 0.2132,
+      "radius": 0.2239,
       "daten": "newspaper Apr 22nd 2024  Feb 3rd 2025  a year ago"
     },
     {
@@ -1817,7 +1821,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 168.9,
-      "radius": 0.4407,
+      "radius": 0.4627,
       "daten": "Feb 13th 2025  a year ago",
       "titelOriginal": "AI Supported Pollination"
     },
@@ -1829,7 +1833,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 42.82,
-      "radius": 0.5878,
+      "radius": 0.6172,
       "daten": "newspaper Dec 2nd 2025  Feb 17th 2026  5 months ago",
       "titelOriginal": "Personalized Hydration Systems"
     },
@@ -1841,7 +1845,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 33.79,
-      "radius": 0.4283,
+      "radius": 0.4497,
       "daten": "newspaper Sep 17th 2024  Feb 25th 2025  a year ago",
       "titelOriginal": "Future of Food Logging Apps: GPT Food Cam"
     },
@@ -1853,7 +1857,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 57.81,
-      "radius": 0.6073,
+      "radius": 0.6377,
       "daten": "newspaper Oct 4th 2025  Oct 5th 2025  10 months ago"
     },
     {
@@ -1864,7 +1868,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 65.96,
-      "radius": 0.4468,
+      "radius": 0.4691,
       "daten": "newspaper Apr 25th 2023  Jan 25th 2025  a year ago",
       "titelOriginal": "AI-powered App: NextGen Food Robotics"
     },
@@ -1876,7 +1880,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.87,
-      "radius": 0.2187,
+      "radius": 0.2296,
       "daten": "Feb 14th 2025  a year ago",
       "titelOriginal": "AI tool for inventory management"
     },
@@ -1888,7 +1892,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 136.64,
-      "radius": 0.564,
+      "radius": 0.5922,
       "daten": "newspaper Feb 13th 2024  Apr 16th 2025  2 months ago",
       "titelOriginal": "Periodic Table of Food"
     },
@@ -1900,7 +1904,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 138.3,
-      "radius": 0.3829,
+      "radius": 0.402,
       "daten": "Feb 12th 2025  a year ago",
       "titelOriginal": "Tastewise: AI inspires New Product Development"
     },
@@ -1912,7 +1916,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 144.89,
-      "radius": 0.2576,
+      "radius": 0.2705,
       "daten": "newspaper Apr 21st 2024  Feb 3rd 2025  a year ago",
       "titelOriginal": "A coffee roastery in Finland has launched an AI-generated blend. The results were surprising"
     },
@@ -1924,7 +1928,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 166.75,
-      "radius": 0.6083,
+      "radius": 0.6387,
       "daten": "newspaper Mar 11th 2026  Mar 17th 2026  5 months ago",
       "titelOriginal": "Decoding DNA with AI: Living Models emerges from stealth with $7M"
     },
@@ -1936,7 +1940,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 171.33,
-      "radius": 0.4692,
+      "radius": 0.4927,
       "daten": "newspaper Jul 28th 2023  Feb 13th 2025  a year ago",
       "titelOriginal": "ZoomAgri AI-powered grain inspection"
     },
@@ -1948,7 +1952,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 32.64,
-      "radius": 0.4336,
+      "radius": 0.4553,
       "daten": "newspaper Mar 29th 2024  Jan 29th 2025  a year ago",
       "titelOriginal": "Nunc Pairs German Engineering With AI to Brew Coffee Perfectly"
     },
@@ -1960,7 +1964,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 60.84,
-      "radius": 0.5656,
+      "radius": 0.5939,
       "daten": "newspaper Mar 12th 2025  Aug 26th 2025  a year ago",
       "titelOriginal": "AI-Driven Probiotic Campaigns"
     },
@@ -1972,7 +1976,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 71.13,
-      "radius": 0.3742,
+      "radius": 0.3929,
       "daten": "newspaper Dec 20th 2024  Jan 25th 2025  a year ago",
       "titelOriginal": "AI Restaurant Coaches"
     },
@@ -1984,7 +1988,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 62.83,
-      "radius": 0.253,
+      "radius": 0.2656,
       "daten": "newspaper Jun 30th 2021  Feb 14th 2025  a year ago",
       "titelOriginal": "Starbucks AI:Deep Brew"
     },
@@ -1996,7 +2000,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 133.19,
-      "radius": 0.5584,
+      "radius": 0.5863,
       "daten": "newspaper Jan 9th 2023  Apr 14th 2025  a year ago",
       "titelOriginal": "Detection of Bacteria in Food Using AI and Optical Imaging"
     },
@@ -2008,7 +2012,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 138.04,
-      "radius": 0.3848,
+      "radius": 0.404,
       "daten": "newspaper Oct 13th 2023  Feb 6th 2025  a year ago",
       "titelOriginal": "AI-Powered Foodservice Tools"
     },
@@ -2020,7 +2024,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 144.31,
-      "radius": 0.1983,
+      "radius": 0.2082,
       "daten": "newspaper May 1st 2024  Jan 29th 2025  a year ago",
       "titelOriginal": "Helsinki's Kaffa Roastery unveils AI-conic: the world's first AI-designed coffee blend"
     },
@@ -2032,7 +2036,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 157.95,
-      "radius": 0.6145,
+      "radius": 0.6452,
       "daten": "newspaper Sep 30th 2025  Nov 18th 2025  9 months ago",
       "titelOriginal": "Aydi raises $7.5 million seed to launch its AI agronomy assistant"
     },
@@ -2044,7 +2048,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 159.68,
-      "radius": 0.459,
+      "radius": 0.482,
       "daten": "newspaper Sep 26th 2023  Feb 8th 2025  a year ago",
       "titelOriginal": "AI harvest: Transforming agriculture"
     },
@@ -2056,7 +2060,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 41.56,
-      "radius": 0.6221,
+      "radius": 0.6532,
       "daten": "Jan 13th 2026  7 months ago",
       "titelOriginal": "OpenAI launched ChatGPT Health"
     },
@@ -2068,7 +2072,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 34.56,
-      "radius": 0.417,
+      "radius": 0.4379,
       "daten": "newspaper Apr 9th 2024  Jan 26th 2025  3 months ago",
       "titelOriginal": "AI-Powered Recipe Tools"
     },
@@ -2080,7 +2084,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 64.36,
-      "radius": 0.5949,
+      "radius": 0.6246,
       "daten": "newspaper Jul 31st 2025  Aug 22nd 2025  a year ago",
       "titelOriginal": "Why Agentic AI Is the Food Industry’s Next Big Thing"
     },
@@ -2092,7 +2096,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 59.43,
-      "radius": 0.3846,
+      "radius": 0.4038,
       "daten": "newspaper Jan 10th 2025  Jan 25th 2025  2 years ago",
       "titelOriginal": "AI-Powered Pickup Systems"
     },
@@ -2104,7 +2108,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 61.44,
-      "radius": 0.2039,
+      "radius": 0.2141,
       "daten": "newspaper Apr 25th 2018  Feb 14th 2025  a year ago",
       "titelOriginal": "Domino’s AI assistant handles incoming phone orders"
     },
@@ -2116,7 +2120,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 134.67,
-      "radius": 0.6118,
+      "radius": 0.6424,
       "daten": "newspaper Oct 2nd 2024  Apr 14th 2025  a year ago",
       "titelOriginal": "What’s In Our Food? An AI Approach to Gather What We Know"
     },
@@ -2128,7 +2132,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 148.75,
-      "radius": 0.4476,
+      "radius": 0.47,
       "daten": "newspaper Mar 27th 2024  Jan 29th 2025  a year ago"
     },
     {
@@ -2139,7 +2143,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 137.98,
-      "radius": 0.2274,
+      "radius": 0.2388,
       "daten": "newspaper Apr 24th 2024  Jan 29th 2025  a year ago"
     },
     {
@@ -2150,7 +2154,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 173.43,
-      "radius": 0.6096,
+      "radius": 0.6401,
       "daten": "newspaper Oct 13th 2025  Nov 18th 2025  9 months ago",
       "titelOriginal": "Swiss agtech startup Ecorobotix lands €129.3M"
     },
@@ -2162,7 +2166,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 167.07,
-      "radius": 0.4236,
+      "radius": 0.4448,
       "daten": "newspaper Aug 6th 2024  Feb 8th 2025  a year ago",
       "titelOriginal": "AI: move agronomic recommendations forward"
     },
@@ -2174,7 +2178,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 37.74,
-      "radius": 0.5499,
+      "radius": 0.5774,
       "daten": "newspaper Jun 4th 2025  Sep 14th 2025  a year ago",
       "titelOriginal": "AI-Enabled Kitchen Appliances"
     },
@@ -2186,7 +2190,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 43.82,
-      "radius": 0.4357,
+      "radius": 0.4575,
       "daten": "newspaper Aug 30th 2023  Jan 26th 2025  a year ago",
       "titelOriginal": "Samsung Announces Global Launch of AI-Powered, Personalized Food and Recipe Service"
     },
@@ -2198,7 +2202,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 69.78,
-      "radius": 0.6029,
+      "radius": 0.633,
       "daten": "newspaper May 28th 2025  Jun 3rd 2025  a year ago",
       "titelOriginal": "AI-Powered Cooking Systems"
     },
@@ -2210,7 +2214,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 69.27,
-      "radius": 0.3962,
+      "radius": 0.416,
       "daten": "newspaper Jan 13th 2025  Jan 25th 2025  2 years ago",
       "titelOriginal": "AI-Powered Retail Solutions"
     },
@@ -2222,7 +2226,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 62.58,
-      "radius": 0.2795,
+      "radius": 0.2935,
       "daten": "newspaper Nov 1st 2024  Feb 12th 2025  2 years ago",
       "titelOriginal": "AI-Powered Restaurant Recommendations"
     },
@@ -2234,7 +2238,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 133.46,
-      "radius": 0.5399,
+      "radius": 0.5669,
       "daten": "newspaper Feb 26th 2025  Apr 14th 2025  a year ago",
       "titelOriginal": "Initializing a Public Repository for Hosting Benchmark Datasets to Facilitate Machine Learning Model Development in Food Safety"
     },
@@ -2246,7 +2250,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 145.75,
-      "radius": 0.4247,
+      "radius": 0.4459,
       "daten": "newspaper Nov 21st 2024  Jan 26th 2025  a year ago",
       "titelOriginal": "AI Software to Help Alt-Protein Industry Scale Up"
     },
@@ -2258,7 +2262,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 142.43,
-      "radius": 0.1798,
+      "radius": 0.1888,
       "daten": "newspaper Apr 21st 2024  Jan 29th 2025  a year ago",
       "titelOriginal": "Finland gets AI-blended coffee"
     },
@@ -2270,7 +2274,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 176.88,
-      "radius": 0.5597,
+      "radius": 0.5877,
       "daten": "newspaper Nov 6th 2025  Nov 18th 2025  9 months ago",
       "titelOriginal": "Ceres AI, a US startup, raised $13M to grow its imagery platform that analyses crop performance and risk for agribusinesses and financial institutions"
     },
@@ -2282,7 +2286,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 169.13,
-      "radius": 0.4327,
+      "radius": 0.4543,
       "daten": "newspaper Jul 24th 2024  Feb 6th 2025  a year ago",
       "titelOriginal": "AI-Powered Farming Platforms"
     },
@@ -2294,7 +2298,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 45.64,
-      "radius": 0.4539,
+      "radius": 0.4766,
       "daten": "newspaper Aug 31st 2024  Jan 25th 2025  2 years ago",
       "titelOriginal": "AI food recognition: Samsung Food could be the ultimate meal-planning app"
     },
@@ -2306,7 +2310,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 58.76,
-      "radius": 0.5636,
+      "radius": 0.5918,
       "daten": "newspaper Mar 19th 2025  Apr 11th 2025  a year ago",
       "titelOriginal": "Less Robots, More Meat: Chipotle Founder’s Big Pivot"
     },
@@ -2318,7 +2322,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 68.25,
-      "radius": 0.3665,
+      "radius": 0.3848,
       "daten": "newspaper Jan 8th 2025  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI-Driven Direct-To-Consumer Platforms"
     },
@@ -2330,7 +2334,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 64.69,
-      "radius": 0.2792,
+      "radius": 0.2932,
       "daten": "newspaper May 10th 2023  Jan 29th 2025  a year ago",
       "titelOriginal": "AI Drive-thru: McDonald’s failed; Could Wendy’s FreshAI chatbots do better?"
     },
@@ -2342,7 +2346,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 143.85,
-      "radius": 0.5607,
+      "radius": 0.5887,
       "daten": "newspaper Dec 12th 2022  Feb 19th 2025  a year ago",
       "titelOriginal": "AI-powered imaging for object scanning and classification"
     },
@@ -2354,7 +2358,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 135.48,
-      "radius": 0.4055,
+      "radius": 0.4258,
       "daten": "newspaper Sep 12th 2023  Jan 26th 2025  a year ago",
       "titelOriginal": "Coca‑Cola Imagines Year 3000 With AI-Powered Experience"
     },
@@ -2366,7 +2370,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 144.04,
-      "radius": 0.2886,
+      "radius": 0.303,
       "daten": "newspaper Jan 10th 2024  Jan 27th 2025  a year ago",
       "titelOriginal": "Mondelez International Digital Transformation Strategy Report 2023: Accelerators, Incubators, and Other Innovation Programs"
     },
@@ -2378,7 +2382,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 157.95,
-      "radius": 0.5485,
+      "radius": 0.5759,
       "daten": "newspaper Apr 3rd 2025  Aug 6th 2025  a year ago",
       "titelOriginal": "Bloomiee | AI Grow Room Control System w/ Camera & Sensors"
     },
@@ -2390,7 +2394,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 166.61,
-      "radius": 0.4053,
+      "radius": 0.4256,
       "daten": "newspaper Jan 27th 2025  Feb 6th 2025  a year ago",
       "titelOriginal": "AI-powered data entry for ranch management"
     },
@@ -2402,7 +2406,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 48.01,
-      "radius": 0.5725,
+      "radius": 0.6011,
       "daten": "newspaper Mar 21st 2025  Aug 6th 2025  a year ago",
       "titelOriginal": "AI-Powered Spice Dispensers"
     },
@@ -2414,7 +2418,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 46.16,
-      "radius": 0.4335,
+      "radius": 0.4552,
       "daten": "newspaper Dec 3rd 2024  Jan 25th 2025  2 years ago",
       "titelOriginal": "AI-Powered Food Journals"
     },
@@ -2426,7 +2430,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 69.8,
-      "radius": 0.5354,
+      "radius": 0.5622,
       "daten": "newspaper Mar 23rd 2024  Apr 10th 2025  a year ago",
       "titelOriginal": "Boogie Lab: Croatian AI-Powered Sourdough Bakery Expands to New York City"
     },
@@ -2438,7 +2442,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 62.98,
-      "radius": 0.443,
+      "radius": 0.4652,
       "daten": "newspaper Oct 18th 2023  Jan 24th 2025  a year ago",
       "titelOriginal": "AI Voice-Based QSR Services"
     },
@@ -2450,7 +2454,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 64.32,
-      "radius": 0.2411,
+      "radius": 0.2532,
       "daten": "newspaper Jun 18th 2024  Jan 29th 2025  a year ago",
       "titelOriginal": "McDonald’s Abandons AI for Drive-Thru Orders"
     },
@@ -2462,7 +2466,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 150.26,
-      "radius": 0.6266,
+      "radius": 0.6579,
       "daten": "newspaper Feb 12th 2025  Feb 19th 2025  a year ago",
       "titelOriginal": "AI Startup is Growing Dairy Proteins in Potatoes"
     },
@@ -2474,7 +2478,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 134.98,
-      "radius": 0.4096,
+      "radius": 0.4301,
       "daten": "newspaper Jul 3rd 2023  Jan 26th 2025  a year ago",
       "titelOriginal": "Hell Energy drink"
     },
@@ -2486,7 +2490,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 141.39,
-      "radius": 0.2811,
+      "radius": 0.2952,
       "daten": "newspaper Jan 3rd 2025  Jan 27th 2025  a year ago",
       "titelOriginal": "Mondelez uses AI to create new Orea snack flavors"
     },
@@ -2498,7 +2502,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 164.03,
-      "radius": 0.6203,
+      "radius": 0.6513,
       "daten": "newspaper Apr 10th 2025  Jun 29th 2025  a year ago",
       "titelOriginal": "Wheat supply through AI-enabled crop breeding"
     },
@@ -2510,7 +2514,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 171.94,
-      "radius": 0.434,
+      "radius": 0.4557,
       "daten": "newspaper Jan 27th 2025  Feb 6th 2025  a year ago",
       "titelOriginal": "AI partner to the regenerative agriculture"
     },
@@ -2522,7 +2526,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 43.72,
-      "radius": 0.5545,
+      "radius": 0.5822,
       "daten": "newspaper Jun 21st 2024  Apr 29th 2025  a year ago",
       "titelOriginal": "AI Coffee Roast Analyzers"
     },
@@ -2534,7 +2538,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 37.23,
-      "radius": 0.4588,
+      "radius": 0.4817,
       "daten": "newspaper Dec 21st 2024  Jan 25th 2025  a year ago",
       "titelOriginal": "AI-Powered Appliance Cooling Technologies"
     },
@@ -2546,7 +2550,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 67.29,
-      "radius": 0.733,
+      "radius": 0.7697,
       "daten": "May 23rd 2025  a year ago",
       "titelOriginal": "Voice profiling in psychosomatics"
     },
@@ -2558,7 +2562,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 54.61,
-      "radius": 0.5767,
+      "radius": 0.6055,
       "daten": "newspaper Apr 1st 2025  Apr 5th 2025  a year ago",
       "titelOriginal": "Food Assembly Robot Startup Chef Robotics"
     },
@@ -2570,7 +2574,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 63.38,
-      "radius": 0.3998,
+      "radius": 0.4198,
       "daten": "newspaper Oct 3rd 2024  Jan 24th 2025  4 months ago",
       "titelOriginal": "AI Monitoring Helps Marriott Hotels to Slash Food Waste"
     },
@@ -2582,7 +2586,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 62.34,
-      "radius": 0.2087,
+      "radius": 0.2191,
       "daten": "newspaper Jul 12th 2024  Jan 26th 2025  5 months ago",
       "titelOriginal": "AI-Powered Food Robot"
     },
@@ -2594,7 +2598,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 111.92,
-      "radius": 0.4589,
+      "radius": 0.4818,
       "daten": "newspaper Jun 3rd 2026  Jun 9th 2026  2 months ago",
       "titelOriginal": "With $30 million Series A raise, Marble Technologies is creating the future of meatpacking in Nebraska"
     },
@@ -2606,7 +2610,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 140.36,
-      "radius": 0.6305,
+      "radius": 0.662,
       "daten": "newspaper Dec 20th 2024  Feb 6th 2025  a year ago",
       "titelOriginal": "AI Bioprocess Simulation Platform"
     },
@@ -2618,7 +2622,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 135.51,
-      "radius": 0.4216,
+      "radius": 0.4427,
       "daten": "newspaper May 1st 2024  Jan 26th 2025  a year ago"
     },
     {
@@ -2629,7 +2633,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 143.09,
-      "radius": 0.2404,
+      "radius": 0.2524,
       "daten": "Jan 27th 2025  a year ago",
       "titelOriginal": "Coca-Cola’s AI-Created Y3000 Zero Sugar Drink: A Taste of the Future"
     },
@@ -2641,7 +2645,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 162.57,
-      "radius": 0.5617,
+      "radius": 0.5898,
       "daten": "Jun 29th 2025  a year ago",
       "titelOriginal": "Engineer Complex Traits in Crops"
     },
@@ -2653,7 +2657,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 165.43,
-      "radius": 0.3749,
+      "radius": 0.3936,
       "daten": "newspaper Feb 3rd 2025  Feb 6th 2025  a year ago",
       "titelOriginal": "AI Harvest Robotics"
     },
@@ -2665,7 +2669,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 13.64,
-      "radius": 0.4369,
+      "radius": 0.4587,
       "daten": "May 28th 2026  2 months ago",
       "titelOriginal": "Mill: Measurement as a Catalyst for Household Behavior Change"
     },
@@ -2677,7 +2681,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 35.95,
-      "radius": 0.6015,
+      "radius": 0.6316,
       "daten": "newspaper Sep 3rd 2024  Apr 29th 2025  a year ago",
       "titelOriginal": "AI-Assisted Kitchen Ranges"
     },
@@ -2689,7 +2693,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 40,
-      "radius": 0.4584,
+      "radius": 0.4813,
       "daten": "newspaper Dec 19th 2024  Jan 25th 2025  2 years ago",
       "titelOriginal": "AI Recipe Assistant Fridges"
     },
@@ -2701,7 +2705,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 35.45,
-      "radius": 0.2775,
+      "radius": 0.2914,
       "daten": "Apr 21st 2026  4 months ago",
       "titelOriginal": "Starbucks’s ChatGPT experiment could quietly reshape how people order coffee"
     },
@@ -2713,7 +2717,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 61.93,
-      "radius": 0.597,
+      "radius": 0.6269,
       "daten": "newspaper Dec 7th 2023  Feb 28th 2025  a year ago",
       "titelOriginal": "Bowl Food Robot: Dispensing Technology and Small Footprint as Differentiators"
     },
@@ -2725,7 +2729,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 69.73,
-      "radius": 0.4514,
+      "radius": 0.474,
       "daten": "newspaper Apr 25th 2023  Jan 24th 2025  a year ago",
       "titelOriginal": "AI App: NextGen Food Robotics"
     },
@@ -2737,7 +2741,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 63.02,
-      "radius": 0.2417,
+      "radius": 0.2538,
       "daten": "newspaper Feb 6th 2024  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI-Generated Avocado Recipes"
     },
@@ -2749,7 +2753,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 123.82,
-      "radius": 0.3908,
+      "radius": 0.4103,
       "daten": "newspaper Jan 19th 2026  Jan 27th 2026  7 months ago",
       "titelOriginal": "Hamburg-based one.five raises €14 million to solve the product-market-fit problem in packaging"
     },
@@ -2761,7 +2765,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 135.32,
-      "radius": 0.5516,
+      "radius": 0.5792,
       "daten": "newspaper Oct 26th 2023  Jan 26th 2025  a year ago",
       "titelOriginal": "TasteGPT: AI Product Development"
     },
@@ -2773,7 +2777,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 134.16,
-      "radius": 0.4595,
+      "radius": 0.4825,
       "daten": "newspaper Aug 10th 2022  Jan 25th 2025  2 years ago",
       "titelOriginal": "How AI can make food safer"
     },
@@ -2785,7 +2789,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 141.83,
-      "radius": 0.2129,
+      "radius": 0.2235,
       "daten": "newspaper Sep 12th 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "AI to Conjure Up a 'Coke From the Future'"
     },
@@ -2797,7 +2801,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 165.67,
-      "radius": 0.5482,
+      "radius": 0.5756,
       "daten": "Jun 29th 2025  a year ago",
       "titelOriginal": "AI-based precise automation to transform saffron production"
     },
@@ -2809,7 +2813,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 165.78,
-      "radius": 0.4369,
+      "radius": 0.4587,
       "daten": "newspaper Jan 21st 2025  Feb 6th 2025  a year ago",
       "titelOriginal": "AI Greenhouse: Aisprid to transform greenhouse agriculture"
     },
@@ -2821,7 +2825,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 6.51,
-      "radius": 0.4124,
+      "radius": 0.433,
       "daten": "newspaper Apr 14th 2025  Apr 19th 2025  a year ago",
       "titelOriginal": "ClearCOGS's AI-Powered Forecasting Software Helps Restaurants Reduce Waste"
     },
@@ -2833,7 +2837,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 36.7,
-      "radius": 0.5763,
+      "radius": 0.6051,
       "daten": "newspaper Feb 29th 2024  Apr 29th 2025  a year ago",
       "titelOriginal": "AI Food Scanners"
     },
@@ -2845,7 +2849,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 34.41,
-      "radius": 0.383,
+      "radius": 0.4022,
       "daten": "newspaper Jan 16th 2025  Jan 25th 2025  2 years ago",
       "titelOriginal": "AI-Powered Beverage-Rating Apps"
     },
@@ -2857,7 +2861,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 39.34,
-      "radius": 0.2498,
+      "radius": 0.2623,
       "daten": "newspaper Apr 1st 2025  Jul 15th 2025  a year ago",
       "titelOriginal": "AI-Integrated Soda Campaigns"
     },
@@ -2869,7 +2873,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 62.74,
-      "radius": 0.7246,
+      "radius": 0.7608,
       "daten": "Apr 21st 2025  a year ago",
       "titelOriginal": "Dynamic Pricing by AI in Restaurants"
     },
@@ -2881,7 +2885,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 59.5,
-      "radius": 0.5422,
+      "radius": 0.5693,
       "daten": "newspaper Feb 13th 2024  Feb 28th 2025  a year ago",
       "titelOriginal": "AI-Powered Robots Trained With Lots of Field Data"
     },
@@ -2893,7 +2897,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 60.23,
-      "radius": 0.4445,
+      "radius": 0.4667,
       "daten": "newspaper May 4th 2021  Jan 24th 2025  2 years ago",
       "titelOriginal": "Robot AI: Undercooked fast food burgers are toast"
     },
@@ -2905,7 +2909,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 66.28,
-      "radius": 0.1695,
+      "radius": 0.178,
       "daten": "newspaper Jan 15th 2025  Jan 24th 2025  2 years ago",
       "titelOriginal": "GenAI Avocado Campaigns"
     },
@@ -2917,7 +2921,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 118.74,
-      "radius": 0.3746,
+      "radius": 0.3933,
       "daten": "newspaper Dec 19th 2024  May 6th 2025  a year ago",
       "titelOriginal": "Generative Art Cognac Bottles"
     },
@@ -2929,7 +2933,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 147.56,
-      "radius": 0.605,
+      "radius": 0.6352,
       "daten": "newspaper Sep 7th 2023  Jan 26th 2025  a year ago",
       "titelOriginal": "FoodGPT: AI Food Product Development"
     },
@@ -2941,7 +2945,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 142.96,
-      "radius": 0.4165,
+      "radius": 0.4373,
       "daten": "newspaper Mar 13th 2021  Jan 24th 2025  a year ago",
       "titelOriginal": "The Ethics of AI to ensure food security and development"
     },
@@ -2953,7 +2957,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 141.05,
-      "radius": 0.1805,
+      "radius": 0.1895,
       "daten": "newspaper Sep 22nd 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "Coca-Cola launches new flavour partially created by AI"
     },
@@ -2965,7 +2969,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 168.85,
-      "radius": 0.6245,
+      "radius": 0.6557,
       "daten": "newspaper Apr 9th 2025  Apr 19th 2025  a year ago",
       "titelOriginal": "SeafoodAI Secures Investment from NEC X, Accelerating AI-Powered Biometrics to Enhance Seafood Sustainability"
     },
@@ -2977,7 +2981,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 168.64,
-      "radius": 0.4004,
+      "radius": 0.4204,
       "daten": "Jan 25th 2025  2 years ago",
       "titelOriginal": "AI: Agriculture"
     },
@@ -2989,7 +2993,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 4.69,
-      "radius": 0.4116,
+      "radius": 0.4322,
       "daten": "Jan 25th 2025  5 months ago",
       "titelOriginal": "AI monitor slashes food waste"
     },
@@ -3001,7 +3005,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 33.16,
-      "radius": 0.5358,
+      "radius": 0.5626,
       "daten": "newspaper Mar 16th 2023  Apr 29th 2025  a year ago",
       "titelOriginal": "Stir-Frying Kitchen Robots"
     },
@@ -3013,7 +3017,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 34.14,
-      "radius": 0.3973,
+      "radius": 0.4172,
       "daten": "newspaper Nov 4th 2024  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI Meal Planning Solutions"
     },
@@ -3025,7 +3029,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 39.64,
-      "radius": 0.2883,
+      "radius": 0.3027,
       "daten": "newspaper Jun 30th 2025  Jul 8th 2025  a year ago",
       "titelOriginal": "AI-Powered Cooking Companions"
     },
@@ -3037,7 +3041,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 66,
-      "radius": 0.7124,
+      "radius": 0.748,
       "daten": "Apr 16th 2025  a year ago",
       "titelOriginal": "\"Air up\": generate flavour based on sense of smell"
     },
@@ -3049,7 +3053,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 65.14,
-      "radius": 0.6046,
+      "radius": 0.6348,
       "daten": "newspaper Mar 16th 2024  Feb 28th 2025  a year ago",
       "titelOriginal": "Figure 01 Robot Feed A Human"
     },
@@ -3061,7 +3065,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 67.7,
-      "radius": 0.4581,
+      "radius": 0.481,
       "daten": "newspaper May 22nd 2023  Jan 24th 2025  2 years ago",
       "titelOriginal": "The Labor Shortage Argument Behind The Rise Of AI Fast Food 'Workers'"
     },
@@ -3073,7 +3077,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 60.96,
-      "radius": 0.2175,
+      "radius": 0.2284,
       "daten": "newspaper Feb 22nd 2020  Jan 24th 2025  5 months ago",
       "titelOriginal": "AI Ordering Platform"
     },
@@ -3085,7 +3089,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 121.23,
-      "radius": 0.4642,
+      "radius": 0.4874,
       "daten": "newspaper Mar 12th 2024  May 6th 2025  a year ago",
       "titelOriginal": "AI-Powered Gelato Packaging"
     },
@@ -3097,7 +3101,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 144.44,
-      "radius": 0.614,
+      "radius": 0.6447,
       "daten": "newspaper Dec 18th 2024  Jan 25th 2025  8 months ago",
       "titelOriginal": "Need for AI in food safety"
     },
@@ -3109,7 +3113,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 139.94,
-      "radius": 0.4546,
+      "radius": 0.4773,
       "daten": "Feb 12th 2025  a year ago",
       "titelOriginal": "AI Scale-Up Development"
     },
@@ -3121,7 +3125,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 142.26,
-      "radius": 0.2358,
+      "radius": 0.2476,
       "daten": "newspaper Sep 12th 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "Coca-Cola used AI to create flavor: The Y3000 soda"
     },
@@ -3133,7 +3137,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 160.05,
-      "radius": 0.5781,
+      "radius": 0.607,
       "daten": "newspaper Nov 20th 2023  Apr 14th 2025  a year ago",
       "titelOriginal": "An AI taste ‘connoisseur’ could be the future of crop breeding"
     },
@@ -3145,7 +3149,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 173.28,
-      "radius": 0.376,
+      "radius": 0.3948,
       "daten": "newspaper May 24th 2022  Jan 25th 2025  a year ago",
       "titelOriginal": "IoT and AI to improve food security"
     },
@@ -3157,7 +3161,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 9.82,
-      "radius": 0.3949,
+      "radius": 0.4146,
       "daten": "newspaper May 6th 2022  Jan 25th 2025  a year ago",
       "titelOriginal": "Shoprite turns to AI to tackle food waste"
     },
@@ -3169,7 +3173,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 38.39,
-      "radius": 0.5436,
+      "radius": 0.5708,
       "daten": "newspaper Jan 17th 2024  Apr 29th 2025  a year ago",
       "titelOriginal": "AI-Powered Cutting-Edge Grill Designs"
     },
@@ -3181,7 +3185,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 33.23,
-      "radius": 0.4344,
+      "radius": 0.4561,
       "daten": "newspaper Aug 5th 2024  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI Meal Planning"
     },
@@ -3193,7 +3197,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 40.41,
-      "radius": 0.2927,
+      "radius": 0.3073,
       "daten": "newspaper Dec 18th 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "AI-Inspired Holiday Cheer with Coca-Cola"
     },
@@ -3205,7 +3209,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 73.17,
-      "radius": 0.5854,
+      "radius": 0.6147,
       "daten": "Jan 26th 2025  5 months ago",
       "titelOriginal": "Goodbytz: AI powerd Cooking Robots"
     },
@@ -3217,7 +3221,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 65.06,
-      "radius": 0.4238,
+      "radius": 0.445,
       "daten": "newspaper Mar 5th 2024  Jan 24th 2025  2 months ago",
       "titelOriginal": "AI: Revolutionising Fast Food Through Technology"
     },
@@ -3229,7 +3233,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 63.83,
-      "radius": 0.2028,
+      "radius": 0.2129,
       "daten": "newspaper May 21st 2021  Jan 24th 2025  a year ago",
       "titelOriginal": "AI-Powered Drive-Thrus"
     },
@@ -3241,7 +3245,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 96.03,
-      "radius": 0.469,
+      "radius": 0.4924,
       "daten": "May 28th 2026  2 months ago",
       "titelOriginal": "Strella: AI-Driven Quality Forecasting in Produce Storage"
     },
@@ -3253,7 +3257,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 121.31,
-      "radius": 0.4538,
+      "radius": 0.4765,
       "daten": "newspaper Mar 8th 2024  Jan 26th 2025  2 years ago",
       "titelOriginal": "AI-Generated Whiskey Packaging"
     },
@@ -3265,7 +3269,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 147.59,
-      "radius": 0.5582,
+      "radius": 0.5861,
       "daten": "newspaper Aug 10th 2022  Jan 25th 2025  a year ago",
       "titelOriginal": "How AI can make our food safer"
     },
@@ -3277,7 +3281,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 148.22,
-      "radius": 0.3865,
+      "radius": 0.4058,
       "daten": "Feb 12th 2025  a year ago",
       "titelOriginal": "AI Lab-Scale Development"
     },
@@ -3289,7 +3293,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 141.16,
-      "radius": 0.2066,
+      "radius": 0.2169,
       "daten": "newspaper Sep 13th 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "Cola from the future? Coca-Cola reveals AI-generated drink"
     },
@@ -3301,7 +3305,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 166.01,
-      "radius": 0.6228,
+      "radius": 0.6539,
       "daten": "newspaper Feb 3rd 2025  Feb 28th 2025  a year ago",
       "titelOriginal": "‘Physical AI’ in Food & Ag"
     },
@@ -3313,7 +3317,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 170.08,
-      "radius": 0.4474,
+      "radius": 0.4698,
       "daten": "Jan 25th 2025  a year ago",
       "titelOriginal": "AI for food security"
     },
@@ -3325,7 +3329,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 8.02,
-      "radius": 0.4167,
+      "radius": 0.4375,
       "daten": "Jan 25th 2025  a year ago",
       "titelOriginal": "How Neolithics is using AI machine learning to reduce global food waste"
     },
@@ -3337,7 +3341,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 47.16,
-      "radius": 0.6296,
+      "radius": 0.6611,
       "daten": "newspaper Sep 11th 2023  Apr 29th 2025  a year ago",
       "titelOriginal": "AI Smart Cooking Pan"
     },
@@ -3349,7 +3353,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 35.81,
-      "radius": 0.3907,
+      "radius": 0.4102,
       "daten": "newspaper Jan 10th 2025  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI Meal Planners"
     },
@@ -3361,7 +3365,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 42.03,
-      "radius": 0.2023,
+      "radius": 0.2124,
       "daten": "newspaper Nov 11th 2024  Jan 27th 2025  a year ago",
       "titelOriginal": "Coca-Cola and its Use of AI for Christmas and Beyond"
     },
@@ -3373,7 +3377,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 63.72,
-      "radius": 0.7225,
+      "radius": 0.7586,
       "daten": "May 12th 2025  a year ago",
       "titelOriginal": "Drone Snacks from Energy Tracking"
     },
@@ -3385,7 +3389,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 56.21,
-      "radius": 0.56,
+      "radius": 0.588,
       "daten": "newspaper Aug 14th 2023  Jan 25th 2025  5 months ago",
       "titelOriginal": "How will AI transform the food industry?"
     },
@@ -3397,7 +3401,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 67.25,
-      "radius": 0.4374,
+      "radius": 0.4593,
       "daten": "newspaper Jan 14th 2020  Jan 17th 2020  a year ago",
       "titelOriginal": "Taco Bell deploys AI for in-app personalization"
     },
@@ -3409,7 +3413,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 67.27,
-      "radius": 0.2597,
+      "radius": 0.2727,
       "daten": "newspaper Aug 22nd 2023  Jan 24th 2025  a year ago",
       "titelOriginal": "Spanish Food-Order AI Chatbots"
     },
@@ -3421,7 +3425,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 84.03,
-      "radius": 0.4516,
+      "radius": 0.4742,
       "daten": "newspaper Dec 4th 2023  Jun 19th 2025  a year ago"
     },
     {
@@ -3432,7 +3436,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 107.94,
-      "radius": 0.3863,
+      "radius": 0.4056,
       "daten": "newspaper Jul 26th 2022  Jan 26th 2025  a year ago",
       "titelOriginal": "AI-Generated Cognac Bottles"
     },
@@ -3444,7 +3448,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 136.04,
-      "radius": 0.6274,
+      "radius": 0.6588,
       "daten": "newspaper Apr 12th 2023  Jan 25th 2025  a year ago"
     },
     {
@@ -3455,7 +3459,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 139.88,
-      "radius": 0.4556,
+      "radius": 0.4784,
       "daten": "Jan 27th 2025  a year ago",
       "titelOriginal": "AI Food"
     },
@@ -3467,7 +3471,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 144.08,
-      "radius": 0.2367,
+      "radius": 0.2485,
       "daten": "newspaper Sep 12th 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "Coca-Cola launches beverage created with the help of AI"
     },
@@ -3479,7 +3483,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 175.36,
-      "radius": 0.6298,
+      "radius": 0.6613,
       "daten": "newspaper Feb 21st 2025  Feb 25th 2025  a year ago",
       "titelOriginal": "Ai-Powered Agricultural Tools"
     },
@@ -3491,7 +3495,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 169.86,
-      "radius": 0.4462,
+      "radius": 0.4685,
       "daten": "newspaper Sep 15th 2022  Jan 25th 2025  2 years ago",
       "titelOriginal": "What if AI could make the agri-food sector more resilient?"
     },
@@ -3503,7 +3507,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 4.71,
-      "radius": 0.5603,
+      "radius": 0.5883,
       "daten": "newspaper Dec 10th 2024  Feb 19th 2025  a year ago",
       "titelOriginal": "Utrecht-based Orbisk bags €8M to reduce food waste using AI: Here’s how"
     },
@@ -3515,7 +3519,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 7.95,
-      "radius": 0.3927,
+      "radius": 0.4123,
       "daten": "newspaper Jan 22nd 2025  Jan 24th 2025  a year ago",
       "titelOriginal": "AI Fridges - Tomorrow's Predictive Refrigeration System Extends Produce Life"
     },
@@ -3527,7 +3531,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 44.89,
-      "radius": 0.5689,
+      "radius": 0.5973,
       "daten": "newspaper Mar 30th 2025  Apr 10th 2025  a year ago",
       "titelOriginal": "Apple’s next major health bet could be an AI doctor"
     },
@@ -3539,7 +3543,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 39.83,
-      "radius": 0.3823,
+      "radius": 0.4014,
       "daten": "newspaper Apr 23rd 2024  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI Cocktail Assistants"
     },
@@ -3551,7 +3555,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 40.12,
-      "radius": 0.289,
+      "radius": 0.3034,
       "daten": "newspaper Jul 31st 2024  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI Mixologists"
     },
@@ -3563,7 +3567,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 73.88,
-      "radius": 0.7165,
+      "radius": 0.7523,
       "daten": "newspaper May 28th 2025  Jun 3rd 2025  a year ago",
       "titelOriginal": "AI-Powered Grilling Robots"
     },
@@ -3575,7 +3579,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 67.46,
-      "radius": 0.549,
+      "radius": 0.5765,
       "daten": "newspaper Jun 3rd 2021  Jan 25th 2025  a year ago",
       "titelOriginal": "Do AI-powered food robots put human jobs at risk?"
     },
@@ -3587,7 +3591,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "l",
       "winkel": 56.26,
-      "radius": 0.4055,
+      "radius": 0.4258,
       "daten": "Feb 14th 2025  a year ago",
       "titelOriginal": "AI in Kitchen Operations & Management"
     },
@@ -3599,7 +3603,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "l",
       "winkel": 65.63,
-      "radius": 0.2317,
+      "radius": 0.2433,
       "daten": "Feb 14th 2025  a year ago",
       "titelOriginal": "AI in Marketing and Customer Analytics"
     },
@@ -3611,7 +3615,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 94.82,
-      "radius": 0.4027,
+      "radius": 0.4228,
       "daten": "newspaper Jun 7th 2024  Jan 29th 2025  a year ago",
       "titelOriginal": "AI optimises food safety in logistics and streamlines supply chains"
     },
@@ -3623,7 +3627,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 108.26,
-      "radius": 0.3794,
+      "radius": 0.3984,
       "daten": "newspaper Jan 4th 2024  Jan 26th 2025  a year ago",
       "titelOriginal": "AI-Designed Whiskey Bottles"
     },
@@ -3635,7 +3639,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 142.32,
-      "radius": 0.5715,
+      "radius": 0.6001,
       "daten": "newspaper Jan 2nd 2024  Jan 24th 2025  a year ago",
       "titelOriginal": "AI: No magic bullet for food safety issues"
     },
@@ -3647,7 +3651,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 134.73,
-      "radius": 0.4238,
+      "radius": 0.445,
       "daten": "Jan 27th 2025  a year ago",
       "titelOriginal": "AI Beverages"
     },
@@ -3659,7 +3663,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 138.07,
-      "radius": 0.1888,
+      "radius": 0.1982,
       "daten": "newspaper Jul 28th 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "'World’s first’ energy drink developed by artificial intelligence"
     },
@@ -3671,7 +3675,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 158.03,
-      "radius": 0.629,
+      "radius": 0.6604,
       "daten": "newspaper Dec 4th 2024  Feb 19th 2025  a year ago",
       "titelOriginal": "Geospatial AI for crop detection"
     },
@@ -3683,7 +3687,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 163.19,
-      "radius": 0.4516,
+      "radius": 0.4742,
       "daten": "newspaper Sep 15th 2022  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI make the agri-food sector more resilient"
     },
@@ -3695,7 +3699,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 166.11,
-      "radius": 0.2891,
+      "radius": 0.3036,
       "daten": "newspaper Feb 20th 2017  Feb 8th 2025  a year ago",
       "titelOriginal": "Challenges for AI in agriculture"
     },
@@ -3707,7 +3711,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 19.24,
-      "radius": 0.4255,
+      "radius": 0.4468,
       "daten": "newspaper Apr 10th 2024  Jan 24th 2025  2 months ago",
       "titelOriginal": "AI-Powered Food Waste Reduction"
     },
@@ -3719,7 +3723,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 11.86,
-      "radius": 0.2682,
+      "radius": 0.2816,
       "daten": "newspaper Jun 25th 2025  Jul 3rd 2025  4 months ago",
       "titelOriginal": "AI-Powered Kitchen Waste Robots"
     },
@@ -3731,7 +3735,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 44.47,
-      "radius": 0.6108,
+      "radius": 0.6413,
       "daten": "newspaper Apr 1st 2025  Apr 10th 2025  a year ago",
       "titelOriginal": "Apple Quietly Working on AI Agent to \"Replica\" a Human Doctor"
     },
@@ -3743,7 +3747,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 37.11,
-      "radius": 0.4094,
+      "radius": 0.4299,
       "daten": "newspaper Jan 7th 2025  Jan 24th 2025  a year ago",
       "titelOriginal": "AI-Driven Robotic Beverage Machines"
     },
@@ -3755,7 +3759,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 39.18,
-      "radius": 0.233,
+      "radius": 0.2447,
       "daten": "newspaper Nov 13th 2023  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI Cocktail Menu Generation"
     },
@@ -3767,7 +3771,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 70.76,
-      "radius": 0.7394,
+      "radius": 0.7764,
       "daten": "newspaper Jul 3rd 2023  Feb 28th 2025  a year ago",
       "titelOriginal": "Social Impact of AI & Robotics on the World of Food"
     },
@@ -3779,7 +3783,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 63.2,
-      "radius": 0.5918,
+      "radius": 0.6214,
       "daten": "newspaper Oct 3rd 2019  May 25th 2023  2 years ago",
       "titelOriginal": "AI grocery cart lets shoppers skip checkout lines"
     },
@@ -3791,7 +3795,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 57.08,
-      "radius": 0.3955,
+      "radius": 0.4153,
       "daten": "Jan 29th 2025  2 years ago",
       "titelOriginal": "Miso Restaurant Robotics"
     },
@@ -3803,7 +3807,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 64.76,
-      "radius": 0.2392,
+      "radius": 0.2512,
       "daten": "Feb 14th 2025  a year ago",
       "titelOriginal": "AI in Menu Optimisation and Food Design"
     },
@@ -3815,7 +3819,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 83.65,
-      "radius": 0.5951,
+      "radius": 0.6249,
       "daten": "Feb 17th 2026  6 months ago",
       "titelOriginal": "Gather AI, maker of ‘curious’ warehouse drones, lands $40M led by Keith Block’s firm"
     },
@@ -3827,7 +3831,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 88.26,
-      "radius": 0.3915,
+      "radius": 0.4111,
       "daten": "newspaper Dec 16th 2020  Jan 25th 2025  2 months ago",
       "titelOriginal": "Antuit.ai Named to Food Logistics Top Software Providers"
     },
@@ -3839,7 +3843,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 120.04,
-      "radius": 0.411,
+      "radius": 0.4315,
       "daten": "newspaper Mar 12th 2024  Jan 25th 2025  2 years ago",
       "titelOriginal": "Lunchables Dunkables pits AI against kids’ imaginations"
     },
@@ -3851,7 +3855,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "l",
       "winkel": 138.54,
-      "radius": 0.5558,
+      "radius": 0.5836,
       "daten": "Feb 11th 2025  8 months ago",
       "titelOriginal": "AI Food Safety & Security"
     },
@@ -3863,7 +3867,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 133.68,
-      "radius": 0.4163,
+      "radius": 0.4371,
       "daten": "Jan 26th 2025  a year ago",
       "titelOriginal": "Mondelez tweaks its Classic Oreo"
     },
@@ -3875,7 +3879,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 142.78,
-      "radius": 0.2554,
+      "radius": 0.2682,
       "daten": "newspaper Jul 18th 2022  Jan 25th 2025  5 months ago",
       "titelOriginal": "AI revolutionizing the food and beverage industry"
     },
@@ -3887,7 +3891,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 172.1,
-      "radius": 0.6048,
+      "radius": 0.635,
       "daten": "Feb 22nd 2024  a year ago",
       "titelOriginal": "AI Indoor Vertical Farming"
     },
@@ -3899,7 +3903,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 164.82,
-      "radius": 0.4051,
+      "radius": 0.4254,
       "daten": "newspaper Jul 1st 2024  Aug 15th 2024  2 years ago",
       "titelOriginal": "AI Veterinary Technology"
     },
@@ -3911,7 +3915,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 21.33,
-      "radius": 0.6278,
+      "radius": 0.6592,
       "daten": "newspaper Nov 23rd 2023  Jan 24th 2025  a year ago",
       "titelOriginal": "AI Food Scanners"
     },
@@ -3923,7 +3927,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 11.81,
-      "radius": 0.409,
+      "radius": 0.4294,
       "daten": "Oct 20th 2023  a year ago",
       "titelOriginal": "AI Food Waste Reduction"
     },
@@ -3935,7 +3939,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 10.84,
-      "radius": 0.2736,
+      "radius": 0.2873,
       "daten": "newspaper Feb 11th 2024  Jan 24th 2025  a year ago",
       "titelOriginal": "KLM uses AI to reduce inflight food waste"
     },
@@ -3947,7 +3951,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 31.96,
-      "radius": 0.6051,
+      "radius": 0.6354,
       "daten": "newspaper Nov 11th 2024  Feb 25th 2025  a year ago",
       "titelOriginal": "Helping of AI for Anova Precision Oven 2.0"
     },
@@ -3959,7 +3963,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 32.75,
-      "radius": 0.4377,
+      "radius": 0.4596,
       "daten": "newspaper Jun 28th 2021  Jan 24th 2025  a year ago",
       "titelOriginal": "AI: LLENA Health Solutions Inc. tackles food deserts"
     },
@@ -3971,7 +3975,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "s",
       "winkel": 40.62,
-      "radius": 0.1705,
+      "radius": 0.179,
       "daten": "Jan 24th 2025  3 months ago",
       "titelOriginal": "AI Recipe Generation"
     },
@@ -3983,7 +3987,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 61.36,
-      "radius": 0.741,
+      "radius": 0.7781,
       "daten": "Feb 14th 2025  a year ago",
       "titelOriginal": "Immersive Dining"
     },
@@ -3995,7 +3999,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 58.71,
-      "radius": 0.5979,
+      "radius": 0.6278,
       "daten": "newspaper Jun 17th 2022  May 25th 2023  2 years ago",
       "titelOriginal": "The Future of Grocery Stores Lies with AI Technology"
     },
@@ -4007,7 +4011,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 61.31,
-      "radius": 0.3746,
+      "radius": 0.3933,
       "daten": "Jan 24th 2025  5 months ago",
       "titelOriginal": "AI Drive-thru Ordering"
     },
@@ -4019,7 +4023,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 67.82,
-      "radius": 0.2487,
+      "radius": 0.2611,
       "daten": "Feb 14th 2025  5 months ago",
       "titelOriginal": "AI in Customer Service & Interaction"
     },
@@ -4031,7 +4035,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 88.25,
-      "radius": 0.734,
+      "radius": 0.7707,
       "daten": "newspaper Nov 6th 2024  Feb 25th 2025  a year ago",
       "titelOriginal": "Food ‘Teleportation’ - AI Is Finally Making Distributed Digital Food Replication a Reality"
     },
@@ -4043,7 +4047,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 80.39,
-      "radius": 0.5678,
+      "radius": 0.5962,
       "daten": "newspaper Aug 14th 2025  Aug 22nd 2025  a year ago",
       "titelOriginal": "AI Could Help Keep Your Food Fresher"
     },
@@ -4055,7 +4059,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 83.25,
-      "radius": 0.4605,
+      "radius": 0.4835,
       "daten": "newspaper Jun 6th 2024  Jan 24th 2025  2 years ago",
       "titelOriginal": "AI connected retail solutions"
     },
@@ -4067,7 +4071,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 120.72,
-      "radius": 0.6183,
+      "radius": 0.6492,
       "daten": "newspaper Sep 13th 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "Coca-Cola Joins In On The AI Conversation"
     },
@@ -4079,7 +4083,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 107.64,
-      "radius": 0.3988,
+      "radius": 0.4187,
       "daten": "newspaper Dec 19th 2024  Jan 25th 2025  2 years ago",
       "titelOriginal": "Generative Art Cognac Bottles"
     },
@@ -4091,7 +4095,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "l",
       "winkel": 138.47,
-      "radius": 0.6087,
+      "radius": 0.6391,
       "daten": "Jan 27th 2025  a year ago",
       "titelOriginal": "AI Food Development Platforms"
     },
@@ -4103,7 +4107,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "m",
       "winkel": 144.61,
-      "radius": 0.4604,
+      "radius": 0.4834,
       "daten": "Jan 26th 2025  a year ago",
       "titelOriginal": "AI-CONIC Coffee"
     },
@@ -4115,7 +4119,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "s",
       "winkel": 139.39,
-      "radius": 0.216,
+      "radius": 0.2268,
       "daten": "newspaper Sep 22nd 2023  Jan 27th 2025  a year ago",
       "titelOriginal": "Coca-Cola launches new flavour created by AI"
     },
@@ -4127,7 +4131,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "l",
       "winkel": 160.33,
-      "radius": 0.5968,
+      "radius": 0.6266,
       "daten": "Oct 20th 2023  a year ago",
       "titelOriginal": "Robotic pollination"
     },
@@ -4139,7 +4143,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "cluster",
       "groesse": "l",
       "winkel": 174.96,
-      "radius": 0.4431,
+      "radius": 0.4653,
       "daten": "Oct 20th 2023  2 years ago",
       "titelOriginal": "AI Farm Management Systems"
     },
@@ -4151,7 +4155,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 167.5,
-      "radius": 0.2835,
+      "radius": 0.2977,
       "daten": "newspaper Aug 31st 2023  Feb 6th 2025  a year ago",
       "titelOriginal": "AI Forecasting Tools"
     },
@@ -4163,7 +4167,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 141.5,
-      "radius": 0.7798,
+      "radius": 0.8188,
       "daten": "newspaper Aug 15th 2025  Aug 22nd 2025  a year ago",
       "titelOriginal": "AI Breakthrough Make Our Food Supply Safer"
     },
@@ -4175,7 +4179,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 45.19,
-      "radius": 0.7749,
+      "radius": 0.8136,
       "daten": "newspaper Mar 20th 2025  Apr 29th 2025  a year ago",
       "titelOriginal": "AI-Powered Robot Arms"
     },
@@ -4187,7 +4191,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 17.56,
-      "radius": 0.7689,
+      "radius": 0.8073,
       "daten": "Aug 6th 2025  a year ago",
       "titelOriginal": "Wonvita Food Waste Robot"
     },
@@ -4199,7 +4203,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 167.03,
-      "radius": 0.2506,
+      "radius": 0.2631,
       "daten": "newspaper Jun 5th 2017  Feb 8th 2025  a year ago",
       "titelOriginal": "AI That’s Smarter Than a Farmer"
     },
@@ -4211,7 +4215,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 87.83,
-      "radius": 0.7793,
+      "radius": 0.8183,
       "daten": "newspaper Apr 4th 2018  Feb 25th 2025  5 months ago",
       "titelOriginal": "Teleported Sushi Has Big Implications for Digital Food"
     },
@@ -4223,7 +4227,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "m",
       "winkel": 13.21,
-      "radius": 0.5749,
+      "radius": 0.6036,
       "daten": "newspaper Aug 8th 2024  Jan 26th 2025  a year ago",
       "titelOriginal": "AI-Powered Food Waste Solutions"
     },
@@ -4235,7 +4239,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 4.44,
-      "radius": 0.6179,
+      "radius": 0.6488,
       "daten": "newspaper Sep 4th 2025  Sep 30th 2025  10 months ago",
       "titelOriginal": "Dishwasher-Loading Humanoids"
     },
@@ -4247,7 +4251,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 59.26,
-      "radius": 0.727,
+      "radius": 0.7633,
       "daten": "May 12th 2025  a year ago",
       "titelOriginal": "Food AI Learns From Work Behavior"
     },
@@ -4259,7 +4263,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "l",
       "winkel": 67.52,
-      "radius": 0.7805,
+      "radius": 0.8195,
       "daten": "May 23rd 2025  2 months ago"
     },
     {
@@ -4270,7 +4274,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 33.69,
-      "radius": 0.6129,
+      "radius": 0.6435,
       "daten": "Aug 6th 2025  a year ago",
       "titelOriginal": "iKoffy EdiBot: the First AI Portable Full-Color Food Printer"
     },
@@ -4282,7 +4286,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 40.43,
-      "radius": 0.627,
+      "radius": 0.6583,
       "daten": "newspaper Sep 27th 2025  Jan 14th 2026  7 months ago",
       "titelOriginal": "AI-Powered Cooking Apps"
     },
@@ -4294,7 +4298,7 @@ export const FOOD_AI: RadarTafel = {
       "ebene": "signal",
       "groesse": "s",
       "winkel": 55.65,
-      "radius": 0.6059,
+      "radius": 0.6362,
       "daten": "newspaper Nov 6th 2025  Nov 18th 2025  9 months ago",
       "titelOriginal": "Appetronix Closes $10M+ in Total Seed Funding to Scale Robotic Kitchens Across Non-Commercial Foodservice Markets Led by AlleyCorp and the Grote Family Fueling Fast Expansion of Automated Food Concepts"
     }

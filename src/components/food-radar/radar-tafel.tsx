@@ -22,7 +22,8 @@ const VB_H = 560
 const CX = 500
 const CY = 505
 const R = 470
-const LOCH = 30
+/** Mittelloch — im Original ein Zehntel des Außenradius. */
+const LOCH = R * 0.1
 
 /** Abgestufte Ringdeckung von außen (0) nach innen. */
 const RING_DECKUNG = [0.18, 0.14, 0.1, 0.06, 0.04]
