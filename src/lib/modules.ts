@@ -73,6 +73,17 @@ export const MODULES: IntelligenceModule[] = [
     iconColor: 'text-teal-700',
   },
   {
+    id: 'food-radar',
+    name: 'Food Radar',
+    description: 'Trendradare der Lebensmittelbranche — Entwicklungsrichtungen nach Themenfeld und zeitlicher Nähe, von Digitalisierung bis Regulatorik.',
+    icon: 'TrendingUp',
+    status: 'active',
+    adminOnly: true,
+    href: '/food-radar',
+    iconBg: 'bg-orange-100',
+    iconColor: 'text-orange-700',
+  },
+  {
     id: 'retailer',
     name: 'Retailer-Radar',
     description: 'Neue Listungen, Handelsaktivitäten, Eigenmarken und Promotion-Signale aus dem Handel.',
