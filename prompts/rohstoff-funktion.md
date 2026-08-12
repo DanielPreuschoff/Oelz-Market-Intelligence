@@ -85,7 +85,13 @@ AUSGABEFORMAT
 Für jeden Fund genau diesen Block:
 
 ## SIGNAL
-TITEL: Was der Rohstoff ermöglicht, nicht wer ihn verkauft. Ein Satz.
+TITEL: Was der Rohstoff ermöglicht, nicht wer ihn verkauft. Als Überschrift,
+  höchstens 70 Zeichen — kein Analysesatz. Die Kachel im Modul kappt bei zwei
+  Zeilen, ein längerer Titel wird also abgeschnitten.
+  Gut:    "Zitrusfaser bindet das Achtfache ihres Gewichts an Fett"
+  Zu lang: "Hochfunktionale, aus Nebenströmen upgecycelte Zitrusfasern binden das
+           Achtfache ihres Eigengewichts an Fett und ersetzen so komplexe
+           Hydrokolloid- und Emulgatorsysteme"
   Gut:     "Enzym hält süßes Hefegebäck weich ohne Deklaration"
   Schlecht: "Novonesis stellt neue Amylase vor"
 GEGENSTAND: Name des Rohstoffs, Ingredients, Verfahrens oder der Technologie

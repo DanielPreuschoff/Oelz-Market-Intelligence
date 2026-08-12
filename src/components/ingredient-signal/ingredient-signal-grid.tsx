@@ -58,7 +58,9 @@ export function IngredientSignalGrid({
             type="button"
             onClick={() => open(signal)}
             aria-label={`${signal.title} — Details öffnen`}
-            className="text-left rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            // h-full: das Raster streckt seine Zellen bereits auf gleiche Höhe,
+            // die Karte darin hörte aber dort auf, wo ihr Inhalt endete.
+            className="text-left h-full rounded-xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             <IngredientSignalCard signal={signal} isNew={isNewSignal(signal, stand)} />
           </button>

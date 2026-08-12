@@ -45,8 +45,13 @@ export function IngredientSignalCard({
         )}
       </div>
 
-      <h3 className="font-display font-bold leading-tight mb-1">{signal.title}</h3>
-      <p className="text-xs text-muted-foreground mb-4">{signal.subject_name}</p>
+      {/* Auf zwei Zeilen gekappt. Die Deep-Research-Dienste formulieren den
+          Titel als Analysesatz — im Bestand reicht er von 69 bis 171 Zeichen,
+          der Median liegt bei 115. Ungekappt bestimmt allein er die Kachelhöhe.
+          Die Kappung ist die Notbremse; die Prompts verlangen jetzt zusätzlich
+          eine Überschrift statt eines Satzes. */}
+      <h3 className="font-display font-bold leading-tight mb-1 line-clamp-2">{signal.title}</h3>
+      <p className="text-xs text-muted-foreground mb-4 line-clamp-1">{signal.subject_name}</p>
 
       <p className="text-[9px] uppercase tracking-[0.14em] text-oelz-orange-text/85 font-semibold mb-1.5">
         Einschätzung der Redaktion
