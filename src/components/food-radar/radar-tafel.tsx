@@ -50,6 +50,13 @@ function kuerzen(titel: string) {
   return titel.length > 34 ? titel.slice(0, 32).trimEnd() + '…' : titel
 }
 
+/** Metrik der Beschriftungskästchen — zentral, damit Kollisionsprüfung und
+ *  Zeichnung dieselben Maße verwenden. */
+const LABEL = { schrift: 10.5, hoehe: 17, jeZeichen: 5.9, polster: 10 }
+function labelBreite(titel: string) {
+  return kuerzen(titel).length * LABEL.jeZeichen + LABEL.polster
+}
+
 export function RadarTafelSvg({
   tafel,
   auswahl,
@@ -94,12 +101,12 @@ export function RadarTafelSvg({
       const { x, y } = polar(e.winkel, e.radius)
       const r = GROESSE_RADIUS[e.groesse]
       const rechts = x < CX + R * 0.5
-      const breite = kuerzen(e.titel).length * 6.4 + 12
+      const breite = labelBreite(e.titel)
       const kasten = {
         x1: rechts ? x + r + 4 : x - r - 4 - breite,
-        y1: y - 10,
+        y1: y - LABEL.hoehe / 2 - 1,
         x2: (rechts ? x + r + 4 : x - r - 4 - breite) + breite,
-        y2: y + 10,
+        y2: y + LABEL.hoehe / 2 + 1,
       }
       const stoert = belegt.some(
         (b) => kasten.x1 < b.x2 && kasten.x2 > b.x1 && kasten.y1 < b.y2 && kasten.y2 > b.y1
@@ -182,7 +189,7 @@ export function RadarTafelSvg({
         const zeigen = aktiv || hover === e.id || beschriftet.has(e.id)
         const rechts = x < CX + R * 0.5
         const kurz = kuerzen(e.titel)
-        const breite = kurz.length * 6.4 + 12
+        const breite = labelBreite(e.titel)
 
         return (
           <g
@@ -197,10 +204,13 @@ export function RadarTafelSvg({
           >
             {aktiv && (
               <>
-                <circle cx={x} cy={y} r={r + 6} fill="none" stroke="white" strokeWidth={6} />
-                <circle cx={x} cy={y} r={r + 6} fill="none" stroke="var(--oelz-braun)" strokeWidth={2.5} />
+                <circle cx={x} cy={y} r={r + 5} fill="none" stroke="white" strokeWidth={5} />
+                <circle cx={x} cy={y} r={r + 5} fill="none" stroke="var(--oelz-braun)" strokeWidth={2} />
               </>
             )}
+            {/* Unsichtbare Klickfläche: die Punkte selbst sind in
+                Original-Proportion zu klein zum Treffen. */}
+            <circle cx={x} cy={y} r={r + 8} fill="transparent" stroke="none" />
             <circle
               cx={x}
               cy={y}
@@ -209,25 +219,26 @@ export function RadarTafelSvg({
               fillOpacity={farbe.opacity}
               stroke={farbe.stroke}
               strokeOpacity={farbe.strokeOpacity}
-              strokeWidth={1.2}
+              strokeWidth={1}
+              pointerEvents="none"
             />
             {zeigen && (
               <g pointerEvents="none">
                 <rect
                   x={rechts ? x + r + 4 : x - r - 4 - breite}
-                  y={y - 9.5}
+                  y={y - LABEL.hoehe / 2}
                   width={breite}
-                  height={19}
-                  rx={4}
+                  height={LABEL.hoehe}
+                  rx={3.5}
                   fill="white"
                   opacity={0.95}
                   stroke={aktiv ? 'var(--oelz-braun)' : 'transparent'}
                   strokeWidth={1.5}
                 />
                 <text
-                  x={rechts ? x + r + 10 : x - r - 10}
-                  y={y + 4}
-                  fontSize={11.5}
+                  x={rechts ? x + r + 4 + LABEL.polster / 2 : x - r - 4 - LABEL.polster / 2}
+                  y={y + 3.5}
+                  fontSize={LABEL.schrift}
                   fill="var(--oelz-braun)"
                   textAnchor={rechts ? 'start' : 'end'}
                 >

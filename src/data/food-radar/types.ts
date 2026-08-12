@@ -31,6 +31,8 @@ export interface RadarEintrag {
   radius: number
   /** Anlage- und Änderungsdatum, wie im Original angezeigt. */
   daten?: string
+  /** Im Originaltext genannte Belege — aus der Beschreibung gelöst. */
+  quellen?: { name: string; url?: string }[]
   /** Der englische Originaltitel — für die Nachvollziehbarkeit der Übersetzung. */
   titelOriginal?: string
 }
@@ -86,8 +88,12 @@ export const EBENEN_FARBE: Record<
   signal: { fill: 'var(--background)', opacity: 0.85, stroke: 'var(--oelz-braun)', strokeOpacity: 0.5 },
 }
 
-/** Punktradien im Koordinatensystem der Tafel (viewBox 1000 breit). */
-export const GROESSE_RADIUS: Record<RadarGroesse, number> = { s: 5, m: 7.5, l: 10 }
+/**
+ * Original-Proportion: foodRegios Punkte messen 0,6–1,5 % des Tafelradius.
+ * Die Klickfläche ist davon entkoppelt — die Tafel legt einen unsichtbaren,
+ * größeren Kreis über jeden Punkt.
+ */
+export const GROESSE_RADIUS: Record<RadarGroesse, number> = { s: 3, m: 4.5, l: 6 }
 
 /** Welcher Ring zu einem Radius gehört. */
 export function ringFuer(tafel: RadarTafel, radius: number): RadarRing {

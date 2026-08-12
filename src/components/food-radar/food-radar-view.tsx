@@ -15,6 +15,57 @@ import {
 const EBENEN: RadarEbene[] = ['trend', 'cluster', 'signal']
 
 /**
+ * Ruhezustand der Detailspalte: die Trends der Tafel, absteigend nach Größe —
+ * also nach Zahl der dahinterliegenden Signale. Ein zweiter Einstieg neben dem
+ * Radar, und neue Leser sehen zuerst das Gewichtigste.
+ */
+function TrendUebersicht({
+  tafel,
+  onAuswahl,
+}: {
+  tafel: RadarTafel
+  onAuswahl: (id: string) => void
+}) {
+  const groessenRang = { l: 0, m: 1, s: 2 }
+  const trends = tafel.eintraege
+    .filter((e) => e.ebene === 'trend')
+    .sort((a, b) => groessenRang[a.groesse] - groessenRang[b.groesse] || a.titel.localeCompare(b.titel, 'de'))
+
+  return (
+    <div className="p-5 space-y-3 overflow-y-auto min-h-0 flex-1">
+      <p className="text-[10px] uppercase tracking-[0.14em] font-bold text-oelz-orange-text">
+        Trends dieser Tafel
+      </p>
+      <div className="space-y-1">
+        {trends.map((e) => (
+          <button
+            key={e.id}
+            type="button"
+            onClick={() => onAuswahl(e.id)}
+            className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-secondary/60 transition-colors flex items-start gap-2"
+          >
+            <span
+              className="w-2.5 h-2.5 rounded-full shrink-0 mt-1"
+              style={{ backgroundColor: 'var(--oelz-orange)' }}
+            />
+            <span className="min-w-0">
+              <span className="text-sm leading-tight block">{e.titel}</span>
+              <span className="text-[10px] text-muted-foreground">
+                {e.sektor} · {ringFuer(tafel, e.radius).name}
+              </span>
+            </span>
+          </button>
+        ))}
+      </div>
+      <p className="text-[11px] text-muted-foreground leading-relaxed pt-2 border-t border-border">
+        Die Ringe zeigen die zeitliche Nähe: innen wirkt es heute, außen in fünf bis
+        zehn Jahren. Punkt anklicken für das Detail.
+      </p>
+    </div>
+  )
+}
+
+/**
  * Das Modul: Umschalter zwischen den Tafeln, Radar links, Detail rechts.
  *
  * Die Detailleiste schiebt sich ein und das Radar rückt zusammen — so macht es
@@ -125,16 +176,21 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
         )}
       </div>
 
-      {/* Breite Bildschirme: Radar, daneben das Detail */}
+      {/* Breite Bildschirme: Radar, daneben die fest reservierte Detailspalte.
+          Sie ist IMMER da — dadurch ändert das Radar beim Klick nie seine
+          Größe. Ohne Auswahl zeigt die Spalte die Trends der Tafel als
+          zweiten Einstieg. */}
       <div className="hidden md:flex gap-4 items-start">
         <div className="flex-1 min-w-0">
           <RadarTafelSvg tafel={gefiltert} auswahl={auswahl} onAuswahl={setAuswahl} />
         </div>
-        {eintrag && (
-          <aside className="w-[360px] shrink-0 bg-card border border-border rounded-xl shadow-lg max-h-[78vh] overflow-hidden flex flex-col">
+        <aside className="w-[340px] shrink-0 bg-card border border-border rounded-xl shadow-sm max-h-[78vh] overflow-hidden flex flex-col">
+          {eintrag ? (
             <DetailLeiste eintrag={eintrag} tafel={tafel} onClose={() => setAuswahl(null)} />
-          </aside>
-        )}
+          ) : (
+            <TrendUebersicht tafel={tafel} onAuswahl={setAuswahl} />
+          )}
+        </aside>
       </div>
 
       {/* Schmale Bildschirme: Liste nach Sektor */}

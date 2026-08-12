@@ -79,6 +79,36 @@ export function DetailLeiste({
           </p>
         </div>
 
+        {/* Aus dem Fließtext gelöste Belege des Originals — klickbar, wo eine
+            URL dasteht. Vorher standen sie als nackte Domainnamen mitten im
+            Text und zeigten ins Leere. */}
+        {eintrag.quellen && eintrag.quellen.length > 0 && (
+          <div className="pt-2">
+            <p className="text-[10px] uppercase tracking-[0.14em] font-bold text-muted-foreground mb-1">
+              Im Original genannte Quellen
+            </p>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              {eintrag.quellen.map((q, i) => (
+                <span key={q.name}>
+                  {i > 0 && ' · '}
+                  {q.url ? (
+                    <a
+                      href={q.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline hover:text-foreground"
+                    >
+                      {q.name}
+                    </a>
+                  ) : (
+                    q.name
+                  )}
+                </span>
+              ))}
+            </p>
+          </div>
+        )}
+
         <div className="pt-3 border-t border-border space-y-1">
           {eintrag.daten && (
             <p className="text-[11px] text-muted-foreground">{eintrag.daten}</p>
