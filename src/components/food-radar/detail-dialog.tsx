@@ -1,6 +1,7 @@
 'use client'
 
 import { DialogContent, DialogTitle } from '@/components/ui/dialog'
+import { Motiv } from './motiv'
 import { EBENEN_NAME, ringFuer, type RadarEintrag, type RadarTafel } from '@/data/food-radar/types'
 
 /**
@@ -32,16 +33,8 @@ export function DetailDialog({
       className="sm:max-w-2xl max-h-[86vh] overflow-y-auto p-0 gap-0"
       showCloseButton
     >
-      {/* Bild-Platzhalter — foodRegios Illustrationen gehören ihnen; Ölz pflegt
-          eigene später nach. */}
-      <div className="relative h-32 shrink-0 bg-gradient-to-br from-oelz-orange/25 to-oelz-orange/5 flex items-center justify-center">
-        <span className="font-display text-5xl font-bold text-oelz-orange/30" aria-hidden="true">
-          {eintrag.titel.slice(0, 1)}
-        </span>
-        <span className="absolute bottom-2 left-4 text-[10px] text-muted-foreground/70">
-          Bild folgt
-        </span>
-      </div>
+      {/* Gezeichnetes Motiv statt eines erzeugten Bildes — siehe motiv.tsx. */}
+      <Motiv id={eintrag.id} sektor={eintrag.sektor} ebene={eintrag.ebene} />
 
       <div className="p-6 space-y-4">
         <DialogTitle className="font-display text-xl font-bold leading-snug pr-8">
