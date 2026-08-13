@@ -1,63 +1,52 @@
 'use client'
 
-import { X } from 'lucide-react'
+import { DialogContent, DialogTitle } from '@/components/ui/dialog'
 import { EBENEN_NAME, ringFuer, type RadarEintrag, type RadarTafel } from '@/data/food-radar/types'
 
 /**
- * Detailleiste rechts vom Radar — folgt dem Aufbau des Originals:
- * Bild, Titel, Typplakette, Sektor und Ring, Beschreibungstext, Datumsangaben.
+ * Detailansicht als Dialogfenster — dasselbe Muster wie im Rohstoff- und
+ * Produkt-Radar. Zuvor war es eine fest reservierte Spalte neben der Tafel;
+ * die hat dem Radar dauerhaft Breite genommen, ohne im Ruhezustand genug zu
+ * bieten.
  *
- * Zwei Ergänzungen gegenüber foodRegio:
- * - **Relevanz für Ölz** als eigener Abschnitt. Das ist der Grund, warum ein
- *   eigenes Modul überhaupt Sinn ergibt statt einer Einbettung: kein frei
- *   verfügbares Food-Trend-Radar sagt, was ein Fund für einen
- *   Feinbackwarenhersteller bedeutet.
- * - **Quellenangabe** je Eintrag, solange die Inhalte foodRegios sind.
+ * Das Scrollen übernimmt `DialogContent` selbst (`max-h` plus `overflow-y-auto`),
+ * nicht ein innerer Kasten — genau daran war die Leiste zuvor gescheitert.
  *
- * Bilder fehlen bewusst — foodRegio nutzt KI-generierte Illustrationen, die
- * ihnen gehören. Bis Ölz eigene hat, steht hier ein Platzhalter.
+ * Zwei Abschnitte, die foodRegio nicht hat:
+ * - **Relevanz für Ölz** — der Grund, warum ein eigenes Modul mehr ist als eine
+ *   Einbettung des Originals.
+ * - **Im Original genannte Quellen** — beim Datenaufbau aus dem Fließtext
+ *   gelöst, wo sie vorher als nackte Domainnamen mitten im Satz standen.
  */
-export function DetailLeiste({
+export function DetailDialog({
   eintrag,
   tafel,
-  onClose,
 }: {
   eintrag: RadarEintrag
   tafel: RadarTafel
-  onClose: () => void
 }) {
   const ring = ringFuer(tafel, eintrag.radius)
 
   return (
-    /* `flex-1 min-h-0` statt `h-full`: Die Leiste hängt in einem Behälter, der
-       nur eine Maximalhöhe hat. `height: 100%` löst sich gegen eine solche
-       Elternhöhe nicht auf — der Inhalt wuchs deshalb über den Rahmen hinaus,
-       statt zu scrollen. Auf schmalen Bildschirmen ist der Behälter keine
-       Flexbox; dort greifen beide Angaben nicht und der Text fließt einfach,
-       was dort auch richtig ist. */
-    <div className="flex flex-col min-h-0 flex-1">
+    <DialogContent
+      className="sm:max-w-2xl max-h-[86vh] overflow-y-auto p-0 gap-0"
+      showCloseButton
+    >
+      {/* Bild-Platzhalter — foodRegios Illustrationen gehören ihnen; Ölz pflegt
+          eigene später nach. */}
       <div className="relative h-32 shrink-0 bg-gradient-to-br from-oelz-orange/25 to-oelz-orange/5 flex items-center justify-center">
         <span className="font-display text-5xl font-bold text-oelz-orange/30" aria-hidden="true">
           {eintrag.titel.slice(0, 1)}
         </span>
-        <span className="absolute bottom-2 right-3 text-[10px] text-muted-foreground/70">
+        <span className="absolute bottom-2 left-4 text-[10px] text-muted-foreground/70">
           Bild folgt
         </span>
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Detail schließen"
-          className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/85 hover:bg-white text-oelz-braun flex items-center justify-center transition-colors"
-        >
-          <X className="w-4 h-4" />
-        </button>
       </div>
 
-      {/* min-h-0 ist Pflicht: In einer Spalten-Flexbox schrumpft ein Kind sonst
-          nicht unter seine Inhaltshöhe, und overflow-y-auto bleibt wirkungslos —
-          der Text war dadurch abgeschnitten und nicht scrollbar. */}
-      <div className="p-5 space-y-4 overflow-y-auto min-h-0 flex-1">
-        <h2 className="font-display text-lg font-bold leading-snug">{eintrag.titel}</h2>
+      <div className="p-6 space-y-4">
+        <DialogTitle className="font-display text-xl font-bold leading-snug pr-8">
+          {eintrag.titel}
+        </DialogTitle>
 
         <div className="flex items-center gap-2 flex-wrap text-xs">
           <span className="font-bold px-2.5 py-1 rounded-full bg-oelz-orange text-oelz-on-orange">
@@ -79,11 +68,8 @@ export function DetailLeiste({
           </p>
         </div>
 
-        {/* Aus dem Fließtext gelöste Belege des Originals — klickbar, wo eine
-            URL dasteht. Vorher standen sie als nackte Domainnamen mitten im
-            Text und zeigten ins Leere. */}
         {eintrag.quellen && eintrag.quellen.length > 0 && (
-          <div className="pt-2">
+          <div>
             <p className="text-[10px] uppercase tracking-[0.14em] font-bold text-muted-foreground mb-1">
               Im Original genannte Quellen
             </p>
@@ -110,9 +96,7 @@ export function DetailLeiste({
         )}
 
         <div className="pt-3 border-t border-border space-y-1">
-          {eintrag.daten && (
-            <p className="text-[11px] text-muted-foreground">{eintrag.daten}</p>
-          )}
+          {eintrag.daten && <p className="text-[11px] text-muted-foreground">{eintrag.daten}</p>}
           {eintrag.titelOriginal && eintrag.titelOriginal !== eintrag.titel && (
             <p className="text-[11px] text-muted-foreground/80">
               Original: {eintrag.titelOriginal}
@@ -124,6 +108,6 @@ export function DetailLeiste({
           </p>
         </div>
       </div>
-    </div>
+    </DialogContent>
   )
 }

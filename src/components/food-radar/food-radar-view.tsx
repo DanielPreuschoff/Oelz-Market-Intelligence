@@ -2,8 +2,9 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { cn } from '@/lib/utils'
+import { Dialog } from '@/components/ui/dialog'
 import { RadarTafelSvg } from './radar-tafel'
-import { DetailLeiste } from './detail-leiste'
+import { DetailDialog } from './detail-dialog'
 import {
   EBENEN_FARBE,
   EBENEN_NAME,
@@ -15,66 +16,18 @@ import {
 const EBENEN: RadarEbene[] = ['trend', 'cluster', 'signal']
 
 /**
- * Ruhezustand der Detailspalte: die Trends der Tafel, absteigend nach Größe —
- * also nach Zahl der dahinterliegenden Signale. Ein zweiter Einstieg neben dem
- * Radar, und neue Leser sehen zuerst das Gewichtigste.
- */
-function TrendUebersicht({
-  tafel,
-  onAuswahl,
-}: {
-  tafel: RadarTafel
-  onAuswahl: (id: string) => void
-}) {
-  const groessenRang = { l: 0, m: 1, s: 2 }
-  const trends = tafel.eintraege
-    .filter((e) => e.ebene === 'trend')
-    .sort((a, b) => groessenRang[a.groesse] - groessenRang[b.groesse] || a.titel.localeCompare(b.titel, 'de'))
-
-  return (
-    <div className="p-5 space-y-3 overflow-y-auto min-h-0 flex-1">
-      <p className="text-[10px] uppercase tracking-[0.14em] font-bold text-oelz-orange-text">
-        Trends dieser Tafel
-      </p>
-      <div className="space-y-1">
-        {trends.map((e) => (
-          <button
-            key={e.id}
-            type="button"
-            onClick={() => onAuswahl(e.id)}
-            className="w-full text-left px-2.5 py-1.5 rounded-md hover:bg-secondary/60 transition-colors flex items-start gap-2"
-          >
-            <span
-              className="w-2.5 h-2.5 rounded-full shrink-0 mt-1"
-              style={{ backgroundColor: 'var(--oelz-orange)' }}
-            />
-            <span className="min-w-0">
-              <span className="text-sm leading-tight block">{e.titel}</span>
-              <span className="text-[10px] text-muted-foreground">
-                {e.sektor} · {ringFuer(tafel, e.radius).name}
-              </span>
-            </span>
-          </button>
-        ))}
-      </div>
-      <p className="text-[11px] text-muted-foreground leading-relaxed pt-2 border-t border-border">
-        Die Ringe zeigen die zeitliche Nähe: innen wirkt es heute, außen in fünf bis
-        zehn Jahren. Punkt anklicken für das Detail.
-      </p>
-    </div>
-  )
-}
-
-/**
- * Das Modul: Umschalter zwischen den Tafeln, Radar links, Detail rechts.
+ * Das Modul: Umschalter zwischen den Tafeln, Radar über die volle Breite,
+ * Detail als Dialogfenster.
  *
- * Die Detailleiste schiebt sich ein und das Radar rückt zusammen — so macht es
- * foodRegio, und es liest sich besser als ein Fenster über der Tafel, weil man
- * die Lage des gewählten Punktes im Blick behält.
+ * Zwischenzeitlich stand rechts eine fest reservierte Detailspalte. Sie hat das
+ * Springen beim Anklicken beseitigt, dem Radar dafür aber dauerhaft ein Drittel
+ * der Breite genommen — der schlechtere Tausch. Der Dialog löst beides: das
+ * Radar behält seine Breite, und beim Öffnen verschiebt sich nichts, weil das
+ * Fenster darüber liegt.
  *
- * Auf schmalen Bildschirmen wird die Halbscheibe durch eine nach Sektor
- * gruppierte Liste ersetzt. Gedrehte Sektorbeschriftungen sind unter 768 px
- * unlesbar, und Zoom-und-Schieben ist dort keine Bedienung.
+ * Auf schmalen Bildschirmen ersetzt eine nach Sektor gruppierte Liste die
+ * Halbscheibe; der Klick öffnet denselben Dialog. Gedrehte Sektorbeschriftungen
+ * sind unter 768 px unlesbar, und Zoom-und-Schieben ist dort keine Bedienung.
  */
 export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
   const [tafelKey, setTafelKey] = useState(tafeln[0].key)
@@ -93,8 +46,8 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
 
   const eintrag = tafel.eintraege.find((e) => e.id === auswahl) ?? null
 
-  // Beim ersten Aufbau die Adresse auswerten, damit ein geteilter Link sein
-  // Signal öffnet — dasselbe Muster wie im Rohstoff-Radar.
+  // Adresse auswerten, damit ein geteilter Link seinen Eintrag öffnet —
+  // dasselbe Muster wie im Rohstoff-Radar.
   useEffect(() => {
     const p = new URLSearchParams(window.location.search)
     const t = p.get('tafel')
@@ -176,24 +129,20 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
         )}
       </div>
 
-      {/* Breite Bildschirme: Radar, daneben die fest reservierte Detailspalte.
-          Sie ist IMMER da — dadurch ändert das Radar beim Klick nie seine
-          Größe. Ohne Auswahl zeigt die Spalte die Trends der Tafel als
-          zweiten Einstieg. */}
-      <div className="hidden md:flex gap-4 items-start">
-        <div className="flex-1 min-w-0">
-          <RadarTafelSvg tafel={gefiltert} auswahl={auswahl} onAuswahl={setAuswahl} />
-        </div>
-        <aside className="w-[340px] shrink-0 bg-card border border-border rounded-xl shadow-sm max-h-[78vh] overflow-hidden flex flex-col">
-          {eintrag ? (
-            <DetailLeiste eintrag={eintrag} tafel={tafel} onClose={() => setAuswahl(null)} />
-          ) : (
-            <TrendUebersicht tafel={tafel} onAuswahl={setAuswahl} />
-          )}
-        </aside>
+      {/* Breite Bildschirme: das Radar allein, über die volle Breite.
+          Die Höhe ist auf das Fenster begrenzt — die Halbscheibe ist fast
+          doppelt so breit wie hoch, ohne Deckel läge die Zeitachse unterhalb
+          des sichtbaren Bereichs und man müsste zum Ablesen scrollen. Der
+          Deckel wirkt über die Breite, damit das Seitenverhältnis stimmt und
+          keine leeren Ränder entstehen. */}
+      <div
+        className="hidden md:block mx-auto w-full"
+        style={{ maxWidth: 'calc((100vh - 15rem) * 1.786)' }}
+      >
+        <RadarTafelSvg tafel={gefiltert} auswahl={auswahl} onAuswahl={setAuswahl} />
       </div>
 
-      {/* Schmale Bildschirme: Liste nach Sektor */}
+      {/* Schmale Bildschirme: Liste nach Sektor, Klick öffnet denselben Dialog */}
       <div className="md:hidden space-y-5">
         {tafel.sektoren.map((s) => {
           const im = gefiltert.eintraege.filter((e) => e.sektor === s)
@@ -205,40 +154,35 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
               </h3>
               <div className="space-y-1.5">
                 {im.map((e) => (
-                  <div key={e.id}>
-                    <button
-                      type="button"
-                      onClick={() => setAuswahl(auswahl === e.id ? null : e.id)}
-                      className={cn(
-                        'w-full text-left border rounded-lg px-3 py-2 bg-card flex items-center gap-2.5 transition-colors',
-                        auswahl === e.id ? 'border-oelz-braun' : 'border-border'
-                      )}
-                    >
-                      <span
-                        className="w-3 h-3 rounded-full shrink-0"
-                        style={{
-                          backgroundColor: EBENEN_FARBE[e.ebene].fill,
-                          opacity: EBENEN_FARBE[e.ebene].opacity,
-                          border: `1.5px solid ${EBENEN_FARBE[e.ebene].stroke}`,
-                        }}
-                      />
-                      <span className="text-sm flex-1 leading-tight">{e.titel}</span>
-                      <span className="text-[10px] text-muted-foreground shrink-0">
-                        {ringFuer(tafel, e.radius).name}
-                      </span>
-                    </button>
-                    {auswahl === e.id && (
-                      <div className="mt-2 border border-border rounded-xl bg-card overflow-hidden">
-                        <DetailLeiste eintrag={e} tafel={tafel} onClose={() => setAuswahl(null)} />
-                      </div>
-                    )}
-                  </div>
+                  <button
+                    key={e.id}
+                    type="button"
+                    onClick={() => setAuswahl(e.id)}
+                    className="w-full text-left border border-border rounded-lg px-3 py-2 bg-card flex items-center gap-2.5"
+                  >
+                    <span
+                      className="w-3 h-3 rounded-full shrink-0"
+                      style={{
+                        backgroundColor: EBENEN_FARBE[e.ebene].fill,
+                        opacity: EBENEN_FARBE[e.ebene].opacity,
+                        border: `1.5px solid ${EBENEN_FARBE[e.ebene].stroke}`,
+                      }}
+                    />
+                    <span className="text-sm flex-1 leading-tight">{e.titel}</span>
+                    <span className="text-[10px] text-muted-foreground shrink-0">
+                      {ringFuer(tafel, e.radius).name}
+                    </span>
+                  </button>
                 ))}
               </div>
             </section>
           )
         })}
       </div>
+
+      <Dialog open={!!eintrag} onOpenChange={(offen) => !offen && setAuswahl(null)}>
+        {eintrag && <DetailDialog eintrag={eintrag} tafel={tafel} />}
+      </Dialog>
     </div>
   )
 }
