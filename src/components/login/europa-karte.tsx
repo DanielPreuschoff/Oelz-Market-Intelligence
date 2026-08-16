@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
-import { KARTE_H, KARTE_W, LAND_PFAD, ORTE, type OrtTier } from './europa-karte-daten'
+import { LAND_PFAD, ORTE, type OrtTier } from './europa-karte-daten'
 
 /**
  * Die Europakarte der Anmeldeseite: was das Radar beobachtet.
@@ -23,9 +23,24 @@ import { KARTE_H, KARTE_W, LAND_PFAD, ORTE, type OrtTier } from './europa-karte-
  *
  * Bewusst keine Beschriftung: Die Karte soll gelesen werden, nicht studiert.
  * Ein `<title>` je Punkt beantwortet dem Neugierigen die Frage beim Überfahren.
+ *
+ * Bildausschnitt: Das SVG füllt seinen Behälter exakt (100 % × 100 %), und
+ * `preserveAspectRatio="xMidYMid slice"` — das SVG-Gegenstück zu
+ * `object-fit: cover` — sorgt dafür, dass AUSSCHNITT bei jedem
+ * Seitenverhältnis vollständig und zentriert sichtbar ist; ist der Behälter
+ * breiter, kommt links und rechts symmetrisch mehr Karte dazu, ist er höher,
+ * oben und unten. Weil die Daten weit über den Ausschnitt hinausreichen
+ * (Island bis Anatolien, Nordafrika), erscheint dabei nie eine Schnittkante.
+ * Ein früherer Ansatz (überdimensionierter Kasten mit negativen vh-Abständen)
+ * hing an der SVG-Grössenlogik des Browsers und lag in Safari falsch —
+ * hier gibt es nichts mehr zu raten.
+ *
+ * AUSSCHNITT ist so gewählt, dass Dornbirn bei ≈ 52 % Breite / 48 % Höhe
+ * sitzt und Lissabon, Athen, Kopenhagen und Nordengland mit Luft drin sind.
  */
 
-const RADIUS: Record<OrtTier, number> = { wir: 10, high: 10, medium: 8, low: 6.5 }
+const AUSSCHNITT = { x: 165, y: 297, w: 640, h: 640 }
+const RADIUS: Record<OrtTier, number> = { wir: 11, high: 11, medium: 9, low: 7 }
 const ZYKLUS = 16 // Sekunden
 
 export function EuropaKarte({ className }: { className?: string }) {
@@ -46,8 +61,9 @@ export function EuropaKarte({ className }: { className?: string }) {
 
   return (
     <svg
-      viewBox={`0 0 ${KARTE_W} ${KARTE_H}`}
-      className={cn('block', className)}
+      viewBox={`${AUSSCHNITT.x} ${AUSSCHNITT.y} ${AUSSCHNITT.w} ${AUSSCHNITT.h}`}
+      preserveAspectRatio="xMidYMid slice"
+      className={cn('block h-full w-full', className)}
       aria-hidden="true"
       focusable="false"
     >

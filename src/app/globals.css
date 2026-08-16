@@ -3,6 +3,14 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+/* Geteilter Schirm der Anmeldeseite: erst ab 1024 px UND im Querformat.
+   Ein hochkantes Fenster (Tablet aufrecht) bekäme sonst eine schmale, hohe
+   orange Spalte, in der die Europakarte seitlich beschnitten würde. */
+@custom-variant split {
+  @media (min-width: 64rem) and (orientation: landscape) {
+    @slot;
+  }
+}
 
 @theme inline {
   --color-background: var(--background);

@@ -75,12 +75,14 @@ const proj = geoAzimuthalEqualArea()
     ],
     AUSSCHNITT
   )
-  // Zuschnitt auf das, was bei -67 vh / 192 vh (siehe login/page.tsx) je
-  // erreichbar ist, mit 100 Einheiten Reserve: Sahara und Arktis fallen weg,
-  // das spart rund ein Drittel der Pfadlänge ohne sichtbaren Unterschied.
+  // Zuschnitt: Die Seite zeigt den Kern (AUSSCHNITT in europa-karte.tsx,
+  // 165/297 … 805/937) und bei anderen Seitenverhältnissen symmetrisch mehr
+  // davon. Alles ausserhalb dieses Rechtecks plus Reserve ist nie sichtbar —
+  // Sahara und Arktis fallen weg, das spart rund die Hälfte der Pfadlänge.
+  // Links reicht 100, weil westlich davon nur offener Atlantik liegt.
   .clipExtent([
-    [100, 250],
-    [W + 60, 950],
+    [100, 230],
+    [W + 60, 990],
   ])
 
 // eine Nachkommastelle reicht: 1 Einheit ≈ 1 px, die Fläche liegt bei 16 % Deckkraft
