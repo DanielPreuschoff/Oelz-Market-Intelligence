@@ -42,10 +42,10 @@ export default function LoginPage() {
       <section className="relative lg:overflow-hidden lg:min-h-screen">
         <div className="hidden lg:block absolute inset-0 animate-in fade-in duration-300 fill-mode-both motion-reduce:animate-none">
           <Wellenkante>
-            <EuropaKarte
-              className="absolute left-[-42vh] h-[192vh] w-auto max-w-none"
-              style={{ top: '-67vh' }}
-            />
+            {/* Breite UND Höhe explizit: Safari leitet die Breite eines
+                SVG nicht aus dem Seitenverhältnis ab und würde den Kasten
+                stauchen — dann ragen seine Kanten ins Bild. */}
+            <EuropaKarte className="absolute top-[-67vh] left-[-42vh] h-[192vh] w-[192vh] max-w-none" />
           </Wellenkante>
         </div>
 

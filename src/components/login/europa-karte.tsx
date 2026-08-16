@@ -28,13 +28,7 @@ import { KARTE_H, KARTE_W, LAND_PFAD, ORTE, type OrtTier } from './europa-karte-
 const RADIUS: Record<OrtTier, number> = { wir: 10, high: 10, medium: 8, low: 6.5 }
 const ZYKLUS = 16 // Sekunden
 
-export function EuropaKarte({
-  className,
-  style,
-}: {
-  className?: string
-  style?: React.CSSProperties
-}) {
+export function EuropaKarte({ className }: { className?: string }) {
   const [still, setStill] = useState(false)
 
   useEffect(() => {
@@ -54,7 +48,6 @@ export function EuropaKarte({
     <svg
       viewBox={`0 0 ${KARTE_W} ${KARTE_H}`}
       className={cn('block', className)}
-      style={style}
       aria-hidden="true"
       focusable="false"
     >
