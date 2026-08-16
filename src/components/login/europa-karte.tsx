@@ -17,9 +17,13 @@ import { LAND_PFAD, ORTE, type OrtTier } from './europa-karte-daten'
  * Reihenfolge ist gestreut (Faktor 8, teilerfremd zu 21), damit der Puls über
  * die Karte wandert statt zu fegen, und nie mehr als etwa drei Ringe zugleich
  * sichtbar sind. Der Ring ist eine Geste, kein Zustand: Er verschwindet, sobald
- * ein Eingabefeld den Fokus hat — dann tippt jemand, dann darf nichts blinken —,
+ * jemand ein Eingabefeld anklickt oder darin tippt — dann darf nichts blinken —,
  * unter 1024 px (dort ist die Karte ohnehin ausgeblendet) und bei
- * `prefers-reduced-motion`.
+ * `prefers-reduced-motion`. Der Autofokus auf dem E-Mail-Feld beim Laden zählt
+ * nicht: Er passiert vor dem Einhängen der Zuhörer, und beim Laden soll der
+ * Puls ja gerade zu sehen sein. Deshalb reagiert der Stopp auch auf `input`,
+ * nicht nur auf `focusin` — wer im vorfokussierten Feld lostippt, bekommt
+ * ebenfalls Ruhe.
  *
  * Bewusst keine Beschriftung: Die Karte soll gelesen werden, nicht studiert.
  * Ein `<title>` je Punkt beantwortet dem Neugierigen die Frage beim Überfahren.
@@ -49,12 +53,14 @@ export function EuropaKarte({ className }: { className?: string }) {
   useEffect(() => {
     const istFeld = (t: EventTarget | null) =>
       t instanceof HTMLElement && t.matches('input, textarea, select')
-    const rein = (e: FocusEvent) => istFeld(e.target) && setStill(true)
-    const raus = (e: FocusEvent) => istFeld(e.target) && setStill(false)
+    const rein = (e: Event) => istFeld(e.target) && setStill(true)
+    const raus = (e: Event) => istFeld(e.target) && setStill(false)
     document.addEventListener('focusin', rein)
+    document.addEventListener('input', rein)
     document.addEventListener('focusout', raus)
     return () => {
       document.removeEventListener('focusin', rein)
+      document.removeEventListener('input', rein)
       document.removeEventListener('focusout', raus)
     }
   }, [])

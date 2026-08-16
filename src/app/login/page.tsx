@@ -55,7 +55,9 @@ export default function LoginPage() {
 
         <div className="absolute inset-0 pointer-events-none">
           <div className="hidden split:flex flex-col pt-[8vh] pl-[8%] animate-in fade-in slide-in-from-left-2 duration-300 fill-mode-both motion-reduce:animate-none">
-            <Logo breite={230} />
+            {/* Grösse an der Fensterhöhe: auf flachen Schirmen (720 px) rückt
+                der Logoblock sonst in die britischen Standorte */}
+            <Logo breite={230} className="w-[clamp(150px,25vh,230px)] h-auto" />
             <Werkzeugname className="mt-5" />
           </div>
           <div className="split:hidden flex h-[200px] items-center justify-center [@media(max-height:500px)]:hidden">
@@ -81,14 +83,22 @@ export default function LoginPage() {
 }
 
 /** Logo aus dem CD-Manual (S. 5, 600 dpi, freigestellt) — 900 px breit, trägt auch Retina. */
-function Logo({ breite, priority = true }: { breite: number; priority?: boolean }) {
+function Logo({
+  breite,
+  className,
+  priority = true,
+}: {
+  breite: number
+  className?: string
+  priority?: boolean
+}) {
   return (
     <Image
       src="/oelz-logo-hd.png"
       alt="Rudolf Ölz Meisterbäcker"
       width={breite}
       height={Math.round(breite * (714 / 900))}
-      className="object-contain drop-shadow-[0_2px_6px_rgba(90,58,41,0.18)]"
+      className={`object-contain drop-shadow-[0_2px_6px_rgba(90,58,41,0.18)] ${className ?? ''}`}
       priority={priority}
     />
   )
