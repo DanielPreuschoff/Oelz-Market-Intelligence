@@ -1,121 +1,107 @@
-'use client'
-
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Image from 'next/image'
-import { createClient } from '@/lib/supabase/client'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { OelzWave } from '@/components/nav/oelz-wave'
+import { EuropaKarte } from '@/components/login/europa-karte'
+import { LoginForm } from '@/components/login/login-form'
+import { Wellenkante } from '@/components/login/wellenkante'
 
 /**
- * Die einzige Seite, die jeder Nutzer sieht — und die einzige ohne Datenlast.
- * Deshalb trägt hier die CI: orange Fläche mit Wellenbogen als Kopf der Karte,
- * darunter das Formular auf Papierweiss. Vorbild ist der Anzeigenaufbau des
- * Manuals (S. 18) und die orange Fläche im ÖlzNet.
+ * Die Anmeldeseite — die einzige Seite, die jeder Nutzer sieht, und die
+ * einzige ohne Datenlast. Deshalb trägt hier die Marke.
+ *
+ * Grundriss: geteilter Schirm, orange Markenfläche links (60 %), Formular
+ * rechts. Die Naht ist die senkrechte Wellenkante nach CD-Manual S. 8 — das
+ * Signature-Element als tragende Struktur der Seite, nicht als Zierleiste.
+ * Auf der Fläche liegt die Europakarte mit den beobachteten Standorten
+ * (siehe `EuropaKarte`); das Logo sitzt oben links über dem Atlantik, wo die
+ * Karte leer ist. Über dem Formular steht nur „Anmelden" — der Name des
+ * Werkzeugs steht bereits auf der Markenfläche.
+ *
+ * Die Karte läuft über alle Ränder der Fläche hinaus (Kasten grösser als die
+ * Fläche, Lage komplett in vh, damit Kern und Massstab bei jedem
+ * Seitenverhältnis gleich bleiben): sichtbar ist nur Land oder Meer, nie ein
+ * Kastenrand. Die Werte −67 vh / −42 vh / 192 vh sind im Prototyp am Bild
+ * abgestimmt (Dornbirn ≈ 55 % Breite, 48 % Höhe).
+ *
+ * Unter 1024 px kippt der Schirm: oranger Kopfstreifen mit Logo und
+ * waagrechter Welle, Formular darunter, keine Karte (auf 375 px wird Europa
+ * zur Briefmarke, und pulsierende Punkte kosten Akku). Unter 500 px Höhe
+ * (Handy quer) fällt auch der Streifen weg — dann nur ein kleines Logo über
+ * dem Formular.
+ *
+ * Bewegung: ein einziges Einblenden beim Laden (300 ms, Formular 80 ms
+ * versetzt), danach Ruhe; `motion-reduce` schaltet es ab.
+ *
+ * Entstanden aus neun Prototyp-Varianten auf dem Branch
+ * `prototype/login-2026-08` (Gewinner: E „Karte auf Orange"), Entscheidung
+ * in docs/adr/0002-login-karte-auf-orange.md.
  */
 export default function LoginPage() {
-  const router = useRouter()
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState<string | null>(null)
-  const [loading, setLoading] = useState(false)
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
-
-    const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-
-    if (error) {
-      setError(error.message)
-      setLoading(false)
-    } else {
-      router.push('/')
-      router.refresh()
-    }
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background px-4 py-10">
-      <div className="w-full max-w-md">
-        <div className="rounded-2xl border border-border/70 bg-card shadow-[0_2px_16px_-4px_rgba(90,58,41,0.14)] overflow-hidden">
-          {/* Kopf: orange Fläche, die im Wellenbogen ausläuft */}
-          <div className="relative bg-oelz-orange pt-8 pb-5 px-6 text-center">
-            <div className="flex justify-center">
-              <Image
-                src="/oelz-logo.png"
-                alt="Rudolf Ölz Meisterbäcker"
-                width={104}
-                height={78}
-                className="object-contain drop-shadow-sm"
-                priority
-              />
-            </div>
-            <p className="mt-3 font-display text-[11px] uppercase tracking-[0.2em] font-bold text-oelz-on-orange/85">
-              Market &amp; Competitor Intelligence
-            </p>
-            {/* Die Welle hängt unter der Fläche und läuft in den hellen Teil der
-                Karte aus — so ist die Grenze der Bogen selbst, nicht eine gerade
-                Kante. Die weisse Linie liegt dadurch auf Orange, wie im Manual. */}
-            <OelzWave className="absolute inset-x-0 top-full h-5 w-full text-oelz-orange" />
-          </div>
-
-          <div className="px-6 pt-7 pb-8 space-y-6">
-            <div className="space-y-1 text-center">
-              <h1 className="font-display text-2xl font-bold tracking-wide text-foreground">
-                Ölz Intelligence
-              </h1>
-              <p className="text-sm text-muted-foreground">
-                Markt- und Wettbewerbsbeobachtung
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="email">E-Mail-Adresse</Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="name@oelz.at"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  autoComplete="email"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="password">Passwort</Label>
-                <Input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  autoComplete="current-password"
-                />
-              </div>
-
-              {error && <p className="text-sm text-destructive">{error}</p>}
-
-              <Button
-                type="submit"
-                className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
-                disabled={loading}
-              >
-                {loading ? 'Anmeldung läuft…' : 'Anmelden'}
-              </Button>
-            </form>
-          </div>
+    <div className="min-h-screen bg-background lg:grid lg:grid-cols-[3fr_2fr]">
+      {/* Markenfläche */}
+      <section className="relative lg:overflow-hidden lg:min-h-screen">
+        <div className="hidden lg:block absolute inset-0 animate-in fade-in duration-300 fill-mode-both motion-reduce:animate-none">
+          <Wellenkante>
+            <EuropaKarte
+              className="absolute left-[-42vh] h-[192vh] w-auto max-w-none"
+              style={{ top: '-67vh' }}
+            />
+          </Wellenkante>
         </div>
 
-        <p className="text-center text-xs text-muted-foreground mt-5">
-          Zugang nur für autorisierte Ölz-Mitarbeitende.
-        </p>
-      </div>
+        {/* schmal: Kopfstreifen mit waagrechter Welle */}
+        <div className="lg:hidden relative bg-oelz-orange h-[200px] [@media(max-height:500px)]:hidden">
+          <OelzWave className="absolute inset-x-0 top-full h-6 w-full text-oelz-orange" />
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="hidden lg:flex flex-col pt-[8vh] pl-[8%] animate-in fade-in slide-in-from-left-2 duration-300 fill-mode-both motion-reduce:animate-none">
+            <Logo breite={230} />
+            <Werkzeugname className="mt-5" />
+          </div>
+          <div className="lg:hidden flex h-[200px] items-center justify-center [@media(max-height:500px)]:hidden">
+            <Logo breite={150} />
+          </div>
+        </div>
+      </section>
+
+      {/* Formular */}
+      <section className="flex items-center justify-center px-6 py-12 lg:py-10 lg:min-h-screen">
+        <div
+          className="w-full max-w-[400px] animate-in fade-in slide-in-from-bottom-2 duration-300 fill-mode-both motion-reduce:animate-none"
+          style={{ animationDelay: '80ms' }}
+        >
+          <div className="hidden [@media(max-height:500px)]:block lg:!hidden mb-6">
+            <Logo breite={90} priority={false} />
+          </div>
+          <LoginForm />
+        </div>
+      </section>
     </div>
+  )
+}
+
+/** Logo aus dem CD-Manual (S. 5, 600 dpi, freigestellt) — 900 px breit, trägt auch Retina. */
+function Logo({ breite, priority = true }: { breite: number; priority?: boolean }) {
+  return (
+    <Image
+      src="/oelz-logo-hd.png"
+      alt="Rudolf Ölz Meisterbäcker"
+      width={breite}
+      height={Math.round(breite * (714 / 900))}
+      className="object-contain drop-shadow-[0_2px_6px_rgba(90,58,41,0.18)]"
+      priority={priority}
+    />
+  )
+}
+
+/** Werkzeugname als ruhige Versalzeile unter dem Logo, auf Orange in Ölz-Braun (6.2:1). */
+function Werkzeugname({ className }: { className?: string }) {
+  return (
+    <p
+      className={`font-display text-[13px] uppercase tracking-[0.24em] font-bold text-oelz-on-orange/85 ${className ?? ''}`}
+    >
+      Market &amp; Competitor Intelligence
+    </p>
   )
 }

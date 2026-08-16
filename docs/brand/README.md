@@ -81,7 +81,18 @@ Signature-Element: orange Flächen enden nicht als harte Kante, sondern laufen i
 weichen Bogen aus. Querformat: „von OBEN schmal nach UNTEN breiter werdend", spiegelbar.
 Im Manual selbst an jedem Seitenfuß eingesetzt.
 
-In der App umgesetzt als `src/components/nav/oelz-wave.tsx` unter dem Kopfbalken.
+In der App umgesetzt als `src/components/nav/oelz-wave.tsx` unter dem Kopfbalken
+(waagrecht) und als `src/components/login/wellenkante.tsx` auf der Anmeldeseite
+(senkrecht, Querformat-Variante S. 8 — dort mit kräftigerer Amplitude als abgebildet,
+weil die Manual-Kurve auf Bildschirmbreite als schiefe Kante liest).
+
+## Logo
+
+`public/oelz-logo-hd.png` (900 × 714 px) ist aus dem Manual (S. 5) bei 600 dpi
+freigestellt und trägt auf Retina bis etwa 450 px Anzeigebreite; die Anmeldeseite
+zeigt es mit 230 px. Das ältere `public/oelz-logo.png` (315 px) reicht für die
+Navigation. Vektor (EPS/SVG) liegt nicht vor — bei Ölz anfordern, sobald das Logo
+grösser gebraucht wird.
 
 ## Umsetzung im Code
 
