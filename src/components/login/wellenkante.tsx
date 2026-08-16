@@ -14,8 +14,14 @@
  *
  * `children` liegen IN der orangen Form und werden mit ihr beschnitten — so
  * schneidet dieselbe Kurve die Europakarte, ohne dass die Karte selbst etwas
- * von der Welle wissen muss. Der Clip läuft in objectBoundingBox-Einheiten,
- * damit Kreise Kreise bleiben.
+ * von der Welle wissen muss.
+ *
+ * Der Beschnitt ist ein CSS-`clip-path: polygon(…)` in Prozent, kein
+ * SVG-`clipPath` per `url(#…)`: WebKit malt bei der SVG-Referenz den Bereich
+ * ausserhalb des Clips schwarz, sobald darunter etwas Beschleunigtes liegt
+ * (die Karte, die Einblendung). Das Polygon tastet dieselbe Bézier-Kurve in
+ * 48 Schritten ab; die Abweichung von der Kurve liegt weit unter der Breite
+ * der weissen Linie, die sie überdeckt.
  */
 const START = 84
 const KURVE = [
@@ -23,23 +29,38 @@ const KURVE = [
   [95, 77, 100, 88, 100, 100],
 ] as const
 
-function kante(s = 1) {
-  const c = KURVE.map((k) => 'C ' + k.map((n) => +(n * s).toFixed(4)).join(' ')).join(' ')
-  return `M${+(START * s).toFixed(4)} 0 ${c}`
+function kantenPfad() {
+  const c = KURVE.map((k) => 'C ' + k.join(' ')).join(' ')
+  return `M${START} 0 ${c}`
 }
 
+/** Kubische Bézier-Kurve abtasten — [x, y] in Prozent. */
+function abtasten(): [number, number][] {
+  const punkte: [number, number][] = [[START, 0]]
+  let x0 = START
+  let y0 = 0
+  for (const [x1, y1, x2, y2, x3, y3] of KURVE) {
+    for (let i = 1; i <= 24; i++) {
+      const t = i / 24
+      const u = 1 - t
+      const x = u * u * u * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3
+      const y = u * u * u * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3
+      punkte.push([+x.toFixed(3), +y.toFixed(3)])
+    }
+    x0 = x3
+    y0 = y3
+  }
+  return punkte
+}
+
+const CLIP = `polygon(0% 0%, ${abtasten()
+  .map(([x, y]) => `${x}% ${y}%`)
+  .join(', ')}, 0% 100%)`
+
 export function Wellenkante({ children }: { children?: React.ReactNode }) {
-  const clip = `M0 0 ${kante(0.01).slice(1)} L0 1 Z`
   return (
     <>
-      <svg width="0" height="0" aria-hidden="true" className="absolute">
-        <defs>
-          <clipPath id="login-wellenkante" clipPathUnits="objectBoundingBox">
-            <path d={clip} />
-          </clipPath>
-        </defs>
-      </svg>
-      <div className="absolute inset-0" style={{ clipPath: 'url(#login-wellenkante)' }}>
+      <div className="absolute inset-0" style={{ clipPath: CLIP }}>
         <div className="absolute inset-0 bg-oelz-orange" />
         {children}
       </div>
@@ -51,7 +72,7 @@ export function Wellenkante({ children }: { children?: React.ReactNode }) {
         className="absolute inset-0 h-full w-full pointer-events-none"
       >
         <path
-          d={kante()}
+          d={kantenPfad()}
           fill="none"
           stroke="white"
           strokeWidth="3"
