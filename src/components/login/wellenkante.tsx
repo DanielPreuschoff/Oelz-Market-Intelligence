@@ -23,6 +23,8 @@
  * 48 Schritten ab; die Abweichung von der Kurve liegt weit unter der Breite
  * der weissen Linie, die sie überdeckt.
  */
+import { cn } from '@/lib/utils'
+
 const START = 84
 const KURVE = [
   [78, 22, 78, 46, 88, 64],
@@ -57,10 +59,23 @@ const CLIP = `polygon(0% 0%, ${abtasten()
   .map(([x, y]) => `${x}% ${y}%`)
   .join(', ')}, 0% 100%)`
 
-export function Wellenkante({ children }: { children?: React.ReactNode }) {
+export function Wellenkante({
+  className,
+  children,
+}: {
+  /** landet auf dem beschnittenen Element selbst — siehe Hinweis unten */
+  className?: string
+  children?: React.ReactNode
+}) {
   return (
     <>
-      <div className="absolute inset-0" style={{ clipPath: CLIP }}>
+      {/* Eine Einblend-Animation gehört HIERHER, nicht auf ein Element darum:
+          WebKit macht aus dem animierten Element eine Compositing-Ebene und
+          hält sie für deckend (volles oranges Rechteck darin) — liegt der
+          Clip erst in einem Kind, wird die Ebene ausserhalb des Clips nicht
+          geleert und erscheint schwarz. Auf dem beschnittenen Element selbst
+          weiss WebKit, dass die Ebene beschnitten ist. */}
+      <div className={cn('absolute inset-0', className)} style={{ clipPath: CLIP }}>
         <div className="absolute inset-0 bg-oelz-orange" />
         {children}
       </div>

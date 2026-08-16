@@ -42,8 +42,8 @@ export default function LoginPage() {
     <div className="min-h-screen bg-background split:grid split:grid-cols-[3fr_2fr]">
       {/* Markenfläche */}
       <section className="relative split:overflow-hidden split:min-h-screen">
-        <div className="hidden split:block absolute inset-0 animate-in fade-in duration-300 fill-mode-both motion-reduce:animate-none">
-          <Wellenkante>
+        <div className="hidden split:block absolute inset-0">
+          <Wellenkante className="animate-in fade-in duration-300 fill-mode-both motion-reduce:animate-none">
             <EuropaKarte className="absolute inset-0" />
           </Wellenkante>
         </div>
