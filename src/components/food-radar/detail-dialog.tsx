@@ -13,11 +13,15 @@ import { EBENEN_NAME, ringFuer, type RadarEintrag, type RadarTafel } from '@/dat
  * Das Scrollen übernimmt `DialogContent` selbst (`max-h` plus `overflow-y-auto`),
  * nicht ein innerer Kasten — genau daran war die Leiste zuvor gescheitert.
  *
- * Zwei Abschnitte, die foodRegio nicht hat:
- * - **Relevanz für Ölz** — der Grund, warum ein eigenes Modul mehr ist als eine
- *   Einbettung des Originals.
- * - **Im Original genannte Quellen** — beim Datenaufbau aus dem Fließtext
- *   gelöst, wo sie vorher als nackte Domainnamen mitten im Satz standen.
+ * Ein Abschnitt, den foodRegio nicht hat: **Im Original genannte Quellen** —
+ * beim Datenaufbau aus dem Fließtext gelöst, wo sie vorher als nackte
+ * Domainnamen mitten im Satz standen.
+ *
+ * Es gab hier auch eine Rubrik „Relevanz für Ölz". Sie ist entfernt: Es gibt
+ * kein Datenfeld dahinter, sie stand auf jedem der 390 Einträge mit demselben
+ * Satz „Redaktionelle Einschätzung folgt." — eine Überschrift ohne Inhalt
+ * kostet Platz und Vertrauen. Kommt die redaktionelle Einschätzung, kommt sie
+ * als Feld auf `RadarEintrag` und damit nur dort, wo wirklich etwas steht.
  */
 export function DetailDialog({
   eintrag,
@@ -51,15 +55,6 @@ export function DetailDialog({
         </div>
 
         <p className="text-sm leading-relaxed whitespace-pre-line">{eintrag.beschreibung}</p>
-
-        <div className="border-l-2 border-oelz-orange pl-3 py-1">
-          <p className="text-[10px] uppercase tracking-[0.14em] font-bold text-oelz-orange-text mb-1">
-            Relevanz für Ölz
-          </p>
-          <p className="text-sm text-muted-foreground italic">
-            Redaktionelle Einschätzung folgt.
-          </p>
-        </div>
 
         {eintrag.quellen && eintrag.quellen.length > 0 && (
           <div>
