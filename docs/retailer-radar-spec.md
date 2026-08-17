@@ -1,6 +1,6 @@
 # Retailer-Radar — Ergebnis der Grilling-Session
 
-Stand: 2026-08-17 · Status: **geplant** — nächster Schritt Daten-Prototyp (siehe 14)
+Stand: 2026-08-17 · Status: **Daten-Prototyp bestanden** — nächster Schritt Datenmodell (siehe 14 und 17)
 Herkunft: Kandidat K1 aus [marktrecherche-module.md](marktrecherche-module.md) · Verortungsentscheidung: ADR folgt mit dem Datenmodell
 
 ---
@@ -122,6 +122,28 @@ Je Kunde kann der Admin eine Notiz mit Datum und Quelle eintragen. Kostet fast n
 2. **Datenmodell** — Domain-Modeling-Skill, ADR.
 3. **UI-Varianten** — Prototype-Skill.
 4. **Bau** — Adapter je Shop, GitHub-Actions-Cron, Admin-Prüfliste, Freigabe-Schalter; Matching-Regeln testgetrieben.
+
+## 17. Ergebnis des Daten-Prototyps (17.08.2026)
+
+Ein Lauf gegen Mercator Online (SI) und Košík (CZ); Wegwerf-Skript, Rohdaten und Auswertung auf dem Branch `prototype/retailer-radar-daten` (`scripts/prototype-retailer-radar/`). Frage: *Tragen die Quellen?* — **Ja, beide.**
+
+| | Mercator (SI) | Košík (CZ) |
+|---|---|---|
+| Zugang | JSON-Endpunkt `getProducts` (der, den der Shop selbst nutzt), ohne Sitzung, ohne Browser | JSON-Endpunkt `api/front/page/products/flexible` mit `page_display=full`, ohne Sitzung |
+| Artikel Backwaren | **328** in 4 s (2 Kategoriebäume: „Svež kruh in pecivo", „Pecivo, rolade") | **784** in 80 s (Baum „Pekárna a cukrárna", 68 Pfade; Kategorie ist tiefer als bei Mercator) |
+| Ölz-Artikel | **24** (Toast, Sandwich, Rogljički, Pletenica, Mini polžki, Brioš Burger …) | **14** (Toust, Super Soft Sandwich, Vánočka, Závin, Mléčné houstičky) |
+| Marke | 100 % (Feld `brand_name`) | 92 %; 8 % ohne Marke = frische Backshop-Ware („Právě dopečené") → faktisch Eigenmarke |
+| Grundpreis / Füllmenge / GTIN | 100 % / 100 % / **100 %** | 100 % / 99 % / 0 % |
+| Aktionen | 34 (10 %) mit `normal_price` | 52 (7 %) mit `recommendedPrice` + `percentageDiscount` |
+| Erste Kennzahl | Toast €/kg (Median): Ölz 6,58 · Eigenmarke 3,18 · Kategorie 7,59 | Toast Kč/kg (Median): Ölz 99,87 · Eigenmarke 74,4 · Kategorie 174,75 |
+
+Was der Prototyp gelehrt hat — Konsequenzen für das Datenmodell:
+
+1. **Zuordnung per Markenfeld reicht als Erstregel**, aber die **Händlermarken-Liste ist je Shop zu pflegen** (Mercator: MERCATOR, T5M; Košík: Baskeeto, Authentic, Pekárna Brod, und *ohne Marke* = Eigenfertigung). Bestätigt Abschnitt 12.
+2. **Ölz-Kategorie braucht ein Wörterbuch je Sprache** (cz „toust", si „toast"; cz „loupák" = Plunder; „vánočka"/„závin" = süß) — Namensmuster allein ordnen zu viel unter „sonstiges" ein (Košík 171, v. a. Backmischungen, Knäcke, glutenfrei — Kontext, kein Fokus). Der Shop-Kategoriepfad ist der bessere erste Schlüssel, das Wörterbuch die zweite Stufe, die Admin-Prüfliste die dritte.
+3. **GTIN kommt bei Mercator frei Haus** — damit ist die Ölz-Artikelreferenz für SI sofort exakt; für CZ bleibt Namens-Matching bis Kais EAN-Liste da ist.
+4. **Košík: Cursor-Paginierung liefert dieselbe Seite** — Blattkategorien mit > 30 Artikeln sind im Prototyp nur mit den ersten 30 erfasst (784 von geschätzt ~1.000). Im Adapter zu klären (der Shop lädt Folgeseiten offenbar über einen anderen Dienst, vermutlich Luigi's Box). Kein Hindernis, aber offen.
+5. **Aufwand je Adapter ist klein** (je ~60 Zeilen), solange ein JSON-Endpunkt existiert; die Browser-Fälle (HOFER, Tesco, SPAR) sind teurer und kommen später in der Reihenfolge.
 
 ## 15. Fragen an Kai Heuberger — vor dem Bau klären
 
