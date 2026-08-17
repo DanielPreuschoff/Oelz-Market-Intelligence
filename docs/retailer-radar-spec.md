@@ -54,7 +54,18 @@ Jeder Artikel wird nach **Ölz-Kategorie** getaggt: Toast & Sandwich · Croissan
 | SK | Tesco (nur per Browser) | Tesco (Clubcard-Aktionen im Shop) |
 | SI | Mercator Online (offen) | Mercator (Aktionen im Shop) |
 
-Nicht möglich: INTERSPAR (Cloudflare), Kaufland CZ (Cloudflare), Albert (kein Shop mehr), Lidl/Penny-Vollsortiment. Bot-Schutz wird nicht umgangen. Reihenfolge nach Risiko: Mercator, Košík/Rohlik → Tesco, HOFER → BILLA.
+Nicht möglich: INTERSPAR-Shop (Cloudflare), Kaufland-Marketplace (Cloudflare), Albert (kein Shop mehr), Lidl/Penny-Vollsortiment. Bot-Schutz wird nicht umgangen. Reihenfolge nach Risiko: Mercator, Košík/Rohlik → Tesco, HOFER → BILLA.
+
+**Nachtrag 17.08.2026 — Faktencheck weiterer Kunden-Shops** (Rohbericht in `marktrecherche-module-anhang.md`, Teil 5). Vier Befunde verändern die Quellentabelle:
+
+| Kunde | Befund | Konsequenz |
+|---|---|---|
+| **SPAR/AT** | `spar.at/produktwelt/brot-gebaeck` ist ein strukturierter Katalog: **1.810 Artikel** mit Preis, statt-Preis, Grundpreis, Aktionsart, Markenfilter inkl. Ölz — nicht der gesperrte INTERSPAR-Shop. Cloudflare auf der Startseite (per Browser erreichbar); **Nutzungsbedingungen 2.1: Übernahme in andere Systeme nur mit schriftlicher Genehmigung.** | SPAR ist nicht „nicht möglich", sondern **„nach Freigabe"** — wie BILLA. Gleiche Frage an Kai, gleicher Weg über den Key Account. |
+| **BILLA/CZ** | Kein Shop, aber Produktkatalog mit Preisen: **12.638 Produktseiten**, Toustový chléb 30 Artikel inkl. 7 Ölz-SKUs; per HTTP frei, robots nur Sitemap. BILLA/SK: 3.402 Produktseiten mit EUR-Preisen, unstrukturierter. | **BILLA/CZ als Vollsortimentsquelle in Stufe 1** (VOP auf Abruf-Klausel noch prüfen). |
+| **Kaufland/SK, Kaufland/DE** | Marketplace gesperrt, aber `predajne.kaufland.sk/aktualna-ponuka/prehlad.html` liefert **640 Aktionen als JSON inkl. Ölz** („Mliečne žemle s čokoládou 2,19 €"); DE analog `filiale.kaufland.de`. Kaufland/SI existiert nicht. | Kaufland als **Aktionsquelle** SK (und DE) — Vollsortiment nein. |
+| **Tesco/CZ** | `nakup.itesco.cz` Kategorie Pekárna **407 Artikel** inkl. Ölz Super soft sandwich (Clubcard-Preis), per Browser; **Nutzungsbedingungen: nur persönliche Nutzung, Kopieren untersagt.** | Wie Tesco/SK technisch möglich, aber rechtlich zu klären — vorerst „nach Freigabe". |
+
+Weitere Befunde: Aldi Nord/DE Vollsortiment per HTTP (Algolia-JSON, 40 Brot/Toast + 21 Croissants) — beste DE-Quelle, falls DE kommt; Aldi Süd/DE nur per Browser, filialbezogene Preise; REWE/DE Preise erst nach Marktwahl (Cloudflare); Lidl/DE ungeeignet; Lidl CZ/SK/SI wie lidl.at (nur Aktionen); Penny/CZ ohne Backwaren. **marktguru.de-AGB 4.e verbietet automatisches Auslesen ausdrücklich — die AGB von marktguru.at sind noch zu prüfen, bevor marktguru als AT-Aktionsquelle gesetzt wird.**
 
 ## 5. Datenmodell (Grobstruktur — Feinheit im Domain-Modeling)
 
@@ -150,7 +161,7 @@ Was der Prototyp gelehrt hat — Konsequenzen für das Datenmodell:
 1. Vollständige Kundenliste je Land — und je Kunde: Marke, Eigenmarke oder beides?
 2. Bei welchen Kunden liefert Ölz Eigenmarke? (entscheidet die Preisabstands-Kennzahl, Abschnitt 8)
 3. Ölz-Artikelliste je Markt mit GTIN/EAN (ERP-Export).
-4. Darf Metadine BILLA-Shop-Daten abrufen — Freigabe über den Key Account bei REWE?
+4. Darf Metadine BILLA-Shop-Daten (AT) und den SPAR-Produktkatalog abrufen — Freigabe über die Key Accounts bei REWE und SPAR? (Beide Nutzungsbedingungen verlangen schriftliche Zustimmung; Tesco CZ ebenso.)
 5. Deutschland: Ist Ölz dort mit Marke im Regal (Aldi, Kaufland, REWE, Lidl)?
 6. Welche Kunden-Nachrichten liest er heute (LZ, Cash, Regal) — als Vorgabe für die spätere Automatisierung.
 
