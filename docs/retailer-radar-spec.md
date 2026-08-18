@@ -1,13 +1,13 @@
 # Retailer-Radar — Ergebnis der Grilling-Session
 
-Stand: 2026-08-17 · Status: **Daten-Prototyp bestanden** — nächster Schritt Datenmodell (siehe 14 und 17)
-Herkunft: Kandidat K1 aus [marktrecherche-module.md](marktrecherche-module.md) · Verortungsentscheidung: ADR folgt mit dem Datenmodell
+Stand: 2026-08-17 · Status: **Datenmodell festgelegt** — nächster Schritt UI-Varianten (siehe 14)
+Herkunft: Kandidat K1 aus [marktrecherche-module.md](marktrecherche-module.md) · Begriffe: [CONTEXT.md](../CONTEXT.md) Abschnitt „Retailer-Radar" · Verortungsentscheidung: [ADR-0003](adr/0003-retailer-radar-zeitreihe-und-zweistufige-artikelidentitaet.md)
 
 ---
 
 ## 1. Zweck
 
-Sichtbar machen, was im Handel mit Backwaren passiert — aus Sicht von Ölz' Handelskunden. Drei Fragen, alle online messbar:
+Sichtbar machen, was im Handel mit Backwaren passiert — aus Sicht der Händler, die Ölz beliefert oder beobachtet. Drei Fragen, alle online messbar:
 
 1. **Wo und wie werden Ölz-Artikel bepreist und beworben?** (Ölz-Sicht je Kunde)
 2. **Wie stehen wir zu Wettbewerbern und Eigenmarken?** (Preisabstand, Aktionstiefe)
@@ -21,13 +21,13 @@ Später (nächster Iterationsschritt, von Kai Heuberger gewünscht): strategisch
 
 - Sidebar-Eintrag und Seitentitel: **„Retailer-Radar"** (bewusst so belassen; Nutzerentscheidung)
 - Route: `/retailer-radar`, Modul-`id: 'retailer'` (Platzhalter existiert bereits in `src/lib/modules.ts`, Status `coming_soon`, ETA Q1 2027 — wird abgelöst)
-- Unterzeile: „Listungen, Preise, Aktionen und Eigenmarken im Handel — je Handelskunde und Land."
+- Unterzeile: „Listungen, Preise, Aktionen und Eigenmarken im Handel — je Händler und Land."
 
-## 3. Leitentität: Handelskunde = Kette × Land
+## 3. Leitentität: Händler = Kette × Land (mit Kundenstatus)
 
-Das Modul organisiert sich **um Ölz' Handelskunden**, nicht um auslesbare Shops. Zu den Kunden zählen laut Ölz mindestens REWE, SPAR, Lidl, HOFER, Aldi, Kaufland, Tesco („und mehr"). Ein Kunde ist immer *Kette × Land* (REWE/AT, SPAR/AT, HOFER/AT, Lidl/AT, Tesco/SK, Kaufland/CZ, Mercator/SI, Rohlik/CZ, Košík/CZ …).
+Das Modul organisiert sich **um Händler**, nicht um auslesbare Shops — und ein Händler ist immer *Kette × Land* (REWE/AT, SPAR/AT, HOFER/AT, Lidl/AT, Tesco/SK, Kaufland/CZ, Mercator/SI, Rohlik/CZ, Košík/CZ …). Ob ein Händler **Ölz-Kunde** ist, sagt sein **Kundenstatus** (Kunde / kein Kunde / unbekannt), den Ölz pflegt — nicht sein Name. Zu den Kunden zählen laut Ölz mindestens REWE, SPAR, Lidl, HOFER, Aldi, Kaufland, Tesco („und mehr"); Košík und Rohlik sind vermutlich keine, aber beobachtenswert. *(Domain-Modeling 17.08.: „Händler + Kundenstatus" statt „Handelskunde", weil die Kundenliste unvollständig ist und das Modul sonst wissen müsste, was es nicht weiß.)*
 
-Je Kunde steht sichtbar, **welche Daten es gibt und welche nicht**:
+Je Händler steht sichtbar, **welche Daten es gibt und welche nicht**:
 
 | Datenart | Ausprägung |
 |---|---|
@@ -35,7 +35,7 @@ Je Kunde steht sichtbar, **welche Daten es gibt und welche nicht**:
 | Aktionen | Quelle (Shop, Aggregator) / keine |
 | Nachrichten | Stufe 1: manuelle Notiz mit Quelle · später automatisch |
 
-Lücken werden gezeigt, nicht versteckt: Eine Kachel „SPAR/AT — Vollsortiment nicht öffentlich, Aktionen via marktguru" ist ehrlicher und nützlicher als eine Liste, in der SPAR fehlt.
+Lücken werden gezeigt, nicht versteckt: Eine Kachel „SPAR/AT — Vollsortiment nach Freigabe, Aktionen via marktguru" ist ehrlicher und nützlicher als eine Liste, in der SPAR fehlt. **Vertriebslinien** (BILLA/PENNY/ADEG unter REWE/AT; SPAR/EUROSPAR/INTERSPAR unter SPAR/AT) sind ein Merkmal von Quelle und Listung, keine eigene Ebene.
 
 **Länder.** Modell länderfähig (Kette × Land). **Stufe 1 = AT/CZ/SK/SI** (die Länder der Datenbank). Deutschland (Aldi, Kaufland, REWE, Lidl) erst nach Rückfrage bei Kai — es ist unklar, ob Ölz dort mit Marke oder nur als Eigenmarken-Lieferant im Regal steht, und das ändert, was gesucht wird.
 
@@ -67,18 +67,43 @@ Nicht möglich: INTERSPAR-Shop (Cloudflare), Kaufland-Marketplace (Cloudflare), 
 
 Weitere Befunde: Aldi Nord/DE Vollsortiment per HTTP (Algolia-JSON, 40 Brot/Toast + 21 Croissants) — beste DE-Quelle, falls DE kommt; Aldi Süd/DE nur per Browser, filialbezogene Preise; REWE/DE Preise erst nach Marktwahl (Cloudflare); Lidl/DE ungeeignet; Lidl CZ/SK/SI wie lidl.at (nur Aktionen); Penny/CZ ohne Backwaren. **marktguru.de-AGB 4.e verbietet automatisches Auslesen ausdrücklich — die AGB von marktguru.at sind noch zu prüfen, bevor marktguru als AT-Aktionsquelle gesetzt wird.**
 
-## 5. Datenmodell (Grobstruktur — Feinheit im Domain-Modeling)
+## 5. Datenmodell (Domain-Modeling 17.08.2026)
 
-**Eigene Tabellen**, kein neunter Signaltyp — mit ADR wie beim Rohstoff-Radar. Preise über Zeit sind Zeitreihen (grob 500 Artikel × 6 Shops × 12 Läufe ≈ 36.000 Zeilen/Jahr), keine Signale mit Freitext.
+Begriffe verbindlich in [CONTEXT.md](../CONTEXT.md), Entscheidung in [ADR-0003](adr/0003-retailer-radar-zeitreihe-und-zweistufige-artikelidentitaet.md). **Eigene Tabellen**, kein neunter Signaltyp: Preise über Zeit sind Zeitreihen (grob 500 Artikel × 6 Quellen × 12 Läufe ≈ 36.000 Zeilen/Jahr), keine Signale mit Freitext.
 
-- **Handelskunde** — Kette, Land, Datenverfügbarkeit (Vollsortiment/Aktionen/Nachrichten je Quelle), Händlermarken-Liste („Clever", „S-BUDGET", „Ja! Natürlich", „Happy Harvest", „Tesco", „Mercator" …)
-- **Erhebungslauf** — Zeitpunkt, Quelle, Status (ok / fehlgeschlagen / teilweise), Protokoll
-- **Artikelbeobachtung** — Shop × Lauf: Name wie im Shop, Marke (Shop-Feld), Preis, Grundpreis, Füllmenge, Aktion (Aktionspreis, Vorher-Preis, Gültigkeit), Verfügbarkeit, URL, Bild-URL
-- **Kanonischer Artikel** — je Shop ein Eintrag über Läufe hinweg; Zuordnung *Ölz / Wettbewerber X / Händler-Eigenmarke / unbekannt*; Ölz-Kategorie; Kennzeichen **„Hersteller: Ölz (Eigenmarke)"** (siehe 8); GTIN/EAN, sobald verfügbar; Zuordnung bleibt, einmal gesetzt
-- **Kunden-Notiz** — manuell, mit Datum und Quelle („Kaufland stellt Onlineshop CZ ein, LZ 12.08.")
-- **Ereignis** — berechnet (siehe 6), je Kunde und Artikel
+```
+Händler (Kette × Land)
+ ├─ Kundenstatus (Kunde / kein Kunde / unbekannt — von Ölz gepflegt)
+ ├─ Händlermarken (Liste: „Clever", „S-BUDGET", „T5M", „Tesco" …)
+ ├─ Händler-Notiz *                     (manuell: Datum, Quelle, Text)
+ └─ Quelle *                            (Art: Vollsortiment | Aktionen · Vertriebslinie ·
+      │                                   Zugang: frei | Browser | nach Freigabe | gesperrt ·
+      │                                   Adapter-Kennung · Regel „markenlos = Eigenmarke")
+      └─ Abruf *  ──────────── Lauf     (Lauf: Zeitpunkt, Auslöser; Abruf: ok | teilweise | fehlgeschlagen, Protokoll)
+           └─ Beobachtung *  ── Listung (Beobachtung: Preis, Grundpreis + Basis, Füllmenge, Aktion?
+                                          Aktionspreis, regulärer Preis, Gültigkeit, Verfügbarkeit,
+                                          Name wie gezeigt, Marke wie gezeigt, Kategoriepfad, URL, Bild-URL,
+                                          Preis in EUR zum Monatskurs)
+Listung (Händler × Kennung der Quelle)  ── Artikel
+ ├─ Vertriebslinie, Status aktiv | ausgelistet, erste/letzte Beobachtung, „nur aus Aktionsquelle bekannt"
+Artikel (das Produkt)
+ ├─ Name (kanonisch), Marke, Füllmenge, GTIN?, Produktkategorie, Herkunft
+ │    (Ölz | Ölz-Fertigung | Eigenmarke | Fremdmarke | unbekannt), Wettbewerber-Bezug?
+ ├─ Zuordnungsquelle (Regel | Admin), Prüfstatus (offen | geprüft)
+Ereignis * (Listung, Lauf, Typ, Vorher/Nachher-Werte)
+```
 
-Historie: **alle Läufe dauerhaft**; Standardansicht 12 Monate; Preisverlauf je Artikel; Ereignis-Zeitleiste je Kunde. Ereignisse können später als Signale ins Wettbewerbsradar gespiegelt werden — das ist ein Export, keine Datenhaltung.
+Schlüssel und Regeln:
+
+- **Listung** = Händler + Kennung, mit der die Quelle den Artikel führt (Shop-ID, Produkt-URL); bleibt über Läufe stabil. Erste Beobachtung eröffnet sie, zwei fehlende Läufe schließen sie (Auslistung), eine spätere Beobachtung öffnet sie wieder (Wiederlistung).
+- **Artikel** startet eins zu eins mit seiner Listung. Zusammengeführt wird automatisch über GTIN (Mercator liefert sie zu 100 %), sonst durch den Admin. Herkunft und Produktkategorie hängen am Artikel und gelten damit für alle Listungen und Läufe.
+- **Herkunft „Ölz-Fertigung"** wird ausschließlich nach Angabe von Ölz gesetzt (Frage 2 an Kai). **Herkunft „Fremdmarke"** kann auf einen Eintrag des Wettbewerbsregisters (`competitors`) zeigen, wenn die Marke dort geführt wird (Penam, 7 Days, Harry …).
+- **Beobachtung** ist unveränderlich; genau eine je Listung und Lauf. Preisänderung vergleicht reguläre Preise; eine Aktion ist ein Merkmal der Beobachtung, kein Preis.
+- **Grundpreis** wie vom Händler ausgezeichnet (€/kg, Kč/kg, ggf. je Stück); fehlt er, aus Preis und Füllmenge gerechnet und als „gerechnet" markiert.
+- **Händler-Kennzahlen** (Ölz-/Eigenmarken-/Fremdmarken-Anteil, Preisabstand Ölz zu Eigenmarke, Aktionsanteil) werden aus dem jüngsten Lauf abgeleitet, nicht gespeichert.
+- **Historie**: alle Läufe dauerhaft; Standardansicht 12 Monate; Preisverlauf je Listung; Ereignis-Zeitleiste je Händler.
+
+Was das Modell bewusst **nicht** hat: eine Entität „Vertriebslinie" (Merkmal, keine Entität — ADR-0003), eine Filial- oder Regionsebene (Preise sind die des Onlineshops bzw. Katalogs), ein Freigabe-Workflow je Beobachtung (Daten sind Messwerte, keine Redaktion).
 
 ## 6. Ereignisse
 
@@ -89,6 +114,7 @@ Historie: **alle Läufe dauerhaft**; Standardansicht 12 Monate; Preisverlauf je 
 | Preisänderung | Regalpreis ± 5 % oder mehr gegenüber dem letzten Lauf |
 | Neue Eigenmarke | Artikel mit Händlermarke erstmals gesehen |
 | Ölz in Aktion | Ölz-Artikel mit Aktionspreis im Lauf |
+| Wiederlistung | Eine ausgelistete Listung wird wieder beobachtet — bei Saisonartikeln (Vánočka, Striezel) das eigentlich interessante Ereignis; hält die Verbindung, die „Auslistung + neue Listung" verlieren würde |
 
 ## 7. Kennzahlen und Währung
 
@@ -100,9 +126,9 @@ Historie: **alle Läufe dauerhaft**; Standardansicht 12 Monate; Preisverlauf je 
 
 Stellt Ölz für eine Kette die Eigenmarke her, ist „Preisabstand Ölz zu Eigenmarke" dort ein Vergleich Ölz gegen Ölz — die Aussage kippt. Kein Shop-Abruf kann das wissen. Deshalb Kennzeichen am kanonischen Artikel, vom Admin nach Kais Angabe gesetzt; die Kennzahlen unterscheiden Ölz-Marke / Ölz-Eigenmarkenfertigung / Fremd-Eigenmarke.
 
-## 9. Kunden-Nachrichten (Stufe 1 manuell)
+## 9. Händler-Notizen (Stufe 1 manuell)
 
-Je Kunde kann der Admin eine Notiz mit Datum und Quelle eintragen. Kostet fast nichts und gibt Kai sofort einen Ort für das, was er heute aus der Lebensmittel Zeitung im Kopf trägt. Die automatische Erfassung (Ereigniskatalog K5 der Recherche) kommt im nächsten Schritt.
+Je Händler kann der Admin eine Händler-Notiz mit Datum und Quelle eintragen. Kostet fast nichts und gibt Kai sofort einen Ort für das, was er heute aus der Lebensmittel Zeitung im Kopf trägt. Die automatische Erfassung (Ereigniskatalog K5 der Recherche) kommt im nächsten Schritt.
 
 ## 10. Erhebung: Rhythmus, Ort, Ausfall
 

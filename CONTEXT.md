@@ -26,6 +26,10 @@ _Avoid_: Trend, Idee
 Funktionsbereich eines Nutzers (Management, Vertrieb, Innovation, Marketing, Verpackung). Steuert Hervorhebung, nie Sichtbarkeit — es gibt keine harten Wände.
 _Avoid_: Berechtigung, Zielgruppe
 
+**Sichtbarkeit**:
+Ob ein Modul für alle Nutzer erscheint oder nur für den Admin (Ausrollstufe). Ein Schalter je Modul, ohne Deploy umlegbar — die einzige harte Wand der Plattform, und sie gilt Modulen, nicht Nutzern.
+_Avoid_: Freigabe (als Nomen), Feature-Flag, Beta
+
 ### Rohstoff-Radar
 
 **Rohstoffsignal**:
@@ -79,3 +83,70 @@ _Avoid_: Redaktionsschluss, Version
 **Neu**:
 Ein Rohstoffsignal ist neu, wenn es mit der letzten Erhebung dazugekommen ist (technisch: veröffentlicht in den letzten 30 Tagen). Zeitbasiert, nicht pro Nutzer.
 _Avoid_: Ungelesen
+
+### Retailer-Radar
+
+**Händler**:
+Eine Handelskette in einem Land (Kette × Land), z. B. SPAR/AT, Tesco/SK, Mercator/SI. Leitentität des Retailer-Radars; ob er Ölz-Kunde ist, sagt sein Kundenstatus, nicht sein Name.
+_Avoid_: Handelskunde, Retailer (im Fließtext), Shop, Kunde (allein)
+
+**Kundenstatus**:
+Ob ein Händler Ölz beliefert wird: Kunde, kein Kunde, unbekannt. Von Ölz gepflegt, nie aus Daten geraten.
+_Avoid_: Key Account, Kundenflag
+
+**Vertriebslinie**:
+Der Auftritt, unter dem ein Händler Ware anbietet, wenn er mehrere hat (BILLA, PENNY, ADEG unter REWE/AT; SPAR, EUROSPAR, INTERSPAR unter SPAR/AT). Ein Merkmal von Quelle und Listung, keine eigene Entität.
+_Avoid_: Banner, Format, Marke (des Händlers)
+
+**Quelle**:
+Ein Ort, an dem ein Händler Sortiment oder Aktionen öffentlich zeigt: Onlineshop, Produktkatalog, Aktionsseite oder Aggregator. Trägt Art (Vollsortiment / Aktionen), Vertriebslinie und Zugangsart (frei / nur per Browser / nach Freigabe / gesperrt).
+_Avoid_: Adapter, Scraper, Feed, Website
+
+**Lauf**:
+Ein automatischer Durchlauf über alle Quellen zu einem Zeitpunkt — das Artefakt, zu dem jede Beobachtung gehört. Der Retailer-Radar hat damit anders als der Rohstoff-Radar eine Lauf-Entität; „Erhebung" bleibt der Rhythmus.
+_Avoid_: Scan, Crawl, Snapshot, Erhebung (für den einzelnen Durchlauf)
+
+**Abruf**:
+Der Teil eines Laufs, der eine einzelne Quelle liest, mit eigenem Ausgang: ok, teilweise, fehlgeschlagen. Der Stand eines Händlers ist der Zeitpunkt seines jüngsten erfolgreichen Abrufs.
+_Avoid_: Request, Fetch, Job
+
+**Beobachtung**:
+Was eine Quelle bei einem Abruf für eine Listung gezeigt hat: Preis, Grundpreis, Füllmenge, Aktion, Verfügbarkeit, Adresse. Unveränderlich, einmal je Listung und Lauf.
+_Avoid_: Messung, Datenpunkt, Zeile, Preis (allein)
+
+**Listung**:
+Ein Artikel im Sortiment eines Händlers, über Läufe hinweg: beginnt mit der ersten Beobachtung, ist aktiv oder ausgelistet, kann wieder gelistet werden. Neue Listung, Auslistung und Wiederlistung sind ihr Anfang, Ende und Neubeginn.
+_Avoid_: Angebot (das ist im Handel die Aktion), Produkt, SKU, Eintrag
+
+**Artikel**:
+Das Produkt selbst, unabhängig vom Händler: Marke, Füllmenge, GTIN (wenn bekannt), Produktkategorie, Herkunft. Zwei Listungen mit derselben GTIN zeigen auf denselben Artikel; ohne GTIN bleiben es zwei Artikel, bis der Admin sie zusammenführt.
+_Avoid_: Produkt, SKU, Item
+
+**Herkunft**:
+Wessen Artikel es ist: Ölz · Ölz-Fertigung (Eigenmarke eines Händlers, von Ölz produziert) · Eigenmarke (des Händlers, fremd gefertigt) · Fremdmarke (Wettbewerber, wenn möglich mit Bezug zum Wettbewerbsregister) · unbekannt. Ölz-Fertigung wird nur nach Angabe von Ölz gesetzt.
+_Avoid_: Zuordnung (das ist der Vorgang), Markentyp, Hersteller (allein)
+
+**Produktkategorie**:
+Die Ölz-Sicht auf einen Artikel: Toast & Sandwich, Croissant & Plunder, Süßes Gebäck, Snack & Mini-Format, Saisonal, dazu Brot als Kontext und Sonstiges. Erste Stufe der Zuordnung ist der Kategoriepfad des Händlers, zweite ein Wörterbuch je Sprache, dritte die Prüfliste.
+_Avoid_: Kategorie (allein — kollidiert mit den Signal-Kategorien), Warengruppe, Segment
+
+**Aktion**:
+Eine Beobachtung, in der der Händler den Artikel unter dem regulären Preis anbietet, mit Aktionspreis, regulärem Preis und — wenn bekannt — Gültigkeit. Preisänderungen werden am regulären Preis gemessen, nie an Aktionen.
+_Avoid_: Angebot, Promotion, Deal, Rabatt (als Nomen für das Ganze)
+
+**Grundpreis**:
+Der Preis je Kilogramm (oder je Stück, wo der Händler so auszeichnet) als einziges Vergleichsmaß über Füllmengen, Händler und Länder hinweg; in Landeswährung und in EUR zum Monatskurs.
+_Avoid_: Kilopreis, Unit Price, Normpreis
+
+**Ereignis**:
+Was der Vergleich zweier Läufe über eine Listung aussagt: neue Listung, Auslistung (nach zwei fehlenden Läufen), Wiederlistung, Preisänderung (± 5 % regulär), neue Eigenmarke, Ölz in Aktion. Berechnet und gespeichert, damit es angezeigt und später ins Wettbewerbsradar gespiegelt werden kann — dort wird es zum Signal, hier ist es keines.
+_Avoid_: Signal, Alert, Meldung, Änderung
+
+**Prüfliste**:
+Die Warteschlange der Artikel, deren Herkunft oder Produktkategorie die Regeln nicht sicher setzen konnten; der Admin entscheidet je Artikel einmal, die Entscheidung bleibt.
+_Avoid_: Inbox, Review-Queue, To-dos
+
+**Händler-Notiz**:
+Eine von Hand erfasste Beobachtung zu einem Händler mit Datum und Quelle („stellt Onlineshop CZ ein, LZ 12.08.") — der Platz für Wissen, das nicht aus Läufen kommt.
+_Avoid_: Nachricht, Kommentar, News
+
