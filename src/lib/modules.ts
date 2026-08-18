@@ -86,19 +86,16 @@ export const MODULES: IntelligenceModule[] = [
   {
     id: 'retailer',
     name: 'Retailer-Radar',
-    description: 'Neue Listungen, Handelsaktivitäten, Eigenmarken und Promotion-Signale aus dem Handel.',
+    description: 'Listungen, Preise, Aktionen und Eigenmarken im Handel — je Händler und Land.',
     icon: 'ShoppingCart',
-    status: 'coming_soon',
+    // Prototyp zur Vorführung: zwei Entwürfe auf echten Erhebungsdaten.
+    // adminOnly blendet ihn für alle anderen Rollen aus (Startseite und
+    // Navigation); die Route selbst prüft zusätzlich (siehe page.tsx).
+    status: 'active',
+    adminOnly: true,
     href: '/retailer-radar',
     iconBg: 'bg-orange-100',
     iconColor: 'text-orange-700',
-    eta: 'Q1 2027',
-    plannedContent: [
-      'Neue Listungen & Auslistungen',
-      'Eigenmarken-Entwicklungen',
-      'Handelsaktivitäten & Promotions',
-      'Category-Management-Signale',
-    ],
   },
   {
     id: 'packaging',
