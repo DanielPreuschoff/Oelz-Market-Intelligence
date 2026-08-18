@@ -1,4 +1,4 @@
-# Ölz Market & Competitor Intelligence
+# Ölz Intelligence Radar
 
 Interne Intelligence-Plattform für Rudolf Ölz Meisterbäcker: kuratierte Wettbewerbs-, Produkt- und Rohstoffsignale mit redaktioneller Freigabe (human-in-the-loop), organisiert in Modulen.
 
@@ -29,6 +29,18 @@ _Avoid_: Berechtigung, Zielgruppe
 **Sichtbarkeit**:
 Ob ein Modul für alle Nutzer erscheint oder nur für den Admin (Ausrollstufe). Ein Schalter je Modul, ohne Deploy umlegbar — die einzige harte Wand der Plattform, und sie gilt Modulen, nicht Nutzern.
 _Avoid_: Freigabe (als Nomen), Feature-Flag, Beta
+
+**Startseite**:
+Die erste Seite nach der Anmeldung. Ihr Job ist das Briefing, nicht das Verteilen: Sie beantwortet „Was hat sich seit dem letzten Mal getan?" über alle Module hinweg und führt erst danach in die Module. Für alle Nutzer gleich; Rollen färben nichts um.
+_Avoid_: Home, Dashboard, Hub, Übersicht, Modul-Übersicht
+
+**Briefing**:
+Der Kern der Startseite: was seit der letzten Erhebung bzw. Edition neu ist, modulübergreifend. Zeigt Neues, nie alles — für alles gibt es die Module.
+_Avoid_: Feed, Stream, News, Zuletzt aktualisiert
+
+**Neu**:
+Ein Signal, Impuls, Rohstoffsignal oder eine Studie ist neu, wenn es mit der jüngsten Erhebung bzw. Edition dazugekommen ist (technisch: veröffentlicht in den letzten 30 Tagen). Zeitbasiert, nicht pro Nutzer — es gibt keinen Lesestand. Der Neu-Zähler je Modul zählt genau das.
+_Avoid_: Ungelesen, Unread, Badge (als Nomen für den Zähler)
 
 ### Rohstoff-Radar
 
@@ -79,10 +91,6 @@ _Avoid_: Ausgabe, Edition, Issue, Runde
 **Stand**:
 Das Datum der jüngsten Veröffentlichung im Modul. Abgeleitet, nicht gespeichert.
 _Avoid_: Redaktionsschluss, Version
-
-**Neu**:
-Ein Rohstoffsignal ist neu, wenn es mit der letzten Erhebung dazugekommen ist (technisch: veröffentlicht in den letzten 30 Tagen). Zeitbasiert, nicht pro Nutzer.
-_Avoid_: Ungelesen
 
 ### Retailer-Radar
 
