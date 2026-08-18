@@ -94,8 +94,8 @@ export const HAENDLER: Haendler[] = [
     ], },
   { id: 'spar-at', kette: 'SPAR (SPAR · EUROSPAR · INTERSPAR)', land: 'AT', waehrung: 'EUR', kundenstatus: 'kunde',
     vollsortiment: { zugang: 'freigabe', quelle: 'spar.at/produktwelt — EINMALIGE STICHPROBE 18.08., Freigabe steht aus' }, aktionen: { zugang: 'frei', quelle: 'im Katalog enthalten' },
-    stichprobe: 'Ölz-Suche + ein Ausschnitt der Kategorie — der Ölz-Anteil ist dadurch überzeichnet und wird nicht ausgewiesen.',
-    notizen: [{ datum: '2026-08-18', quelle: 'Metadine', text: 'Nur Demo: 63 Artikel einmalig von Hand erfasst (32 Ölz + Umfeld). SPARs Nutzungsbedingungen 2.1 verlangen für die Übernahme in andere Systeme eine schriftliche Genehmigung — es gibt hier bewusst KEINEN Adapter und keine laufende Erhebung. Cloudflare blockt automatisierte Zugriffe ohnehin.' }] ,
+    stichprobe: 'Ölz-Suche plus drei Seiten der Kategorie „Aufbackware, Toast & Tiefkühlgebäck" — mit Eigen- und Fremdmarken, aber Ölz-lastig. Der Ölz-Anteil wird deshalb nicht ausgewiesen.',
+    notizen: [{ datum: '2026-08-18', quelle: 'Metadine', text: 'Nur Demo: 106 Artikel einmalig von Hand erfasst (39 Ölz, 34 Eigenmarken, 33 Fremdmarken von Schär bis Resch&Frisch). SPARs Nutzungsbedingungen 2.1 verlangen für die Übernahme in andere Systeme eine schriftliche Genehmigung — es gibt hier bewusst KEINEN Adapter und keine laufende Erhebung. Cloudflare blockt automatisierte Zugriffe ohnehin.' }] ,
     meldungen: [
       { datum: '2026-08-11', kategorie: 'product_launch', titel: 'SPAR erweitert Eigenmarken-Linie im süßen Gebäck', beispiel: true, rollen: ['sales', 'marketing', 'innovation'],
         zusammenfassung: 'BEISPIEL (erfunden): SPAR kündigt sechs neue Artikel unter SPAR PREMIUM im süßen Feingebäck an — Striezel, Zopf und Kuchen im 400-g-Format, Regalstart Oktober. Direkter Wettbewerb zu Ölz Familien Butter Zopf und Mohn Streuselkuchen im selben Regal.',
@@ -310,7 +310,10 @@ export function kennzahlen(h: Haendler): HaendlerKennzahlen {
   const oelz = aktiv.filter((l) => l.herkunft === 'oelz')
   const oelzVorher = listungen.filter((l) => l.herkunft === 'oelz' && l.vorher).length
   const em = aktiv.filter((l) => l.herkunft === 'eigenmarke')
-  const toastAlle = aktiv.filter((l) => l.kategorie === 'toast').map((l) => kgPreis(l)).filter((x): x is number => x != null)
+  // Bezugsgröße bewusst OHNE Ölz: sonst vergleicht sich die Marke teilweise mit
+  // sich selbst. Bei SPAR sind 10 von 18 Toast-Artikeln Ölz — der Index fiele
+  // dadurch von 174 auf 132 und sähe harmloser aus, als er ist.
+  const toastAlle = aktiv.filter((l) => l.kategorie === 'toast' && l.herkunft !== 'oelz').map((l) => kgPreis(l)).filter((x): x is number => x != null)
   const toastOelz = oelz.filter((l) => l.kategorie === 'toast').map((l) => kgPreis(l)).filter((x): x is number => x != null)
   const toastEm = em.filter((l) => l.kategorie === 'toast').map((l) => kgPreis(l)).filter((x): x is number => x != null)
   const mO = median(toastOelz), mA = median(toastAlle), mE = median(toastEm)

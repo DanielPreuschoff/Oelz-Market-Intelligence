@@ -366,7 +366,7 @@ export function HaendlerDetail({ k, zurueck }: { k: HaendlerKennzahlen; zurueck:
             <Kpi label="Backwaren-Artikel" wert={String(k.artikel)} hinweis={`${k.eigenmarke} EM · ${k.fremdmarke} Fremd · ${k.unbekannt} unbek.`} />
             <Kpi label="Ölz-Artikel" wert={String(k.oelz)} delta={k.oelz - k.oelzVorher === 0 ? '±0' : k.oelz - k.oelzVorher > 0 ? `+${k.oelz - k.oelzVorher}` : `−${k.oelzVorher - k.oelz}`} hinweis="vs. Vorlauf" />
             <Kpi label="Anteil Ölz" wert={k.anteilOelz != null ? `${Math.round(k.anteilOelz * 100)} %` : '–'} hinweis={h.stichprobe ? 'in einer Stichprobe nicht messbar' : h.nurAktionen ? 'ohne Dauersortiment nicht messbar' : 'an gelisteten Artikeln'} />
-            <Kpi label="Toast €/kg-Index" wert={k.toastIndexOelz != null ? String(k.toastIndexOelz) : '–'} hinweis="Ölz-Median / Kategorie-Median" />
+            <Kpi label="Toast €/kg-Index" wert={k.toastIndexOelz != null ? String(k.toastIndexOelz) : '–'} hinweis="Ölz-Median ggü. Kategorie ohne Ölz" />
             <Kpi label="Abstand zu Eigenmarke" wert={k.abstandOelzEm != null ? `${k.abstandOelzEm > 0 ? '+' : ''}${k.abstandOelzEm} %` : '–'} hinweis="Toast, Median €/kg" />
             <Kpi label="Ölz in Aktion" wert={k.aktionsanteilOelz != null ? `${Math.round(k.aktionsanteilOelz * 100)} %` : '–'} hinweis="der Ölz-Artikel" />
           </div>
