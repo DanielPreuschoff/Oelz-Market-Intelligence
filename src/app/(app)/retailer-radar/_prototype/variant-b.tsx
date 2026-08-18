@@ -3,8 +3,13 @@
 // umgerechnet, €/kg, Δ zum Vorlauf, günstigster/teuerster Händler je Zeile farbig.
 // Nur Händler MIT Lauf bekommen eine Spalte: eine leere Tabellenspalte ist die
 // teuerste Art, eine Lücke zu zeigen — sie kostet Breite auf jeder der 69
-// Zeilen. Die übrigen Händler stehen einmal als Fußzeile darunter. Rechts der
-// Streifen: Meldungen zuoberst, darunter die Ereignisse.
+// Zeilen. Die übrigen Händler stehen einmal als Fußzeile darunter.
+//
+// Einspaltig, nicht mit Streifen rechts: Der Inhaltsbereich der App ist auf
+// max-w-5xl (1024 px) begrenzt. Ein 22-rem-Streifen daneben liess der Matrix
+// 648 px — sie braucht aber 936 (Artikelspalte 16 rem + fünf Händler à 8.5 rem),
+// sodass nur zweieinhalb Händler sichtbar waren. Über die volle Breite passen
+// alle; Meldungen und Ereignisse stehen darunter nebeneinander.
 
 import { Fragment } from 'react'
 import Link from 'next/link'
@@ -33,7 +38,7 @@ export function VariantB({ haendler, basis }: { haendler?: string; basis: string
   }
 
   return (
-    <div className="grid xl:grid-cols-[1fr_22rem] gap-6">
+    <div className="space-y-6">
       <section className="rounded-xl border border-border bg-card overflow-hidden">
         <div className="px-4 py-3 border-b border-border flex items-baseline justify-between flex-wrap gap-2">
           <h2 className="font-display font-bold">Ölz-Artikel × Händler <span className="text-muted-foreground font-normal text-sm">Regalpreis in € · €/kg · Δ regulär zum Vorlauf</span></h2>
@@ -123,23 +128,28 @@ export function VariantB({ haendler, basis }: { haendler?: string; basis: string
         )}
       </section>
 
-      <aside className="space-y-4">
+      <div className="grid lg:grid-cols-2 gap-6 items-start">
         {meldungen.length > 0 && (
-          <div className="space-y-2">
-            <h3 className="text-[11px] uppercase tracking-[0.14em] font-bold text-oelz-braun">Aus dem Handel</h3>
+          <section className="space-y-2">
+            <h3 className="text-[11px] uppercase tracking-[0.14em] font-bold text-oelz-braun">
+              Aus dem Handel{' '}
+              <span className="text-muted-foreground font-normal normal-case tracking-normal">
+                · was die Händler selbst tun
+              </span>
+            </h3>
             {meldungen.map(({ m, h }) => (
               <MeldungKarte key={h.id + m.datum} m={m} kette={h.kette.split(' (')[0]} land={h.land} kompakt />
             ))}
-          </div>
+          </section>
         )}
-        <div className="rounded-xl border border-border bg-card p-4">
-          <h3 className="font-display font-bold mb-1">Ereignisse Ölz & Eigenmarken</h3>
+        <section className="rounded-xl border border-border bg-card p-4">
+          <h3 className="font-display font-bold mb-1">Ereignisse Ölz &amp; Eigenmarken</h3>
           <p className="text-[11px] text-muted-foreground mb-2">seit {LAUF_VOR} · alle Händler mit Daten</p>
-          <div className="max-h-[70vh] overflow-y-auto pr-1">
+          <div className="max-h-[36rem] overflow-y-auto pr-1">
             {ereignisse.slice(0, 80).map((e, i) => <EreignisZeile key={i} e={e} mitHaendler />)}
           </div>
-        </div>
-      </aside>
+        </section>
+      </div>
     </div>
   )
 }
