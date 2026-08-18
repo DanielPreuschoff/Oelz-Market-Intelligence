@@ -146,7 +146,7 @@ _Avoid_: Signal, Alert, Meldung, Änderung
 Die Warteschlange der Artikel, deren Herkunft oder Produktkategorie die Regeln nicht sicher setzen konnten; der Admin entscheidet je Artikel einmal, die Entscheidung bleibt.
 _Avoid_: Inbox, Review-Queue, To-dos
 
-**Händler-Notiz**:
-Eine von Hand erfasste Beobachtung zu einem Händler mit Datum und Quelle („stellt Onlineshop CZ ein, LZ 12.08.") — der Platz für Wissen, das nicht aus Läufen kommt.
-_Avoid_: Nachricht, Kommentar, News
+**Händler-Meldung**:
+Ein qualitatives Ereignis am Händler — was der Händler selbst tut (Eigenmarken-Linie, Preisoffensive, Formatwechsel, Führungswechsel, Übernahme): kuratiert, mit Kategorie aus der Signal-Taxonomie, Quelle, Datum und Rollenrelevanz. Meldung, nicht Messung; steht auf der Zeitleiste des Händlers neben den berechneten Ereignissen. Wird zunächst von Hand erfasst (Fachpresse, Key-Account-Gespräch), später aus Recherche.
+_Avoid_: Notiz (das sind Betriebshinweise), Nachricht, News, Signal (das ist der Begriff des Wettbewerbsradars — eine Meldung kann dorthin gespiegelt werden)
 

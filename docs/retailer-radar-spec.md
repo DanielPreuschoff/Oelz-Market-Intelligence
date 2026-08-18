@@ -75,7 +75,8 @@ Begriffe verbindlich in [CONTEXT.md](../CONTEXT.md), Entscheidung in [ADR-0003](
 Händler (Kette × Land)
  ├─ Kundenstatus (Kunde / kein Kunde / unbekannt — von Ölz gepflegt)
  ├─ Händlermarken (Liste: „Clever", „S-BUDGET", „T5M", „Tesco" …)
- ├─ Händler-Notiz *                     (manuell: Datum, Quelle, Text)
+ ├─ Händler-Meldung *                   (kuratiert: Kategorie, Titel, Zusammenfassung, Quelle, Datum, Rollen)
+ ├─ Notiz *                             (Betriebshinweis: Quelle, Einschränkung — keine Fachinformation)
  └─ Quelle *                            (Art: Vollsortiment | Aktionen · Vertriebslinie ·
       │                                   Zugang: frei | Browser | nach Freigabe | gesperrt ·
       │                                   Adapter-Kennung · Regel „markenlos = Eigenmarke")
@@ -126,9 +127,13 @@ Was das Modell bewusst **nicht** hat: eine Entität „Vertriebslinie" (Merkmal,
 
 Stellt Ölz für eine Kette die Eigenmarke her, ist „Preisabstand Ölz zu Eigenmarke" dort ein Vergleich Ölz gegen Ölz — die Aussage kippt. Kein Shop-Abruf kann das wissen. Deshalb Kennzeichen am kanonischen Artikel, vom Admin nach Kais Angabe gesetzt; die Kennzahlen unterscheiden Ölz-Marke / Ölz-Eigenmarkenfertigung / Fremd-Eigenmarke.
 
-## 9. Händler-Notizen (Stufe 1 manuell)
+## 9. Händler-Meldungen (Stufe 1 manuell)
 
-Je Händler kann der Admin eine Händler-Notiz mit Datum und Quelle eintragen. Kostet fast nichts und gibt Kai sofort einen Ort für das, was er heute aus der Lebensmittel Zeitung im Kopf trägt. Die automatische Erfassung (Ereigniskatalog K5 der Recherche) kommt im nächsten Schritt.
+Kais zweite Frage — „was tut der Händler selbst?" — ist eine **Meldung, nicht eine Messung**: selten, folgenreich, qualitativ, aus Fachpresse (LZ, Cash, Regal), Presseräumen und Key-Account-Gesprächen. Modelliert wie ein Signal des Wettbewerbsradars (Kategorie aus `docs/category-taxonomy.md`: `distribution`, `pricing`, `product_launch` = Eigenmarke, `m_and_a`, `hiring_signal`, `production_capacity`, `packaging_change`, `sustainability`, `regulatory`, `partnership` …), aber **am Händler** — eigene Entität im Retailer-Radar (ADR-0003-konform), Export ins Wettbewerbsradar später möglich.
+
+Darstellung: auf der Händlerseite in **einer Zeitleiste mit den berechneten Ereignissen** („Auslistung Weißbrot 375 g" neben „SPAR startet Eigenmarken-Linie, LZ 12.08."), im Digest als Abschnitt **„Aus dem Handel"** über den Zahlen. Stufe 1: von Hand erfasst (Kai/Admin). Stufe 2: monatlicher Recherchelauf je Händler gegen frei zugängliche Quellen (Presseräume, Handelsverband, offene Fachpresse) → Prüfliste → Meldung. Stufe 3: Presseraum-RSS/Nachrichtensuche als Kandidaten (K5). Die LZ bleibt Paywall — Kais Lektüre kommt als manuelle Meldung ins System.
+
+Fragen an Kai dazu: (a) drei bis fünf konkrete Beispiele der letzten zwölf Monate, die Ölz betroffen haben — sie definieren die Kategorien; (b) Wochen oder Monate — entscheidet Digest vs. Meldung; (c) für ihn/KAM oder auch GF — entscheidet die Rollenrelevanz. Betriebshinweise (Quelle, Filiale, Stichprobe) sind davon getrennt: das sind Notizen, keine Meldungen.
 
 ## 10. Erhebung: Rhythmus, Ort, Ausfall
 
