@@ -86,19 +86,18 @@ export default async function StudyDetailPage({ params }: { params: Promise<{ id
       </div>
 
       {s.cover_url && (
-        <aside className="lg:pt-9" aria-label="Titelbild der Studie">
+        // Reines Gestaltungselement: das Titelblatt als Dokument rechts neben
+        // der Lesestrecke, oben mit den Themen-Chips bündig, Klick öffnet das PDF.
+        <aside className="hidden lg:block lg:pt-[3.25rem]" aria-label="Titelbild der Studie">
           <a
             href={s.pdf_url ?? s.cover_url}
             target="_blank"
             rel="noreferrer"
-            className="group block w-full max-w-[22rem] rounded-md bg-white p-1.5 shadow-[0_1px_2px_rgba(34,28,26,0.06),0_18px_40px_-24px_rgba(34,28,26,0.35)] ring-1 ring-border/80 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgba(34,28,26,0.08),0_26px_48px_-24px_rgba(34,28,26,0.45)]"
+            className="group block w-full max-w-[24rem] rounded-md bg-white p-1.5 shadow-[0_1px_2px_rgba(34,28,26,0.06),0_18px_40px_-24px_rgba(34,28,26,0.35)] ring-1 ring-border/80 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_1px_2px_rgba(34,28,26,0.08),0_26px_48px_-24px_rgba(34,28,26,0.45)]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={s.cover_url} alt={`Titelseite: ${s.title}`} className="block w-full rounded-sm" />
+            <img src={s.cover_url} alt="" className="block w-full rounded-sm" />
           </a>
-          <p className="mt-2 max-w-[22rem] text-center text-xs text-muted-foreground">
-            Titelseite · {s.pdf_url ? 'Klick öffnet das PDF' : 'Vorschau'}
-          </p>
         </aside>
       )}
     </div>

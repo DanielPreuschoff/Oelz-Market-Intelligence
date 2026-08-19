@@ -18,12 +18,13 @@
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
-const BREITE_ROUTEN = ['/produkt-radar']
+const BREITE_ROUTEN = ['/produkt-radar', '/studien/']
 
 export function HauptSpalte({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
   const vollbreit = pathname === '/'
-  const breit = BREITE_ROUTEN.includes(pathname)
+  // Exakter Treffer oder Präfix mit Schrägstrich (Detailseiten wie /studien/<id>).
+  const breit = BREITE_ROUTEN.some((r) => (r.endsWith('/') ? pathname.startsWith(r) : pathname === r))
 
   return (
     <main
