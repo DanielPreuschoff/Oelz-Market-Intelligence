@@ -7,6 +7,8 @@ export interface Study {
   date_published: string | null
   topic_tags: string[]
   pdf_url: string | null
+  /** Titelbild: erste PDF-Seite als PNG (Bucket studies). Null, bis es erzeugt wurde. */
+  cover_url: string | null
   status: 'draft' | 'published'
   ai_generated: boolean
   created_by: string | null

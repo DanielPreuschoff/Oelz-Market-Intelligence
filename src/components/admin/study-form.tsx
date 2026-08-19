@@ -9,6 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { TOPIC_TAGS, type Study } from '@/types/studies'
+import { titelbildAusPdf, titelbildPfad } from '@/lib/studien/titelbild'
 import { cn } from '@/lib/utils'
 
 interface StudyFormProps {
@@ -24,6 +25,7 @@ const EMPTY: Omit<Study, 'id' | 'created_by' | 'created_at' | 'updated_at'> = {
   date_published: '',
   topic_tags: [],
   pdf_url: '',
+  cover_url: null,
   status: 'draft',
   ai_generated: false,
 }
@@ -36,6 +38,7 @@ export function StudyForm({ initialValues, studyId }: StudyFormProps) {
   const [extracting, setExtracting] = useState(false)
   const [extractError, setExtractError] = useState<string | null>(null)
   const [saveError, setSaveError] = useState<string | null>(null)
+  const [coverHinweis, setCoverHinweis] = useState<string | null>(null)
 
   function setField<K extends keyof typeof form>(key: K, value: typeof form[K]) {
     setForm((prev) => ({ ...prev, [key]: value }))
@@ -86,6 +89,7 @@ export function StudyForm({ initialValues, studyId }: StudyFormProps) {
       const { data: { user } } = await supabase.auth.getUser()
 
       let pdfUrl = form.pdf_url
+      let coverUrl = form.cover_url ?? null
 
       // Upload PDF if new file selected
       if (pdfFile) {
@@ -97,6 +101,30 @@ export function StudyForm({ initialValues, studyId }: StudyFormProps) {
         if (uploadError) { setSaveError(`PDF-Upload fehlgeschlagen: ${uploadError.message}`); return }
         const { data: urlData } = supabase.storage.from('studies').getPublicUrl(path)
         pdfUrl = urlData.publicUrl
+        coverUrl = null // gehört zum alten PDF
+      }
+
+      // Titelbild: die erste PDF-Seite als PNG neben das PDF legen — bei neuem
+      // Upload immer, sonst nachträglich, wenn eine Bestandsstudie noch keins hat.
+      // Scheitert das (fehlerhaftes PDF, Netz), bleibt die Studie trotzdem
+      // speicherbar; das Titelbild ist Zugabe, kein Pflichtfeld.
+      if (pdfUrl && !coverUrl) {
+        try {
+          const quelle: Blob =
+            pdfFile ?? (await fetch(pdfUrl).then((r) => (r.ok ? r.blob() : Promise.reject(new Error(r.statusText)))))
+          const png = await titelbildAusPdf(quelle)
+          const coverPath = titelbildPfad(pdfUrl)
+          const { error: coverError } = await supabase.storage
+            .from('studies')
+            .upload(coverPath, png, { contentType: 'image/png', upsert: true })
+          if (!coverError) {
+            coverUrl = supabase.storage.from('studies').getPublicUrl(coverPath).data.publicUrl
+          } else {
+            setCoverHinweis(`Titelbild konnte nicht abgelegt werden: ${coverError.message}`)
+          }
+        } catch (e) {
+          setCoverHinweis(`Titelbild konnte nicht erzeugt werden: ${e instanceof Error ? e.message : String(e)}`)
+        }
       }
 
       const payload = {
@@ -107,6 +135,7 @@ export function StudyForm({ initialValues, studyId }: StudyFormProps) {
         date_published: form.date_published || null,
         topic_tags: form.topic_tags,
         pdf_url: pdfUrl || null,
+        cover_url: coverUrl,
         status,
         ai_generated: form.ai_generated,
         created_by: user?.id,
@@ -161,8 +190,17 @@ export function StudyForm({ initialValues, studyId }: StudyFormProps) {
             <p className="text-xs text-muted-foreground">
               Aktuell: <a href={form.pdf_url} target="_blank" rel="noreferrer" className="underline">PDF ansehen</a>
               {' '}— neue Datei hochladen um zu ersetzen
+              {!form.cover_url && <> · Titelbild wird beim nächsten Speichern erzeugt</>}
             </p>
           )}
+          {form.cover_url && !pdfFile && (
+            <div className="flex items-center gap-3 pt-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={form.cover_url} alt="" className="h-20 w-auto rounded border border-border bg-white object-contain" />
+              <p className="text-xs text-muted-foreground">Titelbild vorhanden — wird bei neuem PDF ersetzt.</p>
+            </div>
+          )}
+          {coverHinweis && <p className="text-xs text-amber-700">{coverHinweis}</p>}
         </div>
 
         {extractError && <p className="text-xs text-destructive">{extractError}</p>}
