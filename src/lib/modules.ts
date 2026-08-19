@@ -39,6 +39,27 @@ export function visibleModules(isAdmin: boolean): IntelligenceModule[] {
   return MODULES.filter((m) => !m.adminOnly || isAdmin)
 }
 
+/**
+ * Das Wettbewerbsradar verteilt sich auf mehrere Routen; `href` zeigt nur auf
+ * den Einstieg. Diese Liste ist die eine Zuordnung Route → Modul — sie steuert
+ * die Hervorhebung in der Navigation und zählt als Modulbesuch für den
+ * Lesestand (Ungesehen-Zähler). Ein neuer Pfad gehört hierher, nirgends sonst.
+ */
+const WETTBEWERB_ROUTES = ['/editions', '/signals', '/competitors', '/countries']
+
+/** Ob ein Pfad zu diesem Modul gehört. */
+export function isModuleActive(module: IntelligenceModule, pathname: string): boolean {
+  if (module.id === 'wettbewerb') {
+    return WETTBEWERB_ROUTES.some((r) => pathname.startsWith(r))
+  }
+  return pathname.startsWith(module.href)
+}
+
+/** Das Modul, zu dem ein Pfad gehört — null auf Startseite, Profil, Admin. */
+export function moduleForPath(pathname: string): IntelligenceModule | null {
+  return MODULES.find((m) => isModuleActive(m, pathname)) ?? null
+}
+
 export const MODULES: IntelligenceModule[] = [
   {
     id: 'wettbewerb',
@@ -67,7 +88,6 @@ export const MODULES: IntelligenceModule[] = [
     description: 'Rohstoffe, Ingredients, Technologien und Verfahren mit strategischer Bedeutung für Produktentwicklung und Portfolio.',
     icon: 'FlaskConical',
     status: 'active',
-    adminOnly: true,
     href: '/rohstoff-radar',
     iconBg: 'bg-teal-100',
     iconColor: 'text-teal-700',
@@ -78,6 +98,10 @@ export const MODULES: IntelligenceModule[] = [
     description: 'Trendradare der Lebensmittelbranche — Entwicklungsrichtungen nach Themenfeld und zeitlicher Nähe, von Digitalisierung bis Regulatorik.',
     icon: 'TrendingUp',
     status: 'active',
+    // Ausrollstufe: fertig, aber vorerst nur fuer Admins. Am 19.08.2026 kurz
+    // freigegeben und am selben Tag wieder zurueckgenommen — die Inhalte
+    // stammen von foodRegio/FIBRES und sind mit ihnen noch abzustimmen
+    // (Hinweis am Fuss der Seite).
     adminOnly: true,
     href: '/food-radar',
     iconBg: 'bg-orange-100',

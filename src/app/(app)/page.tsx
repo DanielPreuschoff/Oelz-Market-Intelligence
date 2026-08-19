@@ -240,9 +240,13 @@ export default async function StartseitePage() {
                       <span className="font-display text-[14px] font-bold leading-tight tracking-wide transition-colors duration-[var(--motion-mikro)] group-hover:text-primary">
                         {m.shortName ?? m.name}
                       </span>
-                      {s && s.newCount > 0 && (
+                      {/* Ungesehen, nicht neu: dieselbe Zahl wie in der
+                          Seitenleiste — pro Nutzer, seit seinem letzten
+                          Besuch des Moduls. „Neu" (die Erhebung) steht oben
+                          in Bühne und Briefing. */}
+                      {s && s.unseenCount > 0 && (
                         <span className="rounded-full bg-oelz-orange px-2 py-0.5 text-[11px] font-bold text-oelz-on-orange tabular-nums">
-                          {s.newCount} neu
+                          {s.unseenCount} ungesehen
                         </span>
                       )}
                     </span>

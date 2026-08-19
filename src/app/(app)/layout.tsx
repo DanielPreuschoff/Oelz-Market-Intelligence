@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { AppNav } from '@/components/nav/app-nav'
 import { ModuleNav } from '@/components/nav/module-nav'
 import { HauptSpalte } from '@/components/nav/haupt-spalte'
+import { ModulbesuchMelder } from '@/components/nav/modulbesuch-melder'
 import { getCurrentUser, getCurrentProfile } from '@/lib/auth/current-profile'
 import { getModuleStats } from '@/lib/module-stats'
 
@@ -30,6 +31,9 @@ export default async function AppLayout({
         <ModuleNav isAdmin={!!profile?.is_admin} stats={moduleStats} />
         <HauptSpalte>{children}</HauptSpalte>
       </div>
+      {/* Schreibt den Lesestand, sobald eine Modulseite im Browser steht —
+          Grundlage des Ungesehen-Zählers in der Navigation. */}
+      <ModulbesuchMelder stats={moduleStats} />
     </div>
   )
 }

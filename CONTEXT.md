@@ -39,8 +39,12 @@ Der Kern der Startseite: was seit der letzten Erhebung bzw. Edition neu ist, mod
 _Avoid_: Feed, Stream, News, Zuletzt aktualisiert
 
 **Neu**:
-Ein Signal, Impuls, Rohstoffsignal oder eine Studie ist neu, wenn es mit der jüngsten Erhebung bzw. Edition dazugekommen ist (technisch: veröffentlicht in den letzten 30 Tagen). Zeitbasiert, nicht pro Nutzer — es gibt keinen Lesestand. Der Neu-Zähler je Modul zählt genau das.
+Ein Signal, Impuls, Rohstoffsignal oder eine Studie ist neu, wenn es mit der jüngsten Erhebung bzw. Edition dazugekommen ist (technisch: veröffentlicht in den letzten 30 Tagen). Zeitbasiert und für alle gleich — es beschreibt die Erhebung, nicht den Leser. Gilt für Bühne und Briefing der Startseite, die Stand-Zeile in den Modulköpfen und die Abzeichen auf Kacheln. Nicht zu verwechseln mit Ungesehen.
 _Avoid_: Ungelesen, Unread, Badge (als Nomen für den Zähler)
+
+**Ungesehen**:
+Ein Eintrag ist für einen Nutzer ungesehen, wenn er nach dessen letztem Besuch des Moduls veröffentlicht wurde — pro Nutzer, ohne Zeitgrenze (wer drei Monate fort war, sieht drei Erhebungen). Jeder Aufruf irgendeiner Seite des Moduls setzt den Lesestand; der aktive Menüpunkt zeigt deshalb nie einen Zähler. Ohne Lesestand (neuer Nutzer) gilt ungesehen = neu. Die Zähler in Seitenleiste, Mobile-Navigation und Modul-Zeilen der Startseite zählen genau das. Technisch: `module_visits` (Nutzer, Modul, zuletzt gesehen am), ADR 0005.
+_Avoid_: Ungelesen, Unread, Neu (für den Zähler)
 
 ### Rohstoff-Radar
 
