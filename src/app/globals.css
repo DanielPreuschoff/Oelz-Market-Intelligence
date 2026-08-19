@@ -185,3 +185,91 @@
     @apply font-sans;
   }
 }
+/* ---------------------------------------------------------------------------
+   Startseite — Tokens und Utilities. Additiv: neue Regeln, keine Umdefinition
+   bestehender Tokens. Die Startseite führt sie ein; andere Seiten dürfen sie
+   übernehmen (docs/startseite-brief.md, §5 „Token-Schicht").
+   --------------------------------------------------------------------------- */
+:root {
+  /* Bewegung — Mikro (Hover, Fokus) und Choreografie (Einblenden beim Laden). */
+  --motion-mikro: 180ms;
+  --motion-einblenden: 460ms;
+  --motion-stagger: 50ms;
+  --ease-weich: cubic-bezier(0.22, 0.61, 0.36, 1);
+  /* Hover-Farbwäsche: Orange dünn über der Papierfläche. */
+  --waesche: color-mix(in oklab, var(--oelz-orange) 7%, var(--card));
+}
+
+@layer utilities {
+  /* Dachzeile: kleine, orange Überzeile über Titeln und Blöcken. Auf farbiger
+     Fläche setzt der Container --dachzeile-farbe. */
+  .dachzeile {
+    @apply text-[11px] font-bold uppercase tracking-[0.14em];
+    font-family: var(--font-display);
+    color: var(--dachzeile-farbe, var(--oelz-orange-text));
+  }
+
+  /* Karten-Hover: EINE Regel für alle Karten der Startseite — Farbwäsche,
+     kein Lift. Titel innerhalb der Karte wird über `group` orange. */
+  .karte {
+    @apply bg-card border border-border/80 rounded-xl;
+    transition:
+      background-color var(--motion-mikro) var(--ease-weich),
+      border-color var(--motion-mikro) var(--ease-weich),
+      box-shadow var(--motion-mikro) var(--ease-weich);
+  }
+  .karte:hover {
+    background-color: var(--waesche);
+    border-color: color-mix(in oklab, var(--oelz-orange) 35%, var(--border));
+    box-shadow: 0 1px 2px 0 rgb(34 28 26 / 0.04), 0 6px 18px -8px rgb(34 28 26 / 0.12);
+  }
+
+  /* Einblenden beim Laden — gestaffelt über --i (Index). Einmalig, nicht
+     scroll-gebunden. */
+  .einblenden {
+    animation: einblenden var(--motion-einblenden) var(--ease-weich) both;
+    animation-delay: calc(var(--i, 0) * var(--motion-stagger));
+  }
+  @keyframes einblenden {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .einblenden {
+      animation: none;
+    }
+    .karte {
+      transition-property: background-color, border-color;
+    }
+  }
+}
+
+/* Laufsäule — das eine Ambient-Element der Plattform (ADR 0005): eine Spalte
+   aus Bildkarten läuft langsam nach oben. Gezähmt: linear und langsam, hält
+   bei Hover, aus bei reduced-motion, erst ab lg (darunter eine Wischreihe).
+   Die Spur enthält jede Karte zweimal; -50 % ergibt eine nahtlose Schleife.
+   Als @utility definiert (nicht @layer), damit Tailwind v4 die Klasse kennt. */
+@utility bildlauf {
+  @media (min-width: 64rem) {
+    animation: bildlauf var(--bildlauf-dauer, 45s) linear infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+@utility bildlauf-halt {
+  &:hover .bildlauf {
+    animation-play-state: paused;
+  }
+}
+@keyframes bildlauf {
+  to {
+    transform: translateY(-50%);
+  }
+}

@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation'
 import { AppNav } from '@/components/nav/app-nav'
 import { ModuleNav } from '@/components/nav/module-nav'
+import { HauptSpalte } from '@/components/nav/haupt-spalte'
 import { getCurrentUser, getCurrentProfile } from '@/lib/auth/current-profile'
 import { getModuleStats } from '@/lib/module-stats'
 
@@ -27,9 +28,7 @@ export default async function AppLayout({
       <AppNav profile={profile} moduleStats={moduleStats} />
       <div className="flex">
         <ModuleNav isAdmin={!!profile?.is_admin} stats={moduleStats} />
-        <main className="flex-1 min-w-0 px-8 py-8 max-w-5xl">
-          {children}
-        </main>
+        <HauptSpalte>{children}</HauptSpalte>
       </div>
     </div>
   )
