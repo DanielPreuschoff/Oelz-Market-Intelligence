@@ -186,6 +186,25 @@ function layout(eintraege, nSektoren, ringGrenzen) {
 
 // ---------------------------------------------------------------------------
 
+/**
+ * Das Datumsfeld der Quelle lautet „Aug 15th 2024  2 years ago" — englisch und
+ * mit einer Altersangabe, die zum Auslesezeitpunkt richtig war und seither
+ * falsch altert. Daraus wird ein deutsches Datum ohne Alter. Was sich nicht
+ * lesen laesst, faellt weg statt halb uebersetzt stehenzubleiben.
+ */
+const MONATE = {
+  Jan: 'Januar', Feb: 'Februar', Mar: 'März', Apr: 'April', May: 'Mai', Jun: 'Juni',
+  Jul: 'Juli', Aug: 'August', Sep: 'September', Oct: 'Oktober', Nov: 'November', Dec: 'Dezember',
+}
+
+function datumDeutsch(roh) {
+  if (!roh) return undefined
+  const m = roh.match(/([A-Z][a-z]{2})\s+(\d{1,2})(?:st|nd|rd|th)?\s+(\d{4})/)
+  if (!m) return undefined
+  const monat = MONATE[m[1]]
+  return monat ? `${+m[2]}. ${monat} ${m[3]}` : undefined
+}
+
 function groessenSkala(eintraege) {
   const werte = [...new Set(eintraege.map((e) => e.punktRadius))].sort((a, b) => a - b)
   const namen = ['s', 'm', 'l']
@@ -203,16 +222,21 @@ function bauen({ quelle, ziel, key, name, achsenName, ringe, sektoren, zellen, k
   const vorbereitet = roh.eintraege.map((e) => {
     const zelle = zellen[e.id]
     if (!zelle) ohneZelle++
-    const sauber = bereinige(e.beschreibung)
+    // Quellenverweise stammen aus dem ROHTEXT der Quelle, nicht aus dem
+    // redigierten Text: die Redaktion loest Domainnamen und Links aus dem
+    // Fliesstext (siehe docs/food-radar-textregeln.md), es gaebe hier also
+    // nichts mehr zu finden. `quellenText` haelt dafuer das Original bereit;
+    // fehlt es, wird wie zuvor der angezeigte Text durchsucht.
+    const sauber = bereinige(e.quellenText ?? e.beschreibung)
     return {
       id: e.id,
       titel: e.titel,
-      beschreibung: sauber.text,
+      beschreibung: e.quellenText ? e.beschreibung : sauber.text,
       quellen: sauber.quellen.length ? sauber.quellen : undefined,
       sektorName: sektoren[zelle ? zelle.sektor : 0],
       ebene: FARBE_ZU_EBENE[e.fill] ?? 'signal',
       groesse: skala[e.punktRadius] ?? 'm',
-      daten: e.daten || undefined,
+      daten: datumDeutsch(e.daten),
       titelOriginal: e.titelOriginal !== e.titel ? e.titelOriginal : undefined,
       sektor: zelle ? zelle.sektor : 0,
       ring: zelle ? zelle.ring : 0,
@@ -235,7 +259,8 @@ function bauen({ quelle, ziel, key, name, achsenName, ringe, sektoren, zellen, k
  *
  * ERZEUGT von scripts/baue-radardaten.mjs — nicht von Hand ändern.
  * Inhalte: foodRegio Innovation / FIBRES, öffentliches Embed, gelesen ${roh.gelesen}.
- * Texte maschinell übersetzt. Zellen (Sektor+Ring) per Mehrheit aus fünf
+ * Texte übersetzt und redaktionell überarbeitet (docs/food-radar-textregeln.md).
+ * Zellen (Sektor+Ring) per Mehrheit aus fünf
  * Ladungen des Originals; Punktlagen innerhalb der Zelle eigenes,
  * deterministisches Layout — das Original würfelt sie bei jedem Laden neu.
  *
@@ -257,14 +282,14 @@ bauen({
   ziel: 'src/data/food-radar/future-food.ts',
   key: 'future-food',
   name: 'Future Food',
-  achsenName: 'Time to Impact',
+  achsenName: 'Zeit bis zur Wirkung',
   ringe: [
-    { name: 'Mainstream (heute)', bis: 0.4 },
-    { name: 'Maturing (1–3 J.)', bis: 0.6 },
-    { name: 'Growing (3–5 J.)', bis: 0.8 },
-    { name: 'Emerging (5–10 J.)', bis: 1 },
+    { name: 'Heute', bis: 0.4 },
+    { name: '1–3 Jahre', bis: 0.6 },
+    { name: '3–5 Jahre', bis: 0.8 },
+    { name: '5–10 Jahre', bis: 1 },
   ],
-  sektoren: ['Digitalisation/AI', 'Additive Manufacturing', 'Alternative Proteins', 'Personalisation', 'Sustainability', 'Regulatory Environment'],
+  sektoren: ['Digitalisierung/KI', 'Additive Fertigung', 'Alternative Proteine', 'Personalisierung', 'Nachhaltigkeit', 'Regulatorik'],
   zellen: ZELLEN['future-food'],
   konstante: 'FUTURE_FOOD',
 })
@@ -274,15 +299,15 @@ bauen({
   ziel: 'src/data/food-radar/food-ai.ts',
   key: 'food-ai',
   name: 'Food AI',
-  achsenName: 'Time to Impact',
+  achsenName: 'Zeit bis zur Wirkung',
   ringe: [
-    { name: 'Maturity (heute)', bis: 1 / 3 },
-    { name: '< 3 Jahre', bis: 0.5 },
-    { name: 'Growing (3–5 J.)', bis: 2 / 3 },
-    { name: 'Emerging (5–10 J.)', bis: 5 / 6 },
+    { name: 'Heute', bis: 1 / 3 },
+    { name: '1–3 Jahre', bis: 0.5 },
+    { name: '3–5 Jahre', bis: 2 / 3 },
+    { name: '5–10 Jahre', bis: 5 / 6 },
     { name: '10+ Jahre', bis: 1 },
   ],
-  sektoren: ['Agriculture', 'Manufacturing&Processing', 'Packaging', 'Logistics&Distribution', 'Retail&HoReCa', 'Consumption', 'Waste Streams'],
+  sektoren: ['Landwirtschaft', 'Herstellung & Verarbeitung', 'Verpackung', 'Logistik & Distribution', 'Handel & HoReCa', 'Konsum', 'Abfallströme'],
   zellen: ZELLEN['food-ai'],
   konstante: 'FOOD_AI',
 })
