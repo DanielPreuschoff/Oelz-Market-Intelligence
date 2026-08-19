@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import {
+  Home,
   Target, Lightbulb, ShoppingCart, TrendingUp,
   Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Menu, X,
 } from 'lucide-react'
@@ -64,13 +65,14 @@ export function MobileModuleNav({
   }, [open])
 
   const modules = visibleModules(isAdmin).filter((m) => m.status === 'active')
+  const startseiteAktiv = pathname === '/'
 
   return (
     <div className="md:hidden">
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="Module anzeigen"
+        aria-label="Navigation anzeigen"
         aria-expanded={open}
         className="flex items-center justify-center w-9 h-9 -ml-1 rounded-md text-oelz-on-orange hover:bg-white/25 transition-colors"
       >
@@ -89,7 +91,7 @@ export function MobileModuleNav({
           <nav className="relative w-64 max-w-[80vw] h-full bg-card shadow-xl flex flex-col animate-in slide-in-from-left duration-200">
             <div className="relative bg-oelz-orange px-4 h-16 flex items-center justify-between shrink-0">
               <span className="font-display text-sm font-bold tracking-wide text-oelz-on-orange">
-                Module
+                Navigation
               </span>
               <button
                 type="button"
@@ -102,7 +104,30 @@ export function MobileModuleNav({
               <OelzWave className="absolute inset-x-0 top-full h-5 w-full text-oelz-orange pointer-events-none" />
             </div>
 
-            <div className="flex flex-col gap-0.5 p-2 pt-6 overflow-y-auto">
+            {/* Gliederung wie in der Seitenleiste: Startseite oben, abgesetzt,
+                dann die Gruppe „Module". Auf dem Handy ist das der einzige Weg
+                zum Briefing — das Logo im Kopfbalken ist dort zu klein. */}
+            <div className="p-2 pt-5 pb-3 border-b border-border/70">
+              <Link
+                href="/"
+                aria-current={startseiteAktiv ? 'page' : undefined}
+                className={cn(
+                  'flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm font-display transition-colors',
+                  startseiteAktiv
+                    ? 'bg-oelz-orange text-oelz-on-orange font-semibold'
+                    : 'text-muted-foreground hover:text-foreground hover:bg-oelz-orange/12'
+                )}
+              >
+                <Home className="w-4 h-4 shrink-0" />
+                <span className="flex-1 leading-tight">Startseite</span>
+              </Link>
+            </div>
+
+            <p className="px-5 pt-4 pb-1 text-[10px] uppercase tracking-[0.16em] font-bold text-oelz-orange-text">
+              Module
+            </p>
+
+            <div className="flex flex-col gap-0.5 p-2 pt-1 overflow-y-auto">
               {modules.map((module) => {
                 const Icon = ICONS[module.icon] ?? Target
                 const active = isModuleActive(module, pathname)
