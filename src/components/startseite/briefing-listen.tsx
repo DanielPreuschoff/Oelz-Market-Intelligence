@@ -17,6 +17,18 @@ import type { RohstoffTeaser, SignalTeaser, StudieTeaser } from '@/lib/startseit
 
 const tagKurz = (iso: string) => format(new Date(iso), 'd. MMM', { locale: de })
 
+/**
+ * Der erste Satz eines Anreissers. Bei Rohstoffsignalen trägt er die
+ * Kernaussage, der Rest ist Beleg und gehört ins Modul. Findet sich kein
+ * Satzende oder ist der erste Satz selbst zu lang, bleibt der Text stehen und
+ * das Layout kappt ihn.
+ */
+function ersterSatz(text: string): string {
+  const treffer = text.match(/^.*?[.!?](?=\s|$)/)
+  const satz = treffer?.[0]?.trim()
+  return satz && satz.length <= 140 ? satz : text
+}
+
 /** Neutraler Text-Chip. Farbe trägt auf dieser Seite nur Orange. */
 export function Chip({ children }: { children: React.ReactNode }) {
   return (
@@ -133,7 +145,9 @@ export function RohstoffZeile({ signal }: { signal: RohstoffTeaser }) {
           )}
         </span>
         {signal.what_is_new ? (
-          <span className="mt-1 block text-xs leading-relaxed text-muted-foreground line-clamp-2">{signal.what_is_new}</span>
+          <span className="mt-1 block text-xs leading-relaxed text-muted-foreground line-clamp-1">
+            {ersterSatz(signal.what_is_new)}
+          </span>
         ) : (
           <span className="mt-1 block text-xs text-muted-foreground">
             {signal.subject_type}

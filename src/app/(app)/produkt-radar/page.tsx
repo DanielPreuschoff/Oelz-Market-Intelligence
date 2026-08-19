@@ -4,7 +4,10 @@ import { createClient } from '@/lib/supabase/server'
 import { ImpulseCard } from '@/components/impulse-card'
 import { RADAR_TYPES, IMPULSE_TAGS, type InnovationImpulse } from '@/types/innovation'
 
-const PAGE_SIZE = 9
+// Vier Karten je Zeile mal vier Zeilen. Die Zahl folgt dem breitesten
+// Raster (2xl); in schmaleren Fenstern bleibt die letzte Zeile unvollständig
+// — der Preis einer festen Seitengröße, und er fällt kaum auf.
+const PAGE_SIZE = 16
 
 interface PageProps {
   searchParams: Promise<{ type?: string; tag?: string; q?: string; page?: string }>
@@ -56,7 +59,7 @@ export default async function ProduktRadarPage({ searchParams }: PageProps) {
     <div className="space-y-6">
       <div className="space-y-1">
         <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Produkt- & Innovationsradar</h1>
-        <p className="text-sm text-muted-foreground">
+        <p className="max-w-3xl text-sm text-muted-foreground">
           Kuratiertes Scouting für neue Backwarenformate, Claims, Rezepturideen und Handelsadaptionen — übersetzt in konkrete Prüffragen für die Ölz Produktentwicklung.
         </p>
       </div>
@@ -142,7 +145,7 @@ export default async function ProduktRadarPage({ searchParams }: PageProps) {
         </div>
       ) : (
         <div className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-5">
             {paginated.map((impulse: InnovationImpulse) => (
               <ImpulseCard key={impulse.id} impulse={impulse} />
             ))}
