@@ -100,10 +100,18 @@ Standdatum zeigt — genau die zuletzt erhobenen Signale wären dann nirgends me
 damit ein später erneut veröffentlichtes Altsignal nicht wieder als neu gilt und den Stand des
 ganzen Moduls nach vorn zieht.
 
-## 5a. Ausrollstufe — vorerst nur für Admins
+## 5a. Ausrollstufe — abgeschlossen, freigegeben am 19.08.2026
 
-Das Modul ist fertig, aber zunächst **nur für Admins** erreichbar. Gesperrt wird an drei Stellen,
-weil eine allein nicht reicht:
+**Stand: freigegeben.** Das Modul ist für alle angemeldeten Nutzer erreichbar; sichtbar ist, was
+veröffentlicht ist. Alle drei Sperren sind gefallen: `adminOnly` aus dem Modul-Eintrag gestrichen,
+der `notFound()`-Block aus der Übersicht entfernt, und Migration `011_rohstoff_radar_freigabe.sql`
+stellt die Lese-Policy auf „published oder Admin". Der Abschnitt bleibt als Muster stehen — das
+Retailer-Radar steht noch in derselben Stufe.
+
+<details>
+<summary>Wie die Sperre aussah (Muster für weitere Module)</summary>
+
+Gesperrt wurde an drei Stellen, weil eine allein nicht reicht:
 
 | Ebene | Wo | Wirkung |
 |---|---|---|
@@ -121,6 +129,14 @@ fertige SQL dafür steht als Kommentar am Ende von Migration 007.
 
 Die Admin-Routen unter `/admin/rohstoff-radar` sind vom Admin-Gate im Layout ohnehin geschützt und
 bleiben unverändert.
+
+</details>
+
+Das **Food Radar** steht in derselben Stufe, aber nur auf zwei Ebenen: seine Tafeln sind statische
+Daten im Repo (`src/data/food-radar`), es gibt keine Tabelle und damit keine RLS-Schranke. Es war
+am 19.08.2026 kurz mit freigegeben und ist am selben Tag wieder auf admin-only zurückgenommen
+worden — die Inhalte stammen von foodRegio (betrieben auf FIBRES) und sind in der Nutzung noch
+abzustimmen.
 
 ## 6. Filterdimensionen
 

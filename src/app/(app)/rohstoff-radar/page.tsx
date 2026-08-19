@@ -1,10 +1,8 @@
 import Link from 'next/link'
-import { notFound } from 'next/navigation'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/server'
-import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
 import { IngredientSignalGrid } from '@/components/ingredient-signal/ingredient-signal-grid'
 import { STRATEGIC_THEMES } from '@/types/strategic-themes'
 import {
@@ -26,8 +24,12 @@ interface PageProps {
   }>
 }
 
-/** Kacheln je Seite. Drei Reihen à drei Spalten im breiten Layout. */
-const PAGE_SIZE = 9
+/**
+ * Kacheln je Seite. Zwölf geht in jedem Raster glatt auf: drei Reihen à vier
+ * Spalten (2xl), vier à drei (lg), sechs à zwei (sm) — es bleibt nie eine
+ * angebrochene Reihe über dem Verweis auf die nächste Seite stehen.
+ */
+const PAGE_SIZE = 12
 
 export default async function RohstoffRadarPage({ searchParams }: PageProps) {
   const {
@@ -41,13 +43,6 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
   const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1)
 
   const supabase = await createClient()
-
-  // Ausrollstufe: das Modul ist vorerst nur für Admins erreichbar.
-  // notFound() statt redirect, damit die Route für andere Nutzer nicht einmal
-  // als existierend erkennbar ist. Zum Freischalten diesen Block entfernen und
-  // `adminOnly` in src/lib/modules.ts streichen — siehe Spec, „Ausrollstufe".
-  // Nutzt die Antwort, die das Layout in dieser Anfrage bereits geholt hat.
-  if (!(await isCurrentUserAdmin())) notFound()
 
   let query = supabase
     .from('ingredient_signals')
@@ -149,13 +144,21 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
           Rohstoffe, Ingredients, Technologien und Verfahren mit strategischer Bedeutung für
           Produktentwicklung und Portfolio.
         </p>
+        {/* Die Stand-Zeile beschreibt die jüngste Erhebung (neu, für alle
+            gleich) — nicht den Lesestand des Nutzers (ungesehen, Zähler in der
+            Seitenleiste). Deshalb „15 Signale", nicht „15 neue Signale", und
+            die Zahl nur, solange die Erhebung als neu gilt. */}
         {stand && (
           <p className="text-xs text-muted-foreground pt-1">
-            Zuletzt aktualisiert: {format(new Date(stand), 'd. MMMM yyyy', { locale: de })}
-            <span className="mx-2">·</span>
-            <span className={newCount > 0 ? 'font-semibold text-foreground' : undefined}>
-              {newCount} {newCount === 1 ? 'neues Signal' : 'neue Signale'}
-            </span>
+            Jüngste Erhebung: {format(new Date(stand), 'd. MMMM yyyy', { locale: de })}
+            {newCount > 0 && (
+              <>
+                <span className="mx-2">·</span>
+                <span className="font-semibold text-foreground">
+                  {newCount} {newCount === 1 ? 'Signal' : 'Signale'}
+                </span>
+              </>
+            )}
           </p>
         )}
       </div>
