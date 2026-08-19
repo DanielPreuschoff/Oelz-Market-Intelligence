@@ -19,14 +19,11 @@ const tagKurz = (iso: string) => format(new Date(iso), 'd. MMM', { locale: de })
 
 /**
  * Der erste Satz eines Anreissers. Bei Rohstoffsignalen trägt er die
- * Kernaussage, der Rest ist Beleg und gehört ins Modul. Findet sich kein
- * Satzende oder ist der erste Satz selbst zu lang, bleibt der Text stehen und
- * das Layout kappt ihn.
+ * Kernaussage, der Rest ist Beleg und gehört ins Modul. Ohne Satzende bleibt
+ * der Text stehen; zu lange Sätze kappt das Layout mit „…".
  */
 function ersterSatz(text: string): string {
-  const treffer = text.match(/^.*?[.!?](?=\s|$)/)
-  const satz = treffer?.[0]?.trim()
-  return satz && satz.length <= 140 ? satz : text
+  return text.match(/^.*?[.!?](?=\s|$)/)?.[0]?.trim() ?? text
 }
 
 /** Neutraler Text-Chip. Farbe trägt auf dieser Seite nur Orange. */
@@ -105,7 +102,7 @@ export function SignalZeile({ signal, href }: { signal: SignalTeaser; href: stri
         </span>
       ) : null}
       <span className="min-w-0 flex-1">
-        <span className="block font-display text-[15px] font-bold leading-snug line-clamp-2 transition-colors duration-[var(--motion-mikro)] group-hover:text-primary">
+        <span className="font-display text-[15px] font-bold leading-snug line-clamp-2 transition-colors duration-[var(--motion-mikro)] group-hover:text-primary">
           {signal.headline}
         </span>
         <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
@@ -145,7 +142,7 @@ export function RohstoffZeile({ signal }: { signal: RohstoffTeaser }) {
           )}
         </span>
         {signal.what_is_new ? (
-          <span className="mt-1 block text-xs leading-relaxed text-muted-foreground line-clamp-1">
+          <span className="mt-1 text-xs leading-relaxed text-muted-foreground line-clamp-1">
             {ersterSatz(signal.what_is_new)}
           </span>
         ) : (
@@ -169,7 +166,7 @@ export function StudieZeile({ studie }: { studie: StudieTeaser }) {
         <span className="block font-display text-[15px] font-bold leading-snug transition-colors duration-[var(--motion-mikro)] group-hover:text-primary">
           {studie.title}
         </span>
-        <span className="mt-1 block text-xs text-muted-foreground line-clamp-1">
+        <span className="mt-1 text-xs text-muted-foreground line-clamp-1">
           {studie.summary}
           {studie.date_published && <> · {tagKurz(studie.date_published)}</>}
         </span>
