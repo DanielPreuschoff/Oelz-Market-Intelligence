@@ -43,6 +43,8 @@ export async function titelbildAusPdf(pdf: Blob | ArrayBuffer): Promise<Blob> {
 
 /** Pfad des Titelbilds im Bucket — neben dem PDF, gleicher Stamm. */
 export function titelbildPfad(pdfPfadOderUrl: string): string {
-  const datei = pdfPfadOderUrl.split('/').pop() ?? 'studie.pdf'
+  // Query und Anker abschneiden: öffentliche Storage-URLs können ein ?t= tragen.
+  const ohneAnhang = pdfPfadOderUrl.split(/[?#]/)[0]
+  const datei = ohneAnhang.split('/').pop() || 'studie.pdf'
   return datei.replace(/\.pdf$/i, '') + '-cover.png'
 }
