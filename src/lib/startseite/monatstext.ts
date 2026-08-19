@@ -17,7 +17,7 @@
  * Prognosen. Sie ist damit auch die Schreibvorlage für die Texte von Hand.
  */
 
-import { CATEGORY_LABELS_DE } from '@/lib/startseite/labels'
+import { CATEGORY_LABELS_DE } from '@/lib/labels'
 import type { StartseitenDaten } from '@/lib/startseite/daten'
 
 /** Statischer Intro-Text der ersten Phase. Entschieden am 19.08.2026. */

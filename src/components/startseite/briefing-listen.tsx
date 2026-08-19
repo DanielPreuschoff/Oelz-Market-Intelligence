@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
-import { CATEGORY_LABELS_DE } from '@/lib/startseite/labels'
+import { CATEGORY_LABELS_DE } from '@/lib/labels'
 import { wettbewerberLogo } from '@/lib/wettbewerber-logos'
 import type { RohstoffTeaser, SignalTeaser, StudieTeaser } from '@/lib/startseite/daten'
 

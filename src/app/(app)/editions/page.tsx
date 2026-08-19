@@ -1,15 +1,11 @@
 export const dynamic = 'force-dynamic'
 
-import Link from 'next/link'
-import { format, formatDistanceToNow } from 'date-fns'
-import { de } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/server'
-import { Badge } from '@/components/ui/badge'
-import { buttonVariants } from '@/components/ui/button-variants'
-import { cn } from '@/lib/utils'
 import type { Edition } from '@/types/database'
 import { getCurrentProfile } from '@/lib/auth/current-profile'
-import { ChevronRight } from 'lucide-react'
+import { getModuleStats } from '@/lib/module-stats'
+import { RadarKopf } from '@/components/wettbewerbsradar/koepfe'
+import { EditionsBuehne, type BuehnenSignal } from '@/components/wettbewerbsradar/editions-buehne'
 
 export default async function EditionsPage() {
   const supabase = await createClient()
@@ -21,7 +17,6 @@ export default async function EditionsPage() {
     .order('period_month', { ascending: false })
 
   const profile = await getCurrentProfile()
-
   const isAdmin = profile?.is_admin ?? false
 
   const editionIds = (editions ?? []).map((e: Edition) => e.id)
@@ -40,17 +35,10 @@ export default async function EditionsPage() {
   if (!editions || editions.length === 0) {
     return (
       <div className="space-y-6">
-        <div className="flex items-center justify-between">
-          <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Wettbewerbsradar</h1>
-          {isAdmin && (
-            <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
-              Neue Edition
-            </Link>
-          )}
-        </div>
-        <div className="text-center py-24 text-muted-foreground">
-          <p className="text-lg font-medium">Noch keine Editions veröffentlicht</p>
-          <p className="text-sm mt-1">
+        <RadarKopf isAdmin={isAdmin} />
+        <div className="rounded-xl border bg-card py-16 text-center text-muted-foreground">
+          <p className="text-sm font-medium">Noch keine Editionen veröffentlicht</p>
+          <p className="mt-1 text-xs">
             {isAdmin ? 'Erstelle die erste Edition im Admin-Bereich.' : 'Neue Inhalte folgen in Kürze.'}
           </p>
         </div>
@@ -60,76 +48,26 @@ export default async function EditionsPage() {
 
   const [latest, ...archive] = editions as Edition[]
 
+  // Stand und Neu-Zähler liegen per cache() schon aus dem Layout vor. Die
+  // Signale der aktuellen Edition trägt die Bühne (kritische Signale und
+  // Logoleiste) — nur die vier Spalten, die sie dafür braucht.
+  const [stats, { data: latestRows }] = await Promise.all([
+    getModuleStats(),
+    supabase
+      .from('edition_signals')
+      .select('position, signal:signals(id, headline, importance, competitor:competitors(id, short_name, logo_url))')
+      .eq('edition_id', latest.id)
+      .order('position'),
+  ])
+
+  const latestSignale = ((latestRows ?? []) as unknown as { signal: BuehnenSignal | null }[])
+    .map((r) => r.signal)
+    .filter((s): s is BuehnenSignal => !!s)
+
   return (
-    <div className="space-y-8">
-      <div className="flex items-center justify-between">
-        <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Wettbewerbsradar</h1>
-        {isAdmin && (
-          <Link href="/admin/editions/new" className={cn(buttonVariants({ size: 'sm' }))}>
-            Neue Edition
-          </Link>
-        )}
-      </div>
-
-      {/* Aktuelle Edition — featured */}
-      <Link href={`/editions/${latest.id}`} className="block group">
-        <div className="border rounded-xl p-6 bg-card hover:shadow-md transition-shadow space-y-3">
-          <div className="flex items-center gap-2">
-            <Badge variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">Aktuelle Ausgabe</Badge>
-            <span className="text-xs text-muted-foreground">
-              {format(new Date(latest.period_month), 'MMMM yyyy', { locale: de })}
-            </span>
-          </div>
-          <h2 className="font-display text-xl sm:text-2xl font-bold group-hover:text-primary transition-colors tracking-wide">
-            {latest.title}
-          </h2>
-          {latest.editorial_summary && (
-            <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
-              {latest.editorial_summary}
-            </p>
-          )}
-          <div className="flex items-center gap-3 pt-1">
-            <span className="text-sm text-muted-foreground">
-              {countMap[latest.id] ?? 0} Signale
-            </span>
-            {latest.published_at && (
-              <span className="text-sm text-muted-foreground">
-                vor {formatDistanceToNow(new Date(latest.published_at), { locale: de })}
-              </span>
-            )}
-            <span className="ml-auto text-sm font-medium flex items-center gap-0.5 group-hover:gap-1 transition-all text-primary">
-              Zur Edition <ChevronRight className="w-4 h-4" />
-            </span>
-          </div>
-        </div>
-      </Link>
-
-      {/* Archiv */}
-      {archive.length > 0 && (
-        <div className="space-y-3">
-          <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-            Archiv
-          </h2>
-          <div className="divide-y border rounded-xl bg-card overflow-hidden">
-            {archive.map((edition: Edition) => (
-              <Link
-                key={edition.id}
-                href={`/editions/${edition.id}`}
-                className="flex items-center justify-between px-5 py-3.5 hover:bg-secondary/40 transition-colors group"
-              >
-                <div className="space-y-0.5">
-                  <p className="text-sm font-medium">{edition.title}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {format(new Date(edition.period_month), 'MMMM yyyy', { locale: de })} ·{' '}
-                    {countMap[edition.id] ?? 0} Signale
-                  </p>
-                </div>
-                <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:translate-x-0.5 transition-transform" />
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
+    <div className="space-y-6">
+      <RadarKopf stats={stats.wettbewerb} isAdmin={isAdmin} />
+      <EditionsBuehne latest={latest} archive={archive} countMap={countMap} latestSignale={latestSignale} />
     </div>
   )
 }

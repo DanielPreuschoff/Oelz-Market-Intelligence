@@ -1,13 +1,14 @@
 import { notFound } from 'next/navigation'
-import { format, formatDistanceToNow } from 'date-fns'
-import { de } from 'date-fns/locale'
-import Link from 'next/link'
-import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { SignalCard } from '@/components/signal-card/signal-card'
 import type { EditionWithSignals, UserRole } from '@/types/database'
-import { CATEGORY_LABELS } from '@/types/database'
 import { getCurrentProfile } from '@/lib/auth/current-profile'
+import { EditionKopf } from '@/components/wettbewerbsradar/koepfe'
+import { SignalZeile } from '@/components/wettbewerbsradar/signal-zeile'
+import {
+  EditionFilter,
+  EditionBlaettern,
+  KeineSignale,
+} from '@/components/wettbewerbsradar/edition-filter'
 
 const PAGE_SIZE = 20
 
@@ -42,7 +43,6 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
   if (!edition) notFound()
 
   const profile = await getCurrentProfile()
-
   const userRole = (profile?.role ?? null) as UserRole | null
 
   const sortedSignalRows = (edition as EditionWithSignals).edition_signals
@@ -63,9 +63,10 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
     if (r.signal.competitor) competitorMap.set(r.signal.competitor.id, r.signal.competitor.short_name)
   })
 
-  const hasFilters = roleFilter || categoryFilter || competitorFilter
+  const hasFilters = !!(roleFilter || categoryFilter || competitorFilter)
   const totalPages = Math.ceil(filteredRows.length / PAGE_SIZE)
   const paginatedRows = filteredRows.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+  const kritischAnzahl = sortedSignalRows.filter((r) => r.signal.importance === '3').length
 
   function buildUrl(patch: Record<string, string | undefined>) {
     const current = { role: roleFilter, category: categoryFilter, competitor: competitorFilter, page: pageParam }
@@ -82,134 +83,40 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
   }
 
   return (
-    <div className="space-y-8">
-      {/* Back link */}
-      <Link
-        href="/editions"
-        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
-      >
-        <ArrowLeft className="w-3.5 h-3.5" />
-        Alle Editions
-      </Link>
+    <div className="space-y-6">
+      <EditionKopf edition={edition} signalAnzahl={sortedSignalRows.length} kritischAnzahl={kritischAnzahl} />
 
-      {/* Edition header */}
-      <div className="space-y-3">
-        <div className="flex items-center gap-2 text-sm text-muted-foreground">
-          <span>{format(new Date(edition.period_month), 'MMMM yyyy', { locale: de })}</span>
-          <span>·</span>
-          <span>{sortedSignalRows.length} Signale</span>
-          {edition.published_at && (
-            <>
-              <span>·</span>
-              <span>vor {formatDistanceToNow(new Date(edition.published_at), { locale: de })}</span>
-            </>
-          )}
-        </div>
-        <h1 className="font-display text-3xl sm:text-4xl font-bold tracking-wide text-foreground leading-tight">{edition.title}</h1>
-        {edition.editorial_summary && (
-          <p className="text-base text-muted-foreground leading-relaxed max-w-3xl">
-            {edition.editorial_summary}
-          </p>
-        )}
-      </div>
+      <EditionFilter
+        categories={categories}
+        competitorMap={competitorMap}
+        aktiveKategorie={categoryFilter}
+        aktiverWettbewerber={competitorFilter}
+        trefferAnzahl={filteredRows.length}
+        hatFilter={hasFilters}
+        toggle={toggle}
+        resetHref={`/editions/${id}`}
+      />
 
-      {/* Filter */}
-      <div className="space-y-2">
-        {/* Kategorie */}
-        <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-muted-foreground font-medium w-20">Kategorie</span>
-          {categories.map((cat) => (
-            <a
-              key={cat}
-              href={toggle('category', cat)}
-              className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
-                categoryFilter === cat
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'border-border hover:bg-secondary'
-              }`}
-            >
-              {CATEGORY_LABELS[cat]}
-            </a>
-          ))}
-        </div>
-
-        {/* Wettbewerber */}
-        {competitorMap.size > 0 && (
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-xs text-muted-foreground font-medium w-20">Wettbewerber</span>
-            {[...competitorMap.entries()].map(([cid, name]) => (
-              <a
-                key={cid}
-                href={toggle('competitor', cid)}
-                className={`text-xs px-2.5 py-1 rounded-full border transition-colors ${
-                  competitorFilter === cid
-                    ? 'bg-primary text-primary-foreground border-primary'
-                    : 'border-border hover:bg-secondary'
-                }`}
-              >
-                {name}
-              </a>
-            ))}
-          </div>
-        )}
-
-        {hasFilters && (
-          <a
-            href={`/editions/${id}`}
-            className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
-          >
-            Alle Filter zurücksetzen
-          </a>
-        )}
-      </div>
-
-      {/* Signal-Karten */}
+      {/* Eine Lesespalte in Redaktionsreihenfolge — die Edition ist eine
+          Ausgabe und wird von oben nach unten gelesen. Mehrspaltig wäre die
+          Reihenfolge nur noch zeilenweise erkennbar. */}
       {filteredRows.length === 0 ? (
-        <div className="py-12 text-center text-muted-foreground text-sm border rounded-xl bg-card">
-          <p className="font-medium">Keine Signale für diese Filter</p>
-          <p className="text-xs mt-1">Passe die Filter an oder setze sie zurück.</p>
-        </div>
+        <KeineSignale resetHref={`/editions/${id}`} />
       ) : (
         <div className="space-y-4">
           {paginatedRows.map((row) => (
-            <SignalCard
-              key={row.id}
-              signal={row.signal}
-              highlightRole={userRole ?? undefined}
-            />
+            <SignalZeile key={row.id} signal={row.signal} highlightRole={userRole ?? undefined} />
           ))}
         </div>
       )}
 
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex items-center justify-between pt-2 border-t">
-          <span className="text-xs text-muted-foreground">
-            {(currentPage - 1) * PAGE_SIZE + 1}–{Math.min(currentPage * PAGE_SIZE, filteredRows.length)} von {filteredRows.length} Signalen
-          </span>
-          <div className="flex items-center gap-1">
-            {currentPage > 1 && (
-              <Link
-                href={buildUrl({ page: String(currentPage - 1) })}
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
-              >
-                <ChevronLeft className="w-3.5 h-3.5" /> Zurück
-              </Link>
-            )}
-            <span className="px-3 py-1.5 text-xs text-muted-foreground">
-              {currentPage} / {totalPages}
-            </span>
-            {currentPage < totalPages && (
-              <Link
-                href={buildUrl({ page: String(currentPage + 1) })}
-                className="inline-flex items-center gap-1 px-3 py-1.5 text-xs rounded-md border hover:bg-secondary transition-colors"
-              >
-                Weiter <ChevronRight className="w-3.5 h-3.5" />
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
+      <EditionBlaettern
+        currentPage={currentPage}
+        totalPages={totalPages}
+        pageSize={PAGE_SIZE}
+        gesamt={filteredRows.length}
+        buildUrl={buildUrl}
+      />
     </div>
   )
 }

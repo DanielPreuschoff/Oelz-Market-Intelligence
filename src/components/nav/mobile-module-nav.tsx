@@ -9,9 +9,8 @@ import {
   Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Menu, X,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { visibleModules } from '@/lib/modules'
+import { visibleModules, isModuleActive } from '@/lib/modules'
 import type { ModuleStats } from '@/lib/module-stats'
-import { isModuleActive } from '@/components/nav/module-nav'
 import { OelzWave } from '@/components/nav/oelz-wave'
 
 const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
@@ -28,6 +27,10 @@ const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> 
  * Bewusst eine eigene Komponente statt einer Erweiterung von `ModuleNav`: die
  * Seitenleiste ist ein Layoutelement, das hier ist eine Überlagerung mit
  * eigenem Zustand. Zusammengelegt müsste eine Komponente beides sein.
+ *
+ * Gliederung wie in der Seitenleiste: die Startseite oben und abgesetzt, dann
+ * die Gruppe „Module". Auf dem Handy ist das der einzige Weg zum Briefing —
+ * das Logo im Kopfbalken ist dort zu klein, um als Navigation zu taugen.
  */
 export function MobileModuleNav({
   isAdmin = false,
@@ -104,9 +107,6 @@ export function MobileModuleNav({
               <OelzWave className="absolute inset-x-0 top-full h-5 w-full text-oelz-orange pointer-events-none" />
             </div>
 
-            {/* Gliederung wie in der Seitenleiste: Startseite oben, abgesetzt,
-                dann die Gruppe „Module". Auf dem Handy ist das der einzige Weg
-                zum Briefing — das Logo im Kopfbalken ist dort zu klein. */}
             <div className="p-2 pt-5 pb-3 border-b border-border/70">
               <Link
                 href="/"
@@ -131,7 +131,8 @@ export function MobileModuleNav({
               {modules.map((module) => {
                 const Icon = ICONS[module.icon] ?? Target
                 const active = isModuleActive(module, pathname)
-                const newCount = stats?.[module.id]?.newCount ?? 0
+                // Wie in der Seitenleiste: das aktive Modul zeigt keinen Zähler.
+                const ungesehen = active ? 0 : (stats?.[module.id]?.unseenCount ?? 0)
 
                 return (
                   <Link
@@ -147,17 +148,12 @@ export function MobileModuleNav({
                   >
                     <Icon className="w-4 h-4 shrink-0" />
                     <span className="flex-1 leading-tight">{module.shortName ?? module.name}</span>
-                    {newCount > 0 && (
+                    {ungesehen > 0 && (
                       <span
-                        aria-label={`${newCount} neu`}
-                        className={cn(
-                          'shrink-0 text-[10px] font-bold rounded-full px-1.5 py-0.5 min-w-[1.25rem] text-center',
-                          active
-                            ? 'bg-oelz-on-orange/15 text-oelz-on-orange'
-                            : 'bg-oelz-orange text-oelz-on-orange'
-                        )}
+                        aria-label={`${ungesehen} ungesehen`}
+                        className="shrink-0 text-[10px] font-bold rounded-full px-1.5 py-0.5 min-w-[1.25rem] text-center bg-oelz-orange text-oelz-on-orange"
                       >
-                        {newCount}
+                        {ungesehen}
                       </span>
                     )}
                   </Link>
