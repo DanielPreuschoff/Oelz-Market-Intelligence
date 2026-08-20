@@ -45,7 +45,13 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
   const profile = await getCurrentProfile()
   const userRole = (profile?.role ?? null) as UserRole | null
 
-  const sortedSignalRows = (edition as EditionWithSignals).edition_signals
+  // Ein Verweis kann ins Leere zeigen: die Verknuepfungszeilen in
+  // `edition_signals` sind fuer alle Angemeldeten lesbar, die Signale dahinter
+  // nicht (RLS laesst nur veroeffentlichte durch). PostgREST liefert die Zeile
+  // dann mit `signal: null`. Die Editionsuebersicht filtert das seit jeher weg,
+  // die Detailseite tat es nicht und stuerzte in `signal.category` ab.
+  const sortedSignalRows = ((edition as EditionWithSignals).edition_signals ?? [])
+    .filter((row) => !!row.signal)
     .sort((a, b) => a.position - b.position)
 
   const filteredRows = sortedSignalRows.filter((row) => {
