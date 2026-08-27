@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import { EBENEN_FARBE, GROESSE_RADIUS, ringFuer, type RadarEintrag, type RadarTafel } from '@/data/food-radar/types'
+import { EBENEN_FARBE, GROESSE_RADIUS, type RadarEintrag, type RadarTafel } from '@/data/food-radar/types'
 
 /**
  * Die Radartafel als Halbscheibe — Ringe nach außen, Sektoren im Kreis.
@@ -45,25 +45,6 @@ function halbscheibe(r: number) {
   return `M ${CX - r} ${CY} A ${r} ${r} 0 0 1 ${CX + r} ${CY} Z`
 }
 
-/**
- * PROTOTYP — Zelle (Sektor × Ring) als Kreisringsegment.
- *
- * Winkel in Grad: `von` liegt gegen den Uhrzeigersinn hinter `bis`, weil 180°
- * links und 0° rechts ist. Radien als Anteil des Aussenradius.
- */
-export function zellenPfad(vonGrad: number, bisGrad: number, innen: number, aussen: number) {
-  const a1 = polar(vonGrad, aussen)
-  const a2 = polar(bisGrad, aussen)
-  const i1 = polar(bisGrad, innen)
-  const i2 = polar(vonGrad, innen)
-  const rA = R * aussen
-  const rI = R * innen
-  return (
-    `M ${a1.x} ${a1.y} A ${rA} ${rA} 0 0 1 ${a2.x} ${a2.y} ` +
-    `L ${i1.x} ${i1.y} A ${rI} ${rI} 0 0 0 ${i2.x} ${i2.y} Z`
-  )
-}
-
 /** Beschriftungslänge deckeln — deutsche Titel sprengen sonst die Tafel. */
 function kuerzen(titel: string) {
   return titel.length > 34 ? titel.slice(0, 32).trimEnd() + '…' : titel
@@ -80,40 +61,12 @@ export function RadarTafelSvg({
   tafel,
   auswahl,
   onAuswahl,
-  onZelle,
-  aktiveZelle,
 }: {
   tafel: RadarTafel
   auswahl: string | null
   onAuswahl: (id: string | null) => void
-  /** PROTOTYP: Klick auf eine Zelle (Sektor × Ring). Ohne Handler wie bisher. */
-  onZelle?: (sektor: string, ring: string) => void
-  aktiveZelle?: { sektor: string; ring: string } | null
 }) {
   const [hover, setHover] = useState<string | null>(null)
-
-  // PROTOTYP — Zellen mit Inhalt: nur die sind klickbar (Grilling, Q9).
-  const zellen = useMemo(() => {
-    if (!onZelle) return []
-    const breite = 180 / tafel.sektoren.length
-    const belegt = new Set(
-      tafel.eintraege.map((e) => `${e.sektor}|${ringFuer(tafel, e.radius).name}`)
-    )
-    const out: { sektor: string; ring: string; d: string }[] = []
-    tafel.sektoren.forEach((sektor, si) => {
-      // Sektor 0 liegt links (180°), der letzte rechts (0°).
-      const bis = 180 - si * breite
-      const von = bis - breite
-      let innen = LOCH / R
-      tafel.ringe.forEach((ring) => {
-        if (belegt.has(`${sektor}|${ring.name}`)) {
-          out.push({ sektor, ring: ring.name, d: zellenPfad(von, bis, innen, ring.bis) })
-        }
-        innen = ring.bis
-      })
-    })
-    return out
-  }, [tafel, onZelle])
 
   // Große Punkte zuerst zeichnen, damit kleine anklickbar obenauf liegen.
   const sortiert = useMemo(
@@ -226,28 +179,6 @@ export function RadarTafelSvg({
           </textPath>
         </text>
       ))}
-
-      {/* PROTOTYP — Zellen: unsichtbare Klickflächen, die aktive getönt.
-          Liegen unter den Punkten, damit ein Punktklick weiterhin gewinnt. */}
-      {zellen.map((z) => {
-        const aktiv = aktiveZelle?.sektor === z.sektor && aktiveZelle?.ring === z.ring
-        return (
-          <path
-            key={`${z.sektor}|${z.ring}`}
-            d={z.d}
-            className="cursor-pointer"
-            fill="var(--oelz-braun)"
-            fillOpacity={aktiv ? 0.14 : 0}
-            stroke={aktiv ? 'var(--oelz-braun)' : 'none'}
-            strokeOpacity={aktiv ? 0.45 : 0}
-            strokeWidth={1.5}
-            onClick={(ev) => {
-              ev.stopPropagation()
-              onZelle?.(z.sektor, z.ring)
-            }}
-          />
-        )
-      })}
 
       {/* Punkte */}
       {sortiert.map((e) => {
