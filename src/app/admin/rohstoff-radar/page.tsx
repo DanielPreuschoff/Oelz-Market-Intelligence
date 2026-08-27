@@ -3,8 +3,9 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { buttonVariants } from '@/components/ui/button-variants'
 import { DeleteButton } from '@/components/admin/delete-button'
+import { AlleVeroeffentlichenButton } from '@/components/admin/alle-veroeffentlichen-button'
 import { cn } from '@/lib/utils'
-import { deleteIngredientSignal } from './actions'
+import { deleteIngredientSignal, publishReadyIngredientSignals } from './actions'
 import { missingForPublish, type IngredientSignal } from '@/types/ingredient-signals'
 
 export default async function AdminRohstoffRadarPage() {
@@ -22,11 +23,20 @@ export default async function AdminRohstoffRadarPage() {
 
   const signals = (data ?? []) as IngredientSignal[]
 
+  // Für die Sammel-Veröffentlichung: Entwürfe nach vollständiger Kette teilen.
+  const entwuerfe = signals.filter((s) => s.status === 'draft')
+  const bereit = entwuerfe.filter((s) => missingForPublish(s).length === 0).length
+
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Rohstoff-Radar</h1>
         <div className="flex items-center gap-2">
+          <AlleVeroeffentlichenButton
+            bereit={bereit}
+            unvollstaendig={entwuerfe.length - bereit}
+            onPublish={publishReadyIngredientSignals}
+          />
           <Link href="/admin/rohstoff-radar/import" className={cn(buttonVariants({ variant: 'outline', size: 'sm' }))}>
             Importieren
           </Link>

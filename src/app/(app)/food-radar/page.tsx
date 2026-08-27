@@ -15,7 +15,7 @@ export default async function FoodRadarPage() {
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Food Radar</h1>
+        <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">Trend Radar</h1>
         <p className="text-sm text-muted-foreground max-w-2xl">
           Trendradare der Lebensmittelbranche — Entwicklungsrichtungen nach Themenfeld und
           zeitlicher Nähe. Anders als die übrigen Module beantwortet dieses nicht &bdquo;was ist

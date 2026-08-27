@@ -94,7 +94,7 @@ export const MODULES: IntelligenceModule[] = [
   },
   {
     id: 'food-radar',
-    name: 'Food Radar',
+    name: 'Trend Radar',
     description: 'Trendradare der Lebensmittelbranche — Entwicklungsrichtungen nach Themenfeld und zeitlicher Nähe, von Digitalisierung bis Regulatorik.',
     icon: 'TrendingUp',
     status: 'active',
