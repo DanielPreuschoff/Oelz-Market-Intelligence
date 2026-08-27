@@ -44,10 +44,17 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
 
   const supabase = await createClient()
 
+  // Sortiert nach dem Datum, das auf der Kachel steht (source_date, das Datum
+  // der Quelle) — nicht nach published_at: der Grundstock wurde binnen
+  // Sekunden veroeffentlicht, in einer Reihenfolge, die mit den Quelldaten
+  // nichts zu tun hat; danach sortiert wirkte die Wand zufaellig gemischt.
+  // published_at bleibt Nachrangkriterium (stabile Ordnung bei gleichem Tag)
+  // und traegt weiterhin Neu-Plakette und Stand-Zeile.
   let query = supabase
     .from('ingredient_signals')
     .select('*')
     .eq('status', 'published')
+    .order('source_date', { ascending: false, nullsFirst: false })
     .order('published_at', { ascending: false, nullsFirst: false })
 
   // Filter laufen in Postgres — die Indizes dafür liegen in Migration 007.
