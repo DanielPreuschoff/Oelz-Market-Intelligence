@@ -15,11 +15,13 @@ Your task is to extract structured intelligence from a raw text snippet or artic
 
 The client is Rudolf Ölz Meisterbäcker GmbH & Co KG — an Austrian premium bakery company known for croissants, pastry, and sweet bakery products. You are analyzing competitor or market activity that may be relevant to Ölz.
 
+Headline and summary are written in GERMAN, regardless of the source language; proper nouns and brand names stay untranslated, trade terms without an established German equivalent ("Private Label", "Bake-off") stay in English. Enum fields keep their English values.
+
 Extract the following fields and return them as a JSON object:
 
 {
-  "headline": string,       // max 80 chars. Plain language. Include competitor name and action.
-  "summary": string,        // 2-5 sentences. What happened, detail/scope, why it matters for Ölz.
+  "headline": string,       // max 80 chars, GERMAN. Plain language. Include competitor name and action.
+  "summary": string,        // 2-5 sentences, GERMAN. What happened, detail/scope, why it matters for Ölz.
   "category": string,       // one of: product_launch, packaging_change, distribution, production_capacity, m_and_a, campaign, pricing, hiring_signal, technology, sustainability, startup_signal, regulatory, partnership
   "competitor_name": string | null,  // the competitor name as it appears in the source, or null if market-level
   "country_code": string | null,     // ISO 2-letter code: AT, CZ, SK, SI, or null if not determinable

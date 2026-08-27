@@ -16,9 +16,9 @@ interface EditionFormProps {
   editionId?: string
 }
 
-const ENGLISH_MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
+const GERMAN_MONTHS = [
+  'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
+  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',
 ]
 
 /**
@@ -26,12 +26,12 @@ const ENGLISH_MONTHS = [
  * bisherigen Ausgaben so heissen — im Reader wird der Monat separat und auf
  * Deutsch aus `period_month` angezeigt.
  */
-function englishMonthLabel(periodMonth: string): string {
+function germanMonthLabel(periodMonth: string): string {
   const monthIndex = Number(periodMonth?.slice(5, 7)) - 1
   const fallback = new Date()
-  return ENGLISH_MONTHS[monthIndex] && periodMonth
-    ? `${ENGLISH_MONTHS[monthIndex]} ${periodMonth.slice(0, 4)}`
-    : `${ENGLISH_MONTHS[fallback.getMonth()]} ${fallback.getFullYear()}`
+  return GERMAN_MONTHS[monthIndex] && periodMonth
+    ? `${GERMAN_MONTHS[monthIndex]} ${periodMonth.slice(0, 4)}`
+    : `${GERMAN_MONTHS[fallback.getMonth()]} ${fallback.getFullYear()}`
 }
 
 export function EditionForm({ initialValues, editionId }: EditionFormProps) {
@@ -44,11 +44,11 @@ export function EditionForm({ initialValues, editionId }: EditionFormProps) {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // Beispieltitel folgt dem bisherigen Schema der Ausgaben
-  // ("July 2026: Competitor Monitoring") und zieht den Monat aus der Auswahl,
-  // damit dort steht, was man tatsaechlich tippen wuerde. Bewusst nur
-  // Platzhalter, nicht vorausgefuellt — der Titel bleibt eine Entscheidung.
-  const titlePlaceholder = `e.g. ${englishMonthLabel(periodMonth)}: Competitor Monitoring`
+  // Beispieltitel folgt dem Titelschema der Ausgaben — seit 08/2026 deutsch:
+  // "August 2026: Wettbewerbsradar". Aeltere Editionen behalten ihre englischen
+  // Titel ("July 2026: Competitor Monitoring"); umbenannt wird nichts. Bewusst
+  // nur Platzhalter, nicht vorausgefuellt — der Titel bleibt eine Entscheidung.
+  const titlePlaceholder = `z. B. ${germanMonthLabel(periodMonth)}: Wettbewerbsradar`
 
   async function handleSave() {
     if (!title || !periodMonth) return

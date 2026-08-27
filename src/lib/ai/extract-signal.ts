@@ -33,9 +33,11 @@ Extract the following fields and return them as a JSON object:
   "source_name": string | null
 }
 
+Language: headline and summary are written in GERMAN, regardless of the source language. Proper nouns, brand and product names stay untranslated. Trade terms without an established German equivalent (e.g. "Private Label", "Bake-off", "Convenience") stay in English. Enum fields (category, country_code) keep their English values exactly as listed.
+
 Field rules:
-- headline: max 80 chars. Plain language. Include competitor name and action.
-- summary: 2-5 sentences. What happened, detail/scope, why it matters for Ölz. Last sentence starts with "This" or "For Ölz".
+- headline: max 80 chars, German. Plain language. Include competitor name and action.
+- summary: 2-5 sentences, German. What happened, detail/scope, why it matters for Ölz. Last sentence starts with "Für Ölz".
 - category: exactly one of: product_launch, packaging_change, distribution, production_capacity, m_and_a, campaign, pricing, hiring_signal, technology, sustainability, startup_signal, regulatory, partnership
 - competitor_name: as it appears in the source, or null if market-level
 - country_code: ISO 2-letter code (AT, CZ, SK, SI) or null if not determinable
