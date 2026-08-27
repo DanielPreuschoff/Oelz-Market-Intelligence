@@ -1,16 +1,16 @@
-import { notFound } from 'next/navigation'
 import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
 import { FoodRadarView } from '@/components/food-radar/food-radar-view'
 import { TAFELN } from '@/data/food-radar'
 
 export default async function FoodRadarPage() {
-  // Ausrollstufe: vorerst nur für Admins. notFound() statt redirect, damit die
-  // Route für andere nicht einmal als existierend erkennbar ist — dasselbe
-  // Muster wie im Rohstoff-Radar. Die Tafeln sind statische Daten im Repo, es
-  // gibt also keine RLS-Schranke dahinter; dieses Gate ist die einzige.
-  // Zum Freischalten diesen Block entfernen und `adminOnly` in
-  // src/lib/modules.ts streichen.
-  if (!(await isCurrentUserAdmin())) notFound()
+  // Ausrollstufe 20.08.2026: Future Food (34 Einträge) ist für alle frei,
+  // Food AI bleibt bis zur Abstimmung mit foodRegio den Admins vorbehalten.
+  // Die Weiche sitzt serverseitig: Nicht-Admins bekommen die zweite Tafel
+  // gar nicht erst ausgeliefert — auch ein geteilter Link ?tafel=food-ai
+  // fällt im View auf die erste Tafel zurück. Die Tafeln sind statische
+  // Daten im Repo, es gibt keine RLS-Schranke dahinter.
+  const istAdmin = await isCurrentUserAdmin()
+  const tafeln = istAdmin ? TAFELN : TAFELN.filter((t) => t.key === 'future-food')
 
   return (
     <div className="space-y-6">
@@ -23,7 +23,7 @@ export default async function FoodRadarPage() {
         </p>
       </div>
 
-      <FoodRadarView tafeln={TAFELN} />
+      <FoodRadarView tafeln={tafeln} />
 
       {/* Herkunft getrennt ausgewiesen: die Systematik und die Einträge sind
           foodRegios redaktionelle Arbeit, die deutschen Texte sind unsere.

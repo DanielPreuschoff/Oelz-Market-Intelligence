@@ -99,7 +99,10 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
 
   return (
     <div className="space-y-4">
-      {/* Tafelumschalter */}
+      {/* Tafelumschalter — nur wenn es etwas umzuschalten gibt. Nicht-Admins
+          erhalten vom Server nur Future Food; ein einzelner Knopf wäre
+          Dekoration, die wie ein Fehler aussieht. */}
+      {tafeln.length > 1 && (
       <div className="flex items-center gap-2 flex-wrap">
         {tafeln.map((t) => (
           <button
@@ -119,6 +122,7 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
           </button>
         ))}
       </div>
+      )}
 
       {/* Legende, zugleich Filter nach Ebene */}
       <div className="flex items-center gap-4 flex-wrap text-xs text-muted-foreground">

@@ -98,11 +98,10 @@ export const MODULES: IntelligenceModule[] = [
     description: 'Trendradare der Lebensmittelbranche — Entwicklungsrichtungen nach Themenfeld und zeitlicher Nähe, von Digitalisierung bis Regulatorik.',
     icon: 'TrendingUp',
     status: 'active',
-    // Ausrollstufe: fertig, aber vorerst nur fuer Admins. Am 19.08.2026 kurz
-    // freigegeben und am selben Tag wieder zurueckgenommen — die Inhalte
-    // stammen von foodRegio/FIBRES und sind mit ihnen noch abzustimmen
-    // (Hinweis am Fuss der Seite).
-    adminOnly: true,
+    // Ausrollstufe 20.08.2026: fuer alle sichtbar, aber nur mit der Tafel
+    // Future Food — Food AI bleibt bis zur Abstimmung mit foodRegio den
+    // Admins vorbehalten. Die Weiche sitzt in der Seite selbst
+    // (src/app/(app)/food-radar/page.tsx), nicht hier.
     href: '/food-radar',
     iconBg: 'bg-orange-100',
     iconColor: 'text-orange-700',
