@@ -27,13 +27,16 @@ export default async function FoodRadarPage() {
 
       {/* Herkunft getrennt ausgewiesen: die Systematik und die Einträge sind
           foodRegios redaktionelle Arbeit, die deutschen Texte sind unsere.
-          „Maschinell übersetzt" stimmte nach der Überarbeitung nicht mehr. */}
-      <p className="text-xs text-muted-foreground/80 border-t border-border pt-3 max-w-3xl">
-        Inhaltliche Systematik und Einträge: <strong>foodRegio Innovation</strong>, betrieben auf
-        FIBRES, übernommen aus den öffentlich eingebetteten Radaren am 10. August 2026. Texte
-        übersetzt und redaktionell überarbeitet sowie Darstellung und Gestaltung: Ölz. Die Nutzung
-        ist mit foodRegio abzustimmen.
-      </p>
+          Nur für Admins sichtbar — der Abstimmungsvorbehalt ist eine interne
+          Notiz und gehört nicht vor die Ölz-Leser (Entscheidung 20.08.2026). */}
+      {istAdmin && (
+        <p className="text-xs text-muted-foreground/80 border-t border-border pt-3 max-w-3xl">
+          Inhaltliche Systematik und Einträge: <strong>foodRegio Innovation</strong>, betrieben auf
+          FIBRES, übernommen aus den öffentlich eingebetteten Radaren am 10. August 2026. Texte
+          übersetzt und redaktionell überarbeitet sowie Darstellung und Gestaltung: Ölz. Die Nutzung
+          ist mit foodRegio abzustimmen.
+        </p>
+      )}
     </div>
   )
 }
