@@ -34,8 +34,9 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
   const [tafelKey, setTafelKey] = useState(tafeln[0].key)
   const [auswahl, setAuswahl] = useState<string | null>(null)
   const [nurEbene, setNurEbene] = useState<RadarEbene | null>(null)
-  // PROTOTYP (?leiste=1): Signalleiste statt Dialog. Siehe signalleiste.tsx.
-  const [leiste, setLeiste] = useState(false)
+  // Signalleiste: Liste aller Einträge am rechten Rand (signalleiste.tsx).
+  // Auf breiten Schirmen ersetzt sie den Dialog; unter 768 px existiert sie
+  // nicht (hidden), dort bleibt die Sektorliste mit dem Dialog.
   const [leisteOffen, setLeisteOffen] = useState(false)
 
   const tafel = tafeln.find((t) => t.key === tafelKey) ?? tafeln[0]
@@ -50,8 +51,11 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
 
   const eintrag = tafel.eintraege.find((e) => e.id === auswahl) ?? null
 
-  // Geteilter Link (?leiste=1&eintrag=…) öffnet die Leiste im Detail.
-  const leisteSichtbar = leiste && (leisteOffen || !!eintrag)
+  // Leiste und Dialog schliessen sich über den AUSLÖSER aus, nicht über die
+  // Bildschirmbreite: Radar-Punkte und Griff (nur ab md sichtbar) öffnen die
+  // Leiste, die mobile Sektorliste setzt nur die Auswahl — dann Dialog. Ein
+  // md:hidden um den Dialog griffe nicht, er rendert über ein Portal.
+  const leisteSichtbar = leisteOffen
 
   // Adresse auswerten, damit ein geteilter Link seinen Eintrag öffnet —
   // dasselbe Muster wie im Rohstoff-Radar.
@@ -60,8 +64,11 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
     const t = p.get('tafel')
     if (t && tafeln.some((x) => x.key === t)) setTafelKey(t)
     const e = p.get('eintrag')
-    if (e) setAuswahl(e)
-    setLeiste(p.get('leiste') === '1')
+    if (e) {
+      setAuswahl(e)
+      // Geteilter Link: auf breiten Schirmen in der Leiste, sonst im Dialog.
+      setLeisteOffen(window.matchMedia('(min-width: 768px)').matches)
+    }
   }, [tafeln])
 
   useEffect(() => {
@@ -78,13 +85,10 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
     setNurEbene(null)
   }
 
-  /**
-   * PROTOTYP — Klick auf einen Punkt: im Leisten-Modus öffnet er die Leiste
-   * direkt im Detail dieses Eintrags. Sonst wie bisher der Dialog.
-   */
+  /** Klick auf einen Punkt öffnet die Leiste direkt im Detail des Eintrags. */
   function waehlePunkt(id: string | null) {
     setAuswahl(id)
-    if (leiste && id) setLeisteOffen(true)
+    if (id) setLeisteOffen(true)
   }
 
   const zaehler = useMemo(() => {
@@ -197,28 +201,24 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
         })}
       </div>
 
-      {/* PROTOTYP: im Leisten-Modus ersetzt die Leiste den Dialog auf breiten
-          Schirmen; schmale Schirme behalten Liste + Dialog (Grilling, Q14). */}
       <Dialog
-        open={!!eintrag && !leisteSichtbar}
+        open={!!eintrag && !leisteOffen}
         onOpenChange={(offen) => !offen && setAuswahl(null)}
       >
         {eintrag && <DetailDialog eintrag={eintrag} tafel={tafel} />}
       </Dialog>
 
-      {leiste && (
-        <Signalleiste
-          tafel={tafel}
-          gefiltert={gefiltert}
-          offen={leisteSichtbar}
-          onOffen={(o) => {
-            setLeisteOffen(o)
-            if (!o) setAuswahl(null)
-          }}
-          eintragId={auswahl}
-          onEintrag={setAuswahl}
-        />
-      )}
+      <Signalleiste
+        tafel={tafel}
+        gefiltert={gefiltert}
+        offen={leisteSichtbar}
+        onOffen={(o) => {
+          setLeisteOffen(o)
+          if (!o) setAuswahl(null)
+        }}
+        eintragId={auswahl}
+        onEintrag={setAuswahl}
+      />
     </div>
   )
 }

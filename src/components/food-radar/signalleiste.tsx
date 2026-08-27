@@ -1,25 +1,22 @@
 'use client'
 
 /**
- * PROTOTYP — Wegwerfcode (Branch prototype/food-radar-zellenleiste).
+ * Die Signalleiste: alle Einträge der Tafel als Liste am rechten Rand.
  *
- * Frage: Ersetzt eine ausklappbare Liste am rechten Rand das Hovern über 356
- * Punkte? Zweiter Anlauf — der erste band die Liste an eine angeklickte Zelle
- * (Sektor × Ring); zu umständlich, weil man erst die richtige Zelle treffen
- * musste. Jetzt: ein Griff am rechten Rand klappt **alle** Einträge der Tafel
- * als Liste aus.
+ * Antwort auf ein echtes Bedienproblem: 356 Punkte lassen sich nur einzeln
+ * per Hover entdecken. Der Griff rechts klappt stattdessen eine Leiste aus —
+ * Liste aller Einträge, nach Sektor gruppiert (haftende Überschriften), darin
+ * Trends → Cluster → Signale, mit Suche über Titel und Text. Klick auf einen
+ * Eintrag zeigt das Detail in derselben Leiste; ‹ › und ← → blättern durch
+ * die gefilterte Liste. Der Ebenen-Filter der Tafel wirkt mit.
  *
- *  · Griff rechts mittig, immer sichtbar; klappt die Leiste (480 px) aus.
- *  · Liste: alle Einträge, nach Sektor gruppiert mit haftenden Überschriften,
- *    darin Trends → Cluster → Signale, dann alphabetisch. Suchfeld oben, weil
- *    356 Titel sonst nur scrollbar und nicht auffindbar sind.
- *  · Der Ebenen-Filter der Tafel wirkt mit.
- *  · Klick auf einen Eintrag → Detail in derselben Leiste; ‹ › und ← →
- *    blättern durch die gefilterte Liste, „Zur Liste" führt zurück.
- *  · Klick auf einen Punkt im Radar öffnet die Leiste direkt im Detail.
- *  · Schliessen: Esc, ×, Griff erneut. Bewegung 200 ms, reduced-motion aus.
+ * Auf breiten Schirmen ersetzt die Leiste den Detail-Dialog (Radar-Punkte
+ * öffnen sie direkt im Detail); unter 768 px existiert sie nicht — dort
+ * bleibt die Sektorliste mit dem Dialog. Schließen: Esc, ×, Griff.
  *
- * Zum Ausprobieren: /food-radar?leiste=1
+ * Entschieden am 27.08.2026 auf prototype/food-radar-zellenleiste: der erste
+ * Anlauf band die Liste an eine angeklickte Zelle (Sektor × Ring) — zu
+ * umständlich, weil man erst die richtige Zelle treffen musste.
  */
 
 import { useEffect, useMemo, useRef, useState } from 'react'
