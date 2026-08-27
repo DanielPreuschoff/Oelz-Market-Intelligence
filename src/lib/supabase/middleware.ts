@@ -51,11 +51,21 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(url)
   }
 
-  // Redirect authenticated users away from login
+  // Redirect authenticated users away from login — aber nur, wenn die Sitzung
+  // auch serverseitig noch lebt. Die lokale Signaturpruefung oben kennt nur
+  // den Ablauf des Tokens, nicht den Zustand der Sitzung: ist sie tot
+  // (Abmeldung anderswo, rotierter Refresh-Token), schickte diese Regel den
+  // Nutzer auf '/', das Layout (getUser) zurueck auf '/login' — eine
+  // Endlosschleife, die Safari mit "zu viele Umleitungen" abbricht. Die
+  // teure Serverpruefung laeuft deshalb genau hier und nirgends sonst:
+  // eine Netzwerkrunde auf der Anmeldeseite, keine auf allen uebrigen.
   if (user && pathname === '/login') {
-    const url = request.nextUrl.clone()
-    url.pathname = '/'
-    return NextResponse.redirect(url)
+    const { data: { user: bestaetigt } } = await supabase.auth.getUser()
+    if (bestaetigt) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/'
+      return NextResponse.redirect(url)
+    }
   }
 
   return supabaseResponse
