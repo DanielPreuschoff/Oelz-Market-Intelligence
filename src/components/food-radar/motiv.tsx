@@ -60,10 +60,17 @@ export function Motiv({
   id,
   sektor,
   ebene,
+  hoehe = 'h-32',
+  symbolGroesse = 'w-[4.5rem] h-[4.5rem]',
+  symbolIcon = 'w-10 h-10',
 }: {
   id: string
   sektor: string
   ebene: RadarEbene
+  /** PROTOTYP: schmales Band in der Zellenleiste statt Kopfbild im Dialog. */
+  hoehe?: string
+  symbolGroesse?: string
+  symbolIcon?: string
 }) {
   const Symbol = SEKTOR_SYMBOL[sektor] ?? Cpu
 
@@ -91,7 +98,7 @@ export function Motiv({
   const kraft = ebene === 'trend' ? 1 : ebene === 'cluster' ? 0.85 : 0.72
 
   return (
-    <div className="relative h-32 w-full overflow-hidden" aria-hidden="true">
+    <div className={`relative w-full overflow-hidden ${hoehe}`} aria-hidden="true">
       <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid slice" className="w-full h-full">
         <rect width={W} height={H} fill="var(--oelz-orange)" opacity={0.09} />
         {radien.map((r, i) => (
@@ -124,8 +131,8 @@ export function Motiv({
       {/* Sektorsymbol — der wiedererkennbare Teil, von Hand je Sektor gewählt
           statt zufällig erzeugt. Es sitzt in einer hellen Scheibe, damit es sich
           gegen die Bögen behauptet, ohne sie zu übertönen. */}
-      <div className="absolute right-8 top-1/2 -translate-y-1/2 w-[4.5rem] h-[4.5rem] rounded-full bg-background/70 flex items-center justify-center">
-        <Symbol className="w-10 h-10 text-oelz-orange-text/75" strokeWidth={1.5} />
+      <div className={`absolute right-8 top-1/2 -translate-y-1/2 rounded-full bg-background/70 flex items-center justify-center ${symbolGroesse}`}>
+        <Symbol className={`text-oelz-orange-text/75 ${symbolIcon}`} strokeWidth={1.5} />
       </div>
     </div>
   )

@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { Dialog } from '@/components/ui/dialog'
 import { RadarTafelSvg } from './radar-tafel'
 import { DetailDialog } from './detail-dialog'
+import { Zellenleiste, type Zelle } from './zellenleiste'
 import {
   EBENEN_FARBE,
   EBENEN_NAME,
@@ -33,6 +34,9 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
   const [tafelKey, setTafelKey] = useState(tafeln[0].key)
   const [auswahl, setAuswahl] = useState<string | null>(null)
   const [nurEbene, setNurEbene] = useState<RadarEbene | null>(null)
+  // PROTOTYP (?leiste=1): Zellenleiste statt Dialog. Siehe zellenleiste.tsx.
+  const [leiste, setLeiste] = useState(false)
+  const [zelle, setZelle] = useState<Zelle | null>(null)
 
   const tafel = tafeln.find((t) => t.key === tafelKey) ?? tafeln[0]
 
@@ -46,6 +50,12 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
 
   const eintrag = tafel.eintraege.find((e) => e.id === auswahl) ?? null
 
+  // Geteilter Link (?leiste=1&eintrag=…): die Zelle ergibt sich aus dem
+  // Eintrag. Abgeleitet statt im Effekt gesetzt — sonst rendert die Seite
+  // zweimal und der Zustand hat zwei Quellen.
+  const zelleOffen: Zelle | null =
+    zelle ?? (leiste && eintrag ? { sektor: eintrag.sektor, ring: ringFuer(tafel, eintrag.radius).name } : null)
+
   // Adresse auswerten, damit ein geteilter Link seinen Eintrag öffnet —
   // dasselbe Muster wie im Rohstoff-Radar.
   useEffect(() => {
@@ -54,6 +64,7 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
     if (t && tafeln.some((x) => x.key === t)) setTafelKey(t)
     const e = p.get('eintrag')
     if (e) setAuswahl(e)
+    setLeiste(p.get('leiste') === '1')
   }, [tafeln])
 
   useEffect(() => {
@@ -68,6 +79,25 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
     setTafelKey(key)
     setAuswahl(null)
     setNurEbene(null)
+    setZelle(null)
+  }
+
+  /**
+   * PROTOTYP — Klick auf einen Punkt: im Leisten-Modus öffnet er die Leiste in
+   * der Zelle dieses Punktes, direkt im Detail (Grilling, Q5). Sonst wie bisher
+   * der Dialog.
+   */
+  function waehlePunkt(id: string | null) {
+    setAuswahl(id)
+    if (!leiste || !id) return
+    const e = tafel.eintraege.find((x) => x.id === id)
+    if (e) setZelle({ sektor: e.sektor, ring: ringFuer(tafel, e.radius).name })
+  }
+
+  /** Klick auf eine Zelle: gleiche Zelle schliesst, andere tauscht und zeigt die Liste. */
+  function waehleZelle(sektor: string, ring: string) {
+    setAuswahl(null)
+    setZelle((vorher) => (vorher?.sektor === sektor && vorher?.ring === ring ? null : { sektor, ring }))
   }
 
   const zaehler = useMemo(() => {
@@ -139,7 +169,13 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
         className="hidden md:block mx-auto w-full"
         style={{ maxWidth: 'calc((100vh - 15rem) * 1.786)' }}
       >
-        <RadarTafelSvg tafel={gefiltert} auswahl={auswahl} onAuswahl={setAuswahl} />
+        <RadarTafelSvg
+          tafel={gefiltert}
+          auswahl={auswahl}
+          onAuswahl={waehlePunkt}
+          onZelle={leiste ? waehleZelle : undefined}
+          aktiveZelle={zelleOffen}
+        />
       </div>
 
       {/* Schmale Bildschirme: Liste nach Sektor, Klick öffnet denselben Dialog */}
@@ -180,9 +216,28 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
         })}
       </div>
 
-      <Dialog open={!!eintrag} onOpenChange={(offen) => !offen && setAuswahl(null)}>
+      {/* PROTOTYP: im Leisten-Modus ersetzt die Leiste den Dialog auf breiten
+          Schirmen; schmale Schirme behalten Liste + Dialog (Grilling, Q14). */}
+      <Dialog
+        open={!!eintrag && !(leiste && zelleOffen)}
+        onOpenChange={(offen) => !offen && setAuswahl(null)}
+      >
         {eintrag && <DetailDialog eintrag={eintrag} tafel={tafel} />}
       </Dialog>
+
+      {leiste && (
+        <Zellenleiste
+          tafel={tafel}
+          gefiltert={gefiltert}
+          zelle={zelleOffen}
+          eintragId={auswahl}
+          onEintrag={setAuswahl}
+          onSchliessen={() => {
+            setZelle(null)
+            setAuswahl(null)
+          }}
+        />
+      )}
     </div>
   )
 }
