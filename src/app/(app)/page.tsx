@@ -3,8 +3,8 @@
  *
  * Aufbau: orange Bühne mit dem Monat, dem Intro-/Monatstext und den Neu-Zahlen;
  * rechts die Laufsäule aus dem Produkt- & Innovationsradar. Darunter die beiden
- * Listen (Wettbewerbsradar, Rohstoff-Radar), Studien, die Module und die
- * geplanten Module. Ausschliesslich Lesezugriffe; Sichtbarkeit entscheidet
+ * Listen (Wettbewerbsradar, Rohstoff-Radar), Studien und die Module.
+ * Ausschliesslich Lesezugriffe; Sichtbarkeit entscheidet
  * `visibleModules()`, RLS entscheidet über die Daten.
  */
 
@@ -42,8 +42,12 @@ export default async function StartseitePage() {
   const isAdmin = !!profile?.is_admin
 
   const sichtbareModule = visibleModules(isAdmin)
+  // Nur aktive Module. Die geplanten (`coming_soon`) standen bis 31.08.2026 als
+  // Zeile „In Vorbereitung" unter der Modulübersicht; sie bleiben in
+  // src/lib/modules.ts als Fahrplan stehen, erscheinen aber nirgends mehr in
+  // der Oberfläche — ein Versprechen mit Jahreszahl vor dem Kunden ist ein
+  // Versprechen, das jemand einlösen muss.
   const aktive = sichtbareModule.filter((m) => m.status === 'active')
-  const geplant = sichtbareModule.filter((m) => m.status === 'coming_soon')
   const sichtbar = (id: string) => aktive.some((m) => m.id === id)
 
   const { edition, letzteEdition, signale, impulse, rohstoffsignale, studien, saeule, stats } = daten
@@ -54,12 +58,6 @@ export default async function StartseitePage() {
   const zeigeStudien = sichtbar('studien') && studien.length > 0
   const zeigeImpulse = sichtbar('produkt') && impulse.length > 0
   const leer = !zeigeSignale && !zeigeRohstoff && !zeigeStudien && !zeigeImpulse
-
-  const standDatum = Object.values(stats)
-    .map((s) => s.stand)
-    .filter((s): s is string => !!s)
-    .sort()
-    .at(-1)
 
   const aufmacher = edition ?? letzteEdition
   const bezugsmonat = leer && letzteEdition ? letzteEdition.period_month : daten.monat
@@ -87,7 +85,12 @@ export default async function StartseitePage() {
         <div className="grid gap-10 px-8 pt-8 pb-12 lg:grid-cols-12 lg:items-stretch lg:px-12">
           <div className={cn('flex flex-col einblenden', saeule.length > 0 ? 'lg:col-span-6' : 'lg:col-span-8')} style={naechste()}>
             <div>
-              <p className="dachzeile opacity-80">Briefing{standDatum && <> · Stand {tag(standDatum)}</>}</p>
+              {/* Ohne Standdatum. Es war das dritte Datum auf der Buehne — neben
+                  dem grossen Monat und dem Monat der Edition — und meinte
+                  wieder etwas anderes: den juengsten Erhebungszeitpunkt ueber
+                  alle Module. Entscheidung 31.08.2026, dieselbe Linie wie beim
+                  Editionsmonat: ein Datum, nicht drei. */}
+              <p className="dachzeile opacity-80">Briefing</p>
               <h1 id="buehne-titel" className="mt-3 font-display leading-[0.92] tracking-tight">
                 {leer && letzteEdition ? (
                   <>
@@ -164,9 +167,15 @@ export default async function StartseitePage() {
           <div className="grid gap-x-14 gap-y-8 lg:grid-cols-2 lg:items-stretch">
             {zeigeSignale && aufmacher && (
               <section id="wettbewerbsradar" className="flex flex-col scroll-mt-24">
+                {/* Ohne den Monat der Edition. Er stand neben dem grossen Monat
+                    der Buehne — zwei Daten nebeneinander, die verschiedene Dinge
+                    meinen (Erhebungsmonat vs. Berichtsmonat der Ausgabe). Kai
+                    Heuberger im Termin vom 27.08.2026: „dass wir hier August
+                    haben und Juli da — das ist verwirrend". Welche Ausgabe
+                    dahintersteht, sagt die Editionsseite selbst. */}
                 <ListenKopf
                   name="Wettbewerbsradar"
-                  zusatz={`Edition ${monatName(aufmacher.period_month)} · ${signale.length} neue Signale`}
+                  zusatz={`${signale.length} neue Signale`}
                   href={`/editions/${aufmacher.id}`}
                   linkText="Zur Edition"
                   style={naechste()}
@@ -266,18 +275,6 @@ export default async function StartseitePage() {
             })}
           </div>
 
-          {geplant.length > 0 && (
-            <p className="mt-5 text-xs text-muted-foreground">
-              <span className="font-semibold text-foreground/70">In Vorbereitung:</span>{' '}
-              {geplant.map((m, k) => (
-                <span key={m.id}>
-                  {k > 0 && <span className="mx-1.5 opacity-50">·</span>}
-                  {m.shortName ?? m.name}
-                  {m.eta && <span className="opacity-70"> ({m.eta})</span>}
-                </span>
-              ))}
-            </p>
-          )}
         </section>
 
         {leer && !letzteEdition && (
