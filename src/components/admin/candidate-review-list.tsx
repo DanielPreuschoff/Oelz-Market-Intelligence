@@ -34,6 +34,18 @@ export function CandidateReviewList({ candidates }: CandidateReviewListProps) {
     if (!res.ok) throw new Error((await res.json()).error ?? 'Ablehnen fehlgeschlagen')
   }
 
+  async function handleReopen(id: string) {
+    const res = await fetch(`/api/import/candidates/${id}/reopen`, { method: 'POST' })
+    if (!res.ok) throw new Error((await res.json()).error ?? 'Zurücksetzen fehlgeschlagen')
+    // Der Kandidat war ggf. per Sammelaktion verworfen — sonst zeigte ihn die
+    // Liste weiter als erledigt, obwohl er wieder offen ist.
+    setBulkRejected((prev) => {
+      const next = new Set(prev)
+      next.delete(id)
+      return next
+    })
+  }
+
   function toggle(id: string, isSelected: boolean) {
     setSelected((prev) => {
       const next = new Set(prev)
@@ -110,6 +122,7 @@ export function CandidateReviewList({ candidates }: CandidateReviewListProps) {
                 candidate={c}
                 onApprove={handleApprove}
                 onReject={handleReject}
+                onReopen={handleReopen}
                 isAdmin
                 selected={selected.has(c.id)}
                 onSelectedChange={toggle}
@@ -131,6 +144,7 @@ export function CandidateReviewList({ candidates }: CandidateReviewListProps) {
                 candidate={c}
                 onApprove={handleApprove}
                 onReject={handleReject}
+                onReopen={handleReopen}
                 isAdmin
                 overrideStatus={bulkRejected.has(c.id) ? 'rejected' : undefined}
               />

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import { CheckCircle, XCircle, ExternalLink } from 'lucide-react'
+import { CheckCircle, XCircle, ExternalLink, Undo2 } from 'lucide-react'
 import { format } from 'date-fns'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -18,6 +18,7 @@ interface CandidateCardProps {
   candidate: SignalCandidateWithRelations
   onApprove: (id: string) => Promise<void>
   onReject: (id: string) => Promise<void>
+  onReopen: (id: string) => Promise<void>
   isAdmin?: boolean
   /** Auswahl für die Sammel-Ablehnung. Fehlt sie, wird keine Checkbox gezeigt. */
   selected?: boolean
@@ -27,7 +28,7 @@ interface CandidateCardProps {
 }
 
 export function CandidateCard({
-  candidate, onApprove, onReject, isAdmin,
+  candidate, onApprove, onReject, onReopen, isAdmin,
   selected, onSelectedChange, overrideStatus,
 }: CandidateCardProps) {
   const [localStatus, setLocalStatus] = useState(candidate.status)
@@ -45,6 +46,16 @@ export function CandidateCard({
     startTransition(async () => {
       await onReject(candidate.id)
       setLocalStatus('rejected')
+    })
+  }
+
+  // Rueckweg aus einem Fehlklick. Nur fuer verworfene Kandidaten: ein
+  // bestaetigter hat bereits ein Signal erzeugt, dessen Ruecknahme eine
+  // andere, riskantere Operation waere.
+  function handleReopen() {
+    startTransition(async () => {
+      await onReopen(candidate.id)
+      setLocalStatus('pending')
     })
   }
 
@@ -146,12 +157,26 @@ export function CandidateCard({
               </Button>
             </>
           ) : (
-            <span className={cn(
-              'text-xs font-medium px-2 py-1 rounded-md',
-              status === 'approved' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
-            )}>
-              {status === 'approved' ? 'Approved' : 'Rejected'}
-            </span>
+            <>
+              <span className={cn(
+                'text-xs font-medium px-2 py-1 rounded-md text-center',
+                status === 'approved' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
+              )}>
+                {status === 'approved' ? 'Approved' : 'Rejected'}
+              </span>
+              {status === 'rejected' && (
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="gap-1.5 text-muted-foreground hover:text-foreground"
+                  onClick={handleReopen}
+                  disabled={isPending}
+                >
+                  <Undo2 className="w-3.5 h-3.5" />
+                  Zurück auf offen
+                </Button>
+              )}
+            </>
           )}
         </div>
       </div>
