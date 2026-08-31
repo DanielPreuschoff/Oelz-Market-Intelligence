@@ -254,14 +254,30 @@ Relevanzkette: Sie muss auch bei direktem Schreibzugriff halten.
 
 ## 10. Erstbefüllung
 
-**Acht Fälle, Zeitraum Januar bis 31. August 2026, ausnahmslos amtlich belegt.**
+**Durchgeführt am 31.08.2026. Ergebnis: 15 Einträge** (14 aktiv, 1 ausgeräumt),
+Zeitraum Januar bis 31. August 2026, ausnahmslos amtlich belegt.
 
-Verteilt über alle vier Stufen, damit die Leiter am Bestand sichtbar wird und
-nicht nur in der Legende steht. Glycerin (E 422) ist gesetzt, weil Kai es
-genannt hat.
+Vier parallele Recherchen nach Quellendomäne — BfR und Bundesanzeiger, EFSA,
+EUR-Lex und PAFF-Ausschuss, sowie ein eigener Lauf für Glycerin, AGES und die
+Kritikstufe — ergaben 48 belegte Funde. Ursprünglich waren acht Einträge
+vorgesehen; die Zahl wurde erhöht, weil die Ausbeute es trug.
 
-Findet die Recherche in einer Stufe nichts Belastbares, **bleibt die Stufe
-leer**. Lieber eine Lücke als ein Platzhalter.
+Verteilung: drei auf Stufe 4, vier auf Stufe 3, sechs auf Stufe 2, zwei auf
+Stufe 1. **Jede Sprosse ist besetzt, ohne dass eine aufgefüllt werden musste.**
+
+Die Daten liegen in `docs/unter-beobachtung-saat.json`, die Begründung der
+Auswahl in `research/2026-09/SICHTUNGSLISTE-UNTER-BEOBACHTUNG.md`. Die
+Saatdatei liegt bewusst im Repo und nicht unter `research/`: Das Modul ist
+noch nicht gebaut, und die Recherche darf bis dahin nicht verlorengehen. Nach
+dem Import kann sie entfallen.
+
+**Ein Befund aus der Recherche gehört in die Spec**, weil er Abschnitt 3
+bestätigt: Dieselben Läufe fanden drei Novel-Food-Zulassungen mit Höchstmengen
+ausdrücklich für Backwaren — entfettetes Rapspulver, Pilzprotein, angereicherter
+Karottenextrakt. Das sind **Chancen**, keine Risiken; sie gehören als gewöhnliche
+Rohstoffsignale ins bestehende Modul. Dass ein Auftrag beide Sorten produziert
+und sie sich sauber trennen lassen, ist der praktische Beleg dafür, dass ein
+Risiko keine achte Funktion sein kann.
 
 ---
 
