@@ -56,15 +56,22 @@ export async function importSignals(rawJson: string): Promise<ImportResult> {
   // Dublettenprüfung: gegen veröffentlichte Signale UND gegen Kandidaten, die
   // noch nicht abgelehnt sind. Zweite Stufe zur Prüfung beim Erzeugen der Datei —
   // dort kenne ich nur den Stand von damals, hier den von jetzt.
+  //
+  // Der Schlüssel ist Quelle UND Headline, nicht die Quelle allein: Ein
+  // Halbjahresbericht oder eine LinkedIn-Unternehmensseite trägt regelmäßig
+  // mehrere verschiedene Signale. Auf die URL allein geprüft überlebte davon
+  // nur das erste — im Septemberlauf 2026 wären so 14 echte Signale still
+  // verschwunden (fünf allein aus Manners Halbjahresbericht).
+  const schluessel = (url: string | null | undefined, headline: string) => `${url ?? ''}\n${headline}`
   const urls = valid.map((s) => s.source_url).filter((u): u is string => !!u)
   const seen = new Set<string>()
   if (urls.length > 0) {
     const [{ data: existingSignals }, { data: existingCandidates }] = await Promise.all([
-      supabase.from('signals').select('source_url').in('source_url', urls),
-      supabase.from('signal_candidates').select('source_url').in('source_url', urls).neq('status', 'rejected'),
+      supabase.from('signals').select('source_url, headline').in('source_url', urls),
+      supabase.from('signal_candidates').select('source_url, headline').in('source_url', urls).neq('status', 'rejected'),
     ])
     for (const row of [...(existingSignals ?? []), ...(existingCandidates ?? [])]) {
-      if (row.source_url) seen.add(row.source_url)
+      if (row.source_url) seen.add(schluessel(row.source_url, row.headline))
     }
   }
 
@@ -74,11 +81,12 @@ export async function importSignals(rawJson: string): Promise<ImportResult> {
   const rows: Record<string, unknown>[] = []
 
   for (const signal of valid) {
-    if (signal.source_url && seen.has(signal.source_url)) {
+    const key = schluessel(signal.source_url, signal.headline)
+    if (signal.source_url && seen.has(key)) {
       duplicates.push({ headline: signal.headline, source_url: signal.source_url })
       continue
     }
-    if (signal.source_url) seen.add(signal.source_url) // auch innerhalb einer Datei entdoppeln
+    if (signal.source_url) seen.add(key) // auch innerhalb einer Datei entdoppeln
 
     let competitorId: string | null = null
     if (signal.competitor?.trim()) {
