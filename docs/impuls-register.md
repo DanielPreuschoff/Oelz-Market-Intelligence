@@ -22,8 +22,8 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 
 | | |
 |---|---|
-| Bisherige Läufe | 1 — Probelauf 10. August 2026 (Fenster: Juli/August) |
-| Nächster Lauf | 1. September 2026 |
+| Bisherige Läufe | 2 — Probelauf 10. August 2026 (Fenster Juli/August), erster regulärer Lauf 31. August 2026 (Fenster August) |
+| Nächster Lauf | 1. Oktober 2026 (Fenster: September) |
 
 ---
 
@@ -32,6 +32,9 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 Stand nach dem Probelauf (10. August 2026, Zeitraum Juli bis Anfang August,
 6 Berichte aus 3 Anbietern, 29 Rohblöcke → 25 importierte Entwürfe;
 3 verworfen, 1 zusammengeführt — siehe `research/2026-08/SICHTUNGSLISTE-PRODUKT.md`).
+Die 25 Entwürfe wurden am 31.08.2026 im Admin-Bereich gelöscht; die Zeilen bleiben
+hier stehen, weil sie die Ausschlussliste `{BEKANNT}` tragen — ohne sie meldet die
+Recherche dieselben Konzepte im nächsten Monat erneut.
 
 **Noch offen:** Die 7 Impulse, die vor diesem Lauf im Modul standen, fehlen hier —
 sie stammen aus der Einzelerfassung und sind nie durch diesen Ablauf gelaufen.
@@ -39,31 +42,65 @@ Vor dem Septemberlauf nachtragen, sonst meldet die Recherche sie erneut.
 
 | Konzept | Radar-Typ | Erhebung | Markt | Ergebnis |
 |---|---|---|---|---|
-| Bow Croissant | Format | 2026-08 | USA | Entwurf |
-| Trüffel-Churroissant und Bburinkle-Churroissant | Format | 2026-08 | Japan | Entwurf |
-| Croissant Cereal | Occasion | 2026-08 | Südkorea | Entwurf |
-| Triple Chocolate Caramelised Croissant Cookie | Rezeptur & Genuss | 2026-08 | Großbritannien | Entwurf |
-| Strawberry Sandwich | Occasion | 2026-08 | Großbritannien | Entwurf |
-| Salt Bread (Shio Pan) | Format | 2026-08 | Südkorea | Entwurf |
-| Korean Strawberry Bingsu Cake | Format | 2026-08 | Singapur (Südkorea-Konzept) | Entwurf |
-| Pistachio Big Daddy Cookie Cup | Format | 2026-08 | Großbritannien | Entwurf |
-| Potato Burger Rolls | Rezeptur & Genuss | 2026-08 | Großbritannien | Entwurf |
-| Korean Gochujang Chicken Gimbap Wrap | Format | 2026-08 | Singapur (Südkorea-Konzept) | Entwurf |
-| Hokkaido Milk Cream Buns (Café Latte) | Rezeptur & Genuss | 2026-08 | Singapur / Japan | Entwurf |
-| CT Bakery Mini Croissant Donuts | Format | 2026-08 | USA | Entwurf |
-| Mocchurin Mochi Donuts | Format | 2026-08 | Japan | Entwurf |
-| Raijin-sama’s Belly Button Donut | Rezeptur & Genuss | 2026-08 | Japan | Entwurf |
-| Matcha Choco Crunch Abak | Occasion | 2026-08 | Südkorea | Entwurf |
-| Peanut Butter Stuffed Honey Nut & Almond Butter Stuffed… | Claim | 2026-08 | Großbritannien | Entwurf |
-| Seoul Chestnut Red Bean Bread | Claim | 2026-08 | Südkorea | Entwurf |
-| „Döner Croissant DIY Set“ von Lidl Deutschland mit zwei… | Internationaler Vorläufer | 2026-08 | Deutschland, Social/Pop-up →… | Entwurf |
-| Harry Gow „Sharing Cake Range“ bei Asda Scotland mit… | Internationaler Vorläufer | 2026-08 | Highlands, Café/Bäckerei →… | Entwurf |
-| "Crookie" in der Lidl In-Store-Bakery und bei der… | Internationaler Vorläufer | 2026-08 | Frankreich → UK / Portugal | Entwurf |
-| "Golden Gaytime x Cinnabon" Stieleis von Streets Ice Cream | Internationaler Vorläufer | 2026-08 | USA → Australien | Entwurf |
-| Adaption des "Eis-Croissant"-Konzepts in Handelsformaten | Internationaler Vorläufer | 2026-08 | Social Media → Deutschland | Entwurf |
-| Brioche Gourmet Mini Croissants, Mini Pain au Chocolat,… | Internationaler Vorläufer | 2026-08 | Europa (Frankreich/Italien) →… | Entwurf |
-| Fini Mini Mochis Fruits und Mini Mochis Berries,… | Internationaler Vorläufer | 2026-08 | Spanien → UK | Entwurf |
-| TAFA Samoan Bakery Pani Popo „OG Samoa“, „Tropic Gold“… | Internationaler Vorläufer | 2026-08 | Samoa / polynesische Backkultur… | Entwurf |
+| Bow Croissant | Format | 2026-08 | USA | verworfen (31.08.2026 gelöscht) |
+| Trüffel-Churroissant und Bburinkle-Churroissant | Format | 2026-08 | Japan | verworfen (31.08.2026 gelöscht) |
+| Croissant Cereal | Occasion | 2026-08 | Südkorea | verworfen (31.08.2026 gelöscht) |
+| Triple Chocolate Caramelised Croissant Cookie | Rezeptur & Genuss | 2026-08 | Großbritannien | verworfen (31.08.2026 gelöscht) |
+| Strawberry Sandwich | Occasion | 2026-08 | Großbritannien | verworfen (31.08.2026 gelöscht) |
+| Salt Bread (Shio Pan) | Format | 2026-08 | Südkorea | verworfen (31.08.2026 gelöscht) |
+| Korean Strawberry Bingsu Cake | Format | 2026-08 | Singapur (Südkorea-Konzept) | verworfen (31.08.2026 gelöscht) |
+| Pistachio Big Daddy Cookie Cup | Format | 2026-08 | Großbritannien | verworfen (31.08.2026 gelöscht) |
+| Potato Burger Rolls | Rezeptur & Genuss | 2026-08 | Großbritannien | verworfen (31.08.2026 gelöscht) |
+| Korean Gochujang Chicken Gimbap Wrap | Format | 2026-08 | Singapur (Südkorea-Konzept) | verworfen (31.08.2026 gelöscht) |
+| Hokkaido Milk Cream Buns (Café Latte) | Rezeptur & Genuss | 2026-08 | Singapur / Japan | verworfen (31.08.2026 gelöscht) |
+| CT Bakery Mini Croissant Donuts | Format | 2026-08 | USA | verworfen (31.08.2026 gelöscht) |
+| Mocchurin Mochi Donuts | Format | 2026-08 | Japan | verworfen (31.08.2026 gelöscht) |
+| Raijin-sama’s Belly Button Donut | Rezeptur & Genuss | 2026-08 | Japan | verworfen (31.08.2026 gelöscht) |
+| Matcha Choco Crunch Abak | Occasion | 2026-08 | Südkorea | verworfen (31.08.2026 gelöscht) |
+| Peanut Butter Stuffed Honey Nut & Almond Butter Stuffed… | Claim | 2026-08 | Großbritannien | verworfen (31.08.2026 gelöscht) |
+| Seoul Chestnut Red Bean Bread | Claim | 2026-08 | Südkorea | verworfen (31.08.2026 gelöscht) |
+| „Döner Croissant DIY Set“ von Lidl Deutschland mit zwei… | Internationaler Vorläufer | 2026-08 | Deutschland, Social/Pop-up →… | verworfen (31.08.2026 gelöscht) |
+| Harry Gow „Sharing Cake Range“ bei Asda Scotland mit… | Internationaler Vorläufer | 2026-08 | Highlands, Café/Bäckerei →… | verworfen (31.08.2026 gelöscht) |
+| "Crookie" in der Lidl In-Store-Bakery und bei der… | Internationaler Vorläufer | 2026-08 | Frankreich → UK / Portugal | verworfen (31.08.2026 gelöscht) |
+| "Golden Gaytime x Cinnabon" Stieleis von Streets Ice Cream | Internationaler Vorläufer | 2026-08 | USA → Australien | verworfen (31.08.2026 gelöscht) |
+| Adaption des "Eis-Croissant"-Konzepts in Handelsformaten | Internationaler Vorläufer | 2026-08 | Social Media → Deutschland | verworfen (31.08.2026 gelöscht) |
+| Brioche Gourmet Mini Croissants, Mini Pain au Chocolat,… | Internationaler Vorläufer | 2026-08 | Europa (Frankreich/Italien) →… | verworfen (31.08.2026 gelöscht) |
+| Fini Mini Mochis Fruits und Mini Mochis Berries,… | Internationaler Vorläufer | 2026-08 | Spanien → UK | verworfen (31.08.2026 gelöscht) |
+| TAFA Samoan Bakery Pani Popo „OG Samoa“, „Tropic Gold“… | Internationaler Vorläufer | 2026-08 | Samoa / polynesische Backkultur… | verworfen (31.08.2026 gelöscht) |
+
+### Lauf 31. August 2026 (Fenster August)
+
+6 Berichte aus 3 Anbietern, 34 Rohblöcke → 26 Entwürfe; 4 Gruppen zusammengeführt,
+3 als bereits bekannt verworfen — siehe `research/2026-09/SICHTUNGSLISTE-PRODUKT.md`.
+
+| Konzept | Radar-Typ | Erhebung | Markt | Ergebnis |
+|---|---|---|---|---|
+| Funktionale Ballaststoff-Brote | Claim | 2026-09 | Großbritannien | Entwurf |
+| Bagel wird zum Abreißgebäck mit eigenem Dip | Format | 2026-09 | USA | Entwurf |
+| Croissant wird zum einhändig essbaren Churro-Stick | Format | 2026-09 | Japan | Entwurf |
+| Toaster-optimiertes Fladenbrot-Format | Format | 2026-09 | Großbritannien | Entwurf |
+| Ahornsirup-Waffel als Sandwich-Träger | Format | 2026-09 | USA | Entwurf |
+| Mammoth Bread als gekühlter Dessert-Snack | Format | 2026-09 | Südkorea | Entwurf |
+| Kauiger Mochi-Kern im Keks-Gebäck | Format | 2026-09 | Südkorea | Entwurf |
+| Hyperrealistische Optik im Patisserie-Segment | Format | 2026-09 | USA | Entwurf |
+| Mochi-Croissant „Kurotchi“ im neuen Bakery-Café | Format | 2026-09 | Japan | Entwurf |
+| Yangjjeu-kkanru Dessertbrot im Convenience-Regal | Format | 2026-09 | Südkorea | Entwurf |
+| Mango-Mochi-Donut mit Mascarpone bei Cloudmills | Format | 2026-09 | Singapur | Entwurf |
+| Japanische Milk Buns springen bei Waitrose ins Mainstream- | Internationaler Vorläufer | 2026-09 | Japan → UK | Entwurf |
+| Yo-Chi bringt Cookie-Topping-Froyo erstmals nach UK | Internationaler Vorläufer | 2026-09 | Australien → UK | Entwurf |
+| The City Bakery bringt Pretzel Croissant nach Singapur | Internationaler Vorläufer | 2026-09 | Japan → Singapur | Entwurf |
+| Cup of Joy springt mit Bakery-Café von Istanbul nach Londo | Internationaler Vorläufer | 2026-09 | Türkei → UK | Entwurf |
+| Dubai-Schokolade füllt westliches Feingebäck | Internationaler Vorläufer | 2026-09 | VAE → Global | Entwurf |
+| Golden Bake Cookie Cups wechseln von Tiefkühl-Snacks zur I | Internationaler Vorläufer | 2026-09 | Irland Frozen-Bakery B2B → Irland  | Entwurf |
+| Tiefkühl-Croissant geht ohne Auftauen direkt in den Ofen | Occasion | 2026-09 | USA | Entwurf |
+| Pokémon-Doughnut-Kollektion mit Character-Designs bei Kris | Occasion | 2026-09 | USA & Kanada | Entwurf |
+| Drei Croissant-Texturen erzwingen den schnellen Relaunch | Rezeptur & Genuss | 2026-09 | Japan | Entwurf |
+| Eis am Stiel wird zur Füllung eines ganzen Croissants | Rezeptur & Genuss | 2026-09 | Großbritannien | Entwurf |
+| Donut bekommt vor dem Frittieren eine Keks-Teighülle | Rezeptur & Genuss | 2026-09 | Japan | Entwurf |
+| Shio-Koji in hochhydrierten Brotteigen | Rezeptur & Genuss | 2026-09 | Japan | Entwurf |
+| Salzbrot „Wakppu“ mit knackbarer Schokohülle | Rezeptur & Genuss | 2026-09 | Südkorea | Entwurf |
+| Maple Cheesecake Doughnut im Herbst-Line-up von Krispy Kre | Rezeptur & Genuss | 2026-09 | USA | Entwurf |
+| Pumpkin Cinnamon Roll und Caramel Pumpkin Slice bei Panera | Saison | 2026-09 | USA | Entwurf |
 
 ## Verworfen
 
@@ -71,3 +108,5 @@ Vor dem Septemberlauf nachtragen, sonst meldet die Recherche sie erneut.
 |---|---|---|
 | Sourdough Croissant (Puratos) | 2026-08 | Quelle 404 — Blogartikel existiert nicht |
 | Red/White/Blue Mochi Donut (Paris Baguette US) | 2026-08 | Quelle 404 — PRNewswire-Meldung existiert nicht |
+| Döner Croissant DIY Set (Lidl DE) | 2026-09 | Wiederholung — steht seit dem Augustlauf im Register |
+| Crookie bei Waitrose (Frankreich → UK) | 2026-09 | Wiederholung — der Sprung Frankreich → UK ist seit August erfasst |
