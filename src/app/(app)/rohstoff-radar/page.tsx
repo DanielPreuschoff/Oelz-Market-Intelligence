@@ -10,7 +10,6 @@ import { PRODUKTKATEGORIEN, type Risikosignal } from '@/types/substance-watch'
 import {
   INGREDIENT_FUNCTIONS,
   MATURITY_LEVELS,
-  isNewSignal,
   isCollectionRecent,
   type IngredientSignal,
 } from '@/types/ingredient-signals'
@@ -126,10 +125,9 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
   const stand = maxPublishedAt(published)
   // Liegt die letzte Erhebung länger zurück als das Neu-Fenster, gilt nichts
   // mehr als neu — sonst bliebe die jüngste Erhebung für immer markiert.
+  // Steuert weiterhin die Neu-Marker auf den Kacheln (siehe unten) — nur die
+  // Zahl im Kopf ist entfallen.
   const collectionIsRecent = isCollectionRecent(stand)
-  const newCount = collectionIsRecent
-    ? published.filter((s) => isNewSignal(s, stand)).length
-    : 0
 
   function buildUrl(patch: Record<string, string | undefined>) {
     const merged: Record<string, string | undefined> = {
@@ -174,21 +172,15 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
           Rohstoffe, Ingredients, Technologien und Verfahren mit strategischer Bedeutung für
           Produktentwicklung und Portfolio.
         </p>
-        {/* Die Stand-Zeile beschreibt die jüngste Erhebung (neu, für alle
-            gleich) — nicht den Lesestand des Nutzers (ungesehen, Zähler in der
-            Seitenleiste). Deshalb „15 Signale", nicht „15 neue Signale", und
-            die Zahl nur, solange die Erhebung als neu gilt. */}
+        {/* Nur das Datum. Die Zahl stand hier bis 31.08.2026 daneben und
+            wiederholte scheinbar den Reiter darunter: Solange der gesamte
+            Bestand aus einer einzigen Erhebung stammt, ist „neu seit der
+            letzten Erhebung" dieselbe Zahl wie „insgesamt". Zwei gleiche
+            Zahlen übereinander lesen sich als Fehler, nicht als zwei
+            Aussagen. */}
         {stand && (
           <p className="text-xs text-muted-foreground pt-1">
             Jüngste Erhebung: {format(new Date(stand), 'd. MMMM yyyy', { locale: de })}
-            {newCount > 0 && (
-              <>
-                <span className="mx-2">·</span>
-                <span className="font-semibold text-foreground">
-                  {newCount} {newCount === 1 ? 'Signal' : 'Signale'}
-                </span>
-              </>
-            )}
           </p>
         )}
       </div>
