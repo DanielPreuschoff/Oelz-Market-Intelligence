@@ -84,7 +84,6 @@ Vor dem Septemberlauf nachtragen, sonst meldet die Recherche sie erneut.
 | Kauiger Mochi-Kern im Keks-Gebäck | Format | 2026-09 | Südkorea | Entwurf |
 | Hyperrealistische Optik im Patisserie-Segment | Format | 2026-09 | USA | Entwurf |
 | Mochi-Croissant „Kurotchi“ im neuen Bakery-Café | Format | 2026-09 | Japan | Entwurf |
-| Yangjjeu-kkanru Dessertbrot im Convenience-Regal | Format | 2026-09 | Südkorea | Entwurf |
 | Mango-Mochi-Donut mit Mascarpone bei Cloudmills | Format | 2026-09 | Singapur | Entwurf |
 | Japanische Milk Buns springen bei Waitrose ins Mainstream- | Internationaler Vorläufer | 2026-09 | Japan → UK | Entwurf |
 | Yo-Chi bringt Cookie-Topping-Froyo erstmals nach UK | Internationaler Vorläufer | 2026-09 | Australien → UK | Entwurf |
@@ -110,3 +109,4 @@ Vor dem Septemberlauf nachtragen, sonst meldet die Recherche sie erneut.
 | Red/White/Blue Mochi Donut (Paris Baguette US) | 2026-08 | Quelle 404 — PRNewswire-Meldung existiert nicht |
 | Döner Croissant DIY Set (Lidl DE) | 2026-09 | Wiederholung — steht seit dem Augustlauf im Register |
 | Crookie bei Waitrose (Frankreich → UK) | 2026-09 | Wiederholung — der Sprung Frankreich → UK ist seit August erfasst |
+| Yangjjeu-kkanru „Dessertbrot" (GS25) | 2026-09 | Kein Gebäck. Die koreanische Primärquelle (Seoul Economic Daily) nennt „떠먹는 양쯔깐루" — ein löffelbares Becherdessert aus Mango, Pomelo, Joghurtcreme und Sago im Kühlregal; die Top-10-Platzierung gilt unter rund 100 Kühlregal-Desserts, nicht unter Broten. Der englische Reiseführer, auf dem der Fund beruht, schrieb „dessert bread", die Recherche baute darauf einen Gebäckimpuls. |
