@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import type { EditionWithSignals, UserRole } from '@/types/database'
+import type { SignalWithRelations, UserRole } from '@/types/database'
 import { getCurrentProfile } from '@/lib/auth/current-profile'
 import { EditionKopf } from '@/components/wettbewerbsradar/koepfe'
 import { SignalZeile } from '@/components/wettbewerbsradar/signal-zeile'
@@ -11,6 +11,28 @@ import {
 } from '@/components/wettbewerbsradar/edition-filter'
 
 const PAGE_SIZE = 20
+
+/**
+ * Form des Abfrageergebnisses — nicht die ganze Tabellenzeile.
+ *
+ * Seit die Abfrage ausdrueckliche Spalten listet, waere `EditionWithSignals`
+ * eine Luege: Der Typ verspricht Felder, die gar nicht geladen werden. Dieser
+ * Typ beschreibt, was wirklich ankommt; faellt spaeter eine Spalte aus der
+ * Abfrage, meldet die Typpruefung es an der Verwendungsstelle.
+ */
+interface EditionsZeile {
+  id: string
+  title: string
+  period_month: string
+  editorial_summary: string | null
+  published_at: string | null
+  status: string
+  edition_signals: {
+    id: string
+    position: number
+    signal: SignalWithRelations | null
+  }[]
+}
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -24,16 +46,27 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
 
   const supabase = await createClient()
 
+  // Ausdrueckliche Spaltenliste statt `*`.
+  //
+  // Mit `*` kam bei jedem der bis zu 45 Signale auch `fts_vector` mit — der
+  // Volltext-Suchindex, ungefaehr so gross wie der Signaltext selbst und im
+  // Browser nie sichtbar. Er steht nicht einmal im TypeScript-Typ. Dazu
+  // Zeitstempel und Redaktionsfelder, die diese Ansicht nicht liest.
+  //
+  // Die Liste bildet genau ab, was EditionKopf, SignalZeile und die Filter
+  // hier verwenden. Braucht die Ansicht spaeter ein weiteres Feld, gehoert es
+  // hierher — ein fehlendes Feld faellt sofort auf, ein ueberfluessiges nie.
   const { data: edition } = await supabase
     .from('editions')
     .select(`
-      *,
+      id, title, period_month, editorial_summary, published_at, status,
       edition_signals (
-        *,
+        id, position,
         signal:signals (
-          *,
-          competitor:competitors (*),
-          country:countries (*)
+          id, headline, summary, category, importance, role_relevance,
+          signal_date, source_name, source_url, ai_generated, competitor_id,
+          competitor:competitors ( id, short_name, logo_url ),
+          country:countries ( id, name )
         )
       )
     `)
@@ -50,8 +83,13 @@ export default async function EditionPage({ params, searchParams }: PageProps) {
   // nicht (RLS laesst nur veroeffentlichte durch). PostgREST liefert die Zeile
   // dann mit `signal: null`. Die Editionsuebersicht filtert das seit jeher weg,
   // die Detailseite tat es nicht und stuerzte in `signal.category` ab.
-  const sortedSignalRows = ((edition as EditionWithSignals).edition_signals ?? [])
-    .filter((row) => !!row.signal)
+  const sortedSignalRows = ((edition as unknown as EditionsZeile).edition_signals ?? [])
+    // Typpraedikat statt einfachem Filter: Danach weiss TypeScript, dass
+    // `signal` gesetzt ist, und alle Zugriffe darunter sind geprueft. Der
+    // frueher verwendete Typ `EditionWithSignals` behauptete, `signal` sei nie
+    // leer — deshalb fiel der Absturz vom 31.08.2026 in der Typpruefung nicht
+    // auf, sondern erst in der Produktion.
+    .filter((row): row is typeof row & { signal: SignalWithRelations } => !!row.signal)
     .sort((a, b) => a.position - b.position)
 
   const filteredRows = sortedSignalRows.filter((row) => {

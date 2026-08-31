@@ -62,6 +62,24 @@ export const EBENEN_NAME: Record<RadarEbene, string> = {
 }
 
 /**
+ * Was die drei Ebenen bedeuten.
+ *
+ * Die Einstufung stammt von foodRegio und beschreibt, wie weit sich eine
+ * Beobachtung vom Einzelfall geloest hat — nicht, wie wichtig sie ist. Im
+ * Bestand liest sich das eindeutig: Signale nennen einen konkreten Akteur
+ * („Samsung und LG zeigten auf der CES 2020…"), Trends kommen ohne Namen aus
+ * („Insektenprotein fuer die menschliche Ernaehrung").
+ *
+ * Kai Heuberger hat im Termin vom 27.08.2026 zweimal danach gefragt; im
+ * Radar steht die Erklaerung deshalb als Kurzhinweis an der Legende.
+ */
+export const EBENEN_ERKLAERUNG: Record<RadarEbene, string> = {
+  signal: 'Eine einzelne Beobachtung — ein Unternehmen, eine Studie, ein Produkt.',
+  cluster: 'Mehrere Beobachtungen, die in dieselbe Richtung zeigen.',
+  trend: 'Eine Richtung, die sich vom Einzelfall gelöst hat.',
+}
+
+/**
  * Ölz-Farben statt foodRegios Blau/Türkis/Cyan.
  *
  * Zwei Zwänge, die die Palette bestimmen:

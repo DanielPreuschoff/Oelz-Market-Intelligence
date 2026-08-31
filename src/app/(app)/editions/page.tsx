@@ -66,7 +66,7 @@ export default async function EditionsPage() {
 
   return (
     <div className="space-y-6">
-      <RadarKopf stats={stats.wettbewerb} isAdmin={isAdmin} />
+      <RadarKopf stats={stats.wettbewerb} isAdmin={isAdmin} monat={latest.period_month} />
       <EditionsBuehne latest={latest} archive={archive} countMap={countMap} latestSignale={latestSignale} />
     </div>
   )

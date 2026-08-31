@@ -44,7 +44,10 @@ export interface ImpulsTeaser {
   radar_type: RadarType
   short_signal: string | null
   image_url: string | null
+  /** Aufnahme in die Plattform — traegt „neu" und die Reihenfolge im Modul. */
   created_at: string
+  /** Datum der Quelle: wann der Fund tatsaechlich stattfand. Steht auf der Karte. */
+  source_date: string | null
 }
 
 export interface RohstoffTeaser {
@@ -121,6 +124,7 @@ interface ImpulsZeile {
   short_signal: string | null
   image_url: string | null
   created_at: string
+  source_date: string | null
 }
 
 /** Alles, was die Startseite braucht — in einer Runde paralleler Abfragen. */
@@ -152,7 +156,7 @@ export async function ladeStartseitenDaten(): Promise<StartseitenDaten> {
       .limit(10),
     supabase
       .from('innovation_impulses')
-      .select('id, title, radar_type, short_signal, image_url, created_at')
+      .select('id, title, radar_type, short_signal, image_url, created_at, source_date')
       .eq('status', 'published')
       .order('created_at', { ascending: false })
       .limit(40),
@@ -209,7 +213,16 @@ export async function ladeStartseitenDaten(): Promise<StartseitenDaten> {
   const impulseStand = impulseAlle[0]?.created_at ?? null
   const impulse = impulseAlle.filter((im) => imFenster(im.created_at, impulseStand))
   // Die Säule zeigt neue Impulse und den Bestand — sie soll nie kahl laufen.
-  const saeule = impulseAlle.filter((im) => im.image_url).slice(0, 12)
+  //
+  // Sortiert nach dem Datum, das auf der Karte steht (Quellendatum), nicht nach
+  // der Aufnahme in die Plattform: sonst trugen zwölf Karten alle denselben
+  // Importtag und sahen aus, als sei an einem einzigen Tag alles passiert.
+  // `created_at` bleibt Rückfall für Impulse ohne Quellendatum und trägt
+  // weiterhin den Neu-Zähler.
+  const saeule = impulseAlle
+    .filter((im) => im.image_url)
+    .sort((a, b) => (b.source_date ?? b.created_at).localeCompare(a.source_date ?? a.created_at))
+    .slice(0, 12)
 
   return {
     monat: editionIstNeu && zeile ? monatsErster(zeile.period_month) : monatsErster(new Date().toISOString()),

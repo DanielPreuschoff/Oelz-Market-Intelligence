@@ -11,6 +11,7 @@ import {
   EBENEN_NAME,
   ringFuer,
   type RadarEbene,
+  EBENEN_ERKLAERUNG,
   type RadarTafel,
 } from '@/data/food-radar/types'
 
@@ -131,6 +132,7 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
             key={e}
             type="button"
             onClick={() => setNurEbene(nurEbene === e ? null : e)}
+            title={`${EBENEN_NAME[e]} — ${EBENEN_ERKLAERUNG[e]}`}
             className={cn(
               'inline-flex items-center gap-1.5 px-2 py-1 rounded-md transition-colors',
               nurEbene === e ? 'bg-secondary text-foreground font-medium' : 'hover:bg-secondary/60'
@@ -153,6 +155,17 @@ export function FoodRadarView({ tafeln }: { tafeln: RadarTafel[] }) {
           </button>
         )}
       </div>
+
+      {/* Was die drei Ebenen unterscheidet. Bewusst eine stille Zeile unter der
+          Legende statt eines Hilfe-Symbols: die Frage stellt sich beim ersten
+          Blick auf das Radar, und wer sie schon beantwortet hat, liest darüber
+          hinweg. Beim aktiven Ebenenfilter steht nur noch die gewählte Ebene —
+          dann ist die Zeile eine Bestätigung statt einer Aufzählung. */}
+      <p className="-mt-2 text-[11px] leading-relaxed text-muted-foreground/80">
+        {(nurEbene ? [nurEbene] : EBENEN.filter((e) => zaehler[e]))
+          .map((e) => `${EBENEN_NAME[e]}: ${EBENEN_ERKLAERUNG[e]}`)
+          .join('  ·  ')}
+      </p>
 
       {/* Breite Bildschirme: das Radar allein, über die volle Breite.
           Die Höhe ist auf das Fenster begrenzt — die Halbscheibe ist fast

@@ -85,7 +85,12 @@ export function Laufsaeule({
                         Produktradar · {im.radar_type}
                       </span>
                       <span className="shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground transition-colors group-hover:text-card/70">
-                        {format(new Date(im.created_at), 'd. MMM', { locale: de })}
+                        {/* Quellendatum, nicht der Importtag — sonst tragen alle Karten
+                            denselben Tag und es sieht aus, als sei an einem einzigen
+                            Tag alles passiert. Dieselbe Wahl wie auf der Impuls-Kachel
+                            im Modul. Rückfall auf die Aufnahme, wenn die Quelle kein
+                            Datum trägt. */}
+                        {format(new Date(im.source_date ?? im.created_at), 'd. MMM', { locale: de })}
                       </span>
                     </span>
 

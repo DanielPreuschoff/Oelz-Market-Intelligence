@@ -25,7 +25,16 @@ import type { Edition } from '@/types/database'
 export const WETTBEWERBSRADAR_EINLEITUNG =
   'Kuratierte Beobachtung der wichtigsten Wettbewerber — neue Produkte, Claims, Kampagnen und strategische Bewegungen, monatlich als Edition gebündelt und redaktionell für Ölz eingeordnet.'
 
-export function RadarKopf({ stats, isAdmin }: { stats?: ModuleStats; isAdmin: boolean }) {
+export function RadarKopf({
+  stats,
+  isAdmin,
+  monat,
+}: {
+  stats?: ModuleStats
+  isAdmin: boolean
+  /** `period_month` der juengsten Edition — der Monat, den sie berichtet. */
+  monat?: string
+}) {
   return (
     <div className="flex items-start justify-between gap-4">
       <div className="space-y-1">
@@ -33,7 +42,14 @@ export function RadarKopf({ stats, isAdmin }: { stats?: ModuleStats; isAdmin: bo
         <p className="max-w-3xl text-sm text-muted-foreground">{WETTBEWERBSRADAR_EINLEITUNG}</p>
         {stats?.stand && (
           <p className="pt-1 text-xs text-muted-foreground">
-            Jüngste Edition: {format(new Date(stats.stand), 'd. MMMM yyyy', { locale: de })}
+            {/* Der Monat, den die Edition berichtet — nicht der Tag, an dem sie
+                veroeffentlicht wurde. Beides nebeneinander waren zwei Daten, die
+                auseinanderlaufen: die Juli-Edition erschien am 18. August.
+                Entscheidung mit Kai Heuberger am 27.08.2026 — „das Datum nehmen
+                wir weg und hier lassen wir dann den aktiven Monat". */}
+            Jüngste Edition: {monat
+              ? format(new Date(monat), 'LLLL yyyy', { locale: de })
+              : format(new Date(stats.stand), 'LLLL yyyy', { locale: de })}
             {/* Die Zahl nur, solange die Edition als neu gilt — danach ist die
                 Zeile ein Datum, keine Behauptung über 0 Signale. */}
             {stats.newCount > 0 && (
@@ -61,7 +77,10 @@ export function EditionKopf({
   signalAnzahl,
   kritischAnzahl,
 }: {
-  edition: Edition
+  /* Nur die drei Felder, die dieser Kopf liest. Die Editionsseite laedt
+     seit dem 01.09.2026 ausdrueckliche Spalten statt der ganzen Zeile —
+     ein Bauteil, das `Edition` verlangt, zwaenge sie zurueck zu `select *`. */
+  edition: Pick<Edition, 'title' | 'period_month' | 'editorial_summary'>
   signalAnzahl: number
   kritischAnzahl: number
 }) {
@@ -95,12 +114,7 @@ export function EditionKopf({
               <span className="font-semibold text-oelz-orange-text">{kritischAnzahl} kritisch</span>
             </>
           )}
-          {edition.published_at && (
-            <>
-              <span className="mx-2">·</span>
-              veröffentlicht am {format(new Date(edition.published_at), 'd. MMMM yyyy', { locale: de })}
-            </>
-          )}
+
         </p>
       </div>
     </div>

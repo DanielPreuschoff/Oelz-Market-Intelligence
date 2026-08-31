@@ -52,14 +52,23 @@ export function Signalleiste({
   onEintrag: (id: string | null) => void
 }) {
   const [suche, setSuche] = useState('')
+  // Sektorfilter neben der Textsuche. Die Suche greift auf Titel und Text —
+  // wer „Konsum" eintippte, bekam die Eintraege, in denen das Wort vorkommt,
+  // nicht den Sektor. Kai Heuberger im Termin vom 27.08.2026: „ich gehe auf
+  // die Icons und dann kann ich Consumer als Suchbegriff eingeben" — genau
+  // dieser Weg fuehrte ins Leere.
+  const [nurSektor, setNurSektor] = useState<string | null>(null)
 
   const treffer = useMemo(() => {
     const q = suche.trim().toLowerCase()
+    const imSektor = nurSektor
+      ? gefiltert.eintraege.filter((e) => e.sektor === nurSektor)
+      : gefiltert.eintraege
     const liste = q
-      ? gefiltert.eintraege.filter(
+      ? imSektor.filter(
           (e) => e.titel.toLowerCase().includes(q) || e.beschreibung.toLowerCase().includes(q)
         )
-      : gefiltert.eintraege
+      : imSektor
     // Reihenfolge der Sektoren wie auf der Tafel, darin Ebene, dann Titel.
     const sektorRang = new Map(tafel.sektoren.map((s, i) => [s, i]))
     return [...liste].sort(
@@ -68,7 +77,7 @@ export function Signalleiste({
         EBENEN_RANG[a.ebene] - EBENEN_RANG[b.ebene] ||
         a.titel.localeCompare(b.titel, 'de')
     )
-  }, [gefiltert, tafel.sektoren, suche])
+  }, [gefiltert, tafel.sektoren, suche, nurSektor])
 
   const gruppen = useMemo(() => {
     const map = new Map<string, RadarEintrag[]>()
@@ -178,6 +187,31 @@ export function Signalleiste({
               placeholder="Titel oder Text durchsuchen…"
               className="w-full rounded-lg border border-border bg-background py-2 pl-9 pr-3 text-sm outline-none transition-colors focus:border-oelz-orange"
             />
+          </div>
+
+          {/* Sektoren als Chips, in der Reihenfolge der Tafel. Ein zweiter Klick
+              hebt den Filter wieder auf — dasselbe Muster wie der Ebenenfilter
+              in der Legende. */}
+          <div className="mt-2.5 flex flex-wrap gap-1">
+            {tafel.sektoren.map((sk) => {
+              const aktiv = nurSektor === sk
+              return (
+                <button
+                  key={sk}
+                  type="button"
+                  onClick={() => setNurSektor(aktiv ? null : sk)}
+                  aria-pressed={aktiv}
+                  className={cn(
+                    'rounded-full border px-2 py-0.5 text-[11px] transition-colors',
+                    aktiv
+                      ? 'border-oelz-orange bg-oelz-orange text-oelz-on-orange font-medium'
+                      : 'border-border text-muted-foreground hover:bg-secondary'
+                  )}
+                >
+                  {sk}
+                </button>
+              )
+            })}
           </div>
         </div>
 
