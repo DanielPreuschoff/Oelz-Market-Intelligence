@@ -100,6 +100,8 @@ Vor dem Septemberlauf nachtragen, sonst meldet die Recherche sie erneut.
 | Salzbrot „Wakppu“ mit knackbarer Schokohülle | Rezeptur & Genuss | 2026-09 | Südkorea | Entwurf |
 | Maple Cheesecake Doughnut im Herbst-Line-up von Krispy Kre | Rezeptur & Genuss | 2026-09 | USA | Entwurf |
 | Pumpkin Cinnamon Roll und Caramel Pumpkin Slice bei Panera | Saison | 2026-09 | USA | Entwurf |
+| Bio-Toastbrot ohne Zuckerzusatz mit längerer Haltbarkeit | Claim | 2026-09 | Großbritannien | Entwurf |
+| Sauerteig-Handwerk wandert ins verpackte Bagel-Regal | Claim | 2026-09 | USA | Entwurf |
 
 ## Verworfen
 
