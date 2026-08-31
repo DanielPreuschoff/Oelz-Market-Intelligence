@@ -44,11 +44,29 @@ export async function updateSession(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname
 
+  /**
+   * Weiterleitung MIT den Sitzungs-Cookies.
+   *
+   * `getClaims()`/`getUser()` erneuern unterwegs ein abgelaufenes Token und
+   * legen die neuen Cookies auf `supabaseResponse` ab. Ein frisch erzeugtes
+   * `NextResponse.redirect()` traegt sie nicht — der erneuerte Token ginge
+   * verloren, waehrend der alte durch die Rotation bereits ungueltig ist.
+   * Die Sitzung waere danach halb tot: der Browser haelt ein Token, das der
+   * Server nicht mehr kennt. Genau das erzeugt die Umleitungsschleife
+   * zwischen / und /login. Supabase verlangt deshalb ausdruecklich, die
+   * Cookies auf jede eigene Antwort zu uebernehmen.
+   */
+  function leiteWeiter(zu: string) {
+    const url = request.nextUrl.clone()
+    url.pathname = zu
+    const antwort = NextResponse.redirect(url)
+    supabaseResponse.cookies.getAll().forEach((c) => antwort.cookies.set(c))
+    return antwort
+  }
+
   // Redirect unauthenticated users to login (except on auth routes)
   if (!user && !pathname.startsWith('/login') && !pathname.startsWith('/auth')) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/login'
-    return NextResponse.redirect(url)
+    return leiteWeiter('/login')
   }
 
   // Redirect authenticated users away from login — aber nur, wenn die Sitzung
@@ -61,11 +79,7 @@ export async function updateSession(request: NextRequest) {
   // eine Netzwerkrunde auf der Anmeldeseite, keine auf allen uebrigen.
   if (user && pathname === '/login') {
     const { data: { user: bestaetigt } } = await supabase.auth.getUser()
-    if (bestaetigt) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/'
-      return NextResponse.redirect(url)
-    }
+    if (bestaetigt) return leiteWeiter('/')
   }
 
   return supabaseResponse

@@ -48,10 +48,24 @@ export function LoginForm() {
     if (error) {
       setError(meldung(error.message))
       setLoading(false)
-    } else {
-      router.push('/')
-      router.refresh()
+      return
     }
+
+    router.push('/')
+    router.refresh()
+
+    // Der Ladezustand wird bewusst NICHT zurueckgesetzt: im Normalfall
+    // verlaesst der Nutzer die Seite, ein zurueckspringender Knopf waere
+    // Flackern. Bleibt die Weiterleitung aber haengen — kalte Funktion,
+    // langsame Datenbank, unterbrochene Verbindung —, stand hier ohne diese
+    // Bremse endlos "Anmeldung laeuft...", ohne dass etwas passierte und
+    // ohne dass sich das Formular erneut absenden liess (fieldset disabled).
+    // Nach zehn Sekunden bekommt der Nutzer die Bedienung zurueck und
+    // erfaehrt, dass die Anmeldung selbst geklappt hat.
+    setTimeout(() => {
+      setLoading(false)
+      setError('Angemeldet, aber die Startseite antwortet gerade nicht. Bitte die Seite neu laden.')
+    }, 10_000)
   }
 
   const feld = 'h-11 px-3.5 text-base md:text-base'
