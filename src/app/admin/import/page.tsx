@@ -20,14 +20,14 @@ export default async function ImportPage() {
 
   const [{ data: runs }, { data: competitors }, { data: recentRuns }] = await Promise.all([
     supabase.from('research_runs').select('*').order('created_at', { ascending: false }).limit(12),
-    supabase.from('competitors').select('id, short_name, watch_priority').eq('active', true),
+    supabase.from('competitors').select('id, short_name').eq('active', true),
     supabase.from('research_runs').select('competitors_searched').gte('created_at', since),
   ])
 
   const coveredIds = new Set<string>(
     (recentRuns ?? []).flatMap((r) => (r.competitors_searched ?? []) as string[])
   )
-  const active = (competitors ?? []) as { id: string; short_name: string; watch_priority: string }[]
+  const active = (competitors ?? []) as { id: string; short_name: string }[]
   const missing = active.filter((c) => !coveredIds.has(c.id))
 
   return (
@@ -56,12 +56,7 @@ export default async function ImportPage() {
             {missing.map((c) => (
               <span
                 key={c.id}
-                className={`text-xs px-2 py-0.5 rounded-full border ${
-                  c.watch_priority === 'high'
-                    ? 'border-amber-300 bg-amber-50 text-amber-900'
-                    : 'border-border text-muted-foreground'
-                }`}
-                title={c.watch_priority === 'high' ? 'Intensiv beobachtet' : undefined}
+                className="text-xs px-2 py-0.5 rounded-full border border-border text-muted-foreground"
               >
                 {c.short_name}
               </span>

@@ -1,14 +1,6 @@
-import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 import { Badge } from '@/components/ui/badge'
 import type { Competitor } from '@/types/database'
-import { cn } from '@/lib/utils'
-
-const PRIORITY_COLORS = {
-  high: 'bg-red-50 text-red-700 border-red-100',
-  medium: 'bg-amber-50 text-amber-700 border-amber-100',
-  low: 'bg-slate-50 text-slate-600 border-slate-100',
-}
 
 export default async function AdminCompetitorsPage() {
   const supabase = await createClient()
@@ -16,7 +8,6 @@ export default async function AdminCompetitorsPage() {
   const { data: competitors } = await supabase
     .from('competitors')
     .select('*')
-    .order('watch_priority')
     .order('short_name')
 
   return (
@@ -32,12 +23,6 @@ export default async function AdminCompetitorsPage() {
             <div className="space-y-0.5">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium">{competitor.short_name}</span>
-                <Badge
-                  variant="outline"
-                  className={cn('text-xs capitalize', PRIORITY_COLORS[competitor.watch_priority])}
-                >
-                  {competitor.watch_priority}
-                </Badge>
                 {!competitor.active && (
                   <Badge variant="secondary" className="text-xs">Inactive</Badge>
                 )}
