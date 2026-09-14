@@ -8,9 +8,12 @@ kann — eine BfR-Warnung zählt am Tag, an dem sie erscheint.
 Datum der Quelle. Ein Verfahren, das schon 2025 begann, gehört hinein, wenn es 2026 einen
 neuen Schritt hatte (Gutachten, Ausschussvotum, Entwurf). Danach nur noch der Vormonat.
 
-`{ZEITRAUM}` und `{BEKANNT}` ersetzen. `{BEKANNT}` ist die Liste der schon erfassten
-Fälle (Stoff plus Stand), damit der Lauf nicht wiederholt, was steht — er soll melden, was
-sich daran **geändert** hat. Ergebnis ablegen als `research/JJJJ-MM/regulatorik.md`.
+Für den ersten Lauf sind ZEITRAUM und die Liste „BEREITS ERFASST" im Prompt schon
+eingesetzt (Stand 14.09.2026, die 15 veröffentlichten Fälle aus `substance_watch`). Vor
+jedem weiteren Lauf beide Stellen erneuern: ZEITRAUM = Vormonat, Liste = alle
+veröffentlichten Fälle mit Stoff, Stufe, Geltungsbereich und Kurzzeile — damit der Lauf
+nicht wiederholt, was steht, sondern meldet, was sich daran **geändert** hat. Ergebnis
+ablegen als `research/JJJJ-MM/regulatorik.md`.
 
 Fachliche Grundlage: [docs/unter-beobachtung-spec.md](../docs/unter-beobachtung-spec.md)
 (Stufen, Hürde, Abgrenzung), [ADR 0006](../docs/adr/0006-regulatorik-radar-eigenes-modul.md).
@@ -94,10 +97,26 @@ Slowenien. Das Schweizer Lebensmittelrecht ist nicht EU-harmonisiert.
 ÖLZ-KATEGORIEN (genau diese fünf Schreibweisen):
 Croissant & Plunder · Süßes Gebäck · Toast & Sandwich · Snack & Mini-Format · Saisonal
 
-ZEITRAUM: {ZEITRAUM}
+ZEITRAUM: 01.01.2026 bis 30.09.2026
 
 BEREITS ERFASST — nicht erneut melden, nur Änderungen dazu:
-{BEKANNT}
+Stand 14.09.2026, 15 Fälle im Regulatorik-Radar, alle Typ RISIKO. Melde nur, was sich
+daran geändert hat: neue Stufe, neues Gutachten, Amtsblatt, Frist.
+- 3-MCPD, 3-MCPD-Fettsäureester und Glycidyl-Fettsäureester | Geltendes Recht | EU | Stand: Höchstgehalte für 3-MCPD und Glycidylester gelten seit August für fetthaltige Lebensmittel | Quelle: Verordnung (EU) 2026/1825, 30.07.2026
+- Nickel in Getreide, Schalenfrüchten und Ölsaaten | Geltendes Recht | EU | Stand: Nickel-Höchstgehalte für Getreide, Hafer und Nüsse gelten seit Juli 2026 | Quelle: Verordnung (EU) 2024/1987, 31.07.2024
+- Reinheitsspezifikationen für Hydrokolloide (E 410, E 412, E 414, E 415, E 440, E 1450) | Geltendes Recht | EU | Stand: Neue Reinheits- und Keimzahlvorgaben für Johannisbrotkernmehl, Guar, Xanthan und Pektin | Quelle: Verordnung (EU) 2026/196, 29.01.2026
+- Acrylamid | Rechtsakt in Arbeit | EU | Stand: Kommission bereitet erste verbindliche Acrylamid-Höchstgehalte vor, Konsultation im September | Quelle: Ständiger Ausschuss PAFF, Summary Report vom 19.06.2026, 19.06.2026
+- Chinolizidinalkaloide in Lupinen | Rechtsakt in Arbeit | EU | Stand: EU empfiehlt Überwachung von Chinolizidinalkaloiden in Lupinen-Backwaren, Meldepflicht an EFSA | Quelle: Empfehlung (EU) 2026/1241, 15.06.2026
+- Distickstoffmonoxid (Lachgas) (E 942) | Rechtsakt in Arbeit | EU | Stand: Lachgas (E 942) als reproduktionstoxisch eingestuft, EFSA bewertet Zusatzstoff vorrangig neu | Quelle: EFSA, Protokoll der 65. FAF-Plenarsitzung, 26.03.2026
+- MOAH — aromatische Mineralölkohlenwasserstoffe | Rechtsakt in Arbeit | EU | Stand: MOAH-Höchstgehalte im EU-Ausschuss beschlossen, Vollzug läuft schon vor dem Amtsblatt | Quelle: Ständiger Ausschuss PAFF, Summary Report vom 13.05.2026, 13.05.2026
+- Cadmium | Behördliche Bewertung | DE | Stand: BfR: Getreideprodukte liefern 40 bis 50 Prozent der Cadmiumaufnahme | Quelle: BfR, Stellungnahme 030/2026, 29.05.2026
+- Dioxine und dioxinähnliche PCB | Behördliche Bewertung | EU | Stand: EFSA senkt tolerierbare Wochendosis für Dioxine auf weniger als ein Drittel | Quelle: EFSA Journal 24(6):e10103, 10.06.2026
+- Glycerin (Glycerol) (E 422) | Behördliche Bewertung | EU | Stand: EFSA leitet akute Referenzdosis für Glycerin ab, Backwaren nicht adressiert | Quelle: EFSA Journal 24(5):e10057, 05.05.2026
+- Sucralose (E 955) | Behördliche Bewertung | EU | Stand: EFSA bestätigt Sucralose-ADI, Ausweitung auf feine Backwaren bleibt offen | Quelle: EFSA Journal 24(2):e9854, 17.02.2026
+- Thebain und Oripavin in Mohnsamen | Behördliche Bewertung | EU | Stand: EFSA bewertet Thebain und Oripavin in Mohnsamen, bisher nicht limitiert | Quelle: EFSA, Protokoll der 161. CONTAM-Plenarsitzung, 18.06.2026
+- Allurarot AC und Tartrazin (E 129, E 102) | Öffentliche Kritik | AT | Stand: VKI beanstandet fehlenden Warnhinweis, Hersteller ersetzt Azofarbstoffe binnen neun Wochen | Quelle: VKI / KONSUMENT.AT, Lebensmittel-Check und Nachkontrolle, 28.07.2026
+- Zusatzstoffe und Enzyme in Tiefkühl-Teiglingen | Öffentliche Kritik | AT | Stand: Greenpeace kritisiert Zusatzstoffe und nicht deklarierte Enzyme in Supermarkt-Backboxen | Quelle: Greenpeace Österreich, Marktcheck Backboxen, 23.03.2026
+- 2-Chlorethanol | AUSGERÄUMT (Entwarnung) | DE | Stand: BfR stuft 2-Chlorethanol nicht mehr als erbgutschädigend ein, Referenzwerte abgeleitet | Quelle: BfR, Stellungnahme 017/2026, 27.02.2026
 
 AUFGABE
 Finde amtliche Vorgänge in diesem Zeitraum, die Rohstoffe, Zusatzstoffe, Kontaminanten
@@ -228,5 +247,5 @@ der Admin-Liste, was zum Veröffentlichen noch fehlt. Ungültige Schlüssel (Stu
 Handlung) werden verworfen, unbekannte Kategorien benannt. Dubletten über Quelle **und**
 Stoff werden übersprungen: Ein EFSA-Protokoll trägt mehrere Fälle unter einer URL.
 
-Wenn `{BEKANNT}` gepflegt ist, kommen Wiederfunde selten; die Dublettenprüfung ist das
-zweite Netz.
+Wenn die Liste „BEREITS ERFASST" gepflegt ist, kommen Wiederfunde selten; die
+Dublettenprüfung ist das zweite Netz.
