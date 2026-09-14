@@ -6,18 +6,6 @@ import { SignalCard } from '@/components/signal-card/signal-card'
 import type { Competitor, SignalWithRelations, UserRole } from '@/types/database'
 import { getCurrentProfile } from '@/lib/auth/current-profile'
 
-const PRIORITY_LABELS: Record<string, string> = {
-  high: 'Intensiv beobachtet',
-  medium: 'Im Blick',
-  low: 'Auf dem Radar',
-}
-
-const PRIORITY_BADGE_COLORS: Record<string, string> = {
-  high: 'bg-red-50 text-red-700 border border-red-100',
-  medium: 'bg-amber-50 text-amber-700 border border-amber-100',
-  low: 'bg-secondary text-muted-foreground border border-border/40',
-}
-
 const COUNTRY_NAMES: Record<string, string> = {
   AT: 'Österreich',
   DE: 'Deutschland',
@@ -51,7 +39,6 @@ export default async function CompetitorDetailPage({ params }: PageProps) {
 
   const typedCompetitor = competitor as Competitor
   const userRole = (profile?.role ?? null) as UserRole | null
-  const priority = typedCompetitor.watch_priority
 
   return (
     <div className="space-y-8">
@@ -66,14 +53,10 @@ export default async function CompetitorDetailPage({ params }: PageProps) {
 
       {/* Header */}
       <div className="space-y-3">
-        <div className="flex items-start justify-between">
-          <div className="space-y-1">
-            <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">{typedCompetitor.short_name}</h1>
-            <p className="text-sm text-muted-foreground">{typedCompetitor.name}</p>
-          </div>
-          <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${PRIORITY_BADGE_COLORS[priority] ?? 'bg-secondary text-muted-foreground'}`}>
-            {PRIORITY_LABELS[priority] ?? priority}
-          </span>
+        {/* Kein Stufen-Abzeichen mehr (seit 14.09.2026, siehe Übersicht). */}
+        <div className="space-y-1">
+          <h1 className="font-display text-3xl font-bold tracking-wide text-foreground">{typedCompetitor.short_name}</h1>
+          <p className="text-sm text-muted-foreground">{typedCompetitor.name}</p>
         </div>
 
         <div className="flex flex-wrap gap-1.5">

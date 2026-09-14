@@ -77,9 +77,9 @@ export const ORTE: Ort[] = [
     "tier": "medium"
   },
   {
-    "name": "La Fournée Dorée — Puceul",
-    "x": 390.1,
-    "y": 593.6,
+    "name": "La Fournée Dorée — Les Achards",
+    "x": 387.6,
+    "y": 606.5,
     "tier": "medium"
   },
   {
@@ -116,6 +116,36 @@ export const ORTE: Ort[] = [
     "name": "Barilla — Parma",
     "x": 503.3,
     "y": 640.3,
+    "tier": "medium"
+  },
+  {
+    "name": "Harrys — Boulogne-Billancourt (Barilla France)",
+    "x": 428.2,
+    "y": 579.7,
+    "tier": "medium"
+  },
+  {
+    "name": "Brioche Pasquier — Les Cerqueux",
+    "x": 398.1,
+    "y": 602.2,
+    "tier": "medium"
+  },
+  {
+    "name": "Žito — Ljubljana",
+    "x": 544.1,
+    "y": 621.4,
+    "tier": "medium"
+  },
+  {
+    "name": "Opavia — Opava (Werk)",
+    "x": 571.5,
+    "y": 564.2,
+    "tier": "medium"
+  },
+  {
+    "name": "Dobrota — Prievidza",
+    "x": 579.9,
+    "y": 579.8,
     "tier": "medium"
   },
   {

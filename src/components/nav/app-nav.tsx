@@ -112,7 +112,7 @@ export function AppNav({ profile, moduleStats }: AppNavProps) {
                   Rohstoffsignale verwalten
                 </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/admin/unter-beobachtung" />}>
-                  Unter Beobachtung verwalten
+                  Regulatorik-Radar verwalten
                 </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/admin/studien" />}>
                   Studien verwalten

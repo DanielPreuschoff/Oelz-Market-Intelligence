@@ -1,13 +1,14 @@
 /**
- * Unter Beobachtung — Risikosignale im Rohstoff-Radar.
+ * Unter Beobachtung — Risikosignale im Regulatorik-Radar.
  *
  * Spec: docs/unter-beobachtung-spec.md, Tabelle: Migration 013.
+ * Umzug aus dem Rohstoff-Radar: docs/adr/0006-regulatorik-radar-eigenes-modul.md.
  *
  * Ein Risikosignal beantwortet eine einzige Frage: Steht ein Stoff, auf den wir
  * bauen oder bauen könnten, unter Druck — und wie weit ist dieser Druck
  * gediehen? Nicht im Umfang: Beschaffungsrisiko (Verknappung, Preis). Deshalb
- * heißt der Reiter „Unter Beobachtung" und nicht „Kritische Rohstoffe" — der
- * Begriff meint im Industriesprech genau die Beschaffungsseite.
+ * heißt der Eintragstyp „Unter Beobachtung" und nicht „Kritische Rohstoffe" —
+ * der Begriff meint im Industriesprech genau die Beschaffungsseite.
  */
 
 /** Die vier Stufen. Jede ist an der Quelle prüfbar, ohne zu interpretieren. */

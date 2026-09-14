@@ -222,5 +222,52 @@ insert into competitors (name, short_name, country_ids, categories, description,
     'Italian food group. Monitor for bakery and convenience snack moves in Austrian market.',
     'medium',
     true
+  ),
+  -- Added 2026-09-14 on Kai Heuberger's request (email before the 11.09. call).
+  -- Brand is the entry, group goes in the description (see docs/competitor-registry.md).
+  (
+    'Harrys (Barilla France SAS)',
+    'Harrys',
+    array[]::text[],
+    array['toast', 'brioche', 'rolls'],
+    'French market leader in packaged sandwich bread (pain de mie), brioche and milk rolls (pains au lait); brand of Barilla France since 2007, main plant Châteauroux. Not to be confused with Harry-Brot (DE). No documented presence in Ölz markets — tracked as innovation benchmark.',
+    'medium',
+    true
+  ),
+  (
+    'Brioche Pasquier',
+    'Pasquier',
+    array['DE'],
+    array['brioche', 'pastry', 'sweet bakery'],
+    'French family-owned group (Les Cerqueux), ~940 M EUR revenue, brioche is over half the business. Germany mainly via foodservice. Tracked as innovation benchmark for brioche and sweet bakery.',
+    'medium',
+    true
+  ),
+  (
+    'Žito d.o.o.',
+    'Zito',
+    array['SI'],
+    array['bread', 'toast', 'flour'],
+    'Slovenian bakery and milling group (Ljubljana), majority-owned by Podravka; sold its confectionery brands in 2025 to focus on bakery. Toast and bread in Slovenian retail. Not the unrelated Žito d.d. Osijek (HR).',
+    'medium',
+    true
+  ),
+  (
+    'Opavia (Mondelēz)',
+    'Opavia',
+    array['CZ', 'SK'],
+    array['biscuits', 'wafers'],
+    'Czech biscuit and wafer brand (Tatranky, Horalky, Zlaté) owned by Mondelēz, plants in Opava, Lovosice and Mariánské Lázně. Little overlap with Ölz core range — on the list at Kai''s request.',
+    'medium',
+    true
+  ),
+  (
+    'DOBROTA, a.s.',
+    'Dobrota',
+    array['SK'],
+    array['bread', 'pastry', 'croissants', 'cakes'],
+    'Regional Slovak bakery and café chain (Prievidza, formerly Prievidzské pekárne a cukrárne). Bread, pastry, croissants and cakes. Retail supply not documented.',
+    'medium',
+    true
   )
 on conflict do nothing;

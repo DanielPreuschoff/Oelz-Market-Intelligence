@@ -1,10 +1,9 @@
 /**
- * Ladezustand des Rohstoff-Radars.
- *
- * Eigenes Gerüst statt des allgemeinen, weil diese Seite seit dem 31.08.2026
- * eine Reiterleiste über den Filtern trägt. Ohne sie im Gerüst springt der
- * Inhalt beim Erscheinen um deren Höhe nach unten — ein Ruckeln, das genau den
- * Eindruck erzeugt, den das Gerüst vermeiden soll.
+ * Ladezustand des Rohstoff-Radars: Kopf, Suche mit drei Filterreihen und das
+ * Kartenraster. Die Reiterleiste vom 31.08.2026 ist mit dem Umzug von „Unter
+ * Beobachtung" ins Regulatorik-Radar (14.09.2026) entfallen und deshalb auch
+ * hier nicht mehr vorgesehen — sonst rutschte der Inhalt beim Erscheinen um
+ * ihre Höhe nach oben.
  */
 export default function Loading() {
   return (
@@ -13,12 +12,6 @@ export default function Loading() {
         <div className="h-8 w-56 rounded-lg bg-secondary" />
         <div className="h-4 w-full max-w-2xl rounded bg-secondary/70" />
         <div className="h-3 w-52 rounded bg-secondary/60" />
-      </div>
-
-      {/* Reiterleiste — hält die Höhe frei, damit nichts nachrutscht. */}
-      <div className="flex gap-4 border-b border-border pb-2">
-        <div className="h-5 w-32 rounded bg-secondary" />
-        <div className="h-5 w-36 rounded bg-secondary/60" />
       </div>
 
       <div className="space-y-2.5">

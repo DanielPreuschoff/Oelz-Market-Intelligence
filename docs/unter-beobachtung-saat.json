@@ -1,5 +1,5 @@
 {
-  "_hinweis": "Erstbefuellung fuer den Reiter 'Unter Beobachtung' (docs/unter-beobachtung-spec.md). Recherchiert am 31.08.2026, Zeitraum Januar bis 31. August 2026. Jeder Eintrag ist mit einer amtlichen Primaerquelle belegt, jede URL wurde abgerufen. Diese Datei liegt im Repo statt in research/, weil das Modul erst gebaut werden muss und die Daten bis dahin nicht verlorengehen duerfen. Nach dem Import kann sie entfallen.",
+  "_hinweis": "Erstbefuellung fuer 'Unter Beobachtung' (docs/unter-beobachtung-spec.md; seit 14.09.2026 im Regulatorik-Radar, ADR 0006). Recherchiert am 31.08.2026, Zeitraum Januar bis 31. August 2026. Jeder Eintrag ist mit einer amtlichen Primaerquelle belegt, jede URL wurde abgerufen. Diese Datei liegt im Repo statt in research/, weil das Modul erst gebaut werden muss und die Daten bis dahin nicht verlorengehen duerfen. Nach dem Import kann sie entfallen.",
   "_stand": "2026-08-31",
   "_zeitraum": "2026-01-01 bis 2026-08-31",
   "eintraege": [

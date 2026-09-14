@@ -5,14 +5,14 @@ import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import {
   Target, Lightbulb, ShoppingCart, TrendingUp,
-  Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Lock, ArrowRight,
+  Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Scale, Lock, ArrowRight,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { IntelligenceModule } from '@/lib/modules'
 import type { ModuleStats } from '@/lib/module-stats'
 
 const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
-  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical,
+  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Scale,
 }
 
 interface ModuleCardProps {

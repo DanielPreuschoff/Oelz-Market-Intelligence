@@ -93,6 +93,22 @@ export const MODULES: IntelligenceModule[] = [
     iconColor: 'text-teal-700',
   },
   {
+    id: 'regulatorik',
+    name: 'Regulatorik-Radar',
+    description: 'Zulassungen und regulatorischer Druck auf Rohstoffe und Produkte — EFSA, EU-Kommission und nationale Behörden.',
+    icon: 'Scale',
+    status: 'active',
+    // Ausrollstufe 14.09.2026: bis zur Freigabe nur für Admins. Die Route
+    // prüft zusätzlich (src/app/(app)/regulatorik-radar/page.tsx). Die Daten
+    // selbst sind öffentliche Behördenmeldungen und bleiben für Angemeldete
+    // lesbar — freischalten heißt deshalb nur: diese Zeile entfernen und
+    // deployen, kein SQL. Siehe docs/adr/0006-regulatorik-radar-eigenes-modul.md.
+    adminOnly: true,
+    href: '/regulatorik-radar',
+    iconBg: 'bg-stone-100',
+    iconColor: 'text-stone-700',
+  },
+  {
     id: 'food-radar',
     name: 'Trend Radar',
     description: 'Trendradare der Lebensmittelbranche — Entwicklungsrichtungen nach Themenfeld und zeitlicher Nähe, von Digitalisierung bis Regulatorik.',
