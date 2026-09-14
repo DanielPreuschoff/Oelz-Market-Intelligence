@@ -1,32 +1,33 @@
 'use client'
 
 /**
- * Die Karten des Regulatorik-Radars mit Detail als Dialog.
+ * Die Karten des Regulatorik-Radars mit Detail als Dialog — drei Eintragstypen
+ * (Unter Beobachtung · Zulassung · Indirekt relevant), Ausgeräumtes zuletzt.
  *
  * **Die Karte ist zum Überfliegen da, der Dialog zum Lesen.** Kai Heuberger,
  * 11.09.2026: „kurz anteasern und dann Quellenverweis … ich muss nur wissen,
  * wo erfahr ich die Geschichte." Deshalb steht auf der Karte die Kurzzeile
- * (sieben bis elf Wörter), Stufe, Behörde und Quelle — der Sachverhalt erst
- * im Dialog. Altfälle ohne Kurzzeile (vor Migration 015) zeigen den Stoff
- * als Überschrift; die Karte bleibt lesbar, bis der Nachtrag eingespielt ist.
+ * (sieben bis elf Wörter), Stufe oder Typ, Behörde und Quelle — der
+ * Sachverhalt erst im Dialog. Altfälle ohne Kurzzeile zeigen den Stoff als
+ * Überschrift.
+ *
+ * **Form unterscheidet die Art** (Spec §8), Farbe den Grad: Ein Risiko trägt
+ * Warnzeichen und orange Kante, eine Zulassung Haken und braune Kante, ein
+ * indirekter Fall Info-Zeichen und graue Kante — leiser, weil er es ist.
+ * Die Stufenfarbe bleibt den Risiken vorbehalten.
  *
  * **Der Dialogzustand liegt in der URL** (`?signal=<id>`), wie im
- * Rohstoff-Radar: Ein geöffneter Fall ist teil- und reloadfest, weil
- * „das musst du dir ansehen" die Kernnutzung für die QS sein wird. Geöffnet
- * wird lokal, die Adresse per history.replaceState nachgezogen. `openSignal`
- * kommt aufgelöst von der Seite, damit ein geteilter Link auch dann trägt,
- * wenn der aktive Filter den Fall ausblendet.
+ * Rohstoff-Radar: teil- und reloadfest. Geöffnet wird lokal, die Adresse per
+ * history.replaceState nachgezogen. `openSignal` kommt aufgelöst von der
+ * Seite, damit ein geteilter Link auch dann trägt, wenn der aktive Filter den
+ * Fall ausblendet.
  *
  * Die Karte ist ein klickbarer Artikel, kein <button>: Der Quellenlink darauf
- * muss selbst klickbar bleiben, und interaktive Elemente dürfen nicht in
- * einem Button stecken. Tastatur: Enter und Leertaste öffnen.
- *
- * Form und Farbe wie bisher (Spec §8): Warnzeichen und durchgezogene Kante
- * tragen die Art, die Stufenfarbe den Grad, Ausgeräumtes steht unten und still.
+ * muss selbst klickbar bleiben. Tastatur: Enter und Leertaste öffnen.
  */
 
 import { useState } from 'react'
-import { AlertTriangle, Check, ExternalLink } from 'lucide-react'
+import { AlertTriangle, Check, CircleCheck, ExternalLink, Info } from 'lucide-react'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog'
@@ -38,13 +39,28 @@ import {
   GELTUNGSBEREICH_NAME,
   BEHOERDE_NAME,
   HANDLUNG_NAME,
+  EINTRAGSTYP_NAME,
+  EINTRAGSTYP_ERKLAERUNG,
   type Risikosignal,
   type Stufe,
   type Geltungsbereich,
   type Handlung,
+  type Eintragstyp,
 } from '@/types/substance-watch'
 
 const datum = (iso: string) => format(new Date(iso), 'd. MMM yyyy', { locale: de })
+
+/** Kante und Zeichen je Typ — die Form trägt die Art. */
+const FORM: Record<Eintragstyp, { kante: string; Zeichen: typeof AlertTriangle; zeichenFarbe: string }> = {
+  risiko: { kante: 'border-l-oelz-orange', Zeichen: AlertTriangle, zeichenFarbe: 'text-oelz-orange-text' },
+  zulassung: { kante: 'border-l-oelz-braun', Zeichen: CircleCheck, zeichenFarbe: 'text-oelz-braun' },
+  indirekt: { kante: 'border-l-border', Zeichen: Info, zeichenFarbe: 'text-muted-foreground' },
+}
+
+const TYP_CHIP: Record<Exclude<Eintragstyp, 'risiko'>, string> = {
+  zulassung: 'border border-oelz-braun/25 bg-oelz-braun/10 text-oelz-braun',
+  indirekt: 'border border-border text-muted-foreground',
+}
 
 function StufenChip({ stufe, gross = false }: { stufe: Stufe; gross?: boolean }) {
   return (
@@ -61,9 +77,24 @@ function StufenChip({ stufe, gross = false }: { stufe: Stufe; gross?: boolean })
   )
 }
 
+function TypChip({ typ, gross = false }: { typ: Exclude<Eintragstyp, 'risiko'>; gross?: boolean }) {
+  return (
+    <span
+      title={`${EINTRAGSTYP_NAME[typ]} — ${EINTRAGSTYP_ERKLAERUNG[typ]}`}
+      className={cn(
+        'inline-flex items-center whitespace-nowrap rounded-full font-medium',
+        gross ? 'px-2.5 py-1 text-xs' : 'px-2 py-0.5 text-[11px]',
+        TYP_CHIP[typ]
+      )}
+    >
+      {EINTRAGSTYP_NAME[typ]}
+    </span>
+  )
+}
+
 /** Die Kennzeile unter der Überschrift — auf Karte und im Dialog dieselbe. */
 function Kennzeile({ s, gross = false }: { s: Risikosignal; gross?: boolean }) {
-  const ausgeraeumt = s.status === 'ausgeraeumt'
+  const erledigt = s.status === 'ausgeraeumt'
   const punkt = <span className="opacity-50">·</span>
   return (
     <div
@@ -72,7 +103,8 @@ function Kennzeile({ s, gross = false }: { s: Risikosignal; gross?: boolean }) {
         gross ? 'text-sm' : 'text-xs'
       )}
     >
-      <StufenChip stufe={s.stage} gross={gross} />
+      {s.kind === 'risiko' && s.stage ? <StufenChip stufe={s.stage} gross={gross} /> : null}
+      {s.kind !== 'risiko' && <TypChip typ={s.kind} gross={gross} />}
       <span>{GELTUNGSBEREICH_NAME[s.scope as Geltungsbereich] ?? s.scope}</span>
       {s.authority && (
         <>
@@ -80,16 +112,16 @@ function Kennzeile({ s, gross = false }: { s: Risikosignal; gross?: boolean }) {
           <span>{BEHOERDE_NAME[s.authority]}</span>
         </>
       )}
-      {s.action && (
+      {s.kind === 'risiko' && s.action && (
         <>
           {punkt}
           <span className="font-semibold text-foreground">{HANDLUNG_NAME[s.action as Handlung] ?? s.action}</span>
         </>
       )}
-      {ausgeraeumt && (
+      {erledigt && (
         <>
           {punkt}
-          <span className="font-medium">ausgeräumt</span>
+          <span className="font-medium">{s.kind === 'risiko' ? 'ausgeräumt' : 'abgeschlossen'}</span>
         </>
       )}
     </div>
@@ -117,9 +149,23 @@ function Quelle({ s, className }: { s: Risikosignal; className?: string }) {
   )
 }
 
+function Kategorien({ s }: { s: Risikosignal }) {
+  if (s.product_categories.length === 0) return <span />
+  return (
+    <div className="flex flex-wrap gap-1">
+      {s.product_categories.map((k) => (
+        <span key={k} className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted-foreground">
+          {k}
+        </span>
+      ))}
+    </div>
+  )
+}
+
 function Karte({ s, onOpen }: { s: Risikosignal; onOpen: (s: Risikosignal) => void }) {
-  const ausgeraeumt = s.status === 'ausgeraeumt'
+  const erledigt = s.status === 'ausgeraeumt'
   const ueberschrift = s.teaser?.trim() || s.substance
+  const { kante, Zeichen, zeichenFarbe } = FORM[s.kind]
   return (
     <article
       role="button"
@@ -133,17 +179,15 @@ function Karte({ s, onOpen }: { s: Risikosignal; onOpen: (s: Risikosignal) => vo
         }
       }}
       className={cn(
-        'cursor-pointer rounded-xl border border-border/80 bg-card p-5 transition-colors duration-[var(--motion-mikro)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
-        ausgeraeumt
-          ? 'rounded-l-none border-l-4 border-l-border pl-4 opacity-70 hover:opacity-90'
-          : 'rounded-l-none border-l-4 border-l-oelz-orange pl-4 hover:bg-[var(--waesche)]'
+        'cursor-pointer rounded-xl rounded-l-none border border-l-4 border-border/80 bg-card p-5 pl-4 transition-colors duration-[var(--motion-mikro)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary',
+        erledigt ? 'border-l-border opacity-70 hover:opacity-90' : cn(kante, 'hover:bg-[var(--waesche)]')
       )}
     >
       <div className="flex items-start gap-3">
-        {ausgeraeumt ? (
+        {erledigt ? (
           <Check className="mt-0.5 size-4 shrink-0 text-muted-foreground" aria-hidden />
         ) : (
-          <AlertTriangle className="mt-0.5 size-4 shrink-0 text-oelz-orange-text" aria-hidden />
+          <Zeichen className={cn('mt-0.5 size-4 shrink-0', zeichenFarbe)} aria-hidden />
         )}
 
         <div className="min-w-0 flex-1 space-y-2">
@@ -151,7 +195,7 @@ function Karte({ s, onOpen }: { s: Risikosignal; onOpen: (s: Risikosignal) => vo
             {ueberschrift}
           </h3>
           {/* Mit Kurzzeile ist der Stoff die Unterzeile; ohne ist er schon die Überschrift. */}
-          {s.teaser && (
+          {s.teaser && s.substance && (
             <p className="flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
               <span>{s.substance}</span>
               {s.e_number && (
@@ -163,13 +207,7 @@ function Karte({ s, onOpen }: { s: Risikosignal; onOpen: (s: Risikosignal) => vo
           <Kennzeile s={s} />
 
           <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
-            <div className="flex flex-wrap gap-1">
-              {s.product_categories.map((k) => (
-                <span key={k} className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted-foreground">
-                  {k}
-                </span>
-              ))}
-            </div>
+            <Kategorien s={s} />
             <Quelle s={s} />
           </div>
         </div>
@@ -183,12 +221,14 @@ function Detail({ s }: { s: Risikosignal }) {
   return (
     <DialogContent className="sm:max-w-2xl max-h-[86vh] overflow-y-auto p-0 gap-0" showCloseButton>
       <div className="border-b border-border p-6 pb-5">
-        <p className="mb-1 flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
-          <span>{s.substance}</span>
-          {s.e_number && (
-            <span className="rounded bg-secondary/70 px-1.5 py-0.5 font-mono text-[11px]">{s.e_number}</span>
-          )}
-        </p>
+        {s.substance && (
+          <p className="mb-1 flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
+            <span>{s.substance}</span>
+            {s.e_number && (
+              <span className="rounded bg-secondary/70 px-1.5 py-0.5 font-mono text-[11px]">{s.e_number}</span>
+            )}
+          </p>
+        )}
         <DialogTitle className="pr-8 font-display text-xl font-bold leading-snug">{ueberschrift}</DialogTitle>
         <div className="mt-3">
           <Kennzeile s={s} gross />
@@ -203,13 +243,21 @@ function Detail({ s }: { s: Risikosignal }) {
           <p className="text-sm leading-relaxed">{s.situation}</p>
         </div>
 
+        {s.kind === 'indirekt' && s.why_relevant && (
+          <div className="rounded-lg border-l-2 border-oelz-orange/40 bg-muted/40 px-4 py-3">
+            <h3 className="mb-1 text-[11px] font-bold uppercase tracking-[0.14em] text-oelz-orange-text">
+              Warum das Ölz betreffen könnte
+            </h3>
+            <p className="text-sm leading-relaxed">{s.why_relevant}</p>
+          </div>
+        )}
+
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border pt-4">
-          <div className="flex flex-wrap gap-1">
-            {s.product_categories.map((k) => (
-              <span key={k} className="rounded-full border border-border px-2 py-0.5 text-[11px] text-muted-foreground">
-                {k}
-              </span>
-            ))}
+          <div className="space-y-1">
+            {s.kind === 'zulassung' && s.product_categories.length > 0 && (
+              <p className="text-[10px] uppercase tracking-[0.12em] text-muted-foreground">Wo Ölz den Stoff einsetzen könnte</p>
+            )}
+            <Kategorien s={s} />
           </div>
           <Quelle s={s} className="text-primary hover:underline" />
         </div>
@@ -218,12 +266,48 @@ function Detail({ s }: { s: Risikosignal }) {
   )
 }
 
+function Abschnitt({
+  titel,
+  unterzeile,
+  eintraege,
+  onOpen,
+  mitTitel,
+}: {
+  titel: string
+  unterzeile?: string
+  eintraege: Risikosignal[]
+  onOpen: (s: Risikosignal) => void
+  mitTitel: boolean
+}) {
+  if (eintraege.length === 0) return null
+  return (
+    <section className="space-y-3">
+      {mitTitel && (
+        <h2 className="dachzeile text-muted-foreground">
+          {titel}{' '}
+          <span className="font-normal normal-case tracking-normal">
+            · {eintraege.length}
+            {unterzeile && ` · ${unterzeile}`}
+          </span>
+        </h2>
+      )}
+      {eintraege.map((s) => (
+        <Karte key={s.id} s={s} onOpen={onOpen} />
+      ))}
+    </section>
+  )
+}
+
 export function RisikoKarten({
-  aktiv,
+  risiko,
+  zulassung,
+  indirekt,
   erledigt,
   openSignal = null,
 }: {
-  aktiv: Risikosignal[]
+  risiko: Risikosignal[]
+  zulassung: Risikosignal[]
+  indirekt: Risikosignal[]
   erledigt: Risikosignal[]
   openSignal?: Risikosignal | null
 }) {
@@ -247,33 +331,37 @@ export function RisikoKarten({
     syncUrl(null)
   }
 
+  const aktivGesamt = risiko.length + zulassung.length + indirekt.length
+  // Ein Abschnittstitel lohnt sich erst, wenn es etwas zu trennen gibt.
+  const mitTitel = [risiko, zulassung, indirekt].filter((l) => l.length > 0).length > 1
+
   return (
     <>
-      {aktiv.length === 0 ? (
+      {aktivGesamt === 0 ? (
         <div className="rounded-xl border bg-card py-10 text-center text-sm text-muted-foreground">
-          Für diese Auswahl steht nichts unter Beobachtung.
+          Für diese Auswahl gibt es keinen offenen Fall.
         </div>
       ) : (
-        <div className="space-y-3">
-          {aktiv.map((s) => (
-            <Karte key={s.id} s={s} onOpen={open} />
-          ))}
+        <div className="space-y-6">
+          <Abschnitt titel="Unter Beobachtung" eintraege={risiko} onOpen={open} mitTitel={mitTitel} />
+          <Abschnitt titel="Zulassungen" eintraege={zulassung} onOpen={open} mitTitel={mitTitel} />
+          <Abschnitt
+            titel="Indirekt relevant"
+            unterzeile="ohne benennbaren Stoff oder Ölz-Kategorie, aber mit Grund"
+            eintraege={indirekt}
+            onOpen={open}
+            mitTitel={mitTitel}
+          />
         </div>
       )}
 
-      {erledigt.length > 0 && (
-        <section className="space-y-3 pt-2">
-          <h2 className="dachzeile text-muted-foreground">
-            Ausgeräumt{' '}
-            <span className="font-normal normal-case tracking-normal">
-              · Entwarnung gegeben, zur Nachvollziehbarkeit erhalten
-            </span>
-          </h2>
-          {erledigt.map((s) => (
-            <Karte key={s.id} s={s} onOpen={open} />
-          ))}
-        </section>
-      )}
+      <Abschnitt
+        titel="Ausgeräumt oder abgeschlossen"
+        unterzeile="zur Nachvollziehbarkeit erhalten"
+        eintraege={erledigt}
+        onOpen={open}
+        mitTitel
+      />
 
       <Dialog open={!!active} onOpenChange={(isOpen) => !isOpen && close()}>
         {active && <Detail s={active} />}

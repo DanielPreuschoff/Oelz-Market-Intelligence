@@ -14,7 +14,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { missingForPublish, type Risikosignal } from '@/types/substance-watch'
+import { EINTRAGSTYPEN, missingForPublish, type Eintragstyp, type Risikosignal } from '@/types/substance-watch'
 
 /** Alle Ansichten, die ein Risikosignal zeigen. */
 function neuLaden() {
@@ -35,21 +35,29 @@ function textOderNull(v: FormDataEntryValue | null): string | null {
  * gewöhnliche Form für Kontrollkästchen und braucht `getAll`.
  */
 function ausFormular(fd: FormData) {
+  const kindRoh = fd.get('kind')
+  const kind: Eintragstyp = (EINTRAGSTYPEN as readonly string[]).includes(String(kindRoh))
+    ? (kindRoh as Eintragstyp)
+    : 'risiko'
   return {
+    kind,
     substance: (fd.get('substance') as string | null)?.trim() ?? '',
     e_number: textOderNull(fd.get('e_number')),
     // Seit Migration 015 (14.09.2026): Kurzzeile und Behoerde, beide Pflicht
     // beim Veroeffentlichen — die Huerde in missingForPublish und im CHECK.
     teaser: textOderNull(fd.get('teaser')),
     authority: textOderNull(fd.get('authority')),
-    stage: fd.get('stage') as string,
+    // Stufe und Handlung gibt es nur bei Risiken (Migration 016): Was das
+    // Formular fuer andere Typen nicht zeigt, darf hier auch nicht ankommen.
+    stage: kind === 'risiko' ? textOderNull(fd.get('stage')) : null,
     scope: fd.get('scope') as string,
     situation: (fd.get('situation') as string | null)?.trim() ?? '',
+    why_relevant: kind === 'indirekt' ? textOderNull(fd.get('why_relevant')) : null,
     source_name: textOderNull(fd.get('source_name')),
     source_url: textOderNull(fd.get('source_url')),
     source_date: textOderNull(fd.get('source_date')),
-    product_categories: fd.getAll('product_categories').map(String),
-    action: textOderNull(fd.get('action')),
+    product_categories: kind === 'indirekt' ? [] : fd.getAll('product_categories').map(String),
+    action: kind === 'risiko' ? textOderNull(fd.get('action')) : null,
   }
 }
 
@@ -127,6 +135,31 @@ export async function nimmWiederAuf(id: string) {
     .eq('id', id)
   if (error) throw new Error(`Wiederaufnehmen fehlgeschlagen: ${error.message}`)
   neuLaden()
+}
+
+/**
+ * Sammel-Veroeffentlichung: alle Entwuerfe, denen nichts mehr fehlt.
+ * Muster aus dem Rohstoff-Radar -- die Huerde ist der Filter, nicht der
+ * Bildschirm; Luecken bleiben liegen und stehen in der Liste benannt.
+ */
+export async function veroeffentlicheFertigeRisikosignale(): Promise<{
+  veroeffentlicht: number
+  uebersprungen: number
+}> {
+  const supabase = await createClient()
+  const { data } = await supabase.from('substance_watch').select('*').eq('status', 'draft')
+  const entwuerfe = (data ?? []) as unknown as Risikosignal[]
+  const bereit = entwuerfe.filter((s) => missingForPublish(s).length === 0)
+
+  if (bereit.length > 0) {
+    const { error } = await supabase
+      .from('substance_watch')
+      .update({ status: 'published', published_at: new Date().toISOString() })
+      .in('id', bereit.map((s) => s.id))
+    if (error) throw new Error(`Veröffentlichen fehlgeschlagen: ${error.message}`)
+    neuLaden()
+  }
+  return { veroeffentlicht: bereit.length, uebersprungen: entwuerfe.length - bereit.length }
 }
 
 export async function loescheRisikosignal(id: string) {

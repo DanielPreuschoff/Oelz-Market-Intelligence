@@ -13,6 +13,11 @@
  * **Die Stufe trägt ihre Erklärung mit.** Wer den Unterschied zwischen
  * „Behördliche Bewertung" und „Rechtsakt in Arbeit" nicht im Kopf hat, soll ihn
  * nicht nachschlagen müssen — die Auswahl erklärt sich selbst.
+ *
+ * **Der Typ steuert die Felder** (Migration 016): Stufe und Handlung nur bei
+ * „Unter Beobachtung", Produktkategorie bei Beobachtung und Zulassung, der
+ * Pflichtsatz „Warum könnte das Ölz betreffen?" nur bei „Indirekt relevant".
+ * Was der Typ nicht zeigt, schreibt die Server-Action auch nicht.
  */
 
 import { useState, useTransition } from 'react'
@@ -33,10 +38,20 @@ import {
   PRODUKTKATEGORIEN,
   KURZZEILE_MIN,
   KURZZEILE_MAX,
+  EINTRAGSTYPEN,
+  EINTRAGSTYP_NAME,
+  EINTRAGSTYP_ERKLAERUNG,
   kurzzeileWoerter,
   missingForPublish,
   type Risikosignal,
+  type Eintragstyp,
 } from '@/types/substance-watch'
+
+const KURZZEILE_BEISPIEL: Record<Eintragstyp, string> = {
+  risiko: 'EFSA leitet akute Referenzdosis für Glycerin ab, Backwaren nicht adressiert',
+  zulassung: 'EFSA bewertet Steviol-Glykoside aus Fermentation positiv, Kommissionsentwurf folgt',
+  indirekt: 'Österreich diskutiert Zuckersteuer auf Limonaden, Ausweitung auf Süßwaren offen',
+}
 
 const feld =
   'w-full rounded-lg border border-input bg-transparent px-3 py-2 text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-2 focus-visible:ring-ring/50'
@@ -55,6 +70,9 @@ export function RisikosignalForm({
 
   // Spiegelt nur, was für die Fehlt-Zeile gebraucht wird — der Rest steht
   // uncontrolled im Formular und wird beim Absenden gelesen.
+  const [kind, setKind] = useState<Eintragstyp>(signal?.kind ?? 'risiko')
+  const [stufe, setStufe] = useState<string>(signal?.stage ?? 'bewertung')
+  const [warum, setWarum] = useState(signal?.why_relevant ?? '')
   const [substance, setSubstance] = useState(signal?.substance ?? '')
   const [teaser, setTeaser] = useState(signal?.teaser ?? '')
   const [behoerde, setBehoerde] = useState<string>(signal?.authority ?? '')
@@ -69,10 +87,13 @@ export function RisikosignalForm({
   const woerterOk = woerter >= KURZZEILE_MIN && woerter <= KURZZEILE_MAX
 
   const fehlt = missingForPublish({
+    kind,
     substance,
     teaser: teaser || null,
     authority: behoerde ? (behoerde as Risikosignal['authority']) : null,
+    stage: kind === 'risiko' && stufe ? (stufe as Risikosignal['stage']) : null,
     situation,
+    why_relevant: warum || null,
     product_categories: kategorien,
     action: handlung ? (handlung as Risikosignal['action']) : null,
     source_name: quelleName || null,
@@ -103,6 +124,28 @@ export function RisikosignalForm({
 
   return (
     <form className="space-y-6 max-w-2xl">
+      {/* ------------------------------------------------------- Typ */}
+      <fieldset className="space-y-2" disabled={isPending}>
+        <legend className="dachzeile mb-2">Art des Eintrags</legend>
+        <div className="grid gap-1.5 sm:grid-cols-3">
+          {EINTRAGSTYPEN.map((t) => (
+            <label
+              key={t}
+              className="flex cursor-pointer items-start gap-2.5 rounded-lg border border-border p-2.5 transition-colors hover:bg-secondary/60 has-checked:border-oelz-orange has-checked:bg-oelz-orange/5"
+            >
+              <input
+                type="radio" name="kind" value={t} checked={kind === t}
+                onChange={() => setKind(t)} className="mt-0.5"
+              />
+              <span className="text-sm">
+                <span className="font-medium">{EINTRAGSTYP_NAME[t]}</span>
+                <span className="block text-xs text-muted-foreground">{EINTRAGSTYP_ERKLAERUNG[t]}</span>
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
       {/* ---------------------------------------------------- Zone Befund */}
       <fieldset className="space-y-4" disabled={isPending}>
         <legend className="dachzeile mb-2">Befund · was gemeldet wurde</legend>
@@ -121,7 +164,7 @@ export function RisikosignalForm({
           <input
             id="teaser" name="teaser" required value={teaser}
             onChange={(e) => setTeaser(e.target.value)}
-            placeholder="EFSA leitet akute Referenzdosis für Glycerin ab, Backwaren nicht adressiert"
+            placeholder={KURZZEILE_BEISPIEL[kind]}
             className={feld}
           />
           <p className={cn('mt-1 text-xs tabular-nums', woerter === 0 ? 'text-muted-foreground' : woerterOk ? 'text-muted-foreground' : 'text-amber-700')}>
@@ -132,9 +175,12 @@ export function RisikosignalForm({
 
         <div className="grid gap-4 sm:grid-cols-[2fr_1fr]">
           <div>
-            <label htmlFor="substance" className={beschriftung}>Stoff</label>
+            <label htmlFor="substance" className={beschriftung}>
+              Stoff{' '}
+              {kind === 'indirekt' && <span className="font-normal text-muted-foreground">optional</span>}
+            </label>
             <input
-              id="substance" name="substance" required value={substance}
+              id="substance" name="substance" required={kind !== 'indirekt'} value={substance}
               onChange={(e) => setSubstance(e.target.value)}
               placeholder="Glycerin (Glycerol)" className={feld}
             />
@@ -150,6 +196,7 @@ export function RisikosignalForm({
           </div>
         </div>
 
+        {kind === 'risiko' && (
         <div>
           <span className={beschriftung}>Stufe</span>
           <div className="space-y-1.5">
@@ -160,7 +207,8 @@ export function RisikosignalForm({
               >
                 <input
                   type="radio" name="stage" value={st} required
-                  defaultChecked={(signal?.stage ?? 'bewertung') === st}
+                  checked={stufe === st}
+                  onChange={() => setStufe(st)}
                   className="mt-0.5"
                 />
                 <span className="text-sm">
@@ -171,6 +219,7 @@ export function RisikosignalForm({
             ))}
           </div>
         </div>
+        )}
 
         <div className="grid gap-4 sm:grid-cols-2">
           <div>
@@ -216,6 +265,22 @@ export function RisikosignalForm({
           />
         </div>
 
+        {kind === 'indirekt' && (
+          <div>
+            <label htmlFor="why_relevant" className={beschriftung}>
+              Warum könnte das Ölz betreffen?{' '}
+              <span className="font-normal text-muted-foreground">
+                — ein Satz, Pflicht. Wer ihn nicht formulieren kann, hat keinen Eintrag
+              </span>
+            </label>
+            <textarea
+              id="why_relevant" name="why_relevant" rows={2} required value={warum}
+              onChange={(e) => setWarum(e.target.value)} className={feld}
+              placeholder="Die Debatte greift bereits auf zuckerfreie Limonaden über — Süßwaren und Feingebäck könnten die nächste Stufe sein."
+            />
+          </div>
+        )}
+
         <div className="grid gap-4 sm:grid-cols-[1fr_1fr_auto]">
           <div>
             <label htmlFor="source_name" className={beschriftung}>Quelle</label>
@@ -247,14 +312,17 @@ export function RisikosignalForm({
       </fieldset>
 
       {/* ----------------------------------------------- Zone Einschätzung */}
+      {kind !== 'indirekt' && (
       <fieldset className="space-y-4 border-l-2 border-oelz-orange/40 pl-4" disabled={isPending}>
         <legend className="dachzeile mb-2">Einschätzung · redaktionell</legend>
 
         <div>
           <span className={beschriftung}>
-            Betroffene Produktkategorie{' '}
+            {kind === 'zulassung' ? 'Wo Ölz den Stoff einsetzen könnte' : 'Betroffene Produktkategorie'}{' '}
             <span className="font-normal text-muted-foreground">
-              — mindestens eine, sonst keine Veröffentlichung
+              {kind === 'zulassung'
+                ? '— mindestens eine; passt keine, ist es „Indirekt relevant"'
+                : '— mindestens eine, sonst keine Veröffentlichung'}
             </span>
           </span>
           <div className="flex flex-wrap gap-1.5">
@@ -286,6 +354,7 @@ export function RisikosignalForm({
           </p>
         </div>
 
+        {kind === 'risiko' && (
         <div>
           <label htmlFor="action" className={beschriftung}>Handlung</label>
           <select
@@ -298,7 +367,9 @@ export function RisikosignalForm({
             ))}
           </select>
         </div>
+        )}
       </fieldset>
+      )}
 
       {fehler && (
         <p className="rounded-lg border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">

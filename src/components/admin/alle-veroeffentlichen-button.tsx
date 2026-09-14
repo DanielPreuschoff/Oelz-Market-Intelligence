@@ -32,12 +32,23 @@ export function AlleVeroeffentlichenButton({
   bereit,
   unvollstaendig,
   onPublish,
+  // Texte mit den Rohstoff-Vorgaben als Standard — seit 14.09.2026 nutzt auch
+  // das Regulatorik-Radar den Knopf und braucht seine eigenen Wörter.
+  einheit = { eins: 'Rohstoffsignal', viele: 'Rohstoffsignale' },
+  huerde = 'Veröffentlicht werden nur Entwürfe mit vollständiger Relevanzkette.',
+  ziel = 'Veröffentlichte Signale erscheinen sofort im Rohstoff-Radar und auf der Startseite.',
 }: {
-  /** Entwürfe mit vollständiger Relevanzkette. */
+  /** Entwürfe, denen zum Veröffentlichen nichts fehlt. */
   bereit: number
   /** Entwürfe, denen noch Angaben fehlen — bleiben liegen. */
   unvollstaendig: number
   onPublish: () => Promise<{ veroeffentlicht: number; uebersprungen: number }>
+  /** Wie der veröffentlichte Gegenstand heißt, Singular und Plural. */
+  einheit?: { eins: string; viele: string }
+  /** Was die Hürde ist — steht im Bestätigungsdialog. */
+  huerde?: string
+  /** Wo Veröffentlichtes erscheint — steht im Bestätigungsdialog. */
+  ziel?: string
 }) {
   const [open, setOpen] = useState(false)
   const [ergebnis, setErgebnis] = useState<string | null>(null)
@@ -50,7 +61,7 @@ export function AlleVeroeffentlichenButton({
       try {
         const r = await onPublish()
         setErgebnis(
-          `${r.veroeffentlicht} ${r.veroeffentlicht === 1 ? 'Rohstoffsignal' : 'Rohstoffsignale'} veröffentlicht` +
+          `${r.veroeffentlicht} ${r.veroeffentlicht === 1 ? einheit.eins : einheit.viele} veröffentlicht` +
             (r.uebersprungen > 0 ? ` · ${r.uebersprungen} mit Lücken übersprungen` : ''),
         )
       } catch {
@@ -79,7 +90,7 @@ export function AlleVeroeffentlichenButton({
               {bereit} {bereit === 1 ? 'Entwurf' : 'Entwürfe'} veröffentlichen?
             </AlertDialogTitle>
             <AlertDialogDescription>
-              Veröffentlicht werden nur Entwürfe mit vollständiger Relevanzkette.
+              {huerde}
               {unvollstaendig > 0 && (
                 <>
                   {' '}
@@ -87,7 +98,7 @@ export function AlleVeroeffentlichenButton({
                   Angaben fehlen.
                 </>
               )}{' '}
-              Veröffentlichte Signale erscheinen sofort im Rohstoff-Radar und auf der Startseite.
+              {ziel}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

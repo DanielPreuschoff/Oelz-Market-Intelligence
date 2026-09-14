@@ -24,10 +24,10 @@ export default async function RisikosignalBearbeitenPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold">{signal.substance}</h1>
+        <h1 className="text-2xl font-semibold">{signal.substance || signal.teaser}</h1>
         <p className="mt-1 text-sm text-muted-foreground">
-          Risikosignal bearbeiten. Eine Stufe höher zu setzen ist der häufigste Fall — etwa wenn
-          ein Entwurf im Amtsblatt erscheint.
+          Eintrag bearbeiten. Bei Risiken ist eine Stufe höher der häufigste Fall — etwa wenn ein
+          Entwurf im Amtsblatt erscheint.
         </p>
       </div>
       <RisikosignalForm signal={signal} onSpeichern={speichereRisikosignal} />
