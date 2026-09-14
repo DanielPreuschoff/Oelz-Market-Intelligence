@@ -2,10 +2,12 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
 import { BeobachtungsListe } from '@/components/substance-watch/beobachtungs-liste'
-import { PRODUKTKATEGORIEN, BEHOERDEN, type Risikosignal } from '@/types/substance-watch'
+import { PRODUKTKATEGORIEN, BEHOERDEN, EINTRAGSTYPEN, type Risikosignal } from '@/types/substance-watch'
 
 interface PageProps {
   searchParams: Promise<{
+    /** Typfilter: risiko · zulassung · indirekt. */
+    typ?: string
     /** Kategoriefilter (eine der fünf Ölz-Kategorien). */
     kategorie?: string
     /** Behördenfilter: efsa · eu_kommission · national · keine. */
@@ -34,10 +36,11 @@ interface PageProps {
 export default async function RegulatorikRadarPage({ searchParams }: PageProps) {
   if (!(await isCurrentUserAdmin())) notFound()
 
-  const { kategorie, behoerde: behoerdeRoh, signal: openId } = await searchParams
+  const { typ: typRoh, kategorie, behoerde: behoerdeRoh, signal: openId } = await searchParams
   // Ein unbekannter Wert im Filter wäre kein Fehler, nur eine leere Liste —
   // deshalb stumm ignorieren.
   const behoerde = (BEHOERDEN as readonly string[]).includes(behoerdeRoh ?? '') ? behoerdeRoh : undefined
+  const typ = (EINTRAGSTYPEN as readonly string[]).includes(typRoh ?? '') ? typRoh : undefined
   const supabase = await createClient()
 
   const { data } = await supabase
@@ -48,6 +51,7 @@ export default async function RegulatorikRadarPage({ searchParams }: PageProps) 
   const signale = (data ?? []) as unknown as Risikosignal[]
   const gefiltert = signale.filter(
     (s) =>
+      (!typ || s.kind === typ) &&
       (!kategorie || s.product_categories.includes(kategorie)) &&
       (!behoerde || s.authority === behoerde)
   )
@@ -62,7 +66,7 @@ export default async function RegulatorikRadarPage({ searchParams }: PageProps) 
   }
 
   function baueUrl(patch: Record<string, string | undefined>) {
-    const merged: Record<string, string | undefined> = { kategorie, behoerde, ...patch }
+    const merged: Record<string, string | undefined> = { typ, kategorie, behoerde, ...patch }
     const params = new URLSearchParams()
     Object.entries(merged).forEach(([k, v]) => {
       if (v) params.set(k, v)
@@ -83,6 +87,7 @@ export default async function RegulatorikRadarPage({ searchParams }: PageProps) 
 
       <BeobachtungsListe
         signale={gefiltert}
+        typ={typ}
         kategorie={kategorie}
         behoerde={behoerde}
         baueUrl={baueUrl}

@@ -1,8 +1,8 @@
 /**
- * Die Liste der Risikosignale („Unter Beobachtung") im Regulatorik-Radar:
- * Stufen-Erklärung, zwei Filterreihen, dann die Karten.
+ * Die Liste des Regulatorik-Radars: Stufen-Erklärung, drei Filterreihen,
+ * dann die Karten nach Typ.
  *
- * Spec: docs/unter-beobachtung-spec.md (Nachtrag 14.09.2026)
+ * Spec: docs/unter-beobachtung-spec.md (Nachträge 14.09.2026)
  * Umzug aus dem Rohstoff-Radar: docs/adr/0006-regulatorik-radar-eigenes-modul.md
  *
  * Server-Komponente: Die Filter sind Links, die die Seite baut (`baueUrl`).
@@ -10,11 +10,11 @@
  * Dialog Zustand braucht — und eine Funktion wie `baueUrl` lässt sich nicht
  * an eine Client-Komponente reichen.
  *
- * Zwei Filter: **Kategorie** (die fünf Ölz-Kategorien, seit dem Reiter) und
- * **Behörde** (EFSA · EU-Kommission · National · Keine) — Kai Heubergers
- * wörtlicher Wunsch, „die Filter um EFSA und EU Regulation zu erweitern".
- * Kein Stufenfilter: Die Stufe steht als Chip auf jeder Karte und sortiert
- * die Liste; ein Filter brächte wenig dazu.
+ * Drei Filter: **Typ** (Unter Beobachtung · Zulassung · Indirekt relevant),
+ * **Behörde** (EFSA · EU-Kommission · National · Keine — Kai Heubergers
+ * wörtlicher Wunsch) und **Kategorie** (die fünf Ölz-Kategorien). Kein
+ * Stufenfilter: Die Stufe steht als Chip auf jeder Risikokarte und sortiert
+ * den Abschnitt; ein Filter brächte wenig dazu.
  */
 
 import { cn } from '@/lib/utils'
@@ -22,9 +22,11 @@ import {
   STUFEN,
   STUFE_NAME,
   STUFE_ERKLAERUNG,
-  STUFE_RANG,
   BEHOERDEN,
   BEHOERDE_NAME,
+  EINTRAGSTYPEN,
+  EINTRAGSTYP_NAME,
+  vergleicheEintraege,
   type Risikosignal,
 } from '@/types/substance-watch'
 import { RisikoKarten } from './risiko-karten'
@@ -63,6 +65,7 @@ function Filterreihe({
 
 export function BeobachtungsListe({
   signale,
+  typ,
   kategorie,
   behoerde,
   baueUrl,
@@ -70,24 +73,26 @@ export function BeobachtungsListe({
   openSignal = null,
 }: {
   signale: Risikosignal[]
+  typ?: string
   kategorie?: string
   behoerde?: string
   baueUrl: (patch: Record<string, string | undefined>) => string
   kategorien: readonly string[]
   openSignal?: Risikosignal | null
 }) {
-  const aktiv = signale
-    .filter((s) => s.status !== 'ausgeraeumt')
-    .sort((a, b) => STUFE_RANG[a.stage] - STUFE_RANG[b.stage] || a.substance.localeCompare(b.substance, 'de'))
-  const erledigt = signale.filter((s) => s.status === 'ausgeraeumt')
-  const hatFilter = !!(kategorie || behoerde)
+  const offen = signale.filter((s) => s.status !== 'ausgeraeumt').sort(vergleicheEintraege)
+  const risiko = offen.filter((s) => s.kind === 'risiko')
+  const zulassung = offen.filter((s) => s.kind === 'zulassung')
+  const indirekt = offen.filter((s) => s.kind === 'indirekt')
+  const erledigt = signale.filter((s) => s.status === 'ausgeraeumt').sort(vergleicheEintraege)
+  const hatFilter = !!(typ || kategorie || behoerde)
 
   if (signale.length === 0 && !hatFilter) {
     return (
       <div className="rounded-xl border-2 border-dashed border-border py-12 text-center text-sm text-muted-foreground">
-        <p className="font-medium">Kein Stoff unter Beobachtung</p>
+        <p className="font-medium">Noch kein Eintrag</p>
         <p className="mt-1 text-xs">
-          Hier stehen Stoffe, die unter regulatorischem oder öffentlichem Druck stehen.
+          Hier stehen Zulassungen und Stoffe unter regulatorischem oder öffentlichem Druck.
         </p>
       </div>
     )
@@ -104,10 +109,10 @@ export function BeobachtungsListe({
 
       <div className="space-y-2">
         <Filterreihe
-          label="Kategorie"
-          optionen={kategorien.map((k) => ({ key: k, name: k }))}
-          aktiv={kategorie}
-          href={(k) => baueUrl({ kategorie: kategorie === k ? undefined : k })}
+          label="Typ"
+          optionen={EINTRAGSTYPEN.map((t) => ({ key: t, name: EINTRAGSTYP_NAME[t] }))}
+          aktiv={typ}
+          href={(t) => baueUrl({ typ: typ === t ? undefined : t })}
         />
         <Filterreihe
           label="Behörde"
@@ -115,14 +120,20 @@ export function BeobachtungsListe({
           aktiv={behoerde}
           href={(b) => baueUrl({ behoerde: behoerde === b ? undefined : b })}
         />
+        <Filterreihe
+          label="Kategorie"
+          optionen={kategorien.map((k) => ({ key: k, name: k }))}
+          aktiv={kategorie}
+          href={(k) => baueUrl({ kategorie: kategorie === k ? undefined : k })}
+        />
         {hatFilter && (
           <div className="flex items-center justify-between pt-0.5">
             <span className="text-xs text-muted-foreground">
-              {aktiv.length} {aktiv.length === 1 ? 'Fall' : 'Fälle'}
-              {erledigt.length > 0 && ` · ${erledigt.length} ausgeräumt`}
+              {offen.length} {offen.length === 1 ? 'Fall' : 'Fälle'}
+              {erledigt.length > 0 && ` · ${erledigt.length} erledigt`}
             </span>
             <a
-              href={baueUrl({ kategorie: undefined, behoerde: undefined })}
+              href={baueUrl({ typ: undefined, kategorie: undefined, behoerde: undefined })}
               className="text-xs text-muted-foreground underline underline-offset-2 hover:text-foreground"
             >
               Alle Filter zurücksetzen
@@ -131,7 +142,13 @@ export function BeobachtungsListe({
         )}
       </div>
 
-      <RisikoKarten aktiv={aktiv} erledigt={erledigt} openSignal={openSignal} />
+      <RisikoKarten
+        risiko={risiko}
+        zulassung={zulassung}
+        indirekt={indirekt}
+        erledigt={erledigt}
+        openSignal={openSignal}
+      />
     </div>
   )
 }

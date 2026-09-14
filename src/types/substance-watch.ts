@@ -11,6 +11,31 @@
  * der Begriff meint im Industriesprech genau die Beschaffungsseite.
  */
 
+/**
+ * Die drei Eintragstypen (Migration 016, 14.09.2026).
+ *
+ * Kai Heuberger will zweierlei früh erfahren: wenn die EFSA neue Rohstoffe
+ * *zulässt* (eine Chance) und wenn die EU rechtliche Schritte plant — bei
+ * Rohstoffen *und* Produkten. Der Reiter kannte nur Risiken zu benennbaren
+ * Stoffen. `indirekt` fängt auf, was an der Hauptliste scheitert
+ * (Zuckersteuer, Kennzeichnung, Präzedenzfälle), mit einem Pflichtsatz
+ * statt einer Produktkategorie — sonst wäre es ein Newsfeed.
+ */
+export const EINTRAGSTYPEN = ['risiko', 'zulassung', 'indirekt'] as const
+export type Eintragstyp = (typeof EINTRAGSTYPEN)[number]
+
+export const EINTRAGSTYP_NAME: Record<Eintragstyp, string> = {
+  risiko: 'Unter Beobachtung',
+  zulassung: 'Zulassung',
+  indirekt: 'Indirekt relevant',
+}
+
+export const EINTRAGSTYP_ERKLAERUNG: Record<Eintragstyp, string> = {
+  risiko: 'Ein benennbarer Stoff steht unter regulatorischem oder öffentlichem Druck.',
+  zulassung: 'Ein Stoff, Enzym, Aroma oder Novel Food wird zugelassen oder ist im Verfahren — eine Chance.',
+  indirekt: 'Ein Rechtsakt ohne benennbaren Stoff oder ohne Ölz-Kategorie, der Ölz trotzdem treffen könnte.',
+}
+
 /** Die vier Stufen. Jede ist an der Quelle prüfbar, ohne zu interpretieren. */
 export const STUFEN = ['kritik', 'bewertung', 'rechtsakt_in_arbeit', 'geltendes_recht'] as const
 export type Stufe = (typeof STUFEN)[number]
@@ -132,14 +157,20 @@ export type RisikoStatus = 'draft' | 'published' | 'ausgeraeumt'
 
 export interface Risikosignal {
   id: string
+  /** Eintragstyp (Migration 016). Altfälle sind `risiko`. */
+  kind: Eintragstyp
+  /** Bei `indirekt` darf der Stoff leer sein ('' — die Spalte bleibt NOT NULL). */
   substance: string
   e_number: string | null
   /** Kurzzeile, sieben bis elf Wörter — was passiert gerade. Null nur bei Altfällen vor Migration 015. */
   teaser: string | null
   authority: Behoerde | null
-  stage: Stufe
+  /** Nur bei `risiko`; Zulassung und Indirekt tragen keine Stufe. */
+  stage: Stufe | null
   scope: Geltungsbereich
   situation: string
+  /** Nur bei `indirekt`, dort Pflicht: „Warum könnte das Ölz betreffen?" */
+  why_relevant: string | null
   source_name: string | null
   source_url: string | null
   source_date: string | null
@@ -159,18 +190,47 @@ export interface Risikosignal {
  * Erklärung: Das Formular soll benennen können, was fehlt, statt nur zu
  * scheitern.
  */
-const PUBLISH_REQUIREMENTS: { label: string; ok: (s: Partial<Risikosignal>) => boolean }[] = [
-  { label: 'Stoff', ok: (s) => !!s.substance?.trim() },
+type Anforderung = { label: string; ok: (s: Partial<Risikosignal>) => boolean }
+
+/** Für alle drei Typen gleich — der Ausweis jeder Meldung. */
+const GEMEINSAM: Anforderung[] = [
   { label: 'Kurzzeile', ok: (s) => !!s.teaser?.trim() },
   { label: 'Behörde', ok: (s) => !!s.authority },
   { label: 'Sachverhalt', ok: (s) => !!s.situation?.trim() },
-  { label: 'Betroffene Produktkategorie', ok: (s) => (s.product_categories?.length ?? 0) >= 1 },
-  { label: 'Handlung', ok: (s) => !!s.action },
   { label: 'Quellenname', ok: (s) => !!s.source_name?.trim() },
   { label: 'Quellen-URL', ok: (s) => !!s.source_url?.trim() },
   { label: 'Datum der Quelle', ok: (s) => !!s.source_date },
 ]
 
+const STOFF: Anforderung = { label: 'Stoff', ok: (s) => !!s.substance?.trim() }
+const KATEGORIE: Anforderung = {
+  label: 'Betroffene Produktkategorie',
+  ok: (s) => (s.product_categories?.length ?? 0) >= 1,
+}
+
+/** Das Typspezifische — dieselbe Fallunterscheidung wie der CHECK in Migration 016. */
+const JE_TYP: Record<Eintragstyp, Anforderung[]> = {
+  risiko: [
+    STOFF,
+    KATEGORIE,
+    { label: 'Stufe', ok: (s) => !!s.stage },
+    { label: 'Handlung', ok: (s) => !!s.action },
+  ],
+  zulassung: [STOFF, KATEGORIE],
+  indirekt: [{ label: 'Warum könnte das Ölz betreffen', ok: (s) => !!s.why_relevant?.trim() }],
+}
+
 export function missingForPublish(signal: Partial<Risikosignal>): string[] {
-  return PUBLISH_REQUIREMENTS.filter((r) => !r.ok(signal)).map((r) => r.label)
+  const typ: Eintragstyp = signal.kind ?? 'risiko'
+  return [...JE_TYP[typ], ...GEMEINSAM].filter((r) => !r.ok(signal)).map((r) => r.label)
+}
+
+/** Sortierung innerhalb eines Typs: Risiken nach Stufe, alles andere nach Quellendatum. */
+export function vergleicheEintraege(a: Risikosignal, b: Risikosignal): number {
+  if (a.kind === 'risiko' && b.kind === 'risiko') {
+    const ra = a.stage ? STUFE_RANG[a.stage] : 99
+    const rb = b.stage ? STUFE_RANG[b.stage] : 99
+    return ra - rb || a.substance.localeCompare(b.substance, 'de')
+  }
+  return (b.source_date ?? '').localeCompare(a.source_date ?? '') || (a.teaser ?? a.substance).localeCompare(b.teaser ?? b.substance, 'de')
 }

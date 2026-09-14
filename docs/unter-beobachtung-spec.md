@@ -29,6 +29,31 @@ Grilling-Sitzung am 31.08.2026 (fünf Runden, sechzehn Entscheidungen).
 > Die Hürde verlangt Kurzzeile und Behörde ab sofort; für die 15 Bestandsfälle
 > wurden beide per Nachtrag-SQL ergänzt (Kurzzeilen geprüft), erst danach ist
 > der CHECK für den Bestand validiert.
+>
+> **Nachtrag 14.09.2026, Auslieferung 3 (Migration 016).** Aus dem Eintragstyp
+> werden drei, aus Kais E-Mail: „Ziel ist es, frühzeitig Information zu bekommen,
+> wenn neue Rohstoffe von der EFSA zugelassen werden und wenn die EU Behörde
+> wieder rechtliche Schritte plant, Rohstoff & Produkte."
+> - **Unter Beobachtung** (`kind = 'risiko'`) — unverändert: Stoff, Stufe,
+>   Handlung, Produktkategorie Pflicht.
+> - **Zulassung** (`'zulassung'`) — eine Chance: Stoff und Produktkategorie
+>   („wo könnte Ölz den Stoff einsetzen") Pflicht; keine Stufe, keine
+>   Handlung. Das Verfahren hat gesetzliche Fristen (EFSA-Gutachten binnen
+>   9 Monaten, Kommissionsentwurf binnen 7), die Quelle trägt das Datum.
+> - **Indirekt relevant** (`'indirekt'`) — fängt auf, was an der Hauptliste
+>   scheitert (Zuckersteuer, Kennzeichnung, Präzedenz in Nachbarkategorien):
+>   kein Stoff, keine Kategorie nötig, stattdessen der Pflichtsatz „Warum
+>   könnte das Ölz betreffen?". Wer ihn nicht formulieren kann, hat keinen
+>   Eintrag — so bleibt Nicht-Ziel „Kein Newsfeed" bestehen. Steht in der
+>   Ansicht unterhalb, leiser (graue Kante, Info-Zeichen).
+>
+> Die Hürde (Abschnitt 6) gilt je Typ, durchgesetzt im CHECK von Migration 016.
+> Der Fokus bleibt: „Wenn du den Stoff nennen kannst, ist es Beobachtung oder
+> Zulassung." Die Erhebung (Abschnitt 7) hat jetzt ihren Prompt
+> (`prompts/regulatorik-behoerden.md`) und einen Import als Entwurf
+> (`/admin/unter-beobachtung/import`, Dubletten über Quelle und Stoff, Sammel-
+> Veröffentlichung für vollständige Entwürfe). Erste Befüllung beim Hauptlauf
+> 30.09./01.10.2026: alles ab 01.01.2026 nach Quellendatum. RASFF bleibt draußen.
 
 ---
 

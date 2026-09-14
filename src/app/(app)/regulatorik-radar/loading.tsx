@@ -1,6 +1,6 @@
 /**
- * Ladezustand des Regulatorik-Radars: Kopf, Stufenzeile, zwei Filterreihen
- * (Kategorie, Behörde) und die Kartenliste in der schmalen Spalte — dieselben
+ * Ladezustand des Regulatorik-Radars: Kopf, Stufenzeile, drei Filterreihen
+ * (Typ, Behörde, Kategorie) und die Kartenliste in der schmalen Spalte — dieselben
  * Höhen wie die fertige Seite, damit beim Erscheinen nichts nachrutscht.
  */
 export default function Loading() {
@@ -14,7 +14,7 @@ export default function Loading() {
       <div className="space-y-5">
         <div className="h-3 w-full rounded bg-secondary/50" />
         <div className="space-y-2">
-          {[[118, 92, 112, 122, 70], [52, 104, 72, 96]].map((reihe, r) => (
+          {[[126, 82, 112], [52, 104, 72, 96], [118, 92, 112, 122, 70]].map((reihe, r) => (
             <div key={r} className="flex flex-wrap items-center gap-1.5">
               <div className="h-3 w-20 rounded bg-secondary/60" />
               {reihe.map((w, i) => (

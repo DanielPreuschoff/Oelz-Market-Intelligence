@@ -14,10 +14,11 @@ export default async function NeuesRisikosignalPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold">Neues Risikosignal</h1>
+        <h1 className="text-2xl font-semibold">Neuer Eintrag</h1>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Ein Stoff, der unter regulatorischem oder öffentlichem Druck steht. Beschaffungsrisiko
-          gehört nicht hierher — Verknappung und Preis sind ein anderes Thema.
+          Ein Stoff unter Druck, eine Zulassung oder ein Rechtsakt, der Ölz indirekt treffen
+          könnte. Beschaffungsrisiko gehört nicht hierher — Verknappung und Preis sind ein
+          anderes Thema.
         </p>
       </div>
       <RisikosignalForm onSpeichern={speichereRisikosignal} />
