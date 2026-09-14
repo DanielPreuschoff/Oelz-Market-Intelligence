@@ -76,7 +76,8 @@ export default async function AdminUnterBeobachtungPage() {
               </span>
             )}
           </div>
-          <p className="line-clamp-2 text-sm text-muted-foreground">{s.situation}</p>
+          {/* Mit Kurzzeile (seit Migration 015) steht sie hier, sonst der Sachverhalt. */}
+          <p className="line-clamp-2 text-sm text-muted-foreground">{s.teaser?.trim() || s.situation}</p>
           {fehlt.length > 0 && (
             <p className="text-xs text-amber-700">Zum Veröffentlichen fehlt: {fehlt.join(', ')}</p>
           )}

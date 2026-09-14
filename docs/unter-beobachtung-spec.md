@@ -10,6 +10,25 @@ Grilling-Sitzung am 31.08.2026 (fünf Runden, sechzehn Entscheidungen).
 > „Kein eigenes Modul" und Akzeptanzkriterium 4 gelten seitdem nicht mehr; der
 > Querverweis aus Kriterium 6 ist ein offener Folgeschritt. Alles andere
 > (Eintragstyp, Stufen, Felder, Hürde, Erhebung) gilt unverändert.
+>
+> **Nachtrag 14.09.2026, Auslieferung 2 (Migration 015).** Drei Änderungen am
+> Eintrag, alle aus dem Termin vom 11.09. und Kais E-Mail davor:
+> - **Kurzzeile** (sieben bis elf Wörter) als Pflichtfeld. Die Karte zeigt nur
+>   noch Kurzzeile, Stufe, Behörde und Quelle; der Sachverhalt steht im
+>   Detail-Dialog (`?signal=<id>`, teil- und reloadfest, Muster Rohstoff-Radar).
+>   Kai wörtlich: „kurz anteasern und dann Quellenverweis".
+> - **Behörde** kommt als Feld zurück (EFSA · EU-Kommission · National · Keine),
+>   weil Kai einen Filter „EFSA / EU Regulation" will — der Quellenname allein
+>   trägt keinen Filter. Abschnitt 5 hatte das Feld gestrichen; das ist damit
+>   aufgehoben. `Keine` ist der Wert für Stufe „Öffentliche Kritik".
+> - **Geltungsbereich um CH.** Ölz verkauft in der Schweiz, deren
+>   Lebensmittelrecht nicht EU-harmonisiert ist — die einzige echte Lücke.
+>   Beantwortet Abschnitt 13, Punkt 4 zur Hälfte; CZ, SK und SI bleiben über
+>   EU-Recht abgedeckt, nationale Alleingänge dort sind ein Folgeschritt.
+>
+> Die Hürde verlangt Kurzzeile und Behörde ab sofort; für die 15 Bestandsfälle
+> wurden beide per Nachtrag-SQL ergänzt (Kurzzeilen geprüft), erst danach ist
+> der CHECK für den Bestand validiert.
 
 ---
 

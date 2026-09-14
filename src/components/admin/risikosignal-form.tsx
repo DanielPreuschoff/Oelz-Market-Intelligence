@@ -27,7 +27,13 @@ import {
   GELTUNGSBEREICH_NAME,
   HANDLUNGEN,
   HANDLUNG_NAME,
+  BEHOERDEN,
+  BEHOERDE_NAME,
+  BEHOERDE_ERKLAERUNG,
   PRODUKTKATEGORIEN,
+  KURZZEILE_MIN,
+  KURZZEILE_MAX,
+  kurzzeileWoerter,
   missingForPublish,
   type Risikosignal,
 } from '@/types/substance-watch'
@@ -50,6 +56,8 @@ export function RisikosignalForm({
   // Spiegelt nur, was für die Fehlt-Zeile gebraucht wird — der Rest steht
   // uncontrolled im Formular und wird beim Absenden gelesen.
   const [substance, setSubstance] = useState(signal?.substance ?? '')
+  const [teaser, setTeaser] = useState(signal?.teaser ?? '')
+  const [behoerde, setBehoerde] = useState<string>(signal?.authority ?? '')
   const [situation, setSituation] = useState(signal?.situation ?? '')
   const [kategorien, setKategorien] = useState<string[]>(signal?.product_categories ?? [])
   const [handlung, setHandlung] = useState<string>(signal?.action ?? '')
@@ -57,8 +65,13 @@ export function RisikosignalForm({
   const [quelleUrl, setQuelleUrl] = useState(signal?.source_url ?? '')
   const [quelleDatum, setQuelleDatum] = useState(signal?.source_date ?? '')
 
+  const woerter = kurzzeileWoerter(teaser)
+  const woerterOk = woerter >= KURZZEILE_MIN && woerter <= KURZZEILE_MAX
+
   const fehlt = missingForPublish({
     substance,
+    teaser: teaser || null,
+    authority: behoerde ? (behoerde as Risikosignal['authority']) : null,
     situation,
     product_categories: kategorien,
     action: handlung ? (handlung as Risikosignal['action']) : null,
@@ -93,6 +106,29 @@ export function RisikosignalForm({
       {/* ---------------------------------------------------- Zone Befund */}
       <fieldset className="space-y-4" disabled={isPending}>
         <legend className="dachzeile mb-2">Befund · was gemeldet wurde</legend>
+
+        {/* Die Kurzzeile steht zuerst, weil sie das ist, was auf der Karte
+            steht: Wer sie nicht in einem Satz sagen kann, hat den Fall noch
+            nicht verstanden. Sieben bis elf Wörter sind Vorgabe, keine Sperre —
+            die Zahl mahnt, das Speichern verhindert sie nicht. */}
+        <div>
+          <label htmlFor="teaser" className={beschriftung}>
+            Kurzzeile{' '}
+            <span className="font-normal text-muted-foreground">
+              — was passiert gerade, in {KURZZEILE_MIN} bis {KURZZEILE_MAX} Wörtern
+            </span>
+          </label>
+          <input
+            id="teaser" name="teaser" required value={teaser}
+            onChange={(e) => setTeaser(e.target.value)}
+            placeholder="EFSA leitet akute Referenzdosis für Glycerin ab, Backwaren nicht adressiert"
+            className={feld}
+          />
+          <p className={cn('mt-1 text-xs tabular-nums', woerter === 0 ? 'text-muted-foreground' : woerterOk ? 'text-muted-foreground' : 'text-amber-700')}>
+            {woerter} {woerter === 1 ? 'Wort' : 'Wörter'}
+            {woerter > 0 && !woerterOk && ` — Vorgabe ${KURZZEILE_MIN} bis ${KURZZEILE_MAX}`}
+          </p>
+        </div>
 
         <div className="grid gap-4 sm:grid-cols-[2fr_1fr]">
           <div>
@@ -136,18 +172,35 @@ export function RisikosignalForm({
           </div>
         </div>
 
-        <div>
-          <label htmlFor="scope" className={beschriftung}>
-            Geltungsbereich{' '}
-            <span className="font-normal text-muted-foreground">
-              — Deutschland gilt als Frühindikator für Österreich
-            </span>
-          </label>
-          <select id="scope" name="scope" defaultValue={signal?.scope ?? 'EU'} className={feld}>
-            {GELTUNGSBEREICHE.map((g) => (
-              <option key={g} value={g}>{GELTUNGSBEREICH_NAME[g]}</option>
-            ))}
-          </select>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label htmlFor="authority" className={beschriftung}>Behörde</label>
+            <select
+              id="authority" name="authority" value={behoerde}
+              onChange={(e) => setBehoerde(e.target.value)} className={feld}
+            >
+              <option value="">— wählen —</option>
+              {BEHOERDEN.map((b) => (
+                <option key={b} value={b}>{BEHOERDE_NAME[b]}</option>
+              ))}
+            </select>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {behoerde
+                ? BEHOERDE_ERKLAERUNG[behoerde as (typeof BEHOERDEN)[number]]
+                : 'Wer die Meldung verantwortet — nach ihr lässt sich filtern.'}
+            </p>
+          </div>
+          <div>
+            <label htmlFor="scope" className={beschriftung}>
+              Geltungsbereich{' '}
+              <span className="font-normal text-muted-foreground">— DE ist Frühindikator für AT</span>
+            </label>
+            <select id="scope" name="scope" defaultValue={signal?.scope ?? 'EU'} className={feld}>
+              {GELTUNGSBEREICHE.map((g) => (
+                <option key={g} value={g}>{GELTUNGSBEREICH_NAME[g]}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div>
