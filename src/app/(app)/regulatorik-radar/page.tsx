@@ -2,12 +2,16 @@ import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
 import { BeobachtungsListe } from '@/components/substance-watch/beobachtungs-liste'
-import { PRODUKTKATEGORIEN, type Risikosignal } from '@/types/substance-watch'
+import { PRODUKTKATEGORIEN, BEHOERDEN, type Risikosignal } from '@/types/substance-watch'
 
 interface PageProps {
   searchParams: Promise<{
-    /** Kategoriefilter der Liste. */
+    /** Kategoriefilter (eine der fünf Ölz-Kategorien). */
     kategorie?: string
+    /** Behördenfilter: efsa · eu_kommission · national · keine. */
+    behoerde?: string
+    /** Geöffneter Fall — Detail-Dialog, teil- und reloadfest. */
+    signal?: string
   }>
 }
 
@@ -30,7 +34,10 @@ interface PageProps {
 export default async function RegulatorikRadarPage({ searchParams }: PageProps) {
   if (!(await isCurrentUserAdmin())) notFound()
 
-  const { kategorie } = await searchParams
+  const { kategorie, behoerde: behoerdeRoh, signal: openId } = await searchParams
+  // Ein unbekannter Wert im Filter wäre kein Fehler, nur eine leere Liste —
+  // deshalb stumm ignorieren.
+  const behoerde = (BEHOERDEN as readonly string[]).includes(behoerdeRoh ?? '') ? behoerdeRoh : undefined
   const supabase = await createClient()
 
   const { data } = await supabase
@@ -39,10 +46,23 @@ export default async function RegulatorikRadarPage({ searchParams }: PageProps) 
     .in('status', ['published', 'ausgeraeumt'])
 
   const signale = (data ?? []) as unknown as Risikosignal[]
-  const gefiltert = kategorie ? signale.filter((s) => s.product_categories.includes(kategorie)) : signale
+  const gefiltert = signale.filter(
+    (s) =>
+      (!kategorie || s.product_categories.includes(kategorie)) &&
+      (!behoerde || s.authority === behoerde)
+  )
+
+  // Ein geteilter Link muss seinen Fall auch dann öffnen, wenn der aktive
+  // Filter ihn ausblendet. Alles Sichtbare ist schon geladen; nur ein
+  // Entwurf (für Admins lesbar) bräuchte eine zweite Abfrage.
+  let openSignal = openId ? signale.find((s) => s.id === openId) ?? null : null
+  if (openId && !openSignal) {
+    const { data: single } = await supabase.from('substance_watch').select('*').eq('id', openId).maybeSingle()
+    openSignal = (single as unknown as Risikosignal | null) ?? null
+  }
 
   function baueUrl(patch: Record<string, string | undefined>) {
-    const merged: Record<string, string | undefined> = { kategorie, ...patch }
+    const merged: Record<string, string | undefined> = { kategorie, behoerde, ...patch }
     const params = new URLSearchParams()
     Object.entries(merged).forEach(([k, v]) => {
       if (v) params.set(k, v)
@@ -64,8 +84,10 @@ export default async function RegulatorikRadarPage({ searchParams }: PageProps) 
       <BeobachtungsListe
         signale={gefiltert}
         kategorie={kategorie}
+        behoerde={behoerde}
         baueUrl={baueUrl}
         kategorien={PRODUKTKATEGORIEN}
+        openSignal={openSignal}
       />
     </div>
   )

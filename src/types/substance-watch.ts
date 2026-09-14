@@ -55,7 +55,7 @@ export const STUFE_RANG: Record<Stufe, number> = {
   kritik: 3,
 }
 
-export const GELTUNGSBEREICHE = ['DE', 'AT', 'EU'] as const
+export const GELTUNGSBEREICHE = ['DE', 'AT', 'CH', 'EU'] as const
 export type Geltungsbereich = (typeof GELTUNGSBEREICHE)[number]
 
 /**
@@ -66,8 +66,41 @@ export type Geltungsbereich = (typeof GELTUNGSBEREICHE)[number]
 export const GELTUNGSBEREICH_NAME: Record<Geltungsbereich, string> = {
   DE: 'Deutschland',
   AT: 'Österreich',
+  // Seit 14.09.2026 (Migration 015): Ölz verkauft in der Schweiz, und das
+  // Schweizer Lebensmittelrecht ist nicht EU-harmonisiert — die einzige echte
+  // Lücke unter den Ölz-Märkten. CZ, SK und SI deckt EU-Recht ab.
+  CH: 'Schweiz',
   EU: 'EU',
 }
+
+/**
+ * Wer die Meldung verantwortet — als Feld, nicht nur im Quellennamen, weil
+ * Kai Heuberger einen Filter „EFSA / EU Regulation" wünscht (E-Mail vor dem
+ * 11.09.2026). 'keine' ist der Wert für Stufe „Öffentliche Kritik".
+ */
+export const BEHOERDEN = ['efsa', 'eu_kommission', 'national', 'keine'] as const
+export type Behoerde = (typeof BEHOERDEN)[number]
+
+export const BEHOERDE_NAME: Record<Behoerde, string> = {
+  efsa: 'EFSA',
+  eu_kommission: 'EU-Kommission',
+  national: 'National',
+  keine: 'Keine Behörde',
+}
+
+export const BEHOERDE_ERKLAERUNG: Record<Behoerde, string> = {
+  efsa: 'Gutachten, Neubewertung oder Konsultation der EFSA.',
+  eu_kommission: 'Verordnung, Empfehlung, Entwurf oder Ausschussvotum (PAFF).',
+  national: 'BfR, AGES, BLV oder ein nationales Ministerium.',
+  keine: 'Medien, NGO oder Verbraucherschutz — Stufe „Öffentliche Kritik".',
+}
+
+/** Wörter einer Kurzzeile — die Vorgabe sind sieben bis elf. */
+export function kurzzeileWoerter(text: string | null | undefined): number {
+  return (text ?? '').trim().split(/\s+/).filter(Boolean).length
+}
+export const KURZZEILE_MIN = 7
+export const KURZZEILE_MAX = 11
 
 export const HANDLUNGEN = ['beobachten', 'pruefen', 'ersetzen'] as const
 export type Handlung = (typeof HANDLUNGEN)[number]
@@ -101,6 +134,9 @@ export interface Risikosignal {
   id: string
   substance: string
   e_number: string | null
+  /** Kurzzeile, sieben bis elf Wörter — was passiert gerade. Null nur bei Altfällen vor Migration 015. */
+  teaser: string | null
+  authority: Behoerde | null
   stage: Stufe
   scope: Geltungsbereich
   situation: string
@@ -125,6 +161,8 @@ export interface Risikosignal {
  */
 const PUBLISH_REQUIREMENTS: { label: string; ok: (s: Partial<Risikosignal>) => boolean }[] = [
   { label: 'Stoff', ok: (s) => !!s.substance?.trim() },
+  { label: 'Kurzzeile', ok: (s) => !!s.teaser?.trim() },
+  { label: 'Behörde', ok: (s) => !!s.authority },
   { label: 'Sachverhalt', ok: (s) => !!s.situation?.trim() },
   { label: 'Betroffene Produktkategorie', ok: (s) => (s.product_categories?.length ?? 0) >= 1 },
   { label: 'Handlung', ok: (s) => !!s.action },

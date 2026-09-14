@@ -38,6 +38,10 @@ function ausFormular(fd: FormData) {
   return {
     substance: (fd.get('substance') as string | null)?.trim() ?? '',
     e_number: textOderNull(fd.get('e_number')),
+    // Seit Migration 015 (14.09.2026): Kurzzeile und Behoerde, beide Pflicht
+    // beim Veroeffentlichen — die Huerde in missingForPublish und im CHECK.
+    teaser: textOderNull(fd.get('teaser')),
+    authority: textOderNull(fd.get('authority')),
     stage: fd.get('stage') as string,
     scope: fd.get('scope') as string,
     situation: (fd.get('situation') as string | null)?.trim() ?? '',
