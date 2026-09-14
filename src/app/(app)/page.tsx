@@ -13,7 +13,7 @@ import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import {
   ArrowRight,
-  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical,
+  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Scale,
 } from 'lucide-react'
 import { OelzWave } from '@/components/nav/oelz-wave'
 import { getCurrentProfile } from '@/lib/auth/current-profile'
@@ -30,7 +30,7 @@ import { cn } from '@/lib/utils'
 const MAX_JE_MODUL = 5
 
 const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
-  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical,
+  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Scale,
 }
 
 const monatName = (iso: string) => format(new Date(iso), 'LLLL', { locale: de })

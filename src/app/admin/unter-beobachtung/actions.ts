@@ -19,7 +19,8 @@ import { missingForPublish, type Risikosignal } from '@/types/substance-watch'
 /** Alle Ansichten, die ein Risikosignal zeigen. */
 function neuLaden() {
   revalidatePath('/admin/unter-beobachtung')
-  revalidatePath('/rohstoff-radar')
+  // Seit 14.09.2026 das Regulatorik-Radar statt des Rohstoff-Radars (ADR 0006).
+  revalidatePath('/regulatorik-radar')
 }
 
 function textOderNull(v: FormDataEntryValue | null): string | null {

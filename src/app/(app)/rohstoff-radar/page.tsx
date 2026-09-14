@@ -1,12 +1,11 @@
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { createClient } from '@/lib/supabase/server'
 import { IngredientSignalGrid } from '@/components/ingredient-signal/ingredient-signal-grid'
-import { BeobachtungsListe } from '@/components/substance-watch/beobachtungs-liste'
 import { STRATEGIC_THEMES } from '@/types/strategic-themes'
-import { PRODUKTKATEGORIEN, type Risikosignal } from '@/types/substance-watch'
 import {
   INGREDIENT_FUNCTIONS,
   MATURITY_LEVELS,
@@ -22,9 +21,12 @@ interface PageProps {
     q?: string
     signal?: string
     page?: string
-    /** Reiter: undefined = Rohstoffsignale, 'beobachtung' = Unter Beobachtung. */
+    /**
+     * Nur noch für alte Links: Bis 14.09.2026 öffnete `?ansicht=beobachtung`
+     * hier den Reiter „Unter Beobachtung". Er ist ins Regulatorik-Radar
+     * umgezogen (ADR 0006); solche Links leiten dorthin weiter, samt Kategorie.
+     */
     ansicht?: string
-    /** Kategoriefilter des Reiters „Unter Beobachtung". */
     kategorie?: string
   }>
 }
@@ -47,7 +49,9 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
     ansicht,
     kategorie,
   } = await searchParams
-  const zeigtBeobachtung = ansicht === 'beobachtung'
+  if (ansicht === 'beobachtung') {
+    redirect(`/regulatorik-radar${kategorie ? `?kategorie=${encodeURIComponent(kategorie)}` : ''}`)
+  }
   const currentPage = Math.max(1, parseInt(pageParam ?? '1', 10) || 1)
 
   const supabase = await createClient()
@@ -70,25 +74,13 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
   if (themeFilter) query = query.eq('strategic_theme', themeFilter)
   if (maturityFilter) query = query.eq('maturity', maturityFilter)
 
-  // Risikosignale laufen nebenher: eine zusaetzliche Netzwerkrunde entfaellt,
-  // und der Reiter braucht seine Zahl auch dann, wenn er nicht geoeffnet ist.
-  const [{ data }, { data: allPublishedDates }, { data: risikoRoh }] = await Promise.all([
+  const [{ data }, { data: allPublishedDates }] = await Promise.all([
     query,
     // Stand und Neu-Zähler beschreiben die letzte Erhebung und damit das
     // gesamte Modul — nicht die gefilterte Auswahl. Deshalb eine eigene,
     // filterfreie Abfrage über nur eine Spalte.
     supabase.from('ingredient_signals').select('published_at').eq('status', 'published'),
-    supabase
-      .from('substance_watch')
-      .select('*')
-      .in('status', ['published', 'ausgeraeumt']),
   ])
-
-  const risikosignale = (risikoRoh ?? []) as unknown as Risikosignal[]
-  const risikoAktiv = risikosignale.filter((r) => r.status !== 'ausgeraeumt')
-  const risikoGefiltert = kategorie
-    ? risikosignale.filter((r) => r.product_categories.includes(kategorie))
-    : risikosignale
 
   const signals = (data ?? []) as IngredientSignal[]
   const published = allPublishedDates ?? []
@@ -136,8 +128,6 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
       reifegrad: maturityFilter,
       q: search,
       page: pageParam,
-      ansicht,
-      kategorie,
       ...patch,
     }
     const params = new URLSearchParams()
@@ -173,7 +163,7 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
           Produktentwicklung und Portfolio.
         </p>
         {/* Nur das Datum. Die Zahl stand hier bis 31.08.2026 daneben und
-            wiederholte scheinbar den Reiter darunter: Solange der gesamte
+            wiederholte scheinbar den damaligen Reiter darunter: Solange der gesamte
             Bestand aus einer einzigen Erhebung stammt, ist „neu seit der
             letzten Erhebung" dieselbe Zahl wie „insgesamt". Zwei gleiche
             Zahlen übereinander lesen sich als Fehler, nicht als zwei
@@ -185,42 +175,10 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
         )}
       </div>
 
-      {/* Reiter. „Unter Beobachtung" sitzt bewusst hier und nicht als eigener
-          Menuepunkt: Derselbe Stoff kann links als Chance und rechts als Risiko
-          stehen, und genau diese Doppelung ist der Erkenntniswert. */}
-      <div className="flex items-center gap-1 border-b border-border">
-        {[
-          { key: undefined, label: 'Rohstoffsignale', n: published.length },
-          { key: 'beobachtung', label: 'Unter Beobachtung', n: risikoAktiv.length },
-        ].map((r) => {
-          const aktiv = (r.key === 'beobachtung') === zeigtBeobachtung
-          return (
-            <a
-              key={r.label}
-              href={buildUrl({ ansicht: r.key, kategorie: undefined, page: undefined })}
-              aria-current={aktiv ? 'page' : undefined}
-              className={`-mb-px border-b-2 px-3 py-2 text-sm transition-colors ${
-                aktiv
-                  ? 'border-oelz-orange font-semibold text-foreground'
-                  : 'border-transparent text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              {r.label}
-              {r.n > 0 && <span className="ml-1.5 tabular-nums opacity-70">{r.n}</span>}
-            </a>
-          )
-        })}
-      </div>
-
-      {zeigtBeobachtung ? (
-        <BeobachtungsListe
-          signale={risikoGefiltert}
-          kategorie={kategorie}
-          baueUrl={buildUrl}
-          kategorien={PRODUKTKATEGORIEN}
-        />
-      ) : (
-      <>
+      {/* Bis 14.09.2026 stand hier eine Reiterleiste mit „Unter Beobachtung".
+          Der Reiter ist ins Regulatorik-Radar umgezogen (ADR 0006). Der
+          Querverweis zwischen Chance hier und Risiko dort — derselbe Stoff an
+          beiden Stellen — ist als Folgeschritt vorgesehen. */}
       {!moduleIsEmpty && (
         <div className="space-y-2.5">
           <form action="/rohstoff-radar" method="get">
@@ -323,8 +281,6 @@ export default async function RohstoffRadarPage({ searchParams }: PageProps) {
             </div>
           )}
         </div>
-      )}
-      </>
       )}
     </div>
   )

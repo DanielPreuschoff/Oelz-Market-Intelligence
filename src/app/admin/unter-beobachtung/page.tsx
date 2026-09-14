@@ -31,7 +31,7 @@ export default async function AdminUnterBeobachtungPage() {
 
   const signale = (data ?? []) as unknown as Risikosignal[]
 
-  // Reihenfolge wie im Reiter: das Verbindlichste zuerst, Ausgeräumtes zuletzt.
+  // Reihenfolge wie im Regulatorik-Radar: das Verbindlichste zuerst, Ausgeräumtes zuletzt.
   const aktiv = signale
     .filter((s) => s.status !== 'ausgeraeumt')
     .sort(

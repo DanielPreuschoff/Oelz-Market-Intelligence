@@ -1,7 +1,8 @@
 /**
- * Der Reiter „Unter Beobachtung" im Rohstoff-Radar.
+ * Die Liste der Risikosignale („Unter Beobachtung") im Regulatorik-Radar.
  *
  * Spec: docs/unter-beobachtung-spec.md
+ * Umzug aus dem Rohstoff-Radar: docs/adr/0006-regulatorik-radar-eigenes-modul.md
  *
  * Zwei Gestaltungsentscheidungen, die zusammengehören:
  *

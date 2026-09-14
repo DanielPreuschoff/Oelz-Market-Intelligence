@@ -27,7 +27,7 @@ Funktionsbereich eines Nutzers (Management, Vertrieb, Innovation, Marketing, Ver
 _Avoid_: Berechtigung, Zielgruppe
 
 **Sichtbarkeit**:
-Ob ein Modul für alle Nutzer erscheint oder nur für den Admin (Ausrollstufe). Ein Schalter je Modul, ohne Deploy umlegbar — die einzige harte Wand der Plattform, und sie gilt Modulen, nicht Nutzern.
+Ob ein Modul für alle Nutzer erscheint oder nur für den Admin (Ausrollstufe). Ein Schalter je Modul (`adminOnly` in `src/lib/modules.ts`), der einen Deploy braucht — die einzige harte Wand der Plattform, und sie gilt Modulen, nicht Nutzern. Die Route prüft zusätzlich; die Daten dahinter bleiben lesbar, wo sie es ohnehin sind (ADR 0006).
 _Avoid_: Freigabe (als Nomen), Feature-Flag, Beta
 
 **Startseite**:

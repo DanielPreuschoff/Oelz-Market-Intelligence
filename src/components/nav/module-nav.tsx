@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import {
   Home,
   Target, Lightbulb, ShoppingCart, TrendingUp,
-  Package, Globe, BarChart3, Radio, BookOpen, FlaskConical,
+  Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Scale,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { visibleModules, isModuleActive } from '@/lib/modules'
@@ -13,7 +13,7 @@ import type { ModuleStats } from '@/lib/module-stats'
 import { OelzWave } from '@/components/nav/oelz-wave'
 
 const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> = {
-  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical,
+  Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Scale,
 }
 
 /**

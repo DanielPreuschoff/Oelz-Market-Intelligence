@@ -1,8 +1,15 @@
-# Unter Beobachtung — Risikosignale im Rohstoff-Radar
+# Unter Beobachtung — Risikosignale im Regulatorik-Radar
 
-**Stand: 31.08.2026. Status: entschieden, nicht umgesetzt.**
+**Stand: 14.09.2026. Status: umgesetzt (31.08.2026), Ort geändert (14.09.2026).**
 Entstanden aus dem Termin mit Kai Heuberger am 27.08.2026 und einer
 Grilling-Sitzung am 31.08.2026 (fünf Runden, sechzehn Entscheidungen).
+
+> **Nachtrag 14.09.2026.** Der Reiter im Rohstoff-Radar ist zum eigenen Modul
+> `/regulatorik-radar` geworden — siehe
+> [ADR 0006](adr/0006-regulatorik-radar-eigenes-modul.md). Abschnitt 8, Nicht-Ziel
+> „Kein eigenes Modul" und Akzeptanzkriterium 4 gelten seitdem nicht mehr; der
+> Querverweis aus Kriterium 6 ist ein offener Folgeschritt. Alles andere
+> (Eintragstyp, Stufen, Felder, Hürde, Erhebung) gilt unverändert.
 
 ---
 
@@ -208,6 +215,10 @@ wörtlich „einen Reiter zu haben"; die Seitenleiste trägt schon sechs Module;
 und fachlich gehört es zusammen — derselbe Stoff kann links als Chance und
 rechts als Risiko stehen.
 
+> *Überholt seit 14.09.2026:* eigenes Modul, ADR 0006. Die Begründung war
+> richtig, solange es nur Risiken gab; mit Zulassungen als zweitem Eintragstyp
+> ist der Gegenstand nicht mehr der Rohstoff, sondern das Verfahren.
+
 **Form unterscheidet die Art, Farbe den Grad.** Die erste Idee war ein rotes
 Element. Zwei Einwände: Rot ist in der Ölz-Palette nicht vorgesehen, und die
 Plattform hat sich einmal entschieden, dass Farbe **Schwere** trägt (im
@@ -290,7 +301,7 @@ Risiko keine achte Funktion sein kann.
 - **Kein Rezepturabgleich.** Die Plattform weiß nicht, was in Ölz-Produkten
   steckt, und soll es in Version 1 auch nicht erfahren
 - **Kein Newsfeed.** Ohne Produktkategorie keine Veröffentlichung
-- **Kein eigenes Modul** in der Seitenleiste
+- ~~**Kein eigenes Modul** in der Seitenleiste~~ — aufgehoben 14.09.2026 (ADR 0006)
 - **Keine Benachrichtigung** bei neuen Einträgen — die Frage stellt sich erst,
   wenn Stufe 4 mit Frist real vorkommt
 
@@ -304,10 +315,13 @@ Risiko keine achte Funktion sein kann.
    lesen
 3. Ein ausgeräumter Fall verschwindet aus der aktiven Ansicht, bleibt aber
    auffindbar
-4. Der Reiter erscheint unter `/rohstoff-radar`, nicht als Menüpunkt
+4. ~~Der Reiter erscheint unter `/rohstoff-radar`, nicht als Menüpunkt~~ —
+   seit 14.09.2026 eigenes Modul `/regulatorik-radar` (ADR 0006); alte Links
+   leiten weiter
 5. Jeder Eintrag der Erstbefüllung trägt eine erreichbare amtliche URL
 6. Ein Stoff, der zugleich Chance und Risiko ist, ist in beiden Ansichten
-   auffindbar — und man sieht das eine vom anderen aus
+   auffindbar — und man sieht das eine vom anderen aus *(seit dem Umzug offen:
+   der Querverweis ist der Folgeschritt nach dem Hauptlauf, ADR 0006)*
 
 ---
 
