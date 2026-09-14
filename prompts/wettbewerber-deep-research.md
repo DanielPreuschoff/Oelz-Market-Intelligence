@@ -82,6 +82,25 @@ SUMMARY: Zwei bis fünf Sätze in dieser Reihenfolge — was ist passiert, welch
 Am Ende des Berichts eine Zeile:
 ## ENDE — N Signale
 
+NICHT VERWECHSELN
+Prüfe bei jedem Treffer, dass genau dieses Unternehmen gemeint ist — Sitz, Branche,
+Konzern. Gleichnamige Firmen, Orte, Personen und Alltagswörter sind keine Treffer.
+Bekannte Fallen:
+- Harrys (FR, Barilla France; Toast, Brioche, Milchbrötchen) ist NICHT Harry-Brot
+  (DE, Schenefeld), NICHT Harris Interactive (Umfrageinstitut), NICHT Harry's (Rasierer).
+- Harry-Brot (DE) ist NICHT Harrys (FR).
+- Zito ist Žito d.o.o. Ljubljana (SI, Podravka) — NICHT Žito d.d. Osijek (HR, Agrar),
+  und „žito" heißt auf Slowenisch Getreide, auf Tschechisch/Slowakisch Roggen.
+- Dobrota ist DOBROTA, a.s. Prievidza (SK, Bäckerei) — „dobrota" ist ein Alltagswort
+  (Güte, Leckerei) in CZ/SK/SI/HR; kleine gleichnamige Bäckereien zählen nicht.
+- Opavia ist die Keksmarke von Mondelēz — NICHT die Stadt Opava. Konzernmeldungen von
+  Mondelēz nur, wenn sie Opavia betreffen (Mondelēz gehört auch 7DAYS).
+- 7DAYS ist die Croissant-Marke von Chipita/Mondelēz — „7 days" als Wendung zählt nicht.
+- Pasquier ist Brioche Pasquier (FR) — der Familienname allein ist kein Treffer.
+- La Fournée Dorée ist NICHT Brioche Dorée (Restaurantkette) und nicht gleichnamige
+  Kleinbetriebe.
+- Barilla-Meldungen gehören zu Barilla, außer sie betreffen ausdrücklich Harrys.
+
 REGELN
 - Erfinde keine Zahlen, Daten, Firmennamen oder URLs. Was du nicht belegen kannst,
   lässt du weg.

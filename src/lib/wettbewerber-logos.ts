@@ -7,7 +7,11 @@
  * `competitors.logo_url` gepflegt ist, hat die Datenbank Vorrang — diese
  * Tabelle ist der Rückfall (und für den Prototyp die einzige Quelle).
  *
- * Fehlende Logos (Stand 19.08.2026): Gradski mlin, Wittmann.
+ * Fehlende Logos (Stand 14.09.2026): Gradski mlin, Wittmann.
+ *
+ * Žito: aus der roten Quadratfassung die Wortmarke herausgelöst — rot auf
+ * transparent statt weiß auf rotem Block, sonst füllt das Rot das ganze
+ * Logokästchen und der Schriftzug schrumpft auf ein Fünftel.
  */
 const LOGOS: Record<string, string> = {
   'Harry-Brot': '/logos/wettbewerber/harry-brot.jpg',
@@ -34,6 +38,12 @@ const LOGOS: Record<string, string> = {
   Vandemoortele: '/logos/wettbewerber/vandemoortele.png',
   Bimbo: '/logos/wettbewerber/bimbo.png',
   Barilla: '/logos/wettbewerber/barilla.png',
+  // 14.09.2026 — auf Wunsch von Kai Heuberger
+  Harrys: '/logos/wettbewerber/harrys.png',
+  Pasquier: '/logos/wettbewerber/pasquier.png',
+  Zito: '/logos/wettbewerber/zito.png',
+  Opavia: '/logos/wettbewerber/opavia.png',
+  Dobrota: '/logos/wettbewerber/dobrota.png',
 }
 
 /** Logo-Pfad für einen Wettbewerber-Kurznamen — null, wenn keins vorliegt. */

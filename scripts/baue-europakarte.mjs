@@ -14,7 +14,7 @@
  * SVG-Pfad und den bereits projizierten Standorten.
  *
  * Standorte: die Wettbewerber aus supabase/seed.sql mit nachprüfbarem Sitz
- * in Europa (Stand 16.08.2026). Ausgelassen und warum:
+ * in Europa (Stand 14.09.2026). Ausgelassen und warum:
  *   - Gradski mlin — Sitz nicht nachprüfbar (Register: „to be validated")
  *   - Bimbo        — Sitz Mexiko-Stadt, ausserhalb der Karte
  * Penam und Delta Pekárny sitzen beide in Brno und sind ein Punkt.
@@ -38,13 +38,21 @@ const ORTE = [
   { name: 'Mestemacher — Gütersloh', lon: 8.38, lat: 51.91, tier: 'medium' },
   { name: 'Manner — Wien', lon: 16.37, lat: 48.21, tier: 'medium' },
   { name: 'La Boulangère — Les Essarts (Vendée)', lon: -1.23, lat: 46.77, tier: 'medium' },
-  { name: 'La Fournée Dorée — Puceul', lon: -1.6, lat: 47.52, tier: 'medium' },
+  // Sitz laut lafourneedoree.fr/nos-ateliers: Les Achards (Vendée), nicht Puceul.
+  { name: 'La Fournée Dorée — Les Achards', lon: -1.66, lat: 46.59, tier: 'medium' },
   { name: 'Dan Cake — Póvoa de Santa Iria', lon: -9.06, lat: 38.86, tier: 'medium' },
   { name: 'Kuchenmeister — Soest', lon: 8.11, lat: 51.57, tier: 'medium' },
   { name: 'ABF — London', lon: -0.13, lat: 51.51, tier: 'medium' },
   { name: 'Vandemoortele — Gent', lon: 3.72, lat: 51.05, tier: 'medium' },
   { name: 'Spitz — Attnang-Puchheim', lon: 13.72, lat: 48.01, tier: 'medium' },
   { name: 'Barilla — Parma', lon: 10.33, lat: 44.8, tier: 'medium' },
+  // 14.09.2026 — Neuzugänge auf Wunsch von Kai Heuberger. Sitze aus dem
+  // Handelsregister bzw. der Firmenseite, Koordinaten über OpenStreetMap.
+  { name: 'Harrys — Boulogne-Billancourt (Barilla France)', lon: 2.24, lat: 48.84, tier: 'medium' },
+  { name: 'Brioche Pasquier — Les Cerqueux', lon: -0.64, lat: 47.0, tier: 'medium' },
+  { name: 'Žito — Ljubljana', lon: 14.51, lat: 46.05, tier: 'medium' },
+  { name: 'Opavia — Opava (Werk)', lon: 17.9, lat: 49.94, tier: 'medium' },
+  { name: 'Dobrota — Prievidza', lon: 18.62, lat: 48.77, tier: 'medium' },
   { name: 'Backaldrin — Asten', lon: 14.42, lat: 48.22, tier: 'low' },
   { name: 'St Michel — Contres', lon: 1.43, lat: 47.42, tier: 'low' },
   { name: 'Warburtons — Bolton', lon: -2.43, lat: 53.58, tier: 'low' },
