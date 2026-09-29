@@ -257,7 +257,7 @@ insert into competitors (name, short_name, country_ids, categories, description,
     'Opavia',
     array['CZ', 'SK'],
     array['biscuits', 'wafers'],
-    'Czech biscuit and wafer brand (Tatranky, Horalky, Zlaté) owned by Mondelēz, plants in Opava, Lovosice and Mariánské Lázně. Little overlap with Ölz core range — on the list at Kai''s request.',
+    'Czech biscuit and wafer brand (Tatranky, Zlaté, BeBe, Kolonáda, Fidorka) owned by Mondelēz, plants in Opava, Lovosice and Mariánské Lázně. Little overlap with Ölz core range — on the list at Kai''s request.',
     'medium',
     true
   ),
