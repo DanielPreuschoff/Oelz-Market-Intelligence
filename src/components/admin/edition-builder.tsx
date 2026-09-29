@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
@@ -71,7 +71,10 @@ export function EditionBuilder({ edition, unaddedSignals, usedIn }: EditionBuild
     const removed = includedRows.find((r) => r.signal_id === signalId)
     if (!removed) return
     setIncludedRows((prev) => prev.filter((r) => r.signal_id !== signalId))
-    setAvailable((prev) => [removed.signal, ...prev])
+    // Back into its place by creation time (stable sort keeps the date order within a day)
+    setAvailable((prev) =>
+      [removed.signal, ...prev].sort((a, b) => b.created_at.localeCompare(a.created_at))
+    )
   }
 
   function moveUp(index: number) {
@@ -322,7 +325,20 @@ export function EditionBuilder({ edition, unaddedSignals, usedIn }: EditionBuild
                   Every available signal already appears in another edition.
                 </p>
               ) : (
-                freshSignals.map((signal) => renderAvailable(signal))
+                // Grouped by the day a signal was added, so a leftover from an
+                // older import is not mistaken for part of the latest one.
+                freshSignals.map((signal, i) => {
+                  const added = format(new Date(signal.created_at), 'MMM d, yyyy')
+                  const previous = i > 0 ? format(new Date(freshSignals[i - 1].created_at), 'MMM d, yyyy') : null
+                  return (
+                    <Fragment key={signal.id}>
+                      {added !== previous && (
+                        <p className="text-xs text-muted-foreground pt-1.5">Added {added}</p>
+                      )}
+                      {renderAvailable(signal)}
+                    </Fragment>
+                  )
+                })
               )}
 
               {usedSignals.length > 0 && (
