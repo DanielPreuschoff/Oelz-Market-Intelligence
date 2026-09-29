@@ -23,19 +23,33 @@ import {
   ArrowDown,
   Send,
   Loader2,
+  ChevronDown,
+  ChevronRight,
 } from 'lucide-react'
 
 interface EditionBuilderProps {
   edition: EditionWithSignals
   unaddedSignals: SignalWithRelations[]
+  /** Signal id → months of the other editions it already appears in. */
+  usedIn: Record<string, string[]>
 }
 
-export function EditionBuilder({ edition, unaddedSignals }: EditionBuilderProps) {
+function UsedBadge({ labels }: { labels: string[] | undefined }) {
+  if (!labels) return null
+  return (
+    <Badge variant="outline" className="text-xs text-muted-foreground font-normal">
+      Used · {labels.join(', ')}
+    </Badge>
+  )
+}
+
+export function EditionBuilder({ edition, unaddedSignals, usedIn }: EditionBuilderProps) {
   const router = useRouter()
   const [includedRows, setIncludedRows] = useState(
     [...edition.edition_signals].sort((a, b) => a.position - b.position)
   )
   const [available, setAvailable] = useState(unaddedSignals)
+  const [showUsed, setShowUsed] = useState(false)
   const [saving, setSaving] = useState(false)
   const [publishing, setPublishing] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -151,6 +165,46 @@ export function EditionBuilder({ edition, unaddedSignals }: EditionBuilderProps)
     router.refresh()
   }
 
+  const freshSignals = available.filter((s) => !usedIn[s.id])
+  const usedSignals = available.filter((s) => usedIn[s.id])
+
+  function renderAvailable(signal: SignalWithRelations) {
+    const used = usedIn[signal.id]
+    return (
+      <button
+        key={signal.id}
+        onClick={() => addSignal(signal)}
+        className={cn(
+          'w-full text-left border rounded-lg px-3 py-2.5 bg-card hover:bg-secondary/60 transition-colors space-y-1 group',
+          used && 'opacity-70 hover:opacity-100'
+        )}
+      >
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <Badge
+            variant="secondary"
+            className={cn('text-xs', CATEGORY_COLORS[signal.category])}
+          >
+            {CATEGORY_LABELS[signal.category]}
+          </Badge>
+          {signal.competitor && (
+            <span className="text-xs text-muted-foreground">{signal.competitor.short_name}</span>
+          )}
+          <UsedBadge labels={used} />
+          {signal.signal_date && (
+            <span className="text-xs text-muted-foreground ml-auto">
+              {format(new Date(signal.signal_date), 'MMM d')}
+            </span>
+          )}
+        </div>
+        <p className="text-xs font-medium leading-snug line-clamp-2">{signal.headline}</p>
+        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <Plus className="w-3 h-3 text-primary" />
+          <span className="text-xs text-primary">Add to edition</span>
+        </div>
+      </button>
+    )
+  }
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
       {/* Included signals */}
@@ -231,6 +285,7 @@ export function EditionBuilder({ edition, unaddedSignals }: EditionBuilderProps)
                       {signal.competitor && (
                         <span className="text-xs text-muted-foreground">{signal.competitor.short_name}</span>
                       )}
+                      <UsedBadge labels={usedIn[signal.id]} />
                     </div>
                     <p className="text-sm font-medium leading-snug">{signal.headline}</p>
                   </div>
@@ -258,35 +313,31 @@ export function EditionBuilder({ edition, unaddedSignals }: EditionBuilderProps)
               All reviewed signals are included.
             </p>
           ) : (
-            available.map((signal) => (
-              <button
-                key={signal.id}
-                onClick={() => addSignal(signal)}
-                className="w-full text-left border rounded-lg px-3 py-2.5 bg-card hover:bg-secondary/60 transition-colors space-y-1 group"
-              >
-                <div className="flex items-center gap-1.5 flex-wrap">
-                  <Badge
-                    variant="secondary"
-                    className={cn('text-xs', CATEGORY_COLORS[signal.category])}
+            <>
+              <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wide pt-1">
+                New — not in any edition <span className="normal-case">({freshSignals.length})</span>
+              </h3>
+              {freshSignals.length === 0 ? (
+                <p className="text-xs text-muted-foreground py-2">
+                  Every available signal already appears in another edition.
+                </p>
+              ) : (
+                freshSignals.map((signal) => renderAvailable(signal))
+              )}
+
+              {usedSignals.length > 0 && (
+                <>
+                  <button
+                    onClick={() => setShowUsed((v) => !v)}
+                    className="flex items-center gap-1 text-xs font-medium text-muted-foreground uppercase tracking-wide pt-3 hover:text-foreground"
                   >
-                    {CATEGORY_LABELS[signal.category]}
-                  </Badge>
-                  {signal.competitor && (
-                    <span className="text-xs text-muted-foreground">{signal.competitor.short_name}</span>
-                  )}
-                  {signal.signal_date && (
-                    <span className="text-xs text-muted-foreground ml-auto">
-                      {format(new Date(signal.signal_date), 'MMM d')}
-                    </span>
-                  )}
-                </div>
-                <p className="text-xs font-medium leading-snug line-clamp-2">{signal.headline}</p>
-                <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Plus className="w-3 h-3 text-primary" />
-                  <span className="text-xs text-primary">Add to edition</span>
-                </div>
-              </button>
-            ))
+                    {showUsed ? <ChevronDown className="w-3.5 h-3.5" /> : <ChevronRight className="w-3.5 h-3.5" />}
+                    Already used in an edition <span className="normal-case">({usedSignals.length})</span>
+                  </button>
+                  {showUsed && usedSignals.map((signal) => renderAvailable(signal))}
+                </>
+              )}
+            </>
           )}
         </div>
       </div>
