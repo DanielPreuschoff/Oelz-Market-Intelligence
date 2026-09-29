@@ -19,7 +19,8 @@ Fachliche Grundlage: [category-taxonomy.md](../docs/category-taxonomy.md),
 ```
 Du recherchierst Wettbewerbssignale für Rudolf Ölz Meisterbäcker, einen österreichischen
 Premium-Bäcker (Croissants, Plundergebäck, süßes Gebäck, Toast, Convenience-Backwaren).
-Relevante Märkte: Österreich als Heimatmarkt, dazu Tschechien, Slowakei, Slowenien.
+Relevante Märkte: Österreich als Heimatmarkt, dazu Deutschland, Tschechien, Slowakei,
+Slowenien.
 
 WETTBEWERBER: {WETTBEWERBER}
 ZEITRAUM: {ZEITRAUM}
@@ -70,7 +71,7 @@ HEADLINE: Ein Satz, maximal 80 Zeichen. Nennt Wettbewerber und Handlung. Muss oh
   Roggentoast-Reihe bei Billa Österreich".
 KATEGORIE: einer der Schlüssel oben
 WICHTIGKEIT: 1, 2 oder 3
-LAND: AT, CZ, SK oder SI — oder leer, wenn marktübergreifend
+LAND: AT, DE, CZ, SK oder SI — oder leer, wenn marktübergreifend
 DATUM: YYYY-MM-DD, wann das Ereignis stattfand. Nicht das Abrufdatum.
 QUELLE: Name des Mediums oder der Organisation
 URL: vollständige, direkt aufrufbare Adresse. Keine geratenen oder konstruierten Links.
