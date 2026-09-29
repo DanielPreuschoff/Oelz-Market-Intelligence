@@ -23,7 +23,7 @@ export default async function AdminEditionDetailPage({ params }: PageProps) {
   const { id } = await params
   const supabase = await createClient()
 
-  const [{ data: edition }, { data: availableSignals }] = await Promise.all([
+  const [{ data: edition }, { data: availableSignals }, { data: otherEditionRows }] = await Promise.all([
     supabase
       .from('editions')
       .select(`
@@ -43,7 +43,14 @@ export default async function AdminEditionDetailPage({ params }: PageProps) {
       .from('signals')
       .select('*, competitor:competitors(*), country:countries(*)')
       .in('status', ['reviewed', 'published'])
-      .order('signal_date', { ascending: false }),
+      // Latest import first; without nullsFirst: false, undated old signals
+      // would sort above everything else.
+      .order('created_at', { ascending: false })
+      .order('signal_date', { ascending: false, nullsFirst: false }),
+    supabase
+      .from('edition_signals')
+      .select('signal_id, edition:editions(period_month)')
+      .neq('edition_id', id),
   ])
 
   if (!edition) notFound()
@@ -55,6 +62,19 @@ export default async function AdminEditionDetailPage({ params }: PageProps) {
   const unaddedSignals = (availableSignals ?? []).filter(
     (s: SignalWithRelations) => !includedSignalIds.has(s.id)
   ) as SignalWithRelations[]
+
+  // Other editions each signal already appears in, so fresh imports stand apart
+  // from reused ones. Published without an edition: that edition was deleted.
+  const usedIn: Record<string, string[]> = {}
+  for (const row of (otherEditionRows ?? []) as unknown as { signal_id: string; edition: { period_month: string } | null }[]) {
+    if (!row.edition) continue
+    const label = format(new Date(row.edition.period_month), 'MMM yyyy')
+    const labels = (usedIn[row.signal_id] ??= [])
+    if (!labels.includes(label)) labels.push(label)
+  }
+  for (const s of [...unaddedSignals, ...typedEdition.edition_signals.map((es) => es.signal)]) {
+    if (s.status === 'published' && !usedIn[s.id]) usedIn[s.id] = ['published']
+  }
 
   const sortedRows = typedEdition.edition_signals.sort((a, b) => a.position - b.position)
 
@@ -94,6 +114,7 @@ export default async function AdminEditionDetailPage({ params }: PageProps) {
       <EditionBuilder
         edition={typedEdition}
         unaddedSignals={unaddedSignals}
+        usedIn={usedIn}
       />
     </div>
   )
