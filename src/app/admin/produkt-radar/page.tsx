@@ -30,6 +30,12 @@ export default async function AdminProduktRadarPage() {
             Impulse importieren
           </Link>
           <Link
+            href="/admin/produkt-radar/bilder"
+            className={cn(buttonVariants({ size: 'sm', variant: 'outline' }))}
+          >
+            Bilder übernehmen
+          </Link>
+          <Link
             href="/admin/produkt-radar/new"
             className={cn(buttonVariants({ size: 'sm', variant: 'outline' }))}
           >
