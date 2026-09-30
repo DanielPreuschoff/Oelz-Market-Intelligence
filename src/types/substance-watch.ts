@@ -186,6 +186,53 @@ export interface Risikosignal {
   ai_generated: boolean
   created_at: string
   updated_at: string
+  /** Frühere Stände, neueste zuerst (Migration 018) — nur wo die Abfrage sie mitlädt. */
+  verlauf?: Verlaufseintrag[]
+}
+
+/**
+ * Ein früherer Stand eines Falls. Der Trigger aus Migration 018 schreibt ihn,
+ * sobald sich bei einem veröffentlichten Fall Kurzzeile, Stufe,
+ * Geltungsbereich oder Quelle ändern — `changed_at` ist der Zeitpunkt der
+ * Änderung, `source_date` das Datum der damaligen Quelle.
+ */
+export interface Verlaufseintrag {
+  id: string
+  signal_id: string
+  changed_at: string
+  stage: Stufe | null
+  scope: Geltungsbereich | null
+  authority: Behoerde | null
+  action: Handlung | null
+  teaser: string | null
+  situation: string | null
+  source_name: string | null
+  source_url: string | null
+  source_date: string | null
+}
+
+/** So lange trägt eine geänderte Karte die Marke „Aktualisiert" — ein Monatslauf plus Luft. */
+export const AKTUALISIERT_TAGE = 30
+
+/** Zeitpunkt der letzten Änderung, wenn sie jünger als AKTUALISIERT_TAGE ist — sonst null. */
+export function frischAktualisiert(s: Risikosignal, jetzt: Date = new Date()): string | null {
+  const letzte = s.verlauf?.[0]?.changed_at
+  if (!letzte) return null
+  const tage = (jetzt.getTime() - new Date(letzte).getTime()) / 86_400_000
+  return tage <= AKTUALISIERT_TAGE ? letzte : null
+}
+
+/**
+ * Chronologisch, neuestes Ereignis zuerst — Daniel, 30.09.2026: „vorne immer
+ * die neuesten Sachen, darunter müssen auch die Änderungen fallen". Maßgeblich
+ * ist das Datum der aktuellen Quelle: Hebt eine Änderung den Fall auf eine
+ * neue Quelle, rückt er damit nach oben.
+ */
+export function vergleicheNachAktualitaet(a: Risikosignal, b: Risikosignal): number {
+  return (
+    (b.source_date ?? '').localeCompare(a.source_date ?? '') ||
+    (a.teaser ?? a.substance).localeCompare(b.teaser ?? b.substance, 'de')
+  )
 }
 
 /**
