@@ -156,7 +156,9 @@ bewertung            Eine Behörde prüft oder empfiehlt; noch kein Recht
 rechtsakt_in_arbeit  Entwurf, Konsultation, Ausschussvotum — beschlossen, nicht in Kraft
 geltendes_recht      In Kraft, mit Frist oder Höchstmenge
 
-BEHÖRDE — genau einer: efsa | eu_kommission | national | keine
+BEHÖRDE — genau einer: efsa | bfr | eu_kommission | national | keine
+bfr ist das Bundesinstitut für Risikobewertung; national sind AGES, BLV, Ministerien und
+Parlamente.
 
 GELTUNGSBEREICH — genau einer: EU | DE | AT | CH
 Deutschland ist der Frühindikator für Österreich: Eine BfR-Bewertung ist ein Signal für
@@ -173,7 +175,7 @@ KURZZEILE: Sieben bis elf Wörter — was passiert gerade. Muss ohne den Rest ve
 STOFF: Name des Stoffs, bei INDIREKT leer erlaubt
 E_NUMMER: falls es eine gibt, sonst leer
 STUFE: (nur RISIKO) einer der vier Schlüssel
-BEHÖRDE: efsa | eu_kommission | national | keine
+BEHÖRDE: efsa | bfr | eu_kommission | national | keine
 GELTUNGSBEREICH: EU | DE | AT | CH
 SACHVERHALT: Zwei bis vier Sätze. Nur was in der Quelle steht. Zahlen, Fristen und
   Höchstgehalte wörtlich aus der Quelle. Liegt der Anlass außerhalb der Backwaren, hier

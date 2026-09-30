@@ -10,7 +10,7 @@ interface PageProps {
     typ?: string
     /** Kategoriefilter (eine der fünf Ölz-Kategorien). */
     kategorie?: string
-    /** Behördenfilter: efsa · eu_kommission · national · keine. */
+    /** Behördenfilter: efsa · bfr · eu_kommission · national · keine. */
     behoerde?: string
     /** Geöffneter Fall — Detail-Dialog, teil- und reloadfest. */
     signal?: string

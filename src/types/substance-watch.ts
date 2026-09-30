@@ -102,12 +102,15 @@ export const GELTUNGSBEREICH_NAME: Record<Geltungsbereich, string> = {
  * Wer die Meldung verantwortet — als Feld, nicht nur im Quellennamen, weil
  * Kai Heuberger einen Filter „EFSA / EU Regulation" wünscht (E-Mail vor dem
  * 11.09.2026). 'keine' ist der Wert für Stufe „Öffentliche Kritik".
+ * Das BfR hat einen eigenen Wert neben der EFSA, weil Kai es als Filter will
+ * (30.09.2026) — Deutschland ist sein Frühindikator für Österreich.
  */
-export const BEHOERDEN = ['efsa', 'eu_kommission', 'national', 'keine'] as const
+export const BEHOERDEN = ['efsa', 'bfr', 'eu_kommission', 'national', 'keine'] as const
 export type Behoerde = (typeof BEHOERDEN)[number]
 
 export const BEHOERDE_NAME: Record<Behoerde, string> = {
   efsa: 'EFSA',
+  bfr: 'BfR',
   eu_kommission: 'EU-Kommission',
   national: 'National',
   keine: 'Keine Behörde',
@@ -115,8 +118,9 @@ export const BEHOERDE_NAME: Record<Behoerde, string> = {
 
 export const BEHOERDE_ERKLAERUNG: Record<Behoerde, string> = {
   efsa: 'Gutachten, Neubewertung oder Konsultation der EFSA.',
+  bfr: 'Stellungnahme oder Mitteilung des Bundesinstituts für Risikobewertung (DE).',
   eu_kommission: 'Verordnung, Empfehlung, Entwurf oder Ausschussvotum (PAFF).',
-  national: 'BfR, AGES, BLV oder ein nationales Ministerium.',
+  national: 'AGES, BLV, ein nationales Ministerium oder Parlament.',
   keine: 'Medien, NGO oder Verbraucherschutz — Stufe „Öffentliche Kritik".',
 }
 
