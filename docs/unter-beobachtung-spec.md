@@ -401,3 +401,12 @@ Risiko keine achte Funktion sein kann.
 4. **Reicht DE · AT · EU?** Tschechien, Slowakei und Slowenien sind über EU-Recht
    abgedeckt, solange es um Zusatzstoffe geht. Nationale Alleingänge außerhalb
    des harmonisierten Rechts wären eine Lücke.
+
+**Stand 30.09.2026 (Daniel, ohne Rückfrage bei Ölz):**
+- Punkt 1: Die fünf Produktkategorien passen vorerst so.
+- Punkt 2: Die Funktionsliste bekam eine achte Funktion, `Rohstoffersatz`.
+- Punkt 3: Nicht klären, sondern entschärfen. Jede Handlung erscheint als
+  „Empfehlung: …", und `ersetzen` heißt in der Anzeige „Ersatz erwägen". Der
+  Behörden-Prompt setzt `ersetzen` nur bei geltendem oder beschlossenem Verbot
+  oder Höchstgehalt, der übliche Feingebäck-Rezepturen trifft.
+- Punkt 4: offen. Geltungsbereich CH kam am 14.09. dazu.

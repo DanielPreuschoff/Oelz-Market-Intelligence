@@ -25,7 +25,7 @@
 
 ## Added 2026-09-14 (Kai Heuberger, email before the 11.09. call)
 
-Brand is the entry, the group goes in the notes. Watch priority is no longer shown in the UI (all competitors are researched the same way each month); the column stays in the database.
+Brand is the entry, the group goes in the notes. Watch priority is no longer shown in the UI (all competitors are researched the same way each month); the column stays in the database. Confirmed by Daniel on 30.09.2026: competitors stay unranked for now.
 
 | Short Name | Full Name | Countries | Categories | Notes |
 |------------|-----------|-----------|------------|-------|

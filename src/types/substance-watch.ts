@@ -134,10 +134,17 @@ export const KURZZEILE_MAX = 11
 export const HANDLUNGEN = ['beobachten', 'pruefen', 'ersetzen'] as const
 export type Handlung = (typeof HANDLUNGEN)[number]
 
+/**
+ * Die Handlung ist eine Empfehlung der Recherche, keine Vorgabe — die Karte
+ * zeigt sie als „Empfehlung: …". Der Schlüssel `ersetzen` heißt in der Anzeige
+ * bewusst „Ersatz erwägen": Daniel, 30.09.2026, wollte das Thema im ersten
+ * Schritt nicht zu deutlich gewichten und nicht bei Ölz klären, wer eine
+ * Rezepturumstellung empfehlen darf.
+ */
 export const HANDLUNG_NAME: Record<Handlung, string> = {
   beobachten: 'Beobachten',
   pruefen: 'Prüfen',
-  ersetzen: 'Ersetzen',
+  ersetzen: 'Ersatz erwägen',
 }
 
 /**
@@ -145,8 +152,8 @@ export const HANDLUNG_NAME: Record<Handlung, string> = {
  *
  * Sie tragen die Veröffentlichungs-Hürde: Ohne mindestens eine gibt es keinen
  * veröffentlichten Eintrag. Damit ist ein Dokument lasttragend geworden, das
- * sich selbst als „abgeleitet, noch nicht mit Ölz validiert" bezeichnet — das
- * gehört bestätigt (Spec, Abschnitt 13).
+ * sich selbst als „abgeleitet, noch nicht mit Ölz validiert" bezeichnet.
+ * Daniel, 30.09.2026: passt vorerst, keine Rückfrage bei Ölz (Spec, Abschnitt 13).
  */
 export const PRODUKTKATEGORIEN = [
   'Croissant & Plunder',

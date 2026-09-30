@@ -137,7 +137,10 @@ function Kennzeile({ s, gross = false }: { s: Risikosignal; gross?: boolean }) {
       {s.kind === 'risiko' && s.action && (
         <>
           {punkt}
-          <span className="font-semibold text-foreground">{HANDLUNG_NAME[s.action as Handlung] ?? s.action}</span>
+          <span>
+            Empfehlung:{' '}
+            <span className="font-semibold text-foreground">{HANDLUNG_NAME[s.action as Handlung] ?? s.action}</span>
+          </span>
         </>
       )}
       {erledigt && (

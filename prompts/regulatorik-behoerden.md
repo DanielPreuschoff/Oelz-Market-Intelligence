@@ -183,7 +183,9 @@ SACHVERHALT: Zwei bis vier Sätze. Nur was in der Quelle steht. Zahlen, Fristen 
 WARUM_OELZ: (nur INDIREKT) ein Satz, Pflicht
 KATEGORIEN: (RISIKO, ZULASSUNG) eine bis fünf der Ölz-Kategorien, kommagetrennt, exakte
   Schreibweise. Bei ZULASSUNG: wo Ölz den Stoff einsetzen könnte.
-HANDLUNG: (nur RISIKO) beobachten | pruefen | ersetzen
+HANDLUNG: (nur RISIKO) beobachten | pruefen | ersetzen — eine Empfehlung, keine Vorgabe.
+  ersetzen nur, wenn ein Verbot oder Höchstgehalt gilt oder beschlossen ist, der übliche
+  Rezepturen von Feingebäck trifft. Im Zweifel pruefen.
 QUELLE: Name der Behörde und des Dokuments, z. B. "EFSA Journal 24(5):e10057",
   "Verordnung (EU) 2026/1825", "BfR, Stellungnahme 030/2026"
 URL: vollständig, amtlich, tatsächlich aufgerufen

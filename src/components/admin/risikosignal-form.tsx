@@ -356,7 +356,7 @@ export function RisikosignalForm({
 
         {kind === 'risiko' && (
         <div>
-          <label htmlFor="action" className={beschriftung}>Handlung</label>
+          <label htmlFor="action" className={beschriftung}>Handlung (Empfehlung)</label>
           <select
             id="action" name="action" value={handlung}
             onChange={(e) => setHandlung(e.target.value)} className={feld}
