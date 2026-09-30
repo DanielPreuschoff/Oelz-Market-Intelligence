@@ -21,6 +21,9 @@ Grilling-Sitzung am 31.08.2026 (fünf Runden, sechzehn Entscheidungen).
 >   weil Kai einen Filter „EFSA / EU Regulation" will — der Quellenname allein
 >   trägt keinen Filter. Abschnitt 5 hatte das Feld gestrichen; das ist damit
 >   aufgehoben. `Keine` ist der Wert für Stufe „Öffentliche Kritik".
+>   **Nachtrag 30.09.2026 (Migration 017):** Das BfR ist ein eigener Wert neben
+>   der EFSA, auf Kais Wunsch als Filter; `National` bleibt für AGES, BLV,
+>   Ministerien und Parlamente.
 > - **Geltungsbereich um CH.** Ölz verkauft in der Schweiz, deren
 >   Lebensmittelrecht nicht EU-harmonisiert ist — die einzige echte Lücke.
 >   Beantwortet Abschnitt 13, Punkt 4 zur Hälfte; CZ, SK und SI bleiben über
