@@ -22,8 +22,8 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 
 | | |
 |---|---|
-| Bisherige Läufe | 2 — Probelauf 10. August 2026 (Fenster Juli/August), erster regulärer Lauf 31. August 2026 (Fenster August) |
-| Nächster Lauf | 1. Oktober 2026 (Fenster: September) |
+| Bisherige Läufe | 3 — Probelauf 10. August 2026 (Fenster Juli/August), Lauf 31. August 2026 (Fenster August), Lauf 29./30. September 2026 (Fenster September, dazu Trend Hunter) |
+| Nächster Lauf | Ende Oktober 2026 (Fenster: Oktober) |
 
 ---
 
@@ -126,6 +126,39 @@ Siehe `research/2026-09/SICHTUNGSLISTE-PRODUKT.md`.
 | Bio-Toastbrot ohne Zuckerzusatz mit längerer Haltbarkeit | Claim | 2026-09 | Großbritannien | Entwurf |
 | Sauerteig-Handwerk wandert ins verpackte Bagel-Regal | Claim | 2026-09 | USA | Entwurf |
 
+### Lauf 29./30. September 2026 (Fenster September)
+
+6 Berichte aus 3 Anbietern (Marktscan und Transferradar), 38 Rohblöcke → 33 Konzepte →
+**12 importierte Entwürfe**, 21 verworfen (siehe `research/2026-10/SICHTUNGSLISTE-PRODUKT.md`).
+Dazu erstmals eine Sichtung von **Trend Hunter** (trendhunter.com/food, 312 Beiträge vom
+31.08. bis 30.09.): **9 Entwürfe**, 13 verworfen, jede Originalquelle geprüft (siehe
+`research/2026-10/TRENDHUNTER-KANDIDATEN.md`). Beide Teile stehen in derselben
+Importdatei `import-impulse-2026-10.json`.
+
+| Konzept | Radar-Typ | Erhebung | Markt | Ergebnis |
+|---|---|---|---|---|
+| Verdeckte Füllung macht Gebäck zum Ratespiel | Format | 2026-10 | Großbritannien | Entwurf |
+| Immun-Claim zieht ins weiche Frühstücksbrötchen ein | Claim | 2026-10 | Japan | Entwurf |
+| Generative KI erdenkt Gebäck für Japans Convenience-Regale | Rezeptur & Genuss | 2026-10 | Japan | Entwurf |
+| Frisches Abreißbrot wird eigens für den Airfryer entwickelt | Format | 2026-10 | Kanada | Entwurf |
+| Brot macht die Zahl der Pflanzen zum Gesundheitsargument | Claim | 2026-10 | Großbritannien | Entwurf |
+| Bagel-Marke geht mit gefülltem Pizza-Bagel ins Tiefkühlregal | Format | 2026-10 | Großbritannien | Entwurf |
+| Croissant wird zum Getränkearoma mit Mini-Croissant obenauf | Format | 2026-10 | USA | Entwurf |
+| Sharing-Torte kommt mit eigenem Schneidewerkzeug in den Handel | Verpackung | 2026-10 | Großbritannien | Entwurf |
+| Virale Loaded Buns werden bei Tesco zur Eigenmarke | Internationaler Vorläufer | 2026-10 | Café-Marken/Social Media → britischer LEH | Entwurf |
+| Piñata-Kuchen springt aus der Spezialbäckerei in den Supermarkt | Internationaler Vorläufer | 2026-10 | US-Spezialbäckerei → US-Supermarkt | Entwurf |
+| Schwedische Prinsesstårta landet im US-Tiefkühlregal | Internationaler Vorläufer | 2026-10 | Schweden → USA | Entwurf |
+| Greggs zieht mit einem Bitesize-Shop erstmals in einen Supermarkt | Internationaler Vorläufer | 2026-10 | Bäckereikette → Supermarkt (UK) | Entwurf |
+| Laugengebäck mit 16 g Protein und null Zucker | Claim | 2026-10 | USA | Entwurf |
+| Heiße Brioche-Tasche umschließt kaltes Eis | Format | 2026-10 | Frankreich | Entwurf |
+| Mini-Gebäck mit 25 Prozent weniger Zucker für die Lunchbox | Claim | 2026-10 | USA | Entwurf |
+| Korea-Bestseller springen in Kanadas Convenience-Regal | Internationaler Vorläufer | 2026-10 | Südkorea → Kanada | Entwurf |
+| Gefüllte Croissants im Einzelpack gewinnen britische Regalfläche | Format | 2026-10 | Großbritannien | Entwurf |
+| Warmer Kuchen kommt als Einzelportion aus der Tiefkühlung | Occasion | 2026-10 | USA | Entwurf |
+| Mini-Cookies kommen als Box zum Teilen in die Sandwichkette | Format | 2026-10 | Kanada | Entwurf |
+| Übrige Backwaren gehen per App als Überraschungstüte weg | Handel | 2026-10 | Großbritannien | Entwurf |
+| Brotmarke verkauft Sauerteig-Starterkits nur über TikTok Shop | Handel | 2026-10 | USA | Entwurf |
+
 ## Verworfen
 
 | Konzept | Erhebung | Grund |
@@ -135,3 +168,37 @@ Siehe `research/2026-09/SICHTUNGSLISTE-PRODUKT.md`.
 | Döner Croissant DIY Set (Lidl DE) | 2026-09 | Wiederholung — steht seit dem Augustlauf im Register |
 | Crookie bei Waitrose (Frankreich → UK) | 2026-09 | Wiederholung — der Sprung Frankreich → UK ist seit August erfasst |
 | Yangjjeu-kkanru „Dessertbrot" (GS25) | 2026-09 | Kein Gebäck. Die koreanische Primärquelle (Seoul Economic Daily) nennt „떠먹는 양쯔깐루" — ein löffelbares Becherdessert aus Mango, Pomelo, Joghurtcreme und Sago im Kühlregal; die Top-10-Platzierung gilt unter rund 100 Kühlregal-Desserts, nicht unter Broten. Der englische Reiseführer, auf dem der Fund beruht, schrieb „dessert bread", die Recherche baute darauf einen Gebäckimpuls. |
+| Daifuku-Textur wandert ins Sandwichbrot (Yamazaki Lunch Pack) | 2026-10 | Monatsvariante einer laufenden Reihe; Mochi-/Gyūhi-Textur im Gebäck seit August mehrfach erfasst |
+| Retro-Cupcake wird als Doughnut nachgebaut (Pinkbox) | 2026-10 | Doughnut des Monats einer Regionalkette, Deko- und Geschmacksvariante. Bake-Magazine-Link 403, Existenz über QSR Magazine bestätigt |
+| Instantpudding wird zur Croissant-Creme (Angel Delight) | 2026-10 | Einzeiler in einer Trend-Hotlist des Guardian, kein Launchdatum, reine Geschmacksreferenz |
+| Ein TK-Brotbiss wird süß oder pikant finalisiert (Quaker Bread Bites) | 2026-10 | Teigbällchen für Foodservice, kein neues Konzept. Quelle 403 (Cloudflare), per Suche nicht bestätigt |
+| Balconi-Sharing-Cakes in neuen UK-Kanälen | 2026-10 | Kein Sprung: UK-Eintritt lag vor dem Fenster, im September nur Ausbau über Discount und Großhandel; Sharing Cakes und Biskuitrollen kein neues Konzept |
+| Tiramisu-Brownie (Just Desserts) | 2026-10 | Award-Finalist (Baking Industry Awards, 10.09.), Launchdatum nicht belegt; Geschmacks-Mashup |
+| Brot-Upcycling für Süßgebäck (Lovingly Artisan) | 2026-10 | Award-Finalist, Launchdatum nicht belegt; Einzelbäckerei, Brösel statt Mehl in der Mehlspeisküche nicht neu |
+| Brioche French Toast für den Toaster (Griddle) | 2026-10 | Außerhalb des Fensters: Launch bei Ocado am 3. Januar 2026 (British Baker), im September nur Award-Nominierung |
+| Quadratische Desserts zur Minecraft-Kollaboration (Crumbl) | 2026-10 | Quelle ist eine Fan-Seite, die nur Produktnamen listet; „exakt quadratisch", „Aufstecker" und „virale Reichweite" dort nicht belegt; Lizenzaktion |
+| Mochi-Brandteig-Hybrid (Beard Papa's Tsukimi) | 2026-10 | Wiederauflage des Vorjahresprodukts; Quelle ist ein Reiseführer; Mochi-Textur mehrfach erfasst |
+| Supermarkt-Snacks als Bäckerei-Cookies (Crumbl × Little Debbie) | 2026-10 | Marken-Kollaboration im Wochenmenü (7.–12.09.), Crumbl wechselt solche Kollaborationen wöchentlich; kein neues Format |
+| Cinnabon betritt europäischen In-Store-Bakery-Markt | 2026-10 | Faktenfehler: Die Baker-&-Baker-Lizenz stammt vom Mai 2026. Die zitierte Meldung (World Coffee Portal, 11.09.) betrifft Cinnabons Deutschland-Start; der erste Store in Essen öffnet erst im Oktober. Zimtschnecke in DACH längst etabliert |
+| Mini-Croissants werden zum Dip-Snack (Panera) | 2026-10 | Konzept schon erfasst: Gebäck-Bites mit Dip seit September im Register (Einstein Bros., ebenfalls Panera Brands). Quelle geprüft (PR Newswire, Start 2. September) |
+| Zimtschnecken-Teig wird zur Pizza-Schnecke | 2026-10 | Pizzaschnecke ist ein etabliertes Format; 24-Tage-Aktion zweier Einzelbetriebe in Los Angeles |
+| French Toast wird zum gefüllten Premium-Frühstück (IHOP) | 2026-10 | Rückkehr eines 2020 gestrichenen Produkts; Konzept alt |
+| Croissant wird zur All-day-Mahlzeit (La Croissanterie) | 2026-10 | Einzelstandort im Luxushotel (Gerichte 15–20 £); Croissant als herzhafter Mahlzeitenträger nicht neu, wenig übertragbar. Quelle geprüft |
+| Reiskuchen im Kern einer knusprigen Pie (Samlip Siru Pie) | 2026-10 | Mochi-/Tteok-Kern im Gebäck seit August mehrfach erfasst. Perplexity-URL führt nur auf die Pressebereich-Übersicht; Produkt über insight.co.kr (17.09.) bestätigt |
+| Kühl-Cremebrot mit Füllanteil als Claim (7-Eleven Korea) | 2026-10 | Rezepturupgrade einer seit 2023 laufenden Cremebrot-Reihe; Kategorie schon erfasst (Mammoth Bread, Hokkaido Milk Cream Buns) |
+| Schoko-Croissant-Kit springt nach Schweden (Danerolles) | 2026-10 | Sortimentserweiterung einer in Schweden bereits gelisteten Marke, kein Konzeptsprung; Kühlteig |
+| Thorntons-Trüffel im Celebration-Cake-Regal (Finsbury) | 2026-10 | Lizenz-Geschmacksvariante; Finsbury führt Thorntons-Kuchen seit Jahren |
+| Haute Croissanterie × Nespresso in 20 Sofitel-Hotels | 2026-10 | Hotel-Aktion, das Programm gibt es schon; gleichzeitiger Start in 20 Hotels, kein Sprung. Als Nebenbeleg im Paris-Baguette-Impuls |
+| Krispy Kreme Coffee Doughnut, Apple Cider Doughnut, Football Dozen | 2026-10 | Geschmacksvarianten; Krispy-Kreme-Herbst schon erfasst (Trend Hunter) |
+| Paris Baguette Ghost Pepper Mochi Donut | 2026-10 | Geschmacksvariante; Mochi-Donut schon erfasst (Trend Hunter) |
+| First Watch × Traitors Frühstücksmenü | 2026-10 | Traitors-Mechanik steht schon im Oktober-Import (Trend Hunter) |
+| Milk Bar × Beyond Meat, herzhafte Blätterteig-Spiralen | 2026-10 | Meldung vom 26.08., vor dem Fenster (Trend Hunter) |
+| Taco Bell × Salt & Straw Churro-Eis-Taco | 2026-10 | Wiederauflage des Tacolate vom Vorjahr (Trend Hunter) |
+| Brazi Bites Chocolate Chip Waffles | 2026-10 | neue Sorte einer bestehenden Waffellinie (Trend Hunter) |
+| Applied Nutrition Protein-Waffel White Chocolate Coconut | 2026-10 | neue Sorte (Trend Hunter) |
+| Dot's Chipotle Honey Pretzels | 2026-10 | neue Sorte (Trend Hunter) |
+| Popeyes Honey Chicken Biscuit | 2026-10 | herzhaftes QSR-Sandwich, kein Feingebäckbezug (Trend Hunter) |
+| Pillsbury Gingerbread Stuffed Cupcake Kit | 2026-10 | Backmischung für zu Hause (Trend Hunter) |
+| Barebells Spekulatius Soft Protein Bar | 2026-10 | Proteinriegel, kein Gebäck (Trend Hunter) |
+| Gopuff Herbst-Eigenmarke (Mini Apple Fritters, Pumpkin Donut Holes) | 2026-10 | Meldung vom 21.08., vor dem Fenster (Trend Hunter) |
+| Crumbl People's Choice | 2026-10 | Menürotation ohne neues Konzept (Trend Hunter) |
