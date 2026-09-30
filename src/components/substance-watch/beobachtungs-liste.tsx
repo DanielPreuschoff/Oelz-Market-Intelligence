@@ -1,6 +1,8 @@
 /**
  * Die Liste des Regulatorik-Radars: Stufen-Erklärung, drei Filterreihen,
- * dann die Karten nach Typ.
+ * dann die offenen Fälle chronologisch, neuestes Ereignis zuerst (seit
+ * 30.09.2026, vorher nach Typ gruppiert). Den Typ trägt jede Karte in Kante
+ * und Zeichen; eingrenzen lässt er sich über den Typfilter.
  *
  * Spec: docs/unter-beobachtung-spec.md (Nachträge 14.09.2026)
  * Umzug aus dem Rohstoff-Radar: docs/adr/0006-regulatorik-radar-eigenes-modul.md
@@ -11,10 +13,10 @@
  * an eine Client-Komponente reichen.
  *
  * Drei Filter: **Typ** (Unter Beobachtung · Zulassung · Indirekt relevant),
- * **Behörde** (EFSA · EU-Kommission · National · Keine — Kai Heubergers
+ * **Behörde** (EFSA · BfR · EU-Kommission · National · Keine — Kai Heubergers
  * wörtlicher Wunsch) und **Kategorie** (die fünf Ölz-Kategorien). Kein
- * Stufenfilter: Die Stufe steht als Chip auf jeder Risikokarte und sortiert
- * den Abschnitt; ein Filter brächte wenig dazu.
+ * Stufenfilter: Die Stufe steht als Chip auf jeder Risikokarte; ein Filter
+ * brächte wenig dazu.
  */
 
 import { cn } from '@/lib/utils'
@@ -26,7 +28,7 @@ import {
   BEHOERDE_NAME,
   EINTRAGSTYPEN,
   EINTRAGSTYP_NAME,
-  vergleicheEintraege,
+  vergleicheNachAktualitaet,
   type Risikosignal,
 } from '@/types/substance-watch'
 import { RisikoKarten } from './risiko-karten'
@@ -80,11 +82,8 @@ export function BeobachtungsListe({
   kategorien: readonly string[]
   openSignal?: Risikosignal | null
 }) {
-  const offen = signale.filter((s) => s.status !== 'ausgeraeumt').sort(vergleicheEintraege)
-  const risiko = offen.filter((s) => s.kind === 'risiko')
-  const zulassung = offen.filter((s) => s.kind === 'zulassung')
-  const indirekt = offen.filter((s) => s.kind === 'indirekt')
-  const erledigt = signale.filter((s) => s.status === 'ausgeraeumt').sort(vergleicheEintraege)
+  const offen = signale.filter((s) => s.status !== 'ausgeraeumt').sort(vergleicheNachAktualitaet)
+  const erledigt = signale.filter((s) => s.status === 'ausgeraeumt').sort(vergleicheNachAktualitaet)
   const hatFilter = !!(typ || kategorie || behoerde)
 
   if (signale.length === 0 && !hatFilter) {
@@ -142,13 +141,7 @@ export function BeobachtungsListe({
         )}
       </div>
 
-      <RisikoKarten
-        risiko={risiko}
-        zulassung={zulassung}
-        indirekt={indirekt}
-        erledigt={erledigt}
-        openSignal={openSignal}
-      />
+      <RisikoKarten offen={offen} erledigt={erledigt} openSignal={openSignal} />
     </div>
   )
 }

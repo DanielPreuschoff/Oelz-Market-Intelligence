@@ -189,7 +189,21 @@ QUELLE: Name der Behörde und des Dokuments, z. B. "EFSA Journal 24(5):e10057",
 URL: vollständig, amtlich, tatsächlich aufgerufen
 DATUM: YYYY-MM-DD — Datum des Dokuments, nicht des Abrufs
 
-Am Ende: ## ENDE — N Einträge
+ÄNDERUNGEN AN BEREITS ERFASSTEN FÄLLEN
+Hat sich an einem Fall aus der Liste BEREITS ERFASST etwas geändert (neue Stufe, neues
+Gutachten, Amtsblatt, Frist, eine Behörde weitet die Bewertung aus), melde das NICHT als
+EINTRAG, sondern als eigenen Block:
+
+## ÄNDERUNG
+FALL: Stoff genau wie in der Liste BEREITS ERFASST
+WAS_SICH_ÄNDERT: Ein bis zwei Sätze — was vorher galt, was jetzt gilt
+NEUE_KURZZEILE: Sieben bis elf Wörter, wie bei KURZZEILE
+NEUE_STUFE: (nur RISIKO) einer der vier Schlüssel, oder unverändert
+GELTUNGSBEREICH: EU | DE | AT | CH
+SACHVERHALT: Zwei bis vier Sätze zum neuen Stand, Zahlen wörtlich aus der Quelle
+QUELLE, URL, DATUM: wie beim EINTRAG
+
+Am Ende: ## ENDE — N Einträge, M Änderungen
 
 REGELN
 - Erfinde keine Zahlen, Fristen, Höchstgehalte, Aktenzeichen oder URLs. Was du nicht
@@ -199,7 +213,8 @@ REGELN
 - Findest du nichts Belastbares, schreib das hin. Ein leerer Bericht ist brauchbar, ein
   aufgefüllter nicht.
 - Deutsch, auch wenn die Quellen englisch sind; Fachbegriffe und Aktenzeichen bleiben.
-- Der Bericht besteht ausschließlich aus den EINTRAG-Blöcken und der Endzeile.
+- Der Bericht besteht ausschließlich aus den EINTRAG- und ÄNDERUNG-Blöcken und der
+  Endzeile.
 ```
 
 ---
@@ -262,3 +277,11 @@ Stoff werden übersprungen: Ein EFSA-Protokoll trägt mehrere Fälle unter einer
 
 Wenn die Liste „BEREITS ERFASST" gepflegt ist, kommen Wiederfunde selten; die
 Dublettenprüfung ist das zweite Netz.
+
+**ÄNDERUNG-Blöcke gehen nicht in den Import.** Sie werden nach der Prüfung gegen die
+Primärquelle am bestehenden Fall eingetragen — über das Formular
+`/admin/unter-beobachtung/<id>/edit` oder per SQL. Den alten Stand sichert der Trigger
+aus Migration 018 automatisch; das Radar zeigt den Fall danach 30 Tage lang mit der Marke
+„Aktualisiert" und im Detail die früheren Stände. Anlass: Im ersten Lauf stand die
+Glycerin-Ausweitung des BfR (08.09.2026) nur in der Quellenliste von Perplexity — als
+Eintrag hatte sie kein Dienst gemeldet.

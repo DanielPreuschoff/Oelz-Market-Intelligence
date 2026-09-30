@@ -2,7 +2,12 @@
 
 /**
  * Die Karten des Regulatorik-Radars mit Detail als Dialog — drei Eintragstypen
- * (Unter Beobachtung · Zulassung · Indirekt relevant), Ausgeräumtes zuletzt.
+ * (Unter Beobachtung · Zulassung · Indirekt relevant) in einer chronologischen
+ * Liste, Ausgeräumtes zuletzt.
+ *
+ * **Änderungen sind sichtbar** (seit 30.09.2026, Migration 018): Hat sich ein
+ * Fall in den letzten AKTUALISIERT_TAGE Tagen geändert, trägt die Karte die
+ * Marke „Aktualisiert"; der Dialog zeigt die früheren Stände.
  *
  * **Die Karte ist zum Überfliegen da, der Dialog zum Lesen.** Kai Heuberger,
  * 11.09.2026: „kurz anteasern und dann Quellenverweis … ich muss nur wissen,
@@ -41,6 +46,7 @@ import {
   HANDLUNG_NAME,
   EINTRAGSTYP_NAME,
   EINTRAGSTYP_ERKLAERUNG,
+  frischAktualisiert,
   type Risikosignal,
   type Stufe,
   type Geltungsbereich,
@@ -92,9 +98,24 @@ function TypChip({ typ, gross = false }: { typ: Exclude<Eintragstyp, 'risiko'>; 
   )
 }
 
+function AktualisiertChip({ am, gross = false }: { am: string; gross?: boolean }) {
+  return (
+    <span
+      title="Der Fall hat sich geändert — die früheren Stände stehen im Detail."
+      className={cn(
+        'inline-flex items-center whitespace-nowrap rounded-full border border-oelz-orange/40 bg-oelz-orange/10 font-medium text-oelz-orange-text',
+        gross ? 'px-2.5 py-1 text-xs' : 'px-2 py-0.5 text-[11px]'
+      )}
+    >
+      Aktualisiert · {datum(am)}
+    </span>
+  )
+}
+
 /** Die Kennzeile unter der Überschrift — auf Karte und im Dialog dieselbe. */
 function Kennzeile({ s, gross = false }: { s: Risikosignal; gross?: boolean }) {
   const erledigt = s.status === 'ausgeraeumt'
+  const aktualisiert = erledigt ? null : frischAktualisiert(s)
   const punkt = <span className="opacity-50">·</span>
   return (
     <div
@@ -103,6 +124,7 @@ function Kennzeile({ s, gross = false }: { s: Risikosignal; gross?: boolean }) {
         gross ? 'text-sm' : 'text-xs'
       )}
     >
+      {aktualisiert && <AktualisiertChip am={aktualisiert} gross={gross} />}
       {s.kind === 'risiko' && s.stage ? <StufenChip stufe={s.stage} gross={gross} /> : null}
       {s.kind !== 'risiko' && <TypChip typ={s.kind} gross={gross} />}
       <span>{GELTUNGSBEREICH_NAME[s.scope as Geltungsbereich] ?? s.scope}</span>
@@ -261,6 +283,38 @@ function Detail({ s }: { s: Risikosignal }) {
           </div>
           <Quelle s={s} className="text-primary hover:underline" />
         </div>
+
+        {s.verlauf && s.verlauf.length > 0 && (
+          <div className="border-t border-border pt-4">
+            <h3 className="mb-3 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">
+              Frühere Stände
+            </h3>
+            <ol className="space-y-3 border-l border-border pl-4">
+              {s.verlauf.map((v) => (
+                <li key={v.id} className="space-y-1">
+                  <p className="text-xs text-muted-foreground">
+                    bis {datum(v.changed_at)}
+                    {v.stage && ` · ${STUFE_NAME[v.stage]}`}
+                    {v.scope && ` · ${GELTUNGSBEREICH_NAME[v.scope] ?? v.scope}`}
+                  </p>
+                  {v.teaser && <p className="text-sm leading-snug">{v.teaser}</p>}
+                  {v.source_url && (
+                    <a
+                      href={v.source_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-oelz-orange-text"
+                    >
+                      {v.source_name ?? 'Quelle'}
+                      {v.source_date && <span className="opacity-70">· {datum(v.source_date)}</span>}
+                      <ExternalLink className="size-3" />
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
       </div>
     </DialogContent>
   )
@@ -299,15 +353,12 @@ function Abschnitt({
 }
 
 export function RisikoKarten({
-  risiko,
-  zulassung,
-  indirekt,
+  offen,
   erledigt,
   openSignal = null,
 }: {
-  risiko: Risikosignal[]
-  zulassung: Risikosignal[]
-  indirekt: Risikosignal[]
+  /** Chronologisch sortiert (vergleicheNachAktualitaet), alle drei Typen gemischt. */
+  offen: Risikosignal[]
   erledigt: Risikosignal[]
   openSignal?: Risikosignal | null
 }) {
@@ -331,28 +382,14 @@ export function RisikoKarten({
     syncUrl(null)
   }
 
-  const aktivGesamt = risiko.length + zulassung.length + indirekt.length
-  // Ein Abschnittstitel lohnt sich erst, wenn es etwas zu trennen gibt.
-  const mitTitel = [risiko, zulassung, indirekt].filter((l) => l.length > 0).length > 1
-
   return (
     <>
-      {aktivGesamt === 0 ? (
+      {offen.length === 0 ? (
         <div className="rounded-xl border bg-card py-10 text-center text-sm text-muted-foreground">
           Für diese Auswahl gibt es keinen offenen Fall.
         </div>
       ) : (
-        <div className="space-y-6">
-          <Abschnitt titel="Unter Beobachtung" eintraege={risiko} onOpen={open} mitTitel={mitTitel} />
-          <Abschnitt titel="Zulassungen" eintraege={zulassung} onOpen={open} mitTitel={mitTitel} />
-          <Abschnitt
-            titel="Indirekt relevant"
-            unterzeile="ohne benennbaren Stoff oder Ölz-Kategorie, aber mit Grund"
-            eintraege={indirekt}
-            onOpen={open}
-            mitTitel={mitTitel}
-          />
-        </div>
+        <Abschnitt titel="Neueste zuerst" eintraege={offen} onOpen={open} mitTitel={false} />
       )}
 
       <Abschnitt

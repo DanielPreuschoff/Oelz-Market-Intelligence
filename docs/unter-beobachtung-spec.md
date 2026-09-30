@@ -24,6 +24,21 @@ Grilling-Sitzung am 31.08.2026 (fünf Runden, sechzehn Entscheidungen).
 >   **Nachtrag 30.09.2026 (Migration 017):** Das BfR ist ein eigener Wert neben
 >   der EFSA, auf Kais Wunsch als Filter; `National` bleibt für AGES, BLV,
 >   Ministerien und Parlamente.
+>
+> **Nachtrag 30.09.2026, Verlauf (Migration 018).** Daniel: „vorne immer die
+> neuesten Sachen, darunter müssen auch die Änderungen fallen … als User sehen,
+> dass es eine Änderung gab." Drei Änderungen:
+> - **Chronologisch statt nach Typ.** Die offenen Fälle stehen in einer Liste,
+>   sortiert nach dem Datum der aktuellen Quelle, neuestes zuerst. Der Typ bleibt
+>   an Kante und Zeichen erkennbar und als Filter wählbar. Die Sortierung der
+>   Risiken nach Stufe (Abschnitt 4) gilt nur noch in der Admin-Liste.
+> - **Verlauf je Fall.** Weiterhin ein Eintrag je Stoff; ändern sich Kurzzeile,
+>   Stufe, Geltungsbereich oder Quelle eines veröffentlichten Falls, sichert ein
+>   Trigger den alten Stand in `substance_watch_history`. Der Dialog zeigt ihn
+>   unter „Frühere Stände".
+> - **Marke „Aktualisiert"** auf der Karte, 30 Tage ab der Änderung.
+> Erster Fall: Glycerin, vom EFSA-Stand (05.05.) auf die BfR-Stellungnahme
+> 049/2026 (08.09.) gehoben.
 > - **Geltungsbereich um CH.** Ölz verkauft in der Schweiz, deren
 >   Lebensmittelrecht nicht EU-harmonisiert ist — die einzige echte Lücke.
 >   Beantwortet Abschnitt 13, Punkt 4 zur Hälfte; CZ, SK und SI bleiben über

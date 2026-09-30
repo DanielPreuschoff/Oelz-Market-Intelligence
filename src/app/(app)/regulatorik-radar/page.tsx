@@ -43,12 +43,21 @@ export default async function RegulatorikRadarPage({ searchParams }: PageProps) 
   const typ = (EINTRAGSTYPEN as readonly string[]).includes(typRoh ?? '') ? typRoh : undefined
   const supabase = await createClient()
 
-  const { data } = await supabase
-    .from('substance_watch')
-    .select('*')
-    .in('status', ['published', 'ausgeraeumt'])
+  // Frühere Stände kommen gleich mit (Migration 018), neueste Änderung zuerst.
+  const MIT_VERLAUF = '*, verlauf:substance_watch_history(*)'
+  const ordneVerlauf = (s: Risikosignal): Risikosignal => ({
+    ...s,
+    verlauf: [...(s.verlauf ?? [])].sort((a, b) => b.changed_at.localeCompare(a.changed_at)),
+  })
 
-  const signale = (data ?? []) as unknown as Risikosignal[]
+  // Rückfall ohne Verlauf, solange Migration 018 nicht eingespielt ist — sonst
+  // bliebe das Radar leer, weil die Beziehung unbekannt ist.
+  const laden = (felder: string) =>
+    supabase.from('substance_watch').select(felder).in('status', ['published', 'ausgeraeumt'])
+  const mitVerlauf = await laden(MIT_VERLAUF)
+  const data = mitVerlauf.error ? (await laden('*')).data : mitVerlauf.data
+
+  const signale = ((data ?? []) as unknown as Risikosignal[]).map(ordneVerlauf)
   const gefiltert = signale.filter(
     (s) =>
       (!typ || s.kind === typ) &&
@@ -61,8 +70,10 @@ export default async function RegulatorikRadarPage({ searchParams }: PageProps) 
   // Entwurf (für Admins lesbar) bräuchte eine zweite Abfrage.
   let openSignal = openId ? signale.find((s) => s.id === openId) ?? null : null
   if (openId && !openSignal) {
-    const { data: single } = await supabase.from('substance_watch').select('*').eq('id', openId).maybeSingle()
-    openSignal = (single as unknown as Risikosignal | null) ?? null
+    const einzeln = (felder: string) => supabase.from('substance_watch').select(felder).eq('id', openId).maybeSingle()
+    const erster = await einzeln(MIT_VERLAUF)
+    const single = erster.error ? (await einzeln('*')).data : erster.data
+    openSignal = single ? ordneVerlauf(single as unknown as Risikosignal) : null
   }
 
   function baueUrl(patch: Record<string, string | undefined>) {
