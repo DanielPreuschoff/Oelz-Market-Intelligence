@@ -37,6 +37,22 @@ Brand is the entry, the group goes in the notes. Watch priority is no longer sho
 
 Already on the list, also named by Kai: La Fournée Dorée (Tier 2), 7DAYS (Tier 1).
 
+## Signals from outside the target markets (decided 2026-09-30)
+
+Harrys and Pasquier (France), Hovis and Warburtons (United Kingdom) and La Fournée Dorée's
+French activity are researched every month, and their signals **go into the import and the
+editions** — Daniel, 30.09.2026. Until then the UK signals were left out (September run).
+
+- In the competitor prompt, the market field lists the home market: "Frankreich" for Harrys
+  and Pasquier, "Vereinigtes Königreich" for Hovis and Warburtons.
+- In the import JSON these signals carry `country: null`: the app knows only AT, DE, CZ, SK
+  and SI, and the country filters stay on Ölz markets.
+- No separate "Ausland" file any more — one import per run.
+
+Production note (2026-09-29): 7DAYS, Backaldrin, Delta Pekárny and Gradski mlin were missing
+from the production `competitors` table (seed ≠ production) and were added by SQL; all 28
+are active. Check production, not the seed, before a run.
+
 ## Priority Tier 3 — Low Watch / Radar
 
 | Short Name | Full Name | Countries | Categories | Notes |

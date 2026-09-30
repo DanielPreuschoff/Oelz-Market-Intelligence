@@ -1,6 +1,6 @@
 # Deep Research — Rohstoffe nach funktionalem Nutzen
 
-**Rhythmus: quartalsweise, sieben Läufe** — einer je Funktion aus
+**Rhythmus: quartalsweise, acht Läufe** — einer je Funktion aus
 `INGREDIENT_FUNCTIONS` (`src/types/ingredient-signals.ts`). Quartalsweise, weil sich
 Rohstoffinnovation langsamer bewegt als Wettbewerber; ein Monatstakt provoziert, dass die
 Recherche mangels Neuem auffüllt.
@@ -100,7 +100,7 @@ WAS_IST_NEU: 2-3 Sätze. Nur was in der Quelle steht. Keine Ölz-Deutung, keine
   erfundenen Zahlen, keine geratenen Werte.
 FUNKTIONEN: 1-3 aus dieser Liste, kommagetrennt — Zuckerreduktion, Proteinanreicherung,
   Ballaststoffanreicherung, Frischhaltung, Textur & Mundgefühl, Prozessstabilität,
-  Clean Label. Passt der Fund in keine davon, schreib PASST_NICHT und dazu, welche
+  Clean Label, Rohstoffersatz. Passt der Fund in keine davon, schreib PASST_NICHT und dazu, welche
   Funktion es bräuchte.
 REIFEGRAD: Labor | Pilot | Am Markt | Etabliert — Reife der Lösung selbst.
   Patente stehen fast immer auf Labor.
@@ -139,10 +139,15 @@ REGELN
 
 ---
 
-## Die sieben Läufe
+## Die acht Läufe
 
 `Zuckerreduktion` · `Proteinanreicherung` · `Ballaststoffanreicherung` · `Frischhaltung` ·
-`Textur & Mundgefühl` · `Prozessstabilität` · `Clean Label`
+`Textur & Mundgefühl` · `Prozessstabilität` · `Clean Label` · `Rohstoffersatz`
+
+`Rohstoffersatz` kam am 30.09.2026 dazu: Ersatz knapper oder teurer Rohstoffe wie Ei,
+Kakao, Butter und Fett. Anlass war der erste Nebenstrom-Lauf, in dem Ei-Ersatz (MOA Q5),
+Kakao-Teilersatz (Greencovery) und Fettersatz (Perfat) nur notdürftig in die übrigen
+Funktionen passten. Erster eigener Lauf: November 2026.
 
 Meldet ein Lauf `PASST_NICHT`, ist das kein Fehler, sondern ein Hinweis auf eine zu enge
 Taxonomie — siehe [rohstoff-exploration.md](rohstoff-exploration.md), Abschnitt „Wenn

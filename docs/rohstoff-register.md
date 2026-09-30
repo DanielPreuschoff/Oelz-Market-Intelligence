@@ -174,7 +174,10 @@ Abschnitt „Wenn nichts passt".
 **Beobachteter Nenner (Oktober 2026):** Ei-Ersatz (MOA Q5), Kakao-Teilersatz
 (Greencovery) und Fettersatz (Perfat) passen nur notdürftig in die sieben Funktionen —
 getrieben sind sie von Kosten und Versorgungsrisiko bei Ei, Kakao und Fett. Taucht das im
-Novemberlauf wieder auf, ist eine achte Funktion „Rohstoffersatz“ fällig.
+Novemberlauf wieder auf, ist eine achte Funktion „Rohstoffersatz“ fällig. **Entschieden
+am 30.09.2026: „Rohstoffersatz“ ist die achte Funktion** (Daniel); MOA Q5 und Greencovery
+wurden nachträglich darauf umgestellt, Perfat Soft ist Kandidat für den ersten
+Rohstoffersatz-Lauf im November.
 
 ---
 

@@ -109,7 +109,7 @@ ART: Rohstoff | Ingredient | Technologie | Verfahren
 WAS_IST_NEU: 2-3 Sätze. Nur was in der Quelle steht.
 FUNKTIONEN: 1-3 aus dieser Liste, kommagetrennt — Zuckerreduktion, Proteinanreicherung,
   Ballaststoffanreicherung, Frischhaltung, Textur & Mundgefühl, Prozessstabilität,
-  Clean Label.
+  Clean Label, Rohstoffersatz.
   Passt der Fund in keine davon: schreib PASST_NICHT und dahinter, welche Funktion es
   bräuchte. Das ist erwünscht, kein Fehler — siehe unten.
 REIFEGRAD: Labor | Pilot | Am Markt | Etabliert
@@ -141,7 +141,7 @@ REGELN
 
 ## Wenn nichts passt
 
-`PASST_NICHT` ist das eigentliche Produkt dieses Laufs. Die sieben Funktionen sind eine
+`PASST_NICHT` ist das eigentliche Produkt dieses Laufs. Die acht Funktionen sind eine
 geschlossene Liste, und die Veröffentlichungs-Hürde verlangt mindestens eine davon — ein
 Fund ausserhalb lässt sich also nicht veröffentlichen.
 
@@ -155,5 +155,6 @@ die zusammenpassen müssen:
 
 Bis dahin bleibt der Entwurf liegen. Das ist der Preis dafür, dass die Filterachse nicht
 zum Sammelbecken wird — und die Antwort auf die offene Frage in
-`docs/rohstoff-radar-spec.md` Abschnitt 14, ob die sieben Funktionen ausreichen. Statt es
-zu raten, lässt du es dir zeigen.
+`docs/rohstoff-radar-spec.md` Abschnitt 14, ob die Funktionen ausreichen. Statt es
+zu raten, lässt du es dir zeigen. So kam am 30.09.2026 die achte Funktion
+`Rohstoffersatz` (Ei, Kakao, Butter/Fett) dazu.

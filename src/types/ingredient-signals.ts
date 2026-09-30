@@ -42,6 +42,9 @@ export const INGREDIENT_FUNCTIONS = [
   'Textur & Mundgefühl',
   'Prozessstabilität',
   'Clean Label',
+  // Seit 30.09.2026: Ersatz knapper oder teurer Rohstoffe (Ei, Kakao, Butter/Fett).
+  // Im ersten Nebenstrom-Lauf passten drei Funde nur notdürftig in die übrigen sieben.
+  'Rohstoffersatz',
 ] as const
 export type IngredientFunction = (typeof INGREDIENT_FUNCTIONS)[number]
 

@@ -1,6 +1,4 @@
-import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
 import { BeobachtungsListe } from '@/components/substance-watch/beobachtungs-liste'
 import { PRODUKTKATEGORIEN, BEHOERDEN, EINTRAGSTYPEN, type Risikosignal } from '@/types/substance-watch'
 
@@ -24,18 +22,14 @@ interface PageProps {
  * Rohstoff-Radar. Warum er umgezogen ist und was dabei verloren geht:
  * docs/adr/0006-regulatorik-radar-eigenes-modul.md.
  *
- * Ausrollstufe: `adminOnly` in src/lib/modules.ts blendet das Modul in
- * Navigation und Startseite aus, `notFound()` hier schliesst die Route. Die
- * Tabelle `substance_watch` bleibt für Angemeldete lesbar (Migration 013) —
- * bewusst: Die Einträge sind öffentliche Behördenmeldungen, und so braucht
- * das Freischalten kein SQL, nur das Entfernen von `adminOnly`.
+ * Bis 30.09.2026 nur für Admins, seitdem für alle Angemeldeten freigeschaltet.
+ * Die Tabelle `substance_watch` war schon vorher für Angemeldete lesbar
+ * (Migration 013) — die Einträge sind öffentliche Behördenmeldungen.
  *
  * Schmale Inhaltsspalte (nicht in BREITE_ROUTEN): Die Karten sind Lesetext,
  * keine Kacheln.
  */
 export default async function RegulatorikRadarPage({ searchParams }: PageProps) {
-  if (!(await isCurrentUserAdmin())) notFound()
-
   const { typ: typRoh, kategorie, behoerde: behoerdeRoh, signal: openId } = await searchParams
   // Ein unbekannter Wert im Filter wäre kein Fehler, nur eine leere Liste —
   // deshalb stumm ignorieren.

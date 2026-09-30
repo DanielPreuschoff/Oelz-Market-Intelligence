@@ -142,7 +142,7 @@ abzustimmen.
 
 Bewusst drei plus Suche (Filter-Overload-Befund aus dem Produkt-Radar nicht wiederholen):
 
-1. **Funktion** — `Zuckerreduktion, Proteinanreicherung, Ballaststoffanreicherung, Frischhaltung, Textur & Mundgefühl, Prozessstabilität, Clean Label`
+1. **Funktion** — `Zuckerreduktion, Proteinanreicherung, Ballaststoffanreicherung, Frischhaltung, Textur & Mundgefühl, Prozessstabilität, Clean Label, Rohstoffersatz` (die achte seit 30.09.2026, Anlass: Ei-, Kakao- und Fettersatz im ersten Nebenstrom-Lauf)
 2. **Strategisches Thema** — die fünf geteilten Werte
 3. **Reifegrad** — vier Stufen
 4. Freitextsuche über Titel / Gegenstand / Beschreibung
