@@ -8,12 +8,13 @@ kann — eine BfR-Warnung zählt am Tag, an dem sie erscheint.
 Datum der Quelle. Ein Verfahren, das schon 2025 begann, gehört hinein, wenn es 2026 einen
 neuen Schritt hatte (Gutachten, Ausschussvotum, Entwurf). Danach nur noch der Vormonat.
 
-Für den ersten Lauf sind ZEITRAUM und die Liste „BEREITS ERFASST" im Prompt schon
-eingesetzt (Stand 14.09.2026, die 15 veröffentlichten Fälle aus `substance_watch`). Vor
-jedem weiteren Lauf beide Stellen erneuern: ZEITRAUM = Vormonat, Liste = alle
-veröffentlichten Fälle mit Stoff, Stufe, Geltungsbereich und Kurzzeile — damit der Lauf
-nicht wiederholt, was steht, sondern meldet, was sich daran **geändert** hat. Ergebnis
-ablegen als `research/JJJJ-MM/regulatorik.md`.
+Die erste Befüllung ist gelaufen (29./30.09.2026, 10 Einträge importiert). ZEITRAUM und
+Liste „BEREITS ERFASST" im Prompt sind für den **Novemberlauf** eingesetzt (Zeitraum
+Oktober, Stand der Liste 30.09.2026). Vor jedem weiteren Lauf beide Stellen erneuern:
+ZEITRAUM = Vormonat, Liste = alle veröffentlichten Fälle mit Stoff, Stufe,
+Geltungsbereich und Kurzzeile — damit der Lauf nicht wiederholt, was steht, sondern
+meldet, was sich daran **geändert** hat. Ergebnis ablegen als
+`research/JJJJ-MM/regulatorik.<dienst>.md`.
 
 Fachliche Grundlage: [docs/unter-beobachtung-spec.md](../docs/unter-beobachtung-spec.md)
 (Stufen, Hürde, Abgrenzung), [ADR 0006](../docs/adr/0006-regulatorik-radar-eigenes-modul.md).
@@ -97,11 +98,11 @@ Slowenien. Das Schweizer Lebensmittelrecht ist nicht EU-harmonisiert.
 ÖLZ-KATEGORIEN (genau diese fünf Schreibweisen):
 Croissant & Plunder · Süßes Gebäck · Toast & Sandwich · Snack & Mini-Format · Saisonal
 
-ZEITRAUM: 01.01.2026 bis 30.09.2026
+ZEITRAUM: 01.10.2026 bis 31.10.2026
 
 BEREITS ERFASST — nicht erneut melden, nur Änderungen dazu:
-Stand 14.09.2026, 15 Fälle im Regulatorik-Radar, alle Typ RISIKO. Melde nur, was sich
-daran geändert hat: neue Stufe, neues Gutachten, Amtsblatt, Frist.
+Stand 30.09.2026, 25 Fälle im Regulatorik-Radar (17 RISIKO, 7 ZULASSUNG, 1 INDIREKT).
+Melde nur, was sich daran geändert hat: neue Stufe, neues Gutachten, Amtsblatt, Frist.
 - 3-MCPD, 3-MCPD-Fettsäureester und Glycidyl-Fettsäureester | Geltendes Recht | EU | Stand: Höchstgehalte für 3-MCPD und Glycidylester gelten seit August für fetthaltige Lebensmittel | Quelle: Verordnung (EU) 2026/1825, 30.07.2026
 - Nickel in Getreide, Schalenfrüchten und Ölsaaten | Geltendes Recht | EU | Stand: Nickel-Höchstgehalte für Getreide, Hafer und Nüsse gelten seit Juli 2026 | Quelle: Verordnung (EU) 2024/1987, 31.07.2024
 - Reinheitsspezifikationen für Hydrokolloide (E 410, E 412, E 414, E 415, E 440, E 1450) | Geltendes Recht | EU | Stand: Neue Reinheits- und Keimzahlvorgaben für Johannisbrotkernmehl, Guar, Xanthan und Pektin | Quelle: Verordnung (EU) 2026/196, 29.01.2026
@@ -111,12 +112,22 @@ daran geändert hat: neue Stufe, neues Gutachten, Amtsblatt, Frist.
 - MOAH — aromatische Mineralölkohlenwasserstoffe | Rechtsakt in Arbeit | EU | Stand: MOAH-Höchstgehalte im EU-Ausschuss beschlossen, Vollzug läuft schon vor dem Amtsblatt | Quelle: Ständiger Ausschuss PAFF, Summary Report vom 13.05.2026, 13.05.2026
 - Cadmium | Behördliche Bewertung | DE | Stand: BfR: Getreideprodukte liefern 40 bis 50 Prozent der Cadmiumaufnahme | Quelle: BfR, Stellungnahme 030/2026, 29.05.2026
 - Dioxine und dioxinähnliche PCB | Behördliche Bewertung | EU | Stand: EFSA senkt tolerierbare Wochendosis für Dioxine auf weniger als ein Drittel | Quelle: EFSA Journal 24(6):e10103, 10.06.2026
-- Glycerin (Glycerol) (E 422) | Behördliche Bewertung | EU | Stand: EFSA leitet akute Referenzdosis für Glycerin ab, Backwaren nicht adressiert | Quelle: EFSA Journal 24(5):e10057, 05.05.2026
+- Glycerin (Glycerol) (E 422) | Behördliche Bewertung | DE | Stand: BfR: Glycerin-Richtwert gilt auch für feste Lebensmittel und Feingebäck | Quelle: BfR, Stellungnahme Nr. 049/2026, 08.09.2026 (davor EFSA Journal 24(5):e10057, 05.05.2026)
 - Sucralose (E 955) | Behördliche Bewertung | EU | Stand: EFSA bestätigt Sucralose-ADI, Ausweitung auf feine Backwaren bleibt offen | Quelle: EFSA Journal 24(2):e9854, 17.02.2026
 - Thebain und Oripavin in Mohnsamen | Behördliche Bewertung | EU | Stand: EFSA bewertet Thebain und Oripavin in Mohnsamen, bisher nicht limitiert | Quelle: EFSA, Protokoll der 161. CONTAM-Plenarsitzung, 18.06.2026
 - Allurarot AC und Tartrazin (E 129, E 102) | Öffentliche Kritik | AT | Stand: VKI beanstandet fehlenden Warnhinweis, Hersteller ersetzt Azofarbstoffe binnen neun Wochen | Quelle: VKI / KONSUMENT.AT, Lebensmittel-Check und Nachkontrolle, 28.07.2026
 - Zusatzstoffe und Enzyme in Tiefkühl-Teiglingen | Öffentliche Kritik | AT | Stand: Greenpeace kritisiert Zusatzstoffe und nicht deklarierte Enzyme in Supermarkt-Backboxen | Quelle: Greenpeace Österreich, Marktcheck Backboxen, 23.03.2026
 - 2-Chlorethanol | AUSGERÄUMT (Entwarnung) | DE | Stand: BfR stuft 2-Chlorethanol nicht mehr als erbgutschädigend ein, Referenzwerte abgeleitet | Quelle: BfR, Stellungnahme 017/2026, 27.02.2026
+- Epoxid-Aromastoffe (β-Ionon-Epoxid, Ethylmethylphenylglycidat u. a.) | Behördliche Bewertung | EU | Stand: EFSA: Exposition von fünf Epoxid-Aromastoffen über Schwellenwert, Daten fehlen | Quelle: EFSA Journal 24(4):e10055 (FGE.82Rev2), 30.04.2026
+- Erythrit, Carbonate (Backtriebmittel), Polyole, L-Cystein u. a. (E 968, E 500–E 504, E 920 u. a.) | Behördliche Bewertung | EU | Stand: EFSA fordert Einsatzdaten zu Backtriebmitteln und Polyolen, Erythrit für Feingebäck | Quelle: EFSA, Open call for food additives analytical data and use levels (2026), 04.03.2026
+- Triacylglycerol-Lipase aus Trichoderma reesei AR-822 | ZULASSUNG | EU | Stand: EFSA bewertet Lipase aus Trichoderma reesei für Backwaren als sicher | Quelle: EFSA Journal 24(2):e9836, 05.02.2026
+- Glucan-1,4-α-Maltohydrolase (maltogene Amylase) aus Bacillus subtilis BABSC | ZULASSUNG | EU | Stand: EFSA bewertet maltogene Amylase für Backprozesse nach Nachreichung als sicher | Quelle: EFSA Journal 24(2):e9957, 24.02.2026
+- Transglutaminase aus Streptomyces mobaraensis M2020197 | ZULASSUNG | EU | Stand: EFSA bewertet Transglutaminase nach gesenkten Einsatzmengen nun als unbedenklich | Quelle: EFSA Journal 24(2):e9948, 26.02.2026
+- Transglutaminase aus Bacillus licheniformis NZYM-TR | ZULASSUNG | EU | Stand: EFSA bewertet Transglutaminase von Novozymes für Backwaren als sicher | Quelle: EFSA Journal 24(2):e9949, 27.02.2026
+- Papain-Enzymkomplex aus Carica papaya | ZULASSUNG | EU | Stand: EFSA bewertet Papain aus Papaya als sicher, Allergierisiko bleibt bestehen | Quelle: EFSA Journal 24(3):e9950, 02.03.2026
+- Triacylglycerol-Lipase aus Aspergillus oryzae NZYM-FL | ZULASSUNG | EU | Stand: EFSA sieht keine Bedenken bei Lipase-Erweiterung auf Backwaren | Quelle: EFSA Journal 24(4):e10012, 01.04.2026
+- β-Fructofuranosidase (Invertase) aus Trichoderma reesei AR-996 (E 1103) | ZULASSUNG | EU | Stand: EFSA: keine Bedenken gegen Invertase in Backwaren mit Zuckerzusatz | Quelle: EFSA Journal 24(7):e10180, 17.07.2026
+- Zuckersteuer auf Softdrinks | INDIREKT | DE | Stand: Deutschland plant gestaffelte Zuckersteuer auf Softdrinks, frühestens Ende 2027 | Quelle: Deutscher Bundestag, Wissenschaftliche Dienste, WD 4 - 30000 - 0003 - 0009, 20.08.2026
 
 AUFGABE
 Finde amtliche Vorgänge in diesem Zeitraum, die Rohstoffe, Zusatzstoffe, Kontaminanten

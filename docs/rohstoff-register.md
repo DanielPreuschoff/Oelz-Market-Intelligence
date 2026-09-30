@@ -21,8 +21,8 @@ fällt beim Durchsehen auf.
 
 | | |
 |---|---|
-| Bisherige Explorationsläufe | 1 |
-| Nächste Linse | **2 — Nebenströme und Regionales** |
+| Bisherige Explorationsläufe | 2 |
+| Nächste Linse | **3 — Regulatorik** |
 
 Die Linse rotiert nach Zahl der Läufe, nicht nach Kalendermonat — ein ausgefallener Monat
 verschiebt die Reihenfolge dadurch nicht. Reihenfolge siehe
@@ -40,6 +40,11 @@ Davon beim redaktionellen Durchsehen 3 verworfen (eine Dublette, eine Ausweitung
 bestehenden Zulassung ohne eigenen Befund, ein Verfahren ohne fassbaren Gegenstand) und
 **15 als Grundstock veröffentlicht**. Die übrigen 78 bleiben Entwurf und werden Monat
 für Monat nachgezogen, statt auf einmal zu erscheinen.
+
+Zweiter Explorationslauf (Oktober 2026, Linse 2 „Nebenströme und Regionales“, Zeitraum
+Januar–September, weil die Linse zum ersten Mal lief): 2 Berichte (Gemini, Perplexity;
+der ChatGPT-Lauf lieferte ein Systemkonzept statt Signalen, siehe unten), 12 Blöcke →
+11 Funde → **6 importiert und veröffentlicht**, 4 verworfen, 1 wartet auf Funktion.
 
 | Gegenstand | Art | Erhebung | Funktionen | Ergebnis |
 |---|---|---|---|---|
@@ -146,6 +151,17 @@ für Monat nachgezogen, statt auf einmal zu erscheinen.
 | Enzym Alternansucrase zur Zuckerreduktion in Backwaren (US20 | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
 | Thermostabile AMG-Glucoamylase-Varianten für zuckerreduziert | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
 | Zuckerersatz-Mischung für Backwaren und Feinbackgebäck (US12 | — | 2026-08 | — | verworfen: Quelle nicht belastbar (perplexity.ai-Eigenlink) |
+| PhenOlives Olivenmehl aus Ölmühlen-Nebenprodukten | Rohstoff | 2026-10 | Ballaststoffanreicherung | Veröffentlicht |
+| fazenda Lieto C (Ulrick + Short), Sonnenblumenmehl aus Presskuchen | Rohstoff | 2026-10 | Proteinanreicherung, Ballaststoffanreicherung | Veröffentlicht |
+| Fiba, Brokkoli-Ballaststoff von Upcycled Plant Power (UPP) | Ingredient | 2026-10 | Ballaststoffanreicherung | Veröffentlicht |
+| MOA Q5 (MOA Foodtech) | Ingredient | 2026-10 | Textur & Mundgefühl, Frischhaltung, Clean Label | Veröffentlicht |
+| Greencovery Kakaofaser, lösliche Kakaofaser und Kakaoextrakt aus Kakaoschalen | Ingredient | 2026-10 | Ballaststoffanreicherung | Veröffentlicht |
+| Inline-Verfahren für Flüssigmehl aus nassem Brauereitreber (WO2026008767A1, Valuegrain) | Verfahren | 2026-10 | Ballaststoffanreicherung, Textur & Mundgefühl, Frischhaltung | Veröffentlicht |
+| Revyve, Upcycling-Brauhefe als Ei-Ersatz | Ingredient | 2026-10 | — | verworfen: Quelle von 2024 und für Burger; die angebliche glutenfreie Variante für Q3 2026 steht in keiner Quelle |
+| Kern Tec, Entgiftungsverfahren für Steinobstkerne | Verfahren | 2026-10 | — | verworfen: kein Ereignis im Zeitraum (Porträt; Finanzierungsrunde 2023) |
+| 2nd Nature, KI-Plattform für Süßstoffe aus Getreidenebenströmen | Technologie | 2026-10 | — | verworfen: Firmenporträt ohne prüfbaren Befund, Stoffe ungenannt |
+| Perfat Soft, Oleogel aus High-Oleic-Sonnenblumenöl und Maisfaser | Ingredient | 2026-10 | — | verworfen: kein Nebenstrom — im Funktionslauf (November) zulässig |
+| Symbio Bioculinary, Backreste werden vor Ort zu Zucker zurückgeführt | Verfahren | 2026-10 | — | wartet auf Funktion: Reststoffverwertung |
 
 **Ergebnis** ist einer von:
 `veröffentlicht` · `Entwurf` · `verworfen: <Grund>` · `wartet auf Funktion: <welche>`
@@ -154,6 +170,11 @@ Der letzte Wert steht für Funde, die in keine der sieben Funktionen passen und 
 nicht veröffentlicht werden können. Häufen sie sich mit demselben Nenner, ist das der
 Anlass, die Taxonomie zu erweitern — siehe `prompts/rohstoff-exploration.md`,
 Abschnitt „Wenn nichts passt".
+
+**Beobachteter Nenner (Oktober 2026):** Ei-Ersatz (MOA Q5), Kakao-Teilersatz
+(Greencovery) und Fettersatz (Perfat) passen nur notdürftig in die sieben Funktionen —
+getrieben sind sie von Kosten und Versorgungsrisiko bei Ei, Kakao und Fett. Taucht das im
+Novemberlauf wieder auf, ist eine achte Funktion „Rohstoffersatz“ fällig.
 
 ---
 
@@ -192,3 +213,12 @@ Sonderzeichen. Zwei Löschungen und zwei Veröffentlichungen trafen ins Leere, e
 Zuweisung schrieb `Pr√ºfen` in die Datenbank. Ein `update` ohne Treffer meldet keinen
 Fehler — der Schaden fiel erst beim Zählen der Kacheln auf. Korrigiert per
 `research/2026-08/reparatur-und-nachtrag.sql`.
+
+Für JSON-Importdateien gilt das nicht: `LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 pbcopy < datei.json`
+bringt Umlaute korrekt in das Importfeld (geprüft im Oktoberlauf).
+
+**ChatGPT behandelt lange Prompts als Anhang.** Im Oktober wurde der Explorations-Prompt
+mit seiner langen Liste „BEREITS ERFASST“ zur Datei, und Deep Research schrieb darüber ein
+Konzept für ein Scouting-System (Architektur, Budget, Roadmap) statt SIGNAL-Blöcken.
+Deshalb bei ChatGPT immer einen Satz ins Eingabefeld: „Führe den Rechercheauftrag im
+Anhang selbst aus. Liefere ausschließlich die SIGNAL-Blöcke und die Endzeile.“
