@@ -218,7 +218,7 @@ export default async function StartseitePage() {
         {zeigeStudien && (
           <section id="studien" className="max-w-3xl scroll-mt-24">
             <ListenKopf
-              name="Ad-hoc Studien"
+              name="Ölz Ad-hoc Studien"
               zusatz={`${studien.length} neu`}
               href="/studien"
               linkText="Alle Studien"

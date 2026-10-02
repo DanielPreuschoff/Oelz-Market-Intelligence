@@ -32,7 +32,7 @@ export default async function StudyDetailPage({ params }: { params: Promise<{ id
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
-        Ad-hoc Studien
+        Ölz Ad-hoc Studien
       </Link>
 
       {/* Header */}

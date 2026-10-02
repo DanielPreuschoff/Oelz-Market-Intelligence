@@ -31,6 +31,12 @@ Kern: USA und Großbritannien. Beobachtungsfeld: Japan und Südkorea — dort en
 Formate und Texturen, die mit Jahren Verzug im Westen ankommen (Beispiele der
 Vergangenheit: Mochi-Gebäck, Croffle, Cloud Bread).
 
+Großbritannien besonders gründlich absuchen: London ist der schnellste Umschlagplatz
+nach Kontinentaleuropa. Was aus den USA oder Asien kommt, zeigt sich dort zuerst —
+oft in einzelnen Bäckereien und Cafés (etwa Fusion- und Asian-Style-Bakeries), bevor
+Ketten und Handel nachziehen. Solche Einzelsichtungen zählen als Frühsignal.
+UK soll mit mehreren Funden vertreten sein, sofern es belegbare gibt — nicht auffüllen.
+
 KATEGORIEN
 Kern: süßes Gebäck, Viennoiserie, Toast/Brioche, süße Snacks.
 Ausdrücklich auch die Nachbarfelder, aus denen Konzepte in die Backwarenkategorie
@@ -70,6 +76,8 @@ Produktankündigungen von Ketten und Herstellern, Handels- und Foodservice-Fachp
 Menü-Neuheiten großer Ketten, Social-Media-Trends mit konkretem Produkt dahinter,
 Messeberichte. Englisch-, deutsch- und gern auch japanisch-/koreanischsprachig suchen;
 melde auf Deutsch.
+Für Großbritannien ausdrücklich: die Fachpresse British Baker und The Grocer sowie
+Suchen nach "British Baker", "London bakery", "new bakery London" und "UK bakery launch".
 
 AUSGABEFORMAT
 Für jeden Fund genau diesen Block:
@@ -106,7 +114,7 @@ Am Ende: ## ENDE — N Impulse
 REGELN
 - Trenne strikt Befund und Einschätzung.
 - Erfinde keine Produkte, Ketten, Zahlen oder URLs.
-- Höchstens acht Impulse — lieber fünf gute als acht dünne.
+- Höchstens 15 Impulse — lieber acht gute als fünfzehn dünne.
 - Deutsch, auch wenn die Quellen englisch sind.
 - Der Bericht besteht ausschließlich aus den IMPULS-Blöcken und der Endzeile —
   keine Einleitung, keine Zusammenfassung, kein Fazit.
