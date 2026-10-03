@@ -54,7 +54,7 @@ Kunstfehler — eine erfundene Höchstmenge, auf die jemand eine Rezepturentsche
 | EU-Kommission — PAFF-Ausschuss | Tagesordnungen und Berichte: konkrete Entwürfe vor der Abstimmung, das stärkste Signal für kommendes Recht | https://food.ec.europa.eu/horizontal-topics/committees/paff-committees_en |
 | EU-Kommission — Have Your Say | Geplante Initiativen und Entwürfe mit Feedbackphase | https://ec.europa.eu/info/law/better-regulation/have-your-say/initiatives_en |
 | EUR-Lex — Amtsblatt L | Verabschiedete Verordnungen, Änderungen der Unionslisten (Zusatzstoffe 1333/2008, Novel Food 2017/2470, Kontaminanten 2023/915, Aromen 1334/2008, MRL 396/2005) | https://eur-lex.europa.eu |
-| BfR (DE) | Stellungnahmen — Deutschland ist der Frühindikator für Österreich | https://www.bfr.bund.de/de/publikationen/stellungnahmen-und-mitteilungen/ |
+| BfR (DE) | Stellungnahmen und Mitteilungen — Deutschland ist der Frühindikator für Österreich. Fester Prüfschritt im Prompt (Pflichtschritt BfR) | https://www.bfr.bund.de/veroeffentlichungen/stellungnahmen-und-mitteilungen/ · ohne JavaScript: https://www.bfr.bund.de/risikokommunikation/meldungen-der-letzten-30-tage/ |
 | AGES und BMSGPK (AT) | Bewertungen, nationale Verordnungen, Codex-Kapitel B 18 Backerzeugnisse | https://www.ages.at · https://www.verbrauchergesundheit.gv.at |
 | BLV (CH) | Vernehmlassungen und Newsletter Lebensmittelrecht — die Schweiz ist nicht EU-harmonisiert | https://www.blv.admin.ch/blv/de/home/lebensmittel-und-ernaehrung/rechts-und-vollzugsgrundlagen/vernehmlassungen-und-anhoerungen.html |
 | Parlament AT / Bundestag DE | Steuern und Kennzeichnung sind national — Zuckersteuer, Nutri-Score, Werbeverbote (INDIREKT) | https://www.parlament.gv.at · https://dip.bundestag.de |
@@ -150,6 +150,24 @@ Plenarprotokolle), EU-Kommission (PAFF-Ausschuss, Have Your Say), EUR-Lex/Amtsbl
 BfR, AGES, BLV, nationale Parlamente. Fachpresse darf den Weg zeigen, zählt aber nicht als
 Beleg. Für Stufe "Öffentliche Kritik" sind NGO und Verbraucherschutz die Quelle.
 
+PFLICHTSCHRITT BfR — erledige ihn vor der übrigen Suche
+Das BfR ist der Frühindikator für Österreich und wird leicht übersehen. Deshalb gehst du
+seine Veröffentlichungen im ZEITRAUM einzeln durch:
+1. Öffne die chronologische Liste der Stellungnahmen und Mitteilungen:
+   https://www.bfr.bund.de/veroeffentlichungen/stellungnahmen-und-mitteilungen/
+   (Jahr 2026 filtern, "Mehr laden", bis der ZEITRAUM vollständig ist). Lädt die Liste
+   nicht, nimm https://www.bfr.bund.de/risikokommunikation/meldungen-der-letzten-30-tage/
+2. Stellungnahmen und Mitteilungen tragen eine gemeinsame fortlaufende Nummer
+   (Stellungnahme 049/2026, Mitteilung 050/2026). Prüfe jede Nummer im ZEITRAUM, lass
+   keine aus.
+3. Betrifft eine Veröffentlichung Lebensmittel — Rohstoffe, Zusatzstoffe, Kontaminanten,
+   Rückstände oder Backwaren —, melde sie als EINTRAG mit BEHÖRDE bfr und
+   GELTUNGSBEREICH DE, oder als ÄNDERUNG, wenn der Stoff unter BEREITS ERFASST steht.
+   Lieber weiter als enger: Eine Bewertung zu Getreide, Fetten, Zucker oder Süßwaren
+   trifft Feingebäck oft mit.
+4. Halte das Ergebnis in der BFR-PRÜFLISTE fest (siehe Ausgabeformat) — auch die
+   Veröffentlichungen ohne Bezug, damit sichtbar ist, dass nichts übersehen wurde.
+
 STUFE (nur RISIKO) — genau einer dieser Schlüssel:
 kritik               Medien, NGO, Öffentlichkeit — keine Behörde beteiligt
 bewertung            Eine Behörde prüft oder empfiehlt; noch kein Recht
@@ -205,7 +223,18 @@ GELTUNGSBEREICH: EU | DE | AT | CH
 SACHVERHALT: Zwei bis vier Sätze zum neuen Stand, Zahlen wörtlich aus der Quelle
 QUELLE, URL, DATUM: wie beim EINTRAG
 
-Am Ende: ## ENDE — N Einträge, M Änderungen
+BFR-PRÜFLISTE
+Nach den EINTRAG- und ÄNDERUNG-Blöcken genau ein Block, eine Zeile je
+BfR-Veröffentlichung im ZEITRAUM — Format wie in diesen beiden Beispielen:
+
+## BFR-PRÜFLISTE
+- 049/2026 | 2026-09-08 | Stellungnahme | Glycerin in Lebensmitteln … | ÄNDERUNG Glycerin
+- 050/2026 | 2026-09-24 | Mitteilung | Asbest in Spielsand … | kein Bezug: kein Lebensmittel
+
+Letzte Spalte: EINTRAG <Stoff> | ÄNDERUNG <Fall> | kein Bezug: Grund in wenigen Wörtern.
+Gab es im ZEITRAUM keine BfR-Veröffentlichung, schreib das in den Block.
+
+Am Ende: ## ENDE — N Einträge, M Änderungen, K BfR-Veröffentlichungen geprüft
 
 REGELN
 - Erfinde keine Zahlen, Fristen, Höchstgehalte, Aktenzeichen oder URLs. Was du nicht
@@ -215,8 +244,8 @@ REGELN
 - Findest du nichts Belastbares, schreib das hin. Ein leerer Bericht ist brauchbar, ein
   aufgefüllter nicht.
 - Deutsch, auch wenn die Quellen englisch sind; Fachbegriffe und Aktenzeichen bleiben.
-- Der Bericht besteht ausschließlich aus den EINTRAG- und ÄNDERUNG-Blöcken und der
-  Endzeile.
+- Der Bericht besteht ausschließlich aus den EINTRAG- und ÄNDERUNG-Blöcken, der
+  BFR-PRÜFLISTE und der Endzeile.
 ```
 
 ---
@@ -287,3 +316,9 @@ aus Migration 018 automatisch; das Radar zeigt den Fall danach 30 Tage lang mit 
 „Aktualisiert" und im Detail die früheren Stände. Anlass: Im ersten Lauf stand die
 Glycerin-Ausweitung des BfR (08.09.2026) nur in der Quellenliste von Perplexity — als
 Eintrag hatte sie kein Dienst gemeldet.
+
+**Die BFR-PRÜFLISTE geht ebenfalls nicht in den Import.** Sie dient der Aufbereitung:
+Nummern gegen die BfR-Liste abgleichen — fehlt eine, hat der Dienst den Schritt
+abgekürzt. Eingeführt nach dem Termin mit Kai am 02.10.2026: Der erste Lauf brachte
+keinen einzigen BfR-Eintrag, und die BfR-Adresse im Prompt führte nach dem Umbau der
+BfR-Website nur noch auf die Startseite.
