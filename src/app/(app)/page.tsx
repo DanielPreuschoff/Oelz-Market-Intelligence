@@ -221,7 +221,7 @@ export default async function StartseitePage() {
               <section id="kundenradar" className="flex flex-col scroll-mt-24">
                 <ListenKopf
                   name="Kundenradar"
-                  zusatz={`${kundensignale.length} neue Kundensignale`}
+                  zusatz={kundensignale.length === 1 ? '1 neues Signal' : `${kundensignale.length} neue Signale`}
                   href="/kundenradar"
                   linkText="Zum Kundenradar"
                   style={naechste()}

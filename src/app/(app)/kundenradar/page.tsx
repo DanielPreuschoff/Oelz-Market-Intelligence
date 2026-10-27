@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { getCurrentUser, isCurrentUserAdmin } from '@/lib/auth/current-profile'
+import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
 import { HaendlerKacheln, type KachelStand } from '@/components/kundenradar/haendler-kacheln'
-import { NeuSeitBesuch, type NeuEintrag } from '@/components/kundenradar/neu-seit-besuch'
+import { NeuAusErhebung, type NeuEintrag } from '@/components/kundenradar/neu-aus-erhebung'
 import { isCollectionRecent, NEW_WINDOW_DAYS } from '@/types/ingredient-signals'
 import { haendlerKurzname, type Haendler, type Signaltyp } from '@/types/kundenradar'
 
@@ -26,46 +26,34 @@ type SignalZeile = {
  * die Route selbst. Die Daten sind für Angemeldete lesbar (Migration 019) —
  * Freischalten braucht dann kein SQL.
  *
- * „Ungesehen" folgt derselben Regel wie die Zähler in module-stats.ts: alles,
- * was nach dem letzten Besuch veröffentlicht wurde; ohne Besuch die Signale
- * der letzten Erhebung.
+ * „Neu" folgt der Plattform-Regel (Startseite, Rohstoff-Radar): was mit der
+ * letzten Erhebung veröffentlicht wurde, solange diese selbst frisch ist.
+ * Nicht am Lesestand — warum, steht in neu-aus-erhebung.tsx.
  */
 export default async function KundenradarPage() {
   if (!(await isCurrentUserAdmin())) notFound()
 
   const supabase = await createClient()
-  const user = await getCurrentUser()
-
-  const [{ data: haendlerRoh }, { data: signaleRoh }, { data: besuch }] = await Promise.all([
+  const [{ data: haendlerRoh }, { data: signaleRoh }] = await Promise.all([
     supabase.from('retailers').select('*').eq('active', true),
     supabase
       .from('retailer_signals')
       .select('id, retailer_id, signal_type, title, source_date, published_at, contact_trigger')
       .eq('status', 'published'),
-    user
-      ? supabase
-          .from('module_visits')
-          .select('last_seen_at')
-          .eq('user_id', user.id)
-          .eq('module_id', 'kunden')
-          .maybeSingle()
-      : Promise.resolve({ data: null }),
   ])
 
   const haendler = (haendlerRoh ?? []) as unknown as Haendler[]
   const signale = (signaleRoh ?? []) as unknown as SignalZeile[]
-  const zuletzt = (besuch as { last_seen_at?: string } | null)?.last_seen_at ?? null
 
-  // Ungesehen: nach dem letzten Besuch veröffentlicht. Ohne Besuch die
-  // Erhebung um den Stand des Moduls, solange sie selbst frisch ist.
+  // Neu: im 30-Tage-Fenster vor dem Stand des Moduls — und nur, solange der
+  // Stand selbst jung ist. Dieselbe Regel wie imFenster() in startseite/daten.ts.
   const veroeffentlicht = signale.map((s) => Date.parse(s.published_at ?? '')).filter(Number.isFinite)
   const standMs = veroeffentlicht.length > 0 ? Math.max(...veroeffentlicht) : null
   const standIso = standMs ? new Date(standMs).toISOString() : null
-  const ungesehen = (s: SignalZeile) => {
+  const istNeu = (s: SignalZeile) => {
     const ms = Date.parse(s.published_at ?? '')
-    if (!Number.isFinite(ms)) return false
-    if (zuletzt) return ms > Date.parse(zuletzt)
-    return isCollectionRecent(standIso) && standMs !== null && standMs - ms <= NEW_WINDOW_DAYS * 86_400_000
+    if (!Number.isFinite(ms) || standMs === null || !isCollectionRecent(standIso)) return false
+    return standMs - ms <= NEW_WINDOW_DAYS * 86_400_000
   }
 
   const stand = new Map<string, KachelStand>()
@@ -75,14 +63,14 @@ export default async function KundenradarPage() {
       .sort((a, b) => (b.source_date ?? '').localeCompare(a.source_date ?? ''))
     stand.set(h.id, {
       anzahl: eigene.length,
-      ungesehen: eigene.filter(ungesehen).length,
+      neu: eigene.filter(istNeu).length,
       juengstes: eigene[0] ? { title: eigene[0].title, source_date: eigene[0].source_date } : null,
     })
   }
 
   const nachId = new Map(haendler.map((h) => [h.id, h]))
   const neu: NeuEintrag[] = signale
-    .filter(ungesehen)
+    .filter(istNeu)
     .filter((s) => nachId.has(s.retailer_id))
     .sort((a, b) => (b.published_at ?? '').localeCompare(a.published_at ?? '') || (b.source_date ?? '').localeCompare(a.source_date ?? ''))
     .map((s) => {
@@ -108,10 +96,7 @@ export default async function KundenradarPage() {
         </p>
       </div>
 
-      <NeuSeitBesuch
-        eintraege={neu}
-        ueberschrift={zuletzt ? 'Neu seit deinem letzten Besuch' : 'Neu aus der letzten Erhebung'}
-      />
+      <NeuAusErhebung eintraege={neu} />
 
       {haendler.length === 0 ? (
         <div className="rounded-xl border-2 border-dashed border-border py-12 text-center text-sm text-muted-foreground">

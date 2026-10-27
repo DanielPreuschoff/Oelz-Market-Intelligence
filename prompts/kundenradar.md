@@ -160,14 +160,20 @@ REGELN
 
 ## Danach: Import
 
-Die Berichte liegen in `research/JJJJ-MM/kundenradar.<land>.<dienst>.md` (gitignored).
-Claude führt die Dienste je Land zusammen (Dubletten über Händler + Quelle), prüft die
-URLs, prüft die Flughöhe (alles unterhalb geht mit Begründung ins Register, Abschnitt
-„Verworfen") und baut die Importdatei. Sie wird unter `/admin/kundenradar/import`
-eingefügt und legt **Entwürfe** an; Kurzprofile gehen als Entwurf in das Feld des
-Händlers, sofern es leer ist.
+**Regelweg seit 27.10.2026: die Berichte als .md unter `/admin/kundenradar/import`
+hochladen** (mehrere auf einmal). Die App bereitet jeden Bericht selbst auf
+(`src/lib/ai/extract-kundenradar.ts`, ein Modellaufruf je Bericht): Blöcke zerlegen,
+Flughöhe prüfen, Erfasstes weglassen — auch wenn ein zweiter Dienst dasselbe Ereignis
+mit anderer Quelle meldet —, jede Quellen-URL abrufen (404 oder unbekannte Adresse →
+URL raus, Signal bleibt Entwurf). Alles landet als **Entwurf**; Kurzprofile nur in
+leere Felder. Danach ein Klick auf „Alle vollständigen veröffentlichen“. Daniels
+Wunsch: so wenig Handarbeit wie möglich.
 
-Erwartetes JSON — Feldnamen sind die Spaltennamen der Tabelle:
+Was das Modell verworfen hat, zeigt das Ergebnis je Bericht mit Grund. Wer das
+Register pflegen will, übernimmt es von dort.
+
+**Notweg:** fertiges JSON einfügen (Feld „JSON einfügen“ auf derselben Seite). Erwartetes
+JSON — Feldnamen sind die Spaltennamen der Tabelle:
 
 ```json
 {

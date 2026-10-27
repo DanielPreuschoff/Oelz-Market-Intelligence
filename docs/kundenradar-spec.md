@@ -199,6 +199,15 @@ wenn Zeit ist.
 Das [Kunden-Register](kunden-register.md) ist Ausschlussliste und Gedächtnis für
 Verworfenes, wie bei Produkt- und Rohstoff-Radar.
 
+**Aufbereitung in der App (27.10.2026).** Daniel lädt die Berichte als .md hoch; die App
+zerlegt jeden in einem Modellaufruf, lässt Unterhalb-der-Flughöhe und schon Erfasstes
+weg und ruft jede Quellen-URL ab. Die Berichte laufen nacheinander, jeder sieht die
+Entwürfe des vorigen als „bereits erfasst" — so fallen Dubletten zwischen den Diensten
+heraus. Eine URL mit 404 oder unbekannter Adresse wird entfernt; das Signal bleibt dann
+Entwurf. Alles Übrige landet als Entwurf und geht mit einem Klick live (Entscheidung
+vom 27.10.2026: ein Klick statt sofort veröffentlichen, weil „Händler X plant Y" leicht
+erfunden ist). Erst Kundenradar; die übrigen Module folgen, wenn es sich bewährt.
+
 ---
 
 ## 7. Erstbefüllung
@@ -233,7 +242,8 @@ mit, liegen die Berichte bereit, bis die Import-Seite steht.
   Ungesehen-Zähler und Lesestand laufen. Anders als beim Regulatorik-Radar gehört das
   Modul auf die Startseite: Simons „wöchentlich 10 Minuten, was ist neu" ist genau das.
 - **Admin** — `/admin/kundenradar`: Händler anlegen, Kundenstatus und Kurzprofil pflegen;
-  Signale bearbeiten; Import (JSON einfügen → Entwürfe); Sammel-Veröffentlichung.
+  Signale bearbeiten; Import (Berichte als .md hochladen, Notweg JSON → Entwürfe);
+  Sammel-Veröffentlichung.
   Muster: Regulatorik.
 - **Sichtbarkeit:** `adminOnly`, bis der Erstlauf gesichtet ist. Dann Daniel zeigt es
   Simon und Kai; Freischalten für alle entscheidet Kai.

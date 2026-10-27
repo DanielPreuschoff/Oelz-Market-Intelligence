@@ -4,6 +4,11 @@ import { ArrowLeft } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { KundenradarImportForm } from '@/components/admin/kundenradar-import-form'
 
+// Ein Bericht wird in einem Modellaufruf aufbereitet; das dauert bei langen
+// Perplexity-Berichten bis zu einer Minute. Die Server-Actions dieser Seite
+// laufen in ihrer Funktion und erben diese Grenze.
+export const maxDuration = 300
+
 export default async function KundenradarImportPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -24,10 +29,10 @@ export default async function KundenradarImportPage() {
         </Link>
         <h1 className="text-2xl font-semibold">Kundensignale importieren</h1>
         <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
-          Die Läufe je Land (monatlich, Erstbefüllung ab 01.01.2026) werden ausserhalb der App
-          aufbereitet und hier als JSON eingespielt. Prompt und JSON-Form:{' '}
-          <code className="text-xs">prompts/kundenradar.md</code>. Händler kommen als Adresse
-          (<code className="text-xs">kaufland-sk</code>); jedes Signal landet als Entwurf.
+          Die Berichte der Läufe je Land (Prompt: <code className="text-xs">prompts/kundenradar.md</code>)
+          einfach als .md hochladen. Die App zerlegt sie in Signale und Kurzprofile, lässt
+          Unterhalb-der-Flughöhe und schon Erfasstes weg, prüft jede Quelle und legt Entwürfe an.
+          Danach genügt ein Klick auf „Alle vollständigen veröffentlichen“.
         </p>
       </div>
 

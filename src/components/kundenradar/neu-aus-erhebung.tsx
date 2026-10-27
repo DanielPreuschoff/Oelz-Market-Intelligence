@@ -1,6 +1,3 @@
-'use client'
-
-import { useState } from 'react'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
@@ -17,34 +14,27 @@ export interface NeuEintrag {
 }
 
 /**
- * „Neu seit deinem letzten Besuch" — als Client-Komponente, damit die Liste
- * stehen bleibt.
+ * „Neu aus der letzten Erhebung" — was der jüngste Lauf gebracht hat, über
+ * alle Händler.
  *
- * Der Grund: Sobald die Seite mit Ungesehenem öffnet, schreibt der
- * `ModulbesuchMelder` den Lesestand und lädt das Layout neu
- * (`revalidatePath('/', 'layout')`). Die Server-Seite läse dann einen Besuch
- * von eben und zeigte eine leere Liste, während man noch hinschaut. Der
- * erste Stand wird deshalb hier eingefroren; erst die nächste Navigation zeigt
- * den neuen.
+ * Bewusst nicht „seit deinem letzten Besuch": Der `ModulbesuchMelder` setzt
+ * den Lesestand, sobald die Navigation steht — oft bevor diese Seite ihre
+ * Daten gelesen hat. Eine Liste, die am Besuch hängt, war deshalb im Test vom
+ * 27.10.2026 schon leer, bevor man sie sah. Das Erhebungsfenster ist dieselbe
+ * Regel wie auf der Startseite und im Rohstoff-Radar und rutscht nicht weg;
+ * das Persönliche („ungesehen") trägt der Zähler in der Seitenleiste.
  */
-export function NeuSeitBesuch({
-  eintraege,
-  ueberschrift,
-}: {
-  eintraege: NeuEintrag[]
-  ueberschrift: string
-}) {
-  const [liste] = useState(eintraege)
-  const [titel] = useState(ueberschrift)
-  if (liste.length === 0) return null
+export function NeuAusErhebung({ eintraege }: { eintraege: NeuEintrag[] }) {
+  if (eintraege.length === 0) return null
 
   return (
     <section className="space-y-3">
       <h2 className="dachzeile">
-        {titel} <span className="font-normal normal-case tracking-normal text-muted-foreground">· {liste.length}</span>
+        Neu aus der letzten Erhebung{' '}
+        <span className="font-normal normal-case tracking-normal text-muted-foreground">· {eintraege.length}</span>
       </h2>
       <div className="karte divide-y divide-border/70 overflow-hidden">
-        {liste.map((e) => (
+        {eintraege.map((e) => (
           <Link
             key={e.id}
             href={`/kundenradar/${e.slug}#${e.id}`}

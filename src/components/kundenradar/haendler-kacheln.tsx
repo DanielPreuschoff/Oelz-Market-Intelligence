@@ -12,7 +12,8 @@ import {
 
 export interface KachelStand {
   anzahl: number
-  ungesehen: number
+  /** Signale aus der letzten Erhebung (Regel wie auf der Startseite). */
+  neu: number
   juengstes: { title: string; source_date: string | null } | null
 }
 
@@ -35,7 +36,7 @@ export function HaendlerKacheln({
           <h2 className="dachzeile">{gruppe ?? 'Weitere Händler'}</h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5">
             {liste.map((h) => {
-              const s = stand.get(h.id) ?? { anzahl: 0, ungesehen: 0, juengstes: null }
+              const s = stand.get(h.id) ?? { anzahl: 0, neu: 0, juengstes: null }
               return (
                 <Link
                   key={h.id}
@@ -49,12 +50,9 @@ export function HaendlerKacheln({
                       </p>
                       <p className="text-xs text-muted-foreground">{LAND_NAME[h.country]}</p>
                     </div>
-                    {s.ungesehen > 0 && (
-                      <span
-                        aria-label={`${s.ungesehen} ungesehen`}
-                        className="shrink-0 rounded-full bg-oelz-orange px-1.5 py-0.5 text-center text-[10px] font-bold text-oelz-on-orange min-w-[1.25rem]"
-                      >
-                        {s.ungesehen}
+                    {s.neu > 0 && (
+                      <span className="shrink-0 rounded-full bg-oelz-orange px-2 py-0.5 text-[10px] font-bold text-oelz-on-orange">
+                        {s.neu} neu
                       </span>
                     )}
                   </div>
