@@ -13,7 +13,8 @@ import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { CATEGORY_LABELS_DE } from '@/lib/labels'
 import { wettbewerberLogo } from '@/lib/wettbewerber-logos'
-import type { RohstoffTeaser, SignalTeaser, StudieTeaser } from '@/lib/startseite/daten'
+import { SIGNALTYP_NAME, haendlerKurzname } from '@/types/kundenradar'
+import type { KundenTeaser, RohstoffTeaser, SignalTeaser, StudieTeaser } from '@/lib/startseite/daten'
 
 const tagKurz = (iso: string) => format(new Date(iso), 'd. MMM', { locale: de })
 
@@ -151,6 +152,37 @@ export function RohstoffZeile({ signal }: { signal: RohstoffTeaser }) {
             {signal.maturity && <> · {signal.maturity}</>}
           </span>
         )}
+      </span>
+    </Link>
+  )
+}
+
+/**
+ * Kundensignal: Titel fett, darunter Händler, Typ und — wenn gesetzt — der
+ * Anlass für Kundenkontakt als oranger Punkt, wie „Kritisch" beim Signal. Der
+ * Link springt im Dossier direkt auf die Karte.
+ */
+export function KundenZeile({ signal }: { signal: KundenTeaser }) {
+  if (!signal.retailer) return null
+  return (
+    <Link
+      href={`/kundenradar/${signal.retailer.slug}#${signal.id}`}
+      className="group flex flex-1 items-center gap-4 px-4 py-3 min-h-[4.5rem] transition-colors duration-[var(--motion-mikro)] hover:bg-[var(--waesche)]"
+    >
+      <span className="min-w-0 flex-1">
+        <span className="font-display text-[15px] font-bold leading-snug line-clamp-2 transition-colors duration-[var(--motion-mikro)] group-hover:text-primary">
+          {signal.title}
+        </span>
+        <span className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+          {signal.contact_trigger && (
+            <span className="inline-flex items-center gap-1 font-bold text-oelz-orange-text">
+              <span className="size-1.5 rounded-full bg-oelz-orange" /> Anlass
+            </span>
+          )}
+          <span className="font-medium text-foreground/80">{haendlerKurzname(signal.retailer)}</span>
+          <Chip>{SIGNALTYP_NAME[signal.signal_type]}</Chip>
+          {signal.source_date && <span className="ml-auto tabular-nums">{tagKurz(signal.source_date)}</span>}
+        </span>
       </span>
     </Link>
   )
