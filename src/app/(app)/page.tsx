@@ -22,7 +22,7 @@ import { ladeStartseitenDaten } from '@/lib/startseite/daten'
 import { INTRO_TEXT, analyseText, monatstext } from '@/lib/startseite/monatstext'
 import { Laufsaeule } from '@/components/startseite/laufsaeule'
 import {
-  ListenKopf, RestZeile, RohstoffZeile, SignalZeile, StudieZeile,
+  KundenZeile, ListenKopf, RestZeile, RohstoffZeile, SignalZeile, StudieZeile,
 } from '@/components/startseite/briefing-listen'
 import { cn } from '@/lib/utils'
 
@@ -50,14 +50,17 @@ export default async function StartseitePage() {
   const aktive = sichtbareModule.filter((m) => m.status === 'active')
   const sichtbar = (id: string) => aktive.some((m) => m.id === id)
 
-  const { edition, letzteEdition, signale, impulse, rohstoffsignale, studien, saeule, stats } = daten
+  const { edition, letzteEdition, signale, impulse, rohstoffsignale, kundensignale, studien, saeule, stats } = daten
 
   // Was das Briefing zeigen darf: Modul sichtbar UND es gibt neue Einträge.
   const zeigeSignale = sichtbar('wettbewerb') && signale.length > 0
   const zeigeRohstoff = sichtbar('rohstoff') && rohstoffsignale.length > 0
   const zeigeStudien = sichtbar('studien') && studien.length > 0
   const zeigeImpulse = sichtbar('produkt') && impulse.length > 0
-  const leer = !zeigeSignale && !zeigeRohstoff && !zeigeStudien && !zeigeImpulse
+  // Kundenradar: adminOnly bis zur Sichtung (ADR 0007) — `sichtbar` hält den
+  // Block für alle anderen geschlossen, auch wenn RLS die Zeilen lesen lässt.
+  const zeigeKunden = sichtbar('kunden') && kundensignale.length > 0
+  const leer = !zeigeSignale && !zeigeRohstoff && !zeigeStudien && !zeigeImpulse && !zeigeKunden
 
   const aufmacher = edition ?? letzteEdition
   const bezugsmonat = leer && letzteEdition ? letzteEdition.period_month : daten.monat
@@ -68,6 +71,7 @@ export default async function StartseitePage() {
     { id: 'wettbewerb', n: zeigeSignale ? signale.length : 0, label: 'Signale', href: '#wettbewerbsradar' },
     { id: 'produkt', n: zeigeImpulse ? impulse.length : 0, label: 'Impulse', href: '/produkt-radar' },
     { id: 'rohstoff', n: zeigeRohstoff ? rohstoffsignale.length : 0, label: 'Rohstoffe', href: '#rohstoff-radar' },
+    { id: 'kunden', n: zeigeKunden ? kundensignale.length : 0, label: 'Kundensignale', href: '#kundenradar' },
     { id: 'studien', n: zeigeStudien ? studien.length : 0, label: 'Studien', href: '#studien' },
   ].filter((z) => z.n > 0)
 
@@ -163,7 +167,7 @@ export default async function StartseitePage() {
 
       {/* ---------------------------------------------------------- Briefing */}
       <div className="space-y-14 px-8 pt-10 lg:px-12">
-        {(zeigeSignale || zeigeRohstoff) && (
+        {(zeigeSignale || zeigeRohstoff || zeigeKunden) && (
           <div className="grid gap-x-14 gap-y-8 lg:grid-cols-2 lg:items-stretch">
             {zeigeSignale && aufmacher && (
               <section id="wettbewerbsradar" className="flex flex-col scroll-mt-24">
@@ -209,6 +213,24 @@ export default async function StartseitePage() {
                     <RohstoffZeile key={r.id} signal={r} />
                   ))}
                   <RestZeile n={rohstoffsignale.length - MAX_JE_MODUL} href="/rohstoff-radar" wo="im Rohstoff-Radar" />
+                </div>
+              </section>
+            )}
+
+            {zeigeKunden && (
+              <section id="kundenradar" className="flex flex-col scroll-mt-24">
+                <ListenKopf
+                  name="Kundenradar"
+                  zusatz={kundensignale.length === 1 ? '1 neues Signal' : `${kundensignale.length} neue Signale`}
+                  href="/kundenradar"
+                  linkText="Zum Kundenradar"
+                  style={naechste()}
+                />
+                <div className="karte flex flex-1 flex-col divide-y divide-border/70 overflow-hidden einblenden" style={naechste()}>
+                  {kundensignale.slice(0, MAX_JE_MODUL).map((k) => (
+                    <KundenZeile key={k.id} signal={k} />
+                  ))}
+                  <RestZeile n={kundensignale.length - MAX_JE_MODUL} href="/kundenradar" wo="im Kundenradar" />
                 </div>
               </section>
             )}

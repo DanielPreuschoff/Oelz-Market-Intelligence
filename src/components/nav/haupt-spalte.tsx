@@ -20,7 +20,8 @@
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
-const BREITE_ROUTEN = ['/produkt-radar', '/rohstoff-radar', '/editions', '/studien/']
+// '/kundenradar' für die Kacheln der Übersicht; das Dossier setzt sich selbst schmal.
+const BREITE_ROUTEN = ['/produkt-radar', '/rohstoff-radar', '/editions', '/studien/', '/kundenradar']
 
 export function HauptSpalte({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()

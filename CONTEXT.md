@@ -96,15 +96,43 @@ _Avoid_: Ausgabe, Edition, Issue, Runde
 Das Datum der jüngsten Veröffentlichung im Modul. Abgeleitet, nicht gespeichert.
 _Avoid_: Redaktionsschluss, Version
 
-### Retailer-Radar
+### Kundenradar
 
 **Händler**:
-Eine Handelskette in einem Land (Kette × Land), z. B. SPAR/AT, Tesco/SK, Mercator/SI. Leitentität des Retailer-Radars; ob er Ölz-Kunde ist, sagt sein Kundenstatus, nicht sein Name.
-_Avoid_: Handelskunde, Retailer (im Fließtext), Shop, Kunde (allein)
+Eine Handelskette in einem Land (Kette × Land), z. B. Kaufland/SK, SPAR/SI, Tesco/UK. Leitentität des Kundenradars; ob er Ölz-Kunde ist, sagt sein Kundenstatus, nicht sein Name. Kaufland/SK und Kaufland/DE sind zwei Händler desselben Konzerns.
+_Avoid_: Handelskunde, Retailer (im Fließtext), Kunde (allein), Account, Filiale
 
 **Kundenstatus**:
-Ob ein Händler Ölz beliefert wird: Kunde, kein Kunde, unbekannt. Von Ölz gepflegt, nie aus Daten geraten.
+Wie Ölz zu einem Händler steht: Kunde · über Partner (ein Vertriebspartner beliefert die Kette) · kein Kunde · unbekannt. Von Ölz gepflegt, nie aus Daten geraten.
 _Avoid_: Key Account, Kundenflag
+
+**Vertriebspartner**:
+Ein Unternehmen, das für Ölz einen Markt bedient (SI, HR, UK). Kein Händler und keine Entität im Modul — die Signale hängen an den Ketten, die der Partner beliefert.
+_Avoid_: Distributor, Importeur (als Entität)
+
+**Kundensignal**:
+Atomare Einheit des Kundenradars: eine Entscheidung der Zentrale eines Händlers, die Backwaren berührt, mit Typ, Quelle und dem Satz, was sie für Ölz heißt. Flughöhe: groß genug für die Lebensmittel Zeitung.
+_Avoid_: News, Meldung, Listung, Kundeninfo
+
+**Für Ölz**:
+Der Satz je Kundensignal, der die Bedeutung für den Vertrieb benennt — und die Veröffentlichungs-Hürde: ohne ihn bleibt das Signal Entwurf.
+_Avoid_: Relevanz, Implikation, Takeaway
+
+**Anlass**:
+Ein Häkchen am Kundensignal: Die Meldung wäre ein konkreter Grund, den Händler jetzt anzusprechen. Die Begründung steht im Satz „Für Ölz".
+_Avoid_: Trigger, Lead, Opportunity
+
+**Kurzprofil**:
+Drei bis sechs Zeilen je Händler, die sich selten ändern: Filialzahl, Formate, Backstation, Eigenmarken im Backwarenbereich. Mit Stand-Datum, von der Redaktion gepflegt; der erste Entwurf kommt aus dem Erstlauf.
+_Avoid_: Steckbrief, Profil (allein), Stammdaten
+
+**Dossier**:
+Die Seite eines Händlers: Kurzprofil plus alle veröffentlichten Kundensignale über die Zeit. Der Blick „vor dem Kundenbesuch", den Zeitscheiben (Ausgabe, Monat) nicht geben.
+_Avoid_: Akte, Detailseite, Kundenseite
+
+### Retailer-Radar (abgelöst)
+
+Prototyp vom August 2026 für Listungen, Preise und Aktionen aus Onlineshops — durch das Kundenradar abgelöst ([ADR 0007](docs/adr/0007-kundenradar-eigenes-modul.md)). Die Begriffe bleiben für [retailer-radar-spec.md](docs/retailer-radar-spec.md) lesbar; „Händler" und „Kundenstatus" gehören jetzt zum Kundenradar.
 
 **Vertriebslinie**:
 Der Auftritt, unter dem ein Händler Ware anbietet, wenn er mehrere hat (BILLA, PENNY, ADEG unter REWE/AT; SPAR, EUROSPAR, INTERSPAR unter SPAR/AT). Ein Merkmal von Quelle und Listung, keine eigene Entität.

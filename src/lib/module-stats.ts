@@ -58,6 +58,9 @@ const SOURCES: {
 }[] = [
   { moduleId: 'produkt', table: 'innovation_impulses', dateColumn: 'created_at', unit: { one: 'Impuls', many: 'Impulse' } },
   { moduleId: 'rohstoff', table: 'ingredient_signals', dateColumn: 'published_at', unit: { one: 'Signal', many: 'Signale' } },
+  // Kundenradar (ADR 0007): anders als das Regulatorik-Radar mit Zähler und
+  // Lesestand — „wöchentlich zehn Minuten, was ist neu" ist sein Zweck.
+  { moduleId: 'kunden', table: 'retailer_signals', dateColumn: 'published_at', unit: { one: 'Kundensignal', many: 'Kundensignale' } },
   { moduleId: 'studien', table: 'studies', dateColumn: 'created_at', unit: { one: 'Studie', many: 'Studien' } },
 ]
 
