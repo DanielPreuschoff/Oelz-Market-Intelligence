@@ -1,6 +1,6 @@
 # Kundenradar — strategische Bewegungen der Handelskunden
 
-Stand: 2026-10-27 · Status: **MVP-Umfang festgelegt**, Umsetzung folgt
+Stand: 2026-10-27 · Status: **umgesetzt** (Migration 019, Branch `feat/kundenradar`) — Erstlauf steht aus
 Herkunft: Idee von Simon Greiner (Vertrieb, Inland + Export) · Mail vom Oktober 2026 und Termin am 27.10.2026 · Vorab von Kai Heuberger am 02.10.2026 als Weiterentwicklung gewünscht
 Begriffe: [CONTEXT.md](../CONTEXT.md) Abschnitt „Kundenradar" · Entscheidung: [ADR 0007](adr/0007-kundenradar-eigenes-modul.md)
 
@@ -257,7 +257,7 @@ Zwei Tabellen, Spaltennamen englisch wie im übrigen Schema, Anzeigetexte deutsc
 
 **`retailer_signals`** — das Kundensignal
 
-- `retailer_id` (FK, Pflicht)
+- `retailer_id` (FK, Pflicht, `on delete cascade` — wer einen Händler löscht, löscht seine Signale mit; die Admin-Liste nennt die Zahl vorher)
 - `signal_type` (Enum mit den sechs Schlüsseln aus Abschnitt 2)
 - `title`, `teaser`, `situation` (Text)
 - `source_name`, `source_url`, `source_date`
@@ -266,7 +266,7 @@ Zwei Tabellen, Spaltennamen englisch wie im übrigen Schema, Anzeigetexte deutsc
 - `status` (`draft` · `published`), `published_at`, `ai_generated`, `created_by`, Zeitstempel
 
 Die Hürde als CHECK: `published` verlangt Titel, Kurzzeile, Sachverhalt, `oelz_relevance`,
-`source_url` und `source_date`. Dubletten beim Import über `retailer_id` + `source_url`.
+`source_url` und `source_date`. Dubletten beim Import über `retailer_id` + `source_url` — geprüft in der Import-Aktion, nicht per Unique-Index: Ein Geschäftsbericht darf zwei Signale verschiedenen Typs tragen.
 
 RLS wie bei `substance_watch`: Veröffentlichtes für alle Angemeldeten lesbar, Entwürfe und
 Schreiben nur Admin über `(select public.is_admin())`.
