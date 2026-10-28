@@ -114,6 +114,9 @@ export function AppNav({ profile, moduleStats }: AppNavProps) {
                 <DropdownMenuItem render={<Link href="/admin/unter-beobachtung" />}>
                   Regulatorik-Radar verwalten
                 </DropdownMenuItem>
+                <DropdownMenuItem render={<Link href="/admin/kundenradar" />}>
+                  Kundenradar verwalten
+                </DropdownMenuItem>
                 <DropdownMenuItem render={<Link href="/admin/studien" />}>
                   Studien verwalten
                 </DropdownMenuItem>

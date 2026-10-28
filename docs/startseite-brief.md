@@ -185,7 +185,8 @@ funktioniert, ist das ein Ergebnis, kein Grund zum Nachbessern — dann scheidet
   (`prototype/login-2026-08`, ADR 0002).
 - **Eine Route** `/prototype/startseite?variant=ausgabe|wall|cockpit&daten=voll|typisch|leer`,
   innerhalb der App-Shell (Kopfbalken, Seitenleiste, Fonts) — vorhandener
-  `src/components/prototype/prototype-switcher.tsx` als Umschalter.
+  `src/components/prototype/prototype-switcher.tsx` als Umschalter (am 27.10.2026 mit dem
+  Retailer-Radar-Prototyp entfernt, ADR 0007).
 - **Gemeinsamer Mock-Datensatz** in einer Datei (`src/components/prototype/startseite/daten.ts`),
   Typen aus `src/types/` wiederverwendet — kein Supabase-Zugriff, keine Migration.
 - **Drei Sessions**, je Archetyp eine, damit die Varianten sich nicht angleichen; jede liest

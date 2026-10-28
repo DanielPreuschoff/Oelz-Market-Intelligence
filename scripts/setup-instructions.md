@@ -21,7 +21,7 @@ Fill in:
 
 ## 3. Run the database migration
 
-In Supabase Dashboard → SQL Editor, paste and run:
+In Supabase Dashboard → SQL Editor, paste and run every file in `supabase/migrations/` in order (001 … 019; 019 = Kundenradar):
 
 ```
 supabase/migrations/001_initial_schema.sql

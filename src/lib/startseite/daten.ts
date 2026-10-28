@@ -14,6 +14,7 @@ import { NEW_WINDOW_DAYS, isCollectionRecent } from '@/types/ingredient-signals'
 import type { MaturityLevel, SubjectType } from '@/types/ingredient-signals'
 import type { SignalCategory, ImportanceLevel } from '@/types/database'
 import type { RadarType } from '@/types/innovation'
+import type { HaendlerKurz, Signaltyp } from '@/types/kundenradar'
 
 const FENSTER_MS = NEW_WINDOW_DAYS * 86_400_000
 
@@ -60,6 +61,16 @@ export interface RohstoffTeaser {
   published_at: string | null
 }
 
+export interface KundenTeaser {
+  id: string
+  title: string
+  signal_type: Signaltyp
+  contact_trigger: boolean
+  source_date: string | null
+  published_at: string | null
+  retailer: Pick<HaendlerKurz, 'name' | 'slug' | 'country'> | null
+}
+
 export interface StudieTeaser {
   id: string
   title: string
@@ -77,6 +88,8 @@ export interface StartseitenDaten {
   signale: SignalTeaser[]
   impulse: ImpulsTeaser[]
   rohstoffsignale: RohstoffTeaser[]
+  /** Kundenradar (ADR 0007) — sichtbar nur, solange das Modul es ist. */
+  kundensignale: KundenTeaser[]
   studien: StudieTeaser[]
   /** Impulse mit Bild für die Laufsäule — neue zuerst, dann Bestand. */
   saeule: ImpulsTeaser[]
@@ -131,7 +144,7 @@ interface ImpulsZeile {
 export async function ladeStartseitenDaten(): Promise<StartseitenDaten> {
   const supabase = await createClient()
 
-  const [editionErg, rohstoffErg, studienErg, impulseErg, stats] = await Promise.all([
+  const [editionErg, rohstoffErg, studienErg, impulseErg, kundenErg, stats] = await Promise.all([
     supabase
       .from('editions')
       .select(
@@ -159,6 +172,12 @@ export async function ladeStartseitenDaten(): Promise<StartseitenDaten> {
       .select('id, title, radar_type, short_signal, image_url, created_at, source_date')
       .eq('status', 'published')
       .order('created_at', { ascending: false })
+      .limit(40),
+    supabase
+      .from('retailer_signals')
+      .select('id, title, signal_type, contact_trigger, source_date, published_at, retailer:retailers ( name, slug, country )')
+      .eq('status', 'published')
+      .order('published_at', { ascending: false })
       .limit(40),
     getModuleStats(),
   ])
@@ -201,6 +220,12 @@ export async function ladeStartseitenDaten(): Promise<StartseitenDaten> {
   const rohstoffStand = rohstoffAlle[0]?.published_at ?? null
   const rohstoffsignale = rohstoffAlle.filter((r) => imFenster(r.published_at, rohstoffStand))
 
+  // ---- Kundenradar — gleiche Regel wie Rohstoff: neu ist, was mit der
+  // letzten Erhebung veröffentlicht wurde. Ohne Migration 019 bleibt es leer.
+  const kundenAlle = (kundenErg.data ?? []) as unknown as KundenTeaser[]
+  const kundenStand = kundenAlle[0]?.published_at ?? null
+  const kundensignale = kundenAlle.filter((k) => k.retailer && imFenster(k.published_at, kundenStand))
+
   // ---- Studien
   const studienAlle = (studienErg.data ?? []) as unknown as (StudieTeaser & { created_at: string })[]
   const studienStand = studienAlle[0]?.created_at ?? null
@@ -231,6 +256,7 @@ export async function ladeStartseitenDaten(): Promise<StartseitenDaten> {
     signale,
     impulse,
     rohstoffsignale,
+    kundensignale,
     studien,
     saeule,
     stats,

@@ -105,6 +105,20 @@ export const MODULES: IntelligenceModule[] = [
     iconColor: 'text-stone-700',
   },
   {
+    id: 'kunden',
+    name: 'Kundenradar',
+    description: 'Strategische Bewegungen der Handelskunden — je Händler und Land, mit dem Satz, was sie für Ölz heißen.',
+    icon: 'ShoppingCart',
+    // Seit 27.10.2026, Idee von Simon Greiner (Vertrieb). Löst den
+    // Retailer-Radar-Prototyp ab (ADR 0007). Nur für Admins, bis der Erstlauf
+    // gesichtet ist; die Routen prüfen zusätzlich.
+    status: 'active',
+    adminOnly: true,
+    href: '/kundenradar',
+    iconBg: 'bg-orange-100',
+    iconColor: 'text-orange-700',
+  },
+  {
     id: 'food-radar',
     name: 'Trend Radar',
     description: 'Trendradare der Lebensmittelbranche — Entwicklungsrichtungen nach Themenfeld und zeitlicher Nähe, von Digitalisierung bis Regulatorik.',
@@ -115,20 +129,6 @@ export const MODULES: IntelligenceModule[] = [
     // Admins vorbehalten. Die Weiche sitzt in der Seite selbst
     // (src/app/(app)/food-radar/page.tsx), nicht hier.
     href: '/food-radar',
-    iconBg: 'bg-orange-100',
-    iconColor: 'text-orange-700',
-  },
-  {
-    id: 'retailer',
-    name: 'Retailer-Radar',
-    description: 'Listungen, Preise, Aktionen und Eigenmarken im Handel — je Händler und Land.',
-    icon: 'ShoppingCart',
-    // Prototyp zur Vorführung: zwei Entwürfe auf echten Erhebungsdaten.
-    // adminOnly blendet ihn für alle anderen Rollen aus (Startseite und
-    // Navigation); die Route selbst prüft zusätzlich (siehe page.tsx).
-    status: 'active',
-    adminOnly: true,
-    href: '/retailer-radar',
     iconBg: 'bg-orange-100',
     iconColor: 'text-orange-700',
   },
