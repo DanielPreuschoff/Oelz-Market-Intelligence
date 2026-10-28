@@ -1,7 +1,8 @@
 # Deep Research — Kundenradar (ein Lauf je Land)
 
 **Rhythmus: monatlich, ein Lauf je Land**, zusammen mit den übrigen Läufen am
-Monatswechsel. Länder im Erstlauf: DE, CZ, SK, HR, RO, SI, UK — sieben Läufe je Dienst.
+Monatswechsel. Länder im Erstlauf: DE, AT, CH, CZ, SK, SI, HR, RO, UK — neun Läufe je Dienst
+(AT und CH seit 27.10.2026 mit den Inlandskunden).
 Für den Erstlauf reichen ChatGPT und Perplexity.
 
 **Erstbefüllung (Lauf vom 01.11.2026): alles ab 01.01.2026**, maßgeblich ist das Datum der
@@ -19,12 +20,14 @@ Typen, Abgrenzung), [ADR 0007](../docs/adr/0007-kundenradar-eigenes-modul.md).
 
 | Land | `{FACHPRESSE}` (Annahme — beim ersten Lauf prüfen und hier berichtigen) |
 |---|---|
-| DE | Lebensmittel Zeitung, Lebensmittel Praxis |
+| DE | Lebensmittel Zeitung, Lebensmittel Praxis, Rundschau für den Lebensmittelhandel |
+| AT | Cash, Regal, retail.at |
+| CH | foodaktuell.ch, Alimenta, Handelszeitung, Medienmitteilungen von Coop und Migros |
 | CZ | Zboží & Prodej, Retail News (retailnews.cz) |
 | SK | Tovar & Predaj |
 | HR | Ja Trgovac, Progressive |
 | RO | Progresiv, Retail-FMCG |
-| SI | noch zu bestimmen — Wirtschaftspresse (Finance, Delo) und Händlerseiten |
+| SI | Finance, Delo, Moja Dobra Hrana |
 | UK | The Grocer, Retail Gazette |
 
 ---

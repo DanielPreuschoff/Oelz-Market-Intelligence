@@ -20,8 +20,8 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 | | |
 |---|---|
 | Bisherige Läufe | 0 — Erstlauf geplant mit dem Hauptlauf am 01.11.2026 (Fenster ab 01.01.2026) |
-| Händler | 11 (Spec §3; SI, HR, UK sind Annahmen, mit Simon zu bestätigen) |
-| Nächster Lauf | 01.11.2026, Erstbefüllung mit Kurzprofil |
+| Händler | 21 — Export (Spec §3) und seit 27.10.2026 die Inlandskunden aus Simons Mail; SI, HR, UK und die Länder der Inlandskunden sind Annahmen, Rückfrage bei Simon läuft |
+| Nächster Lauf | 31.10./01.11.2026, Erstbefüllung mit Kurzprofil, neun Länder |
 
 ## Händler
 
@@ -37,6 +37,20 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 | HR | Konzum | über Partner | **offen** |
 | UK | Tesco | über Partner | **offen** |
 | UK | Sainsbury's | über Partner | **offen** |
+| DE | Aldi Süd | Kunde | Simon, Mail (Land offen) |
+| DE | Lidl | Kunde | Simon, Mail (Land offen) |
+| DE | REWE | Kunde | Simon, Mail |
+| DE | Edeka | Kunde | Simon, Mail |
+| DE | Norma | Kunde | Simon, Mail |
+| AT | Hofer | Kunde | Annahme (Aldi Süd in AT) |
+| AT | Lidl | Kunde | Annahme |
+| AT | BILLA | Kunde | Annahme (REWE in AT) |
+| AT | SPAR | Kunde | Kais Kundenliste, Simon offen |
+| CH | Coop | Kunde | Simon, Mail |
+| CH | Migros | Kunde | Simon, Mail |
+
+Offen bei Simon (Mail vom 27.10.2026): Partner-Ketten in SI, HR, UK, SE, FR;
+Länder je Top-Kunde; „Noma", „Merit", „Silisan"; welches Globus.
 
 ## Signale
 
