@@ -38,6 +38,11 @@ Trendberichte ohne konkretes Produkt.
 ## 3. Quellmärkte und Kategoriebreite
 
 - **Kern:** USA, Großbritannien
+- **Großbritannien besonders gründlich** (Wunsch Kai, 02.10.2026): London ist der
+  schnellste Umschlagplatz nach Kontinentaleuropa. Der Marktscan nennt dafür
+  British Baker, The Grocer und Suchbegriffe wie „London bakery". British Baker
+  kommt als Newsletter hinter einem Login — was die Recherche dort nicht erreicht,
+  schickt Kai als Link und wird von Hand nachgetragen.
 - **Beobachtungsfeld:** Japan, Südkorea (Formate/Texturen mit Jahren Verzug)
 - **Kategorien:** Ölz-Sortimentsfelder plus Nachbarfelder, aus denen Konzepte
   überspringen — QSR-Frühstück, In-Store-Bakery, Kaffeeketten-Gebäck,
@@ -49,7 +54,10 @@ Trendberichte ohne konkretes Produkt.
 - **Monatlich am 1.**, gemeinsam mit Wettbewerber- und Rohstofferhebung.
 - **Fenster = Vormonat.** Keine Rückbefüllung — das Modul lebt von Frische;
   erster Lauf: 1. September 2026 für den August.
-- **Ziel: 5–10 veröffentlichte Impulse je Monat.** Lieber fünf gute als zehn dünne.
+- **Ziel: 10–20 veröffentlichte Impulse je Monat.** Lieber zehn gute als zwanzig dünne.
+  Der Marktscan darf seit Oktober 2026 bis zu 15 Impulse je Dienst melden (vorher
+  acht) — mehr Raum für UK, ohne andere Märkte zu verdrängen. Der Transferlauf
+  bleibt bei höchstens sechs.
 - Zwei Läufe je Erhebung: `produkt-marktscan.md` (was entsteht) und
   `produkt-transfer.md` (was springt). Beide Prompts liegen in `prompts/`.
 

@@ -29,7 +29,7 @@ export default async function AdminStudienPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Ad-hoc Studien</h1>
+        <h1 className="text-2xl font-semibold">Ölz Ad-hoc Studien</h1>
         <Link href="/admin/studien/new" className={cn(buttonVariants({ size: 'sm' }))}>
           Studie hochladen
         </Link>

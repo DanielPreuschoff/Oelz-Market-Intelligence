@@ -205,7 +205,7 @@ export const MODULES: IntelligenceModule[] = [
   },
   {
     id: 'studien',
-    name: 'Ad-hoc Studien',
+    name: 'Ölz Ad-hoc Studien',
     description: 'Gezielte Markt- und Trendstudien zu aktuellen Fragestellungen — durchsuchbar und als PDF abrufbar.',
     icon: 'BookOpen',
     status: 'active',

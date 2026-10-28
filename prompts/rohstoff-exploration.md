@@ -20,7 +20,7 @@ nichts verschiebt, wenn ein Monat ausfällt. Der aktuelle Stand steht in
 |---|---|---|
 | 1 | Verfahren und Prozesstechnik | Neue Herstell-, Ferment- oder Aufbereitungsverfahren |
 | 2 | Nebenströme und Regionales | Upcycling, Reststoffverwertung, regionale Rohstoffquellen |
-| 3 | Regulatorik | Zulassungen, Kennzeichnungsänderungen, neue Grenzwerte |
+| 3 | Regulatorik | Zulassungen, Kennzeichnungsänderungen, neue Grenzwerte, entlastende Bewertungen von EFSA und BfR |
 | 4 | Frühphase | Start-ups, Ausgründungen, Pilotanlagen, Finanzierungsrunden |
 | 5 | Angrenzende Kategorien | Was in Süßwaren, Molkerei, Snacks oder Fleischalternativen funktioniert und auf Feinbackwaren übertragbar wäre |
 
@@ -62,6 +62,10 @@ Herstellerankündigungen, Fachpublikationen, Patente, regulatorische Bekanntmach
 Start-up- und Finanzierungsmeldungen, Messeberichte. Suche bewusst auch ausserhalb der
 Backwaren-Fachpresse — und deutsch- wie englischsprachig; Fachliteratur und
 Herstellermeldungen sind überwiegend englisch.
+Zu den regulatorischen Quellen gehören ausdrücklich die Bewertungen von EFSA und BfR —
+das BfR (Deutschland) ist der Frühindikator für Österreich. Eine Bewertung zählt hier
+nur, wenn sie eine Nutzung ermöglicht oder entlastet; Warnungen und Einschränkungen
+gehören in ein anderes Modul (Regulatorik).
 
 WAS EIN SIGNAL AUSMACHT
 Der Test: Kann Oelz nach dieser Meldung etwas tun oder wissen, was vorher nicht ging?

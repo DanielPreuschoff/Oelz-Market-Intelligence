@@ -44,7 +44,10 @@ QUELLEN — decke möglichst mehrere dieser Arten ab, nicht nur die erste:
 - Ankündigungen von Ingredient-Herstellern und Zulieferern
 - Fachpublikationen, Anwendungsberichte, Hochschul- und Institutsarbeiten
 - Patentanmeldungen und -erteilungen (als Frühindikator, siehe Reifegrad)
-- Regulatorische Zulassungen (EFSA, EU-Amtsblatt, nationale Behörden)
+- Regulatorische Zulassungen und Bewertungen (EFSA, EU-Amtsblatt, BfR, nationale
+  Behörden). Das BfR (Deutschland) ist der Frühindikator für Österreich. Hier zählt eine
+  Bewertung nur, wenn sie eine Nutzung ermöglicht oder entlastet — Warnungen und
+  Einschränkungen gehören in ein anderes Modul (Regulatorik).
 - Start-ups und Frühphasentechnologien
 - Messeneuheiten (FiE, iba, Anuga FoodTec, IBA)
 
