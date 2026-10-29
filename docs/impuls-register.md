@@ -22,8 +22,8 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 
 | | |
 |---|---|
-| Bisherige Läufe | 3 — Probelauf 10. August 2026 (Fenster Juli/August), Lauf 31. August 2026 (Fenster August), Lauf 29./30. September 2026 (Fenster September, dazu Trend Hunter) |
-| Nächster Lauf | Ende Oktober 2026 (Fenster: Oktober) |
+| Bisherige Läufe | 4 — Probelauf 10. August 2026 (Fenster Juli/August), Lauf 31. August 2026 (Fenster August), Lauf 29./30. September 2026 (Fenster September, dazu Trend Hunter), Lauf 29. Oktober 2026 (Fenster Oktober, dazu Trend Hunter) |
+| Nächster Lauf | Ende November 2026 (Fenster: November) |
 
 ---
 
@@ -159,6 +159,56 @@ Importdatei `import-impulse-2026-10.json`.
 | Übrige Backwaren gehen per App als Überraschungstüte weg | Handel | 2026-10 | Großbritannien | Entwurf |
 | Brotmarke verkauft Sauerteig-Starterkits nur über TikTok Shop | Handel | 2026-10 | USA | Entwurf |
 
+### Lauf 29. Oktober 2026 (Fenster Oktober)
+
+6 Berichte aus 3 Anbietern (Marktscan mit UK-Fokus, Transferradar; Perplexity als PDF),
+33 Rohblöcke → 21 Konzepte nach Zusammenführen → **21 Entwürfe**. Dazu die zweite Sichtung von
+**Trend Hunter** (357 Beiträge vom 01. bis 29.10.): 4 Entwürfe aus der eigenen Sichtung und
+10 weitere aus Daniels Auswahl, jede Originalquelle geprüft. Importdateien
+`import-impulse-2026-11.json` und `import-impulse-2026-11-trendhunter.json`, Sichtung in
+`research/2026-11/SICHTUNGSLISTE-PRODUKT.md`. **23 von 35 veröffentlicht** — bewusst über dem
+Monatsziel von 5–10, weil Daniel die Trend-Hunter-Auswahl erweitert hat. Die Entwürfe ohne Bild
+(Beef-Patty-Croissant, Danish-Donut, Pepperidge Farm, Swensons, Kastenform) brauchen ein Bild,
+bevor sie erscheinen können.
+
+| Konzept | Radar-Typ | Erhebung | Markt | Ergebnis |
+|---|---|---|---|---|
+| Croissant wird zum gestapelten Party-Canapé | Format | 2026-11 | Großbritannien | Entwurf |
+| Pancake wird zum tiefgekühlten Mini-Bite aus regenerativem Mehl | Format | 2026-11 | Großbritannien | Veröffentlicht |
+| Keks-Klassiker wachsen zur Sharing-Torte | Format | 2026-11 | Großbritannien | Entwurf |
+| Karibischer Beef Patty wird zum Croissant | Rezeptur & Genuss | 2026-11 | USA | Entwurf |
+| Ein Schoko-Coating verbindet drei Gebäcke zur Texturkollektion | Rezeptur & Genuss | 2026-11 | Japan | Veröffentlicht |
+| Danish-Donut wird über drei Schichten vermarktet | Format | 2026-11 | Japan | Entwurf |
+| Ungekühltes Café-Gebäck funktioniert verpackt und unter der Glocke | Handel | 2026-11 | Großbritannien | Veröffentlicht |
+| Zimtschnecke wird zum warmen Schicht-Dessert im Kühlregal | Occasion | 2026-11 | Großbritannien | Entwurf |
+| TikTok-Cheesecake-Cookie-Sandwich landet bei Aldi UK | Internationaler Vorläufer | 2026-11 | Social Media → britischer Discount-LEH | Entwurf |
+| Adventskalender füllt sich mit Mini-Feingebäck statt Schokolade | Verpackung | 2026-11 | Großbritannien | Veröffentlicht |
+| Pyramidenform macht das Croissant zum Designobjekt | Format | 2026-11 | Großbritannien | Veröffentlicht |
+| Frangipane-Haube ersetzt den Teigdeckel auf Fruchtgebäck | Rezeptur & Genuss | 2026-11 | Großbritannien | Veröffentlicht |
+| Scharfer Honig kommt als Halblaib ins Toastregal | Verpackung | 2026-11 | USA | Veröffentlicht |
+| Riesen-Croissant wird zum Teil-Objekt | Format | 2026-11 | Singapur | Entwurf |
+| Virale Dot Cakes springen in Co-ops 1.600 Filialen | Internationaler Vorläufer | 2026-11 | USA (New York) / Social Media → Großbritannien | Veröffentlicht |
+| Laugen-Brioche-Brötchen erobern das britische Sandwichregal | Internationaler Vorläufer | 2026-11 | Frankreich/USA → Großbritannien | Veröffentlicht |
+| Sauerteig wandert vom Brot- ins Keksregal | Internationaler Vorläufer | 2026-11 | Brotregal → US-Keksregal | Entwurf |
+| Cinnabon eröffnet den ersten Store in Deutschland | Internationaler Vorläufer | 2026-11 | USA → Deutschland | Veröffentlicht |
+| Ottolenghi-Weihnachtsgebäck springt vom Deli zu Waitrose | Internationaler Vorläufer | 2026-11 | UK-Deli-Gastronomie → UK-LEH | Entwurf |
+| Picard bringt französische TK-Viennoiserie zu Sainsbury’s | Internationaler Vorläufer | 2026-11 | Frankreich → Großbritannien | Entwurf |
+| Warmer Crumble-Trend aus New York und London erreicht Österreich | Internationaler Vorläufer | 2026-11 | USA/Großbritannien → Österreich | Veröffentlicht |
+| Protein zieht in English Muffins und Bagel Thins ein | Claim | 2026-11 | USA | Veröffentlicht |
+| Protein-Bagel schrumpft zum süßen Snack | Format | 2026-11 | USA | Veröffentlicht |
+| Panettone wird mit Erdnussbutter-Marke gefüllt | Saison | 2026-11 | USA | Veröffentlicht |
+| Nutella geht als gefüllte Waffel ins Tiefkühlregal | Format | 2026-11 | USA | Veröffentlicht |
+| Süße Hawaii-Rolls bekommen Ahorn-Braunzucker-Streusel | Saison | 2026-11 | USA | Veröffentlicht |
+| Kastenform macht den Rührkuchen zur Herbstdekoration | Saison | 2026-11 | USA | Entwurf |
+| Mini-Pies werden zum Dessert-Add-on zum Kaffee | Format | 2026-11 | USA | Veröffentlicht |
+| Gefüllte Brot-Bites ziehen ins Tiefkühl-Snackregal | Format | 2026-11 | USA | Veröffentlicht |
+| Burgerkette holt ihr altes Bäckerbrötchen zurück | Rezeptur & Genuss | 2026-11 | USA | Entwurf |
+| Sauerteig-Bio-Toast mit Zimt geht ins Target-Regal | Claim | 2026-11 | USA | Veröffentlicht |
+| Tokioter Nama-Donuts kommen per App nach Hause | Handel | 2026-11 | Japan → USA | Veröffentlicht |
+| Adventskalender verteilt Backzutaten statt fertiger Kekse | Saison | 2026-11 | USA | Veröffentlicht |
+| Heiße Schokolade wird zum Mini-Muffin | Saison | 2026-11 | USA | Veröffentlicht |
+| Maisbrot-Muffins werden zur fertigen Festtagsbeilage | Saison | 2026-11 | USA | Veröffentlicht |
+
 ## Verworfen
 
 | Konzept | Erhebung | Grund |
@@ -202,3 +252,13 @@ Importdatei `import-impulse-2026-10.json`.
 | Barebells Spekulatius Soft Protein Bar | 2026-10 | Proteinriegel, kein Gebäck (Trend Hunter) |
 | Gopuff Herbst-Eigenmarke (Mini Apple Fritters, Pumpkin Donut Holes) | 2026-10 | Meldung vom 21.08., vor dem Fenster (Trend Hunter) |
 | Crumbl People's Choice | 2026-10 | Menürotation ohne neues Konzept (Trend Hunter) |
+| Paris Baguette Ghost Pepper Mochi Donut (Gemini) | 2026-11 | zum zweiten Mal gemeldet; Geschmacksvariante, schon im Oktober verworfen |
+| Lawson Mochido (Gemini) | 2026-11 | Mochi-Donut mehrfach erfasst |
+| CU Mochi Pave Chocolate / GS25 Seolbing Pizza (Gemini) | 2026-11 | Reiskuchen-Dessert, kein Gebäck |
+| Kova Hojicha Shortcake (Gemini) | 2026-11 | Einzelstück einer Londoner Patisserie |
+| Bower Surf Club Coconut Mochi Pancakes (ChatGPT) | 2026-11 | einzelne Menüzeile eines neuen Cafés |
+| Wonder AirCrisp Pull-Aparts, Holiday-Range (Trend Hunter) | 2026-11 | Abreißbrot für den Airfryer seit Oktober veröffentlicht |
+| Sunshine Buns bei Target (Trend Hunter) | 2026-11 | Target-Listung nicht bestätigbar |
+| Krispy Kreme Looney Tunes, Crumbl-Rotationen, Pop-Tarts × Liquid Death, M&S Colin | 2026-11 | Geschmacks- oder Saisonvarianten (Trend Hunter) |
+| Protein-Cookies und -Riegel (Apollon, Swolfoods, Barebells, IQBAR, Fayn) | 2026-11 | Riegel/Keks, kein Feingebäck-Konzept (Trend Hunter) |
+| Kolache Factory Birria, Lola's Bento Cake, Oroweat-Relaunch | 2026-11 | zu weit weg oder kein neues Konzept (Trend Hunter) |
