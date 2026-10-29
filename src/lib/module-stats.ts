@@ -58,8 +58,12 @@ const SOURCES: {
 }[] = [
   { moduleId: 'produkt', table: 'innovation_impulses', dateColumn: 'created_at', unit: { one: 'Impuls', many: 'Impulse' } },
   { moduleId: 'rohstoff', table: 'ingredient_signals', dateColumn: 'published_at', unit: { one: 'Signal', many: 'Signale' } },
-  // Kundenradar (ADR 0007): anders als das Regulatorik-Radar mit Zähler und
-  // Lesestand — „wöchentlich zehn Minuten, was ist neu" ist sein Zweck.
+  // Regulatorik-Radar seit 29.10.2026 mit Zähler und Lesestand (Nachtrag ADR 0006),
+  // weiterhin ohne Block auf der Startseite. Ausgeräumte Fälle zählen nicht mit,
+  // nachträglich geänderte nicht erneut — gezählt wird die Erstveröffentlichung.
+  { moduleId: 'regulatorik', table: 'substance_watch', dateColumn: 'published_at', unit: { one: 'Eintrag', many: 'Einträge' } },
+  // Kundenradar (ADR 0007): mit Zähler und Lesestand — „wöchentlich zehn
+  // Minuten, was ist neu" ist sein Zweck.
   { moduleId: 'kunden', table: 'retailer_signals', dateColumn: 'published_at', unit: { one: 'Kundensignal', many: 'Kundensignale' } },
   { moduleId: 'studien', table: 'studies', dateColumn: 'created_at', unit: { one: 'Studie', many: 'Studien' } },
 ]

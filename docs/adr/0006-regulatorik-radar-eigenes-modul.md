@@ -20,3 +20,16 @@ Der Name lehnt sich an „Rohstoff-Radar" an; „Kritische Rohstoffe" bleibt aus
 - **Nicht auf der Startseite**, weder Briefing-Block noch Zähler — die Begründung aus Spec §8 gilt weiter. Das Modul erscheint dort nur in der Modulzeile, sobald es freigeschaltet ist. Kein Eintrag in `SOURCES` (`src/lib/module-stats.ts`), deshalb auch kein Ungesehen-Zähler und kein Lesestand.
 - **Geplant für dasselbe Modul, nicht Teil dieses ADR:** Kurzzeile je Eintrag, Detail-Dialog, Feld „Behörde" mit Filter, Geltungsbereich CH, die Eintragstypen „Zulassung" und „Indirekt relevant", ein Behörden-Prompt mit Import als Entwurf. Die Spec wird fortgeschrieben, wenn sie gebaut sind.
 - Spec §8, §11 und Akzeptanzkriterium 4 tragen einen Nachtrag; `CONTEXT.md` („Sichtbarkeit") ist berichtigt: Der Schalter braucht einen Deploy.
+
+## Nachtrag 29.10.2026 — Zähler in der Navigation
+
+Nach drei Behörden-Läufen (mit BfR-Pflichtschritt) hat sich das Modul bewährt; Daniel wollte beim
+Durchklicken mit einem Nutzerkonto sehen, dass im Regulatorik-Radar etwas Neues steht. Das Modul
+steht deshalb jetzt in `SOURCES` (`src/lib/module-stats.ts`): **Ungesehen-Zähler in der
+Seitenleiste und Lesestand** wie bei Produkt und Rohstoff, gezählt nach `published_at`.
+Weiterhin **kein Briefing-Block und kein Chip** auf der Startseite — das ist ein eigener Schritt,
+falls er gewünscht wird. In der Modulzeile der Startseite erscheint dieselbe Ungesehen-Zahl wie
+in der Seitenleiste, weil beide aus derselben Quelle lesen.
+
+Gezählt wird die Erstveröffentlichung. Ein nachträglich geänderter Fall (etwa Glycerin am
+29.10.2026) zählt nicht erneut; ausgeräumte Fälle zählen gar nicht.
