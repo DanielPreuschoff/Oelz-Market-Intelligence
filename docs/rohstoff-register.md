@@ -21,8 +21,8 @@ fällt beim Durchsehen auf.
 
 | | |
 |---|---|
-| Bisherige Explorationsläufe | 2 |
-| Nächste Linse | **3 — Regulatorik** |
+| Bisherige Explorationsläufe | 3 |
+| Nächste Linse | **4 — Frühphase** |
 
 Die Linse rotiert nach Zahl der Läufe, nicht nach Kalendermonat — ein ausgefallener Monat
 verschiebt die Reihenfolge dadurch nicht. Reihenfolge siehe
@@ -45,6 +45,14 @@ Zweiter Explorationslauf (Oktober 2026, Linse 2 „Nebenströme und Regionales�
 Januar–September, weil die Linse zum ersten Mal lief): 2 Berichte (Gemini, Perplexity;
 der ChatGPT-Lauf lieferte ein Systemkonzept statt Signalen, siehe unten), 12 Blöcke →
 11 Funde → **6 importiert und veröffentlicht**, 4 verworfen, 1 wartet auf Funktion.
+
+Dritter Explorationslauf (Oktober 2026, Linse 3 „Regulatorik“, Zeitraum Januar–Oktober, weil die
+Linse zum ersten Mal lief) und **erste Funktionsläufe** (acht Funktionen, ChatGPT, Fenster
+August–Oktober): 3 + 8 Berichte, 40 Blöcke → **25 importiert und veröffentlicht** (8 aus der
+Linse, 17 aus den Funktionsläufen), Dubletten über Läufe zusammengeführt (ProteinPro dreifach,
+PowderGel und Meala doppelt, Xylanase NZYM-FB bei Gemini und Perplexity). Sichtung in
+`research/2026-11/SICHTUNGSLISTE-ROHSTOFF.md`. Radar danach: 124 veröffentlicht, 0 Entwürfe — die älteren Zeilen mit „Entwurf“ sind inzwischen
+alle veröffentlicht; der Status in dieser Tabelle bildet den Stand beim Import ab.
 
 | Gegenstand | Art | Erhebung | Funktionen | Ergebnis |
 |---|---|---|---|---|
@@ -162,6 +170,37 @@ der ChatGPT-Lauf lieferte ein Systemkonzept statt Signalen, siehe unten), 12 Bl�
 | 2nd Nature, KI-Plattform für Süßstoffe aus Getreidenebenströmen | Technologie | 2026-10 | — | verworfen: Firmenporträt ohne prüfbaren Befund, Stoffe ungenannt |
 | Perfat Soft, Oleogel aus High-Oleic-Sonnenblumenöl und Maisfaser | Ingredient | 2026-10 | — | verworfen: kein Nebenstrom — im Funktionslauf (November) zulässig |
 | Symbio Bioculinary, Backreste werden vor Ort zu Zucker zurückgeführt | Verfahren | 2026-10 | — | wartet auf Funktion: Reststoffverwertung |
+| Curdlan (E 424) | Ingredient | 2026-11 | Textur & Mundgefühl, Prozessstabilität | Veröffentlicht |
+| Kerne der essbaren Jatropha curcas L. (Chuta / Xuta) als Mehl und Paste | Rohstoff | 2026-11 | Rohstoffersatz, Proteinanreicherung, Textur & Mundgefühl | Veröffentlicht |
+| Hafer-Beta-Glucane | Ingredient | 2026-11 | Ballaststoffanreicherung | Veröffentlicht |
+| E 960c, enzymatisch erzeugtes Rebaudiosid M und Rebaudiosid D | Verfahren | 2026-11 | Zuckerreduktion | Veröffentlicht |
+| Saure Prolyl-Endopeptidase aus Aspergillus niger (Stamm GEP, DSM) | Ingredient | 2026-11 | Prozessstabilität, Textur & Mundgefühl, Clean Label | Veröffentlicht |
+| Endo-1,4-β-Xylanase aus Aspergillus oryzae (Stamm NZYM-FB, Novonesis) | Ingredient | 2026-11 | Prozessstabilität, Textur & Mundgefühl, Frischhaltung | Veröffentlicht |
+| Triacylglycerol-Lipase aus Aspergillus oryzae (Stamm NZYM-AL, Novonesis) | Ingredient | 2026-11 | Textur & Mundgefühl, Rohstoffersatz, Clean Label | Veröffentlicht |
+| Fermentierter Rapskuchen von Ferm Food | Rohstoff | 2026-11 | Proteinanreicherung, Ballaststoffanreicherung, Rohstoffersatz | Veröffentlicht |
+| Botanical-Synthesis-Plattform (BioHarvest) für eine neue Süßungslösung von Tate & Lyle | Technologie | 2026-11 | Zuckerreduktion | Veröffentlicht |
+| ProteinPro Strength und ProteinPro Flex (Puratos) | Ingredient | 2026-11 | Proteinanreicherung, Ballaststoffanreicherung, Textur & Mundgefühl | Veröffentlicht |
+| Kombinierte Vorbehandlung von Erbsenmehl mit Rösten, Ultraschall und Mikrowelle | Verfahren | 2026-11 | Proteinanreicherung, Textur & Mundgefühl, Prozessstabilität | Veröffentlicht |
+| Mykoprotein als Teilersatz von Weizenmehl in Toastbrot | Rohstoff | 2026-11 | Proteinanreicherung, Textur & Mundgefühl | Veröffentlicht |
+| Enzymatisch erzeugtes Protein-Polysaccharid-IPN-Pre-Gel (Patent KR102999563B1) | Verfahren | 2026-11 | Proteinanreicherung, Textur & Mundgefühl, Frischhaltung | Veröffentlicht |
+| Cocoa Booster (Planet A Foods) | Ingredient | 2026-11 | Ballaststoffanreicherung, Rohstoffersatz, Prozessstabilität | Veröffentlicht |
+| Fibregum und inavea Akazienfasern (Nexira) | Ingredient | 2026-11 | Ballaststoffanreicherung, Prozessstabilität | Veröffentlicht |
+| VERON MaxiFresh (AB Enzymes) | Ingredient | 2026-11 | Frischhaltung, Textur & Mundgefühl | Veröffentlicht |
+| Fermentierte Erbsen- und Platterbsenmehle mit Milchsäurebakterien | Verfahren | 2026-11 | Frischhaltung, Clean Label, Textur & Mundgefühl | Veröffentlicht |
+| Typ-III-Sauerteig aus mit L. plantarum fermentiertem Apfeltrester | Ingredient | 2026-11 | Frischhaltung, Ballaststoffanreicherung | Veröffentlicht |
+| Wellence GF 1229 (Roquette) | Ingredient | 2026-11 | Textur & Mundgefühl, Frischhaltung, Prozessstabilität | Veröffentlicht |
+| PowderGel 6800 (Palsgaard) | Ingredient | 2026-11 | Textur & Mundgefühl, Prozessstabilität, Rohstoffersatz | Veröffentlicht |
+| Meala texturierendes Erbsenprotein (Lasenor VP-100) | Ingredient | 2026-11 | Rohstoffersatz, Textur & Mundgefühl, Clean Label | Veröffentlicht |
+| Enzymatische Interesterifizierung, neue Linie von SD Guthrie in Liverpool | Verfahren | 2026-11 | Prozessstabilität, Textur & Mundgefühl | Veröffentlicht |
+| Phospholipase A1 aus Fusarium commune (nicht gentechnisch veränderter Stamm) | Ingredient | 2026-11 | Clean Label, Prozessstabilität, Rohstoffersatz | Veröffentlicht |
+| Wasserlösliches Albumin aus Weizenkleie | Rohstoff | 2026-11 | Rohstoffersatz, Textur & Mundgefühl, Clean Label | Veröffentlicht |
+| Candelillawachs-Sonnenblumenöl-Oleogel | Ingredient | 2026-11 | Rohstoffersatz, Textur & Mundgefühl, Clean Label | Veröffentlicht |
+| Fermotein / Myzel von Rhizomucor pusillus (EU-Zulassung 2026/1507) | Ingredient | 2026-11 | — | verworfen: steht seit August veröffentlicht |
+| 2nd Nature, KI-Süßstoffplattform (Funktionslauf Zuckerreduktion) | Technologie | 2026-11 | — | verworfen: zum zweiten Mal gemeldet, im Oktober als Porträt ohne Befund verworfen |
+| Citri-Fi Pro, Citri-Fi-Anwendungsbericht, Citri-Fi 400 (Funktionslauf Clean Label) | Rohstoff | 2026-11 | — | verworfen: Citri-Fi seit August erfasst, Pro-Meldung vom 04.02. vor dem Fenster |
+| Blue Galdieria Extract (Algenblau, EFSA) | Ingredient | 2026-11 | — | wartet auf Funktion: Färbung |
+| Hesperetin-Dihydrochalcon (Aromastoff, VO 2026/175) | Ingredient | 2026-11 | — | wartet auf Funktion: Aroma |
+| BfR 008/2026 Azofarbstoff-Spuren in Papier-Backformen | Technologie | 2026-11 | — | verworfen: Kontaktmaterial, gehört ins Regulatorik-Radar |
 
 **Ergebnis** ist einer von:
 `veröffentlicht` · `Entwurf` · `verworfen: <Grund>` · `wartet auf Funktion: <welche>`
@@ -178,6 +217,10 @@ Novemberlauf wieder auf, ist eine achte Funktion „Rohstoffersatz“ fällig. *
 am 30.09.2026: „Rohstoffersatz“ ist die achte Funktion** (Daniel); MOA Q5 und Greencovery
 wurden nachträglich darauf umgestellt, Perfat Soft ist Kandidat für den ersten
 Rohstoffersatz-Lauf im November.
+
+**Nachtrag (29.10.2026):** Der erste Rohstoffersatz-Lauf meldete Perfat Soft nicht; als
+Fettersatz kam stattdessen ein Candelillawachs-Oleogel (Laborstudie). Neue Kandidaten für
+weitere Funktionen: Färbung (Algenblau) und Aroma (Hesperetin-DHC) — je ein Fund, noch kein Muster.
 
 ---
 
