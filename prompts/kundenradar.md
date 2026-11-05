@@ -3,11 +3,12 @@
 **Rhythmus: monatlich, ein Lauf je Land**, zusammen mit den übrigen Läufen am
 Monatswechsel. Länder im Erstlauf: DE, AT, CH, CZ, SK, SI, HR, RO, UK — neun Läufe je Dienst
 (AT und CH seit 27.10.2026 mit den Inlandskunden).
-Für den Erstlauf reichen ChatGPT und Perplexity.
+Dienste: ChatGPT und Gemini Deep Research (Gemini seit dem Erstlauf 11/2026 statt
+Perplexity). Gemini findet mehr, mischt aber Quellen — jede URL beim Aufbereiten prüfen.
 
-**Erstbefüllung (Lauf vom 01.11.2026): alles ab 01.01.2026**, maßgeblich ist das Datum der
-Quelle, plus ein Kurzprofil je Händler (Block KURZPROFIL, nur beim Erstlauf — danach den
-Block aus dem Prompt streichen). Ab dem zweiten Lauf nur noch der Vormonat.
+**Erstbefüllung (Lauf 11/2026, aufbereitet 05.11.2026): alles ab 01.01.2026** plus ein
+Kurzprofil je Händler. Der Block KURZPROFIL ist seitdem aus dem Prompt gestrichen; ab dem
+zweiten Lauf nur noch der Vormonat.
 
 Ersetzen: `{LAND}` (Name), `{FACHPRESSE}` (aus der Tabelle unten), `{HAENDLER}` (Liste
 aus [docs/kunden-register.md](../docs/kunden-register.md), Abschnitt „Händler", nur
@@ -136,26 +137,18 @@ FÜR_ÖLZ: 1–2 Sätze, beginnend mit "Für Ölz" — was die Richtung für den
 ANLASS: ja | nein — ob die Meldung ein konkreter Anlass wäre, den Händler jetzt
   anzusprechen. ja nur, wenn ein Gesprächsaufhänger in FÜR_ÖLZ steht.
 
-KURZPROFIL (nur beim Erstlauf)
-Zusätzlich für jeden Händler aus der Liste genau einen Block, unabhängig vom ZEITRAUM:
-
-## KURZPROFIL
-HÄNDLER: genau wie in der Liste oben
-PROFIL: 3–6 Zeilen Fließtext — Filialzahl im Land, Formate, SB-Backstation oder
-  Bäckerei im Markt (ja/nein, Konzept), Eigenmarken im Backwarenbereich, Marktstellung,
-  Besonderheiten. Nur Belegtes; Zahlen mit Jahr.
-QUELLEN: die zwei bis vier wichtigsten Adressen, tatsächlich aufgerufen
-
-Am Ende: ## ENDE — N Signale, M Kurzprofile
+Am Ende: ## ENDE — N Signale
 
 REGELN
 - Trenne strikt Befund und Einschätzung.
+- Unter einer URL steht nur, was diese Quelle selbst sagt — keine Zahlen oder Termine aus
+  anderen oder späteren Meldungen dazumischen; für eine zweite Quelle ein eigenes Signal.
 - Erfinde keine Entscheidungen, Zahlen, Zitate oder URLs. Eine Absicht, die du aus einem
   Trendartikel ableitest, ist kein Signal.
 - Höchstens acht Signale — lieber drei belegte als acht dünne.
 - Deutsch, auch wenn die Quellen in der Landessprache oder englisch sind; Eigennamen
   bleiben.
-- Der Bericht besteht ausschließlich aus den SIGNAL- und KURZPROFIL-Blöcken und der
+- Der Bericht besteht ausschließlich aus den SIGNAL-Blöcken und der
   Endzeile — keine Einleitung, keine Zusammenfassung, kein Fazit.
 ```
 
