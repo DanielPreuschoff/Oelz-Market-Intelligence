@@ -178,7 +178,9 @@ export async function ladeStartseitenDaten(): Promise<StartseitenDaten> {
       .select('id, title, signal_type, contact_trigger, source_date, published_at, retailer:retailers ( name, slug, country )')
       .eq('status', 'published')
       .order('published_at', { ascending: false })
-      .limit(40),
+      // Großzügig: Der Erstlauf brachte 53 Signale auf einen Schlag; bei 40
+      // zeigte die Bühne „40 Kundensignale" statt aller aus der Erhebung.
+      .limit(200),
     getModuleStats(),
   ])
 
@@ -224,7 +226,11 @@ export async function ladeStartseitenDaten(): Promise<StartseitenDaten> {
   // letzten Erhebung veröffentlicht wurde. Ohne Migration 019 bleibt es leer.
   const kundenAlle = (kundenErg.data ?? []) as unknown as KundenTeaser[]
   const kundenStand = kundenAlle[0]?.published_at ?? null
-  const kundensignale = kundenAlle.filter((k) => k.retailer && imFenster(k.published_at, kundenStand))
+  // Innerhalb einer Erhebung tragen alle Signale fast dieselbe Veröffentlichungs-
+  // zeit — gezeigt wird deshalb nach dem Datum der Quelle, das Jüngste zuerst.
+  const kundensignale = kundenAlle
+    .filter((k) => k.retailer && imFenster(k.published_at, kundenStand))
+    .sort((a, b) => (b.source_date ?? '').localeCompare(a.source_date ?? ''))
 
   // ---- Studien
   const studienAlle = (studienErg.data ?? []) as unknown as (StudieTeaser & { created_at: string })[]

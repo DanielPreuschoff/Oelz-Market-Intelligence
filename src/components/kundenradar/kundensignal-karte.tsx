@@ -1,6 +1,7 @@
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { ExternalLink } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import { SIGNALTYP_NAME, type Kundensignal } from '@/types/kundenradar'
 
 const datum = (iso: string) => format(new Date(iso), 'd. MMM yyyy', { locale: de })
@@ -15,7 +16,15 @@ const datum = (iso: string) => format(new Date(iso), 'd. MMM yyyy', { locale: de
  */
 export function KundensignalKarte({ s }: { s: Kundensignal }) {
   return (
-    <article id={s.id} className="scroll-mt-24 rounded-xl border border-border/80 bg-card p-5 target:ring-2 target:ring-oelz-orange/50">
+    <article
+      id={s.id}
+      className={cn(
+        'scroll-mt-24 rounded-xl border border-border/80 bg-card p-5 target:ring-2 target:ring-oelz-orange/50',
+        // Anlass für Kundenkontakt: orangefarbene Kante, damit die Gesprächsaufhänger
+        // beim Durchscrollen ins Auge fallen.
+        s.contact_trigger && 'border-l-4 border-l-oelz-orange'
+      )}
+    >
       <div className="flex flex-wrap items-center gap-2">
         <span className="rounded-full border border-border px-2 py-0.5 text-[11px] font-medium text-muted-foreground">
           {SIGNALTYP_NAME[s.signal_type]}

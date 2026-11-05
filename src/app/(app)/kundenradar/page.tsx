@@ -64,6 +64,7 @@ export default async function KundenradarPage() {
     stand.set(h.id, {
       anzahl: eigene.length,
       neu: eigene.filter(istNeu).length,
+      anlass: eigene.filter((s) => s.contact_trigger).length,
       juengstes: eigene[0] ? { title: eigene[0].title, source_date: eigene[0].source_date } : null,
     })
   }
@@ -72,7 +73,8 @@ export default async function KundenradarPage() {
   const neu: NeuEintrag[] = signale
     .filter(istNeu)
     .filter((s) => nachId.has(s.retailer_id))
-    .sort((a, b) => (b.published_at ?? '').localeCompare(a.published_at ?? '') || (b.source_date ?? '').localeCompare(a.source_date ?? ''))
+    // Eine Erhebung wird in einem Zug veröffentlicht — die Quelle datiert, nicht der Klick.
+    .sort((a, b) => (b.source_date ?? '').localeCompare(a.source_date ?? ''))
     .map((s) => {
       const h = nachId.get(s.retailer_id)!
       return {
@@ -96,8 +98,9 @@ export default async function KundenradarPage() {
         </p>
       </div>
 
-      <NeuAusErhebung eintraege={neu} />
-
+      {/* Händler zuerst: Der Weg ins Dossier ist der Hauptweg (Vorbereitung auf den
+          Kundenbesuch). „Neu" folgt kompakt darunter — beim Erstlauf waren es 51
+          Zeilen, die die Kacheln vier Bildschirme tief geschoben hatten. */}
       {haendler.length === 0 ? (
         <div className="rounded-xl border-2 border-dashed border-border py-12 text-center text-sm text-muted-foreground">
           <p className="font-medium">Noch kein Händler angelegt</p>
@@ -106,6 +109,8 @@ export default async function KundenradarPage() {
       ) : (
         <HaendlerKacheln haendler={haendler} stand={stand} />
       )}
+
+      <NeuAusErhebung eintraege={neu} />
 
       <p className="border-t border-border pt-4 text-xs text-muted-foreground">
         Keine Listungen, Preise oder Filialen — das Kundenradar zeigt Entscheidungen der Zentrale,

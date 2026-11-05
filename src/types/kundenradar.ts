@@ -128,6 +128,30 @@ export function haendlerKurzname(h: Pick<Haendler, 'name' | 'country'>): string 
   return `${h.name} ${h.country}`
 }
 
+/**
+ * Das Kurzprofil trägt seine Quellen als angehängte Zeile „Quellen: url, url"
+ * (der Import hängt sie an, weil es keine eigene Spalte gibt). Für die Anzeige
+ * werden Text und Quellen getrennt — die URLs erscheinen als kleine Verweise
+ * mit dem Namen der Website statt als Fließtext.
+ */
+export function teileKurzprofil(profil: string): { text: string; quellen: { url: string; name: string }[] } {
+  const m = profil.match(/\n\s*Quellen:\s*([\s\S]*)$/)
+  if (!m || m.index === undefined) return { text: profil.trim(), quellen: [] }
+  const quellen = m[1]
+    .split(/[\s,;]+/)
+    .filter((u) => /^https?:\/\//.test(u))
+    .map((url) => {
+      let name = url
+      try {
+        name = new URL(url).hostname.replace(/^www\./, '')
+      } catch {
+        /* unlesbare URL: so zeigen, wie sie kam */
+      }
+      return { url, name }
+    })
+  return { text: profil.slice(0, m.index).trim(), quellen }
+}
+
 /** „Kaufland · Slowakei" — für Überschriften. */
 export function haendlerLangname(h: Pick<Haendler, 'name' | 'country'>): string {
   return `${h.name} · ${LAND_NAME[h.country] ?? h.country}`
