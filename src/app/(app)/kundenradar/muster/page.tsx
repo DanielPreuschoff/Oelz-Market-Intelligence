@@ -156,56 +156,75 @@ export default async function KundenradarMusterPage({ searchParams }: PageProps)
         </div>
 
         {!nachLand ? (
-          <div className="space-y-3">
-            {kettenListe.map(({ name, liste }) => (
-              <div key={name} className="karte flex flex-col gap-4 p-4 lg:flex-row lg:items-stretch">
-                <div className="flex items-center gap-3 lg:w-56 lg:shrink-0">
-                  <Marke name={name} />
-                  <div className="min-w-0">
-                    <p className="font-display text-lg font-bold leading-tight">{name}</p>
-                    <p className="truncate text-xs text-muted-foreground">
-                      {liste[0].group_name ?? 'eigenständig'} · {liste.length === 1 ? '1 Land' : `${liste.length} Länder`}
-                    </p>
+          // Raster statt Zeilen: Eine Kette belegt so viel Breite, wie sie Länder hat —
+          // Kaufland die ganze Reihe, Lidl und SPAR je die Hälfte, alle anderen ein Viertel.
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            {kettenListe.map(({ name, liste }) => {
+              const n = liste.length
+              return (
+                <div
+                  key={name}
+                  className={cn(
+                    'karte flex flex-col gap-3 p-4',
+                    n >= 3 && 'md:col-span-2 xl:col-span-4',
+                    n === 2 && 'md:col-span-2 xl:col-span-2'
+                  )}
+                >
+                  <div className="flex items-center gap-3">
+                    <Marke name={name} />
+                    <div className="min-w-0">
+                      <p className="font-display text-lg font-bold leading-tight">{name}</p>
+                      <p className="truncate text-xs text-muted-foreground">
+                        {liste[0].group_name ?? 'eigenständig'}
+                        {n > 1 && ` · ${n} Länder`}
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className={cn(
+                      'grid flex-1 gap-2',
+                      n >= 3 && 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5',
+                      n === 2 && 'sm:grid-cols-2'
+                    )}
+                  >
+                    {liste.map((h) => {
+                      const eigene = vonHaendler(h.id)
+                      const anlass = eigene.filter((s) => s.contact_trigger).length
+                      return (
+                        <Link
+                          key={h.id}
+                          href={`/kundenradar/muster/${h.slug}`}
+                          className="group flex flex-col gap-1.5 rounded-xl border border-border/80 bg-background/60 p-3 transition-colors hover:border-oelz-orange/50 hover:bg-card"
+                        >
+                          <div className="flex items-center gap-2">
+                            <LandCode land={h.country} />
+                            <span className="text-sm font-medium">{LAND_NAME[h.country]}</span>
+                            {h.customer_status !== 'kunde' && (
+                              <span className={cn('ml-auto rounded-full px-1.5 py-0.5 text-[10px] font-medium', KUNDENSTATUS_CHIP[h.customer_status])}>
+                                {KUNDENSTATUS_NAME[h.customer_status]}
+                              </span>
+                            )}
+                          </div>
+                          <p className="line-clamp-2 text-xs leading-snug text-muted-foreground group-hover:text-foreground">
+                            {eigene[0]?.title ?? 'Noch kein Signal'}
+                          </p>
+                          <div className="mt-auto flex items-center gap-2 pt-1 text-[11px] tabular-nums text-muted-foreground">
+                            <span>{eigene.length} {eigene.length === 1 ? 'Signal' : 'Signale'}</span>
+                            {anlass > 0 && (
+                              <span className="inline-flex items-center gap-1 font-medium text-oelz-orange-text">
+                                <span className="size-1.5 rounded-full bg-oelz-orange" />
+                                {anlass} {anlass === 1 ? 'Anlass' : 'Anlässe'}
+                              </span>
+                            )}
+                            <ArrowRight className="ml-auto size-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
+                          </div>
+                        </Link>
+                      )
+                    })}
                   </div>
                 </div>
-                <div className="grid flex-1 gap-2 sm:grid-cols-2 xl:grid-cols-5">
-                  {liste.map((h) => {
-                    const eigene = vonHaendler(h.id)
-                    const anlass = eigene.filter((s) => s.contact_trigger).length
-                    return (
-                      <Link
-                        key={h.id}
-                        href={`/kundenradar/muster/${h.slug}`}
-                        className="group flex flex-col gap-1.5 rounded-xl border border-border/80 bg-background/60 p-3 transition-colors hover:border-oelz-orange/50 hover:bg-card"
-                      >
-                        <div className="flex items-center gap-2">
-                          <LandCode land={h.country} />
-                          <span className="text-sm font-medium">{LAND_NAME[h.country]}</span>
-                          {h.customer_status !== 'kunde' && (
-                            <span className={cn('ml-auto rounded-full px-1.5 py-0.5 text-[10px] font-medium', KUNDENSTATUS_CHIP[h.customer_status])}>
-                              {KUNDENSTATUS_NAME[h.customer_status]}
-                            </span>
-                          )}
-                        </div>
-                        <p className="line-clamp-2 text-xs leading-snug text-muted-foreground group-hover:text-foreground">
-                          {eigene[0]?.title ?? 'Noch kein Signal'}
-                        </p>
-                        <div className="mt-auto flex items-center gap-2 pt-1 text-[11px] tabular-nums text-muted-foreground">
-                          <span>{eigene.length} {eigene.length === 1 ? 'Signal' : 'Signale'}</span>
-                          {anlass > 0 && (
-                            <span className="inline-flex items-center gap-1 font-medium text-oelz-orange-text">
-                              <span className="size-1.5 rounded-full bg-oelz-orange" />
-                              {anlass} {anlass === 1 ? 'Anlass' : 'Anlässe'}
-                            </span>
-                          )}
-                          <ArrowRight className="ml-auto size-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
-                        </div>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         ) : (
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
