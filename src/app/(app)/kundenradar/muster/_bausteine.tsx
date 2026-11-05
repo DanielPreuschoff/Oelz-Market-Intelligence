@@ -3,8 +3,8 @@
  * (Daniel, 05.11.2026). Nichts hiervon wird von den echten Seiten benutzt;
  * nach der Entscheidung fliegt der Ordner `muster/` komplett raus.
  *
- * - Markenzeichen: Initial in der Hausfarbe der Kette — Platzhalter für die
- *   echten Logos, die in der Umsetzung als Dateien unter public/logos/ kommen.
+ * - Markenzeichen: echtes Logo aus src/lib/haendler-logos.ts, sonst Initial in
+ *   der Hausfarbe der Kette als Rückfall.
  * - Kennzahlen: von Hand aus den Kurzprofilen des Erstlaufs übertragen. In der
  *   Umsetzung wären das vier Spalten an `retailers` (kleine Migration).
  */
@@ -18,6 +18,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { haendlerLogo } from '@/lib/haendler-logos'
 import type { Land, Signaltyp } from '@/types/kundenradar'
 
 // ---------------------------------------------------------------- Marken
@@ -41,6 +42,25 @@ const MARKEN: Record<string, { bg: string; fg: string; zeichen: string }> = {
 }
 
 export function Marke({ name, groesse = 'md' }: { name: string; groesse?: 'sm' | 'md' | 'lg' }) {
+  const logo = haendlerLogo(name)
+  if (logo) {
+    // Weißes Kästchen wie bei den Wettbewerber-Logos; breiter als hoch, weil die
+    // meisten Händler Wortmarken führen (Tesco, Migros, SPAR …).
+    return (
+      <span
+        aria-hidden
+        className={cn(
+          'inline-flex shrink-0 items-center justify-center rounded-xl border border-border/60 bg-white shadow-sm',
+          groesse === 'sm' && 'h-7 w-11 rounded-lg p-1',
+          groesse === 'md' && 'h-11 w-16 p-1.5',
+          groesse === 'lg' && 'h-16 w-24 rounded-2xl p-2'
+        )}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={logo} alt="" className="max-h-full max-w-full object-contain" />
+      </span>
+    )
+  }
   const m = MARKEN[name] ?? { bg: 'var(--muted)', fg: 'var(--foreground)', zeichen: name.slice(0, 1) }
   return (
     <span
@@ -139,8 +159,8 @@ export const KENNZAHLEN: Record<string, Kennzahlen> = {
 export function MusterHinweis() {
   return (
     <div className="rounded-lg border border-dashed border-oelz-orange/50 bg-oelz-orange/8 px-4 py-2 text-xs text-oelz-orange-text">
-      <strong>Muster Stufe 2</strong> — zur Abstimmung, nicht für Nutzer. Buchstaben-Zeichen stehen für die
-      echten Logos, die Kennzahlen sind von Hand aus den Kurzprofilen übertragen.
+      <strong>Muster Stufe 2</strong> — zur Abstimmung, nicht für Nutzer. Die Logos sind echt (Wikimedia),
+      die Kennzahlen von Hand aus den Kurzprofilen übertragen.
     </div>
   )
 }
