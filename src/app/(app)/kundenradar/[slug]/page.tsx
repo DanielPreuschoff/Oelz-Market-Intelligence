@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ExternalLink } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
 import { cn } from '@/lib/utils'
@@ -13,6 +13,7 @@ import {
   KUNDENSTATUS_NAME,
   LAND_NAME,
   SIGNALTYPEN,
+  teileKurzprofil,
   vergleicheKundensignale,
   type Haendler,
   type Kundensignal,
@@ -53,6 +54,7 @@ export default async function DossierPage({ params, searchParams }: PageProps) {
   const gezeigt = typ ? alle.filter((s) => s.signal_type === typ) : alle
   const vorhanden = new Set(alle.map((s) => s.signal_type))
 
+  const profil = h.profile ? teileKurzprofil(h.profile) : null
   const href = (t?: Signaltyp) => `/kundenradar/${h.slug}${t ? `?typ=${t}` : ''}`
 
   return (
@@ -85,8 +87,28 @@ export default async function DossierPage({ params, searchParams }: PageProps) {
             </span>
           )}
         </h2>
-        {h.profile ? (
-          <p className="whitespace-pre-line text-sm leading-relaxed">{h.profile}</p>
+        {profil ? (
+          <>
+            <p className="whitespace-pre-line text-[15px] leading-relaxed">{profil.text}</p>
+            {profil.quellen.length > 0 && (
+              <div className="mt-4 flex flex-wrap items-center gap-1.5 border-t border-border/70 pt-3">
+                <span className="mr-1 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-foreground">Quellen</span>
+                {profil.quellen.map((q) => (
+                  <a
+                    key={q.url}
+                    href={q.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={q.url}
+                    className="inline-flex items-center gap-1 rounded-full border border-border px-2 py-0.5 text-xs text-muted-foreground transition-colors hover:border-oelz-orange/50 hover:text-oelz-orange-text"
+                  >
+                    {q.name}
+                    <ExternalLink className="size-3" />
+                  </a>
+                ))}
+              </div>
+            )}
+          </>
         ) : (
           <p className="text-sm text-muted-foreground">
             Noch kein Kurzprofil — es kommt mit dem Erstlauf oder lässt sich im Admin pflegen.
