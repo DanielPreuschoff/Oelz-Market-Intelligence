@@ -20,7 +20,7 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 | | |
 |---|---|
 | Bisherige Läufe | 1 — Erstlauf 05.11.2026 (Fenster 01.01.–31.10.2026), ChatGPT + Gemini (statt Perplexity), plus Lückensuche für acht Händler: 53 Signale, 21 Kurzprofile |
-| Händler | 21 — Export (Spec §3) und seit 27.10.2026 die Inlandskunden aus Simons Mail; SI, HR, UK und die Länder der Inlandskunden sind Annahmen, Rückfrage bei Simon läuft |
+| Händler | 30 in 13 Ländern — Export (Spec §3), seit 27.10.2026 die Inlandskunden aus Simons Mail, seit 06.11.2026 neun aus Kais Liste (Migration 020, Erstbefüllung offen); SI, HR, UK und die Länder der Inlandskunden sind Annahmen, Rückfrage bei Simon läuft |
 | Nächster Lauf | 30.11./01.12.2026, Fenster November 2026, ohne Kurzprofil-Block |
 
 ## Händler
@@ -48,9 +48,19 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 | AT | SPAR | Kunde | Kais Kundenliste, Simon offen |
 | CH | Coop | Kunde | Simon, Mail |
 | CH | Migros | Kunde | Simon, Mail |
+| DE | Aldi Nord | unbekannt | Kai, Teams-Chat 06.11.2026 |
+| AT | Sutterlüty | unbekannt | Kai, Teams-Chat 06.11.2026 (Gruppe REWE: REWE Austria hält 24,9 %, Einkaufskooperation seit 2003) |
+| UK | Marks & Spencer | unbekannt | Kai, Teams-Chat 06.11.2026 |
+| UK | Waitrose | unbekannt | Kai, Teams-Chat 06.11.2026 |
+| FR | Carrefour | unbekannt | Kai, Teams-Chat 06.11.2026 |
+| IT | Conad | unbekannt | Kai, Teams-Chat 06.11.2026 („war Kunde von uns“) |
+| ES | Mercadona | unbekannt | Kai, Teams-Chat 06.11.2026 |
+| US | Walmart | unbekannt | Kai, Teams-Chat 06.11.2026 |
+| US | Costco | unbekannt | Kai, Teams-Chat 06.11.2026 („extrem wichtig“) |
 
 Offen bei Simon (Mail vom 27.10.2026): Partner-Ketten in SI, HR, UK, SE, FR;
-Länder je Top-Kunde; „Noma", „Merit", „Silisan"; welches Globus.
+Länder je Top-Kunde; „Noma", „Merit", „Silisan"; welches Globus. Dazu seit 06.11.2026:
+Kundenstatus der neun Händler aus Kais Liste.
 
 ## Signale
 

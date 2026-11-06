@@ -7,6 +7,11 @@
  * Quelle: Wikimedia Commons bzw. englische Wikipedia (Mercator), geladen am
  * 05.11.2026 auf Daniels Freigabe. BILLA als aktuelle Fassung (gelb auf rot,
  * 2025) statt der alten SVG, die nur den gelben Schriftzug ohne Grund hat.
+ *
+ * Nachtrag 06.11.2026: neun Händler aus Kais Liste. Carrefour als PNG mit
+ * Schriftzug (italienische Wikipedia), weil die Commons-SVG nur das Symbol
+ * zeigt; Conad ebenfalls aus der italienischen Wikipedia; M&S als Kurzmarke,
+ * Waitrose als schlichte Wortmarke.
  */
 const LOGOS: Record<string, string> = {
   Kaufland: '/logos/haendler/kaufland.svg',
@@ -24,6 +29,16 @@ const LOGOS: Record<string, string> = {
   Konzum: '/logos/haendler/konzum.svg',
   Tesco: '/logos/haendler/tesco.svg',
   "Sainsbury's": '/logos/haendler/sainsburys.svg',
+  // 06.11.2026 — Kais Liste (Migration 020)
+  'Aldi Nord': '/logos/haendler/aldi-nord.svg',
+  Sutterlüty: '/logos/haendler/sutterluety.svg',
+  'Marks & Spencer': '/logos/haendler/marks-spencer.svg',
+  Waitrose: '/logos/haendler/waitrose.svg',
+  Carrefour: '/logos/haendler/carrefour.png',
+  Conad: '/logos/haendler/conad.svg',
+  Mercadona: '/logos/haendler/mercadona.svg',
+  Walmart: '/logos/haendler/walmart.svg',
+  Costco: '/logos/haendler/costco.svg',
 }
 
 /** Logo-Pfad für einen Kettennamen — null, wenn keins vorliegt. */
