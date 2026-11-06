@@ -1,14 +1,16 @@
 # Deep Research — Kundenradar (ein Lauf je Land)
 
 **Rhythmus: monatlich, ein Lauf je Land**, zusammen mit den übrigen Läufen am
-Monatswechsel. Länder im Erstlauf: DE, AT, CH, CZ, SK, SI, HR, RO, UK — neun Läufe je Dienst
-(AT und CH seit 27.10.2026 mit den Inlandskunden).
+Monatswechsel. Länder: DE, AT, CH, CZ, SK, SI, HR, RO, UK, FR, IT, ES, US — dreizehn Läufe
+je Dienst (AT und CH seit 27.10.2026 mit den Inlandskunden; FR, IT, ES und US seit
+06.11.2026 nach Kais Liste, Migration 020).
 Dienste: ChatGPT und Gemini Deep Research (Gemini seit dem Erstlauf 11/2026 statt
 Perplexity). Gemini findet mehr, mischt aber Quellen — jede URL beim Aufbereiten prüfen.
 
 **Erstbefüllung (Lauf 11/2026, aufbereitet 05.11.2026): alles ab 01.01.2026** plus ein
 Kurzprofil je Händler. Der Block KURZPROFIL ist seitdem aus dem Prompt gestrichen; ab dem
-zweiten Lauf nur noch der Vormonat.
+zweiten Lauf nur noch der Vormonat. **Neu aufgenommene Händler** bekommen einmal eine eigene
+Erstbefüllung mit Kurzprofil — Abschnitt „Erstbefüllung für neue Händler" unten.
 
 Ersetzen: `{LAND}` (Name), `{FACHPRESSE}` (aus der Tabelle unten), `{HAENDLER}` (Liste
 aus [docs/kunden-register.md](../docs/kunden-register.md), Abschnitt „Händler", nur
@@ -30,6 +32,10 @@ Typen, Abgrenzung), [ADR 0007](../docs/adr/0007-kundenradar-eigenes-modul.md).
 | RO | Progresiv, Retail-FMCG |
 | SI | Finance, Delo, Moja Dobra Hrana |
 | UK | The Grocer, Retail Gazette |
+| FR | LSA, Linéaires, Points de Vente |
+| IT | GDOWeek, Mark Up, Distribuzione Moderna |
+| ES | Alimarket, Distribución Actualidad (DA Retail), Revista Aral |
+| US | Supermarket News, Grocery Dive, Progressive Grocer; bei Walmart und Costco auch Investor-Relations-Seiten |
 
 ---
 
@@ -151,6 +157,35 @@ REGELN
 - Der Bericht besteht ausschließlich aus den SIGNAL-Blöcken und der
   Endzeile — keine Einleitung, keine Zusammenfassung, kein Fazit.
 ```
+
+---
+
+## Erstbefüllung für neue Händler
+
+Kommt ein Händler dazu (zuletzt neun am 06.11.2026), läuft für ihn einmal derselbe Prompt
+mit zwei Änderungen — als eigener Lauf, nicht im Monatslauf, damit die Fenster nicht
+durcheinandergeraten:
+
+- `{HAENDLER}`: nur die neuen Händler dieses Landes, `{ZEITRAUM}`: „1. Januar 2026 bis
+  heute", `{BEKANNT}`: „noch nichts".
+- Vor „REGELN" diesen Block einfügen und die letzte Regel auf „SIGNAL- und
+  KURZPROFIL-Blöcke" ändern:
+
+```
+KURZPROFIL
+Zusätzlich für jeden Händler aus der Liste genau einen Block, unabhängig vom ZEITRAUM:
+
+## KURZPROFIL
+HÄNDLER: genau wie in der Liste oben
+PROFIL: 3–6 Zeilen Fließtext — Filialzahl im Land, Formate, SB-Backstation oder
+  Bäckerei im Markt (ja/nein, Konzept), Eigenmarken im Backwarenbereich, Marktstellung,
+  Besonderheiten. Nur Belegtes; Zahlen mit Jahr.
+QUELLEN: die zwei bis vier wichtigsten Adressen, tatsächlich aufgerufen
+
+Am Ende: ## ENDE — N Signale, M Kurzprofile
+```
+
+Ab dem nächsten Monatslauf stehen die neuen Händler ganz normal in `{HAENDLER}`.
 
 ---
 

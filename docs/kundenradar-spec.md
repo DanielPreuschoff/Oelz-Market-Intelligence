@@ -114,6 +114,11 @@ Lebensmittel Zeitung und kommt später als weitere Zeilen dazu, ohne Änderung a
 
 Elf Zeilen. Kai hatte am 02.10. von 10–15 Accounts gesprochen; das passt.
 
+**Stand 06.11.2026: 30 Händler in 13 Ländern.** Am 27.10. kamen die Inlandskunden aus
+Simons Mail dazu (DE, AT, CH), am 06.11. neun aus Kais Liste mit den neuen Ländern FR, IT,
+ES und US (Migration 020). Die vollständige Liste mit Kundenstatus führt das
+[Kunden-Register](kunden-register.md); diese Tabelle bleibt als Startstand stehen.
+
 ---
 
 ## 4. Das Kundensignal
@@ -183,6 +188,9 @@ Liste „bereits erfasst". Höchstens acht Signale je Land und Dienst.
 | RO | Progresiv, Retail-FMCG |
 | SI | noch zu bestimmen |
 | UK | The Grocer, Retail Gazette |
+
+Seit 06.11.2026 auch FR, IT, ES und US; die gepflegte Tabelle steht im Prompt
+(`prompts/kundenradar.md`).
 
 Dazu je Händler die Pressemitteilungen des Landes-Auftritts, Geschäfts- und
 Nachhaltigkeitsberichte des Konzerns, Interviews der Landesleitung.

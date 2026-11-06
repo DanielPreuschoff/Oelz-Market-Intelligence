@@ -62,8 +62,11 @@ export const KUNDENSTATUS_CHIP: Record<Kundenstatus, string> = {
   unbekannt: 'border border-border text-muted-foreground',
 }
 
-/** Erlaubte Länder (CHECK in Migration 019). Die Reihenfolge ist zugleich die Sortierung. */
-export const LAENDER = ['DE', 'AT', 'CH', 'CZ', 'SK', 'SI', 'HR', 'RO', 'UK'] as const
+/**
+ * Erlaubte Länder (CHECK in Migration 019, FR/IT/ES/US seit 020 nach Kais Liste
+ * vom 06.11.2026). Die Reihenfolge ist zugleich die Sortierung.
+ */
+export const LAENDER = ['DE', 'AT', 'CH', 'CZ', 'SK', 'SI', 'HR', 'RO', 'UK', 'FR', 'IT', 'ES', 'US'] as const
 export type Land = (typeof LAENDER)[number]
 
 export const LAND_NAME: Record<Land, string> = {
@@ -76,6 +79,10 @@ export const LAND_NAME: Record<Land, string> = {
   HR: 'Kroatien',
   RO: 'Rumänien',
   UK: 'Vereinigtes Königreich',
+  FR: 'Frankreich',
+  IT: 'Italien',
+  ES: 'Spanien',
+  US: 'USA',
 }
 
 /** Richtwerte aus dem Prompt; das Formular zählt mit, blockiert aber nicht. */
