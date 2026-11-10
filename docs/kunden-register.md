@@ -20,7 +20,7 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 | | |
 |---|---|
 | Bisherige Läufe | 1 — Erstlauf 05.11.2026 (Fenster 01.01.–31.10.2026), ChatGPT + Gemini (statt Perplexity), plus Lückensuche für acht Händler: 53 Signale, 21 Kurzprofile |
-| Händler | 30 in 13 Ländern — Export (Spec §3), seit 27.10.2026 die Inlandskunden aus Simons Mail, seit 06.11.2026 neun aus Kais Liste (Migration 020, Erstbefüllung offen); SI, HR, UK und die Länder der Inlandskunden sind Annahmen, Rückfrage bei Simon läuft |
+| Händler | 57 in 14 Ländern — Export (Spec §3), seit 27.10.2026 die Inlandskunden aus Simons Mail, seit 06.11.2026 neun aus Kais Liste (Migration 020), seit 10.11.2026 Simons A-Kunden im Export (Migration 021, 27 neu, Ungarn als neues Land, Erstbefüllung offen) |
 | Nächster Lauf | 30.11./01.12.2026, Fenster November 2026, ohne Kurzprofil-Block |
 
 ## Händler
@@ -32,35 +32,70 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 | SK | Kaufland | Kunde | Simon, Mail Oktober 2026 |
 | HR | Kaufland | Kunde | Simon, Mail Oktober 2026 |
 | RO | Kaufland | Kunde | Simon, Mail Oktober 2026 |
-| SI | SPAR | über Partner | **offen** |
-| SI | Mercator | über Partner | **offen** |
-| HR | Konzum | über Partner | **offen** |
-| UK | Tesco | über Partner | **offen** |
-| UK | Sainsbury's | über Partner | **offen** |
-| DE | Aldi Süd | Kunde | Simon, Mail (Land offen) |
-| DE | Lidl | Kunde | Simon, Mail (Land offen) |
-| DE | REWE | Kunde | Simon, Mail |
-| DE | Edeka | Kunde | Simon, Mail |
-| DE | Norma | Kunde | Simon, Mail |
+| SI | SPAR | über Partner | Simon, A-Kunden-Liste 10.11.2026 (Partner aufgelöst; Zuordnung zu Merit/Silisan offen) |
+| SI | Mercator | über Partner | Simon, A-Kunden-Liste 10.11.2026 (Partner aufgelöst; Zuordnung zu Merit/Silisan offen) |
+| HR | Konzum | über Partner | Simon, A-Kunden-Liste 10.11.2026 (Partner aufgelöst; Zuordnung zu Merit/Silisan offen) |
+| UK | Tesco | über Partner | Simon, A-Kunden-Liste 10.11.2026 (Partner aufgelöst; Zuordnung zu Merit/Silisan offen) |
+| UK | Sainsbury's | über Partner | Simon, A-Kunden-Liste 10.11.2026 (Partner aufgelöst; Zuordnung zu Merit/Silisan offen) |
+| DE | Aldi Süd | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| DE | Lidl | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| DE | REWE | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| DE | Edeka | Kunde | Simon, A-Kunden-Liste 10.11.2026 (Gruppe Edeka-Gruppe seit 021) |
+| DE | Norma | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
 | AT | Hofer | Kunde | Annahme (Aldi Süd in AT) |
 | AT | Lidl | Kunde | Annahme |
 | AT | BILLA | Kunde | Annahme (REWE in AT) |
 | AT | SPAR | Kunde | Kais Kundenliste, Simon offen |
-| CH | Coop | Kunde | Simon, Mail |
-| CH | Migros | Kunde | Simon, Mail |
-| DE | Aldi Nord | unbekannt | Kai, Teams-Chat 06.11.2026 |
+| CH | Coop | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| CH | Migros | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| DE | Aldi Nord | Kunde | Kai, Teams-Chat 06.11.2026; Simon, A-Kunden-Liste 10.11.2026 |
 | AT | Sutterlüty | unbekannt | Kai, Teams-Chat 06.11.2026 (Gruppe REWE: REWE Austria hält 24,9 %, Einkaufskooperation seit 2003) |
 | UK | Marks & Spencer | unbekannt | Kai, Teams-Chat 06.11.2026 |
 | UK | Waitrose | unbekannt | Kai, Teams-Chat 06.11.2026 |
-| FR | Carrefour | unbekannt | Kai, Teams-Chat 06.11.2026 |
-| IT | Conad | unbekannt | Kai, Teams-Chat 06.11.2026 („war Kunde von uns“) |
+| FR | Carrefour | Kunde | Kai, Teams-Chat 06.11.2026; Simon, A-Kunden-Liste 10.11.2026 |
+| IT | Conad | Kunde | Kai, Teams-Chat 06.11.2026 („war Kunde von uns“); Simon, A-Kunden-Liste 10.11.2026 |
 | ES | Mercadona | unbekannt | Kai, Teams-Chat 06.11.2026 |
 | US | Walmart | unbekannt | Kai, Teams-Chat 06.11.2026 |
 | US | Costco | unbekannt | Kai, Teams-Chat 06.11.2026 („extrem wichtig“) |
+| DE | Netto Marken-Discount | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| DE | Penny | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| DE | Globus | Kunde | Simon, A-Kunden-Liste 10.11.2026 (Markthallen, nicht Baumärkte) |
+| CH | Aldi | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| CH | Lidl | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| CZ | Lidl | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| CZ | Albert | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| CZ | Tesco | Kunde | Simon, A-Kunden-Liste 10.11.2026 — Verkauf an Ahold Delhaize angekündigt 30.10.2026 |
+| CZ | Penny | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| CZ | BILLA | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| SK | Lidl | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| SK | BILLA | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| SK | Tesco | Kunde | Simon, A-Kunden-Liste 10.11.2026 — Verkauf an Ahold Delhaize angekündigt 30.10.2026 |
+| SK | Coop Jednota | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| SI | Hofer | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| SI | Tuš | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| SI | Eurospin | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| HR | SPAR | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| HR | Studenac | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| HR | Plodine | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| HR | Tommy | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| HU | Aldi | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| HU | Lidl | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| FR | E.Leclerc | Kunde | Simon, A-Kunden-Liste 10.11.2026 |
+| UK | Aldi | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| UK | Lidl | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
+| UK | Asda | über Partner | Simon, A-Kunden-Liste 10.11.2026 |
 
-Offen bei Simon (Mail vom 27.10.2026): Partner-Ketten in SI, HR, UK, SE, FR;
-Länder je Top-Kunde; „Noma", „Merit", „Silisan"; welches Globus. Dazu seit 06.11.2026:
-Kundenstatus der neun Händler aus Kais Liste.
+Simon hat am 10.11.2026 per Mail alle A-Kunden im Export geschickt und die
+Vertriebspartner Merit und Silisan in ihre Handelsketten aufgelöst. „Noma" war Norma,
+Globus ist Globus Deutschland (Markthallen). Österreich ist Inland und steht nicht auf
+seiner Liste. Weiter offen:
+
+- **Grossmann (IT)** steht auf Simons Liste, ist aber nicht angelegt: unklar, ob
+  Handelskette oder Großhandel.
+- **Über Partner** ist für SI, HR (außer Kaufland) und UK angenommen wie seit 019 — welche
+  Ketten Merit und welche Silisan beliefert, ist nachzufragen.
+- **Marks & Spencer, Waitrose, Mercadona, Walmart, Costco** (Kais Liste) stehen nicht auf
+  Simons A-Kunden-Liste und bleiben „unbekannt".
 
 ## Signale
 

@@ -39,6 +39,9 @@ const LOGOS: Record<string, string> = {
   Mercadona: '/logos/haendler/mercadona.svg',
   Walmart: '/logos/haendler/walmart.svg',
   Costco: '/logos/haendler/costco.svg',
+  // 10.11.2026 — Simons A-Kunden (Migration 021). Aldi in CH, HU und UK
+  // tritt mit dem Logo von Aldi Süd auf.
+  Aldi: '/logos/haendler/aldi-sued.svg',
 }
 
 /** Logo-Pfad für einen Kettennamen — null, wenn keins vorliegt. */

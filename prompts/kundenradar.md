@@ -30,6 +30,7 @@ Typen, Abgrenzung), [ADR 0007](../docs/adr/0007-kundenradar-eigenes-modul.md).
 | SK | Tovar & Predaj |
 | HR | Ja Trgovac, Progressive |
 | RO | Progresiv, Retail-FMCG |
+| HU | Trade magazin, Élelmiszer, Világgazdaság |
 | SI | Finance, Delo, Moja Dobra Hrana |
 | UK | The Grocer, Retail Gazette |
 | FR | LSA, Linéaires, Points de Vente |
@@ -162,7 +163,7 @@ REGELN
 
 ## Erstbefüllung für neue Händler
 
-Kommt ein Händler dazu (zuletzt neun am 06.11.2026), läuft für ihn einmal derselbe Prompt
+Kommt ein Händler dazu (zuletzt 27 am 10.11.2026 aus Simons A-Kunden-Liste), läuft für ihn einmal derselbe Prompt
 mit zwei Änderungen — als eigener Lauf, nicht im Monatslauf, damit die Fenster nicht
 durcheinandergeraten:
 
