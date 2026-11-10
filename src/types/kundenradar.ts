@@ -64,9 +64,10 @@ export const KUNDENSTATUS_CHIP: Record<Kundenstatus, string> = {
 
 /**
  * Erlaubte Länder (CHECK in Migration 019, FR/IT/ES/US seit 020 nach Kais Liste
- * vom 06.11.2026). Die Reihenfolge ist zugleich die Sortierung.
+ * vom 06.11.2026, HU seit 021 nach Simons A-Kunden-Liste vom 10.11.2026). Die
+ * Reihenfolge ist zugleich die Sortierung.
  */
-export const LAENDER = ['DE', 'AT', 'CH', 'CZ', 'SK', 'SI', 'HR', 'RO', 'UK', 'FR', 'IT', 'ES', 'US'] as const
+export const LAENDER = ['DE', 'AT', 'CH', 'CZ', 'SK', 'SI', 'HR', 'RO', 'HU', 'UK', 'FR', 'IT', 'ES', 'US'] as const
 export type Land = (typeof LAENDER)[number]
 
 export const LAND_NAME: Record<Land, string> = {
@@ -78,6 +79,7 @@ export const LAND_NAME: Record<Land, string> = {
   SI: 'Slowenien',
   HR: 'Kroatien',
   RO: 'Rumänien',
+  HU: 'Ungarn',
   UK: 'Vereinigtes Königreich',
   FR: 'Frankreich',
   IT: 'Italien',
