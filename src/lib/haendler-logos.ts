@@ -40,8 +40,20 @@ const LOGOS: Record<string, string> = {
   Walmart: '/logos/haendler/walmart.svg',
   Costco: '/logos/haendler/costco.svg',
   // 10.11.2026 — Simons A-Kunden (Migration 021). Aldi in CH, HU und UK
-  // tritt mit dem Logo von Aldi Süd auf.
+  // tritt mit dem Logo von Aldi Süd auf. Logos über Wikidata (P154) gefunden
+  // und von Wikimedia Commons geladen; Tuš und Tommy haben dort keins und
+  // zeigen weiter den Anfangsbuchstaben.
   Aldi: '/logos/haendler/aldi-sued.svg',
+  'Netto Marken-Discount': '/logos/haendler/netto-md.svg',
+  Penny: '/logos/haendler/penny.svg',
+  Globus: '/logos/haendler/globus.svg',
+  Albert: '/logos/haendler/albert.png',
+  'Coop Jednota': '/logos/haendler/coop-jednota.png',
+  Eurospin: '/logos/haendler/eurospin.svg',
+  Studenac: '/logos/haendler/studenac.png',
+  Plodine: '/logos/haendler/plodine.svg',
+  'E.Leclerc': '/logos/haendler/leclerc.svg',
+  Asda: '/logos/haendler/asda.svg',
 }
 
 /** Logo-Pfad für einen Kettennamen — null, wenn keins vorliegt. */
