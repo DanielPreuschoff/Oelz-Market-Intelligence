@@ -16,7 +16,7 @@ import {
   Target, Lightbulb, ShoppingCart, TrendingUp, Package, Globe, BarChart3, Radio, BookOpen, FlaskConical, Scale,
 } from 'lucide-react'
 import { OelzWave } from '@/components/nav/oelz-wave'
-import { getCurrentProfile } from '@/lib/auth/current-profile'
+import { getCurrentProfile, getModulFreigaben } from '@/lib/auth/current-profile'
 import { visibleModules } from '@/lib/modules'
 import { ladeStartseitenDaten } from '@/lib/startseite/daten'
 import { INTRO_TEXT, analyseText, monatstext } from '@/lib/startseite/monatstext'
@@ -38,10 +38,14 @@ const tag = (iso: string) => format(new Date(iso), 'd. MMMM', { locale: de })
 const tagKurz = (iso: string) => format(new Date(iso), 'd. MMM', { locale: de })
 
 export default async function StartseitePage() {
-  const [profile, daten] = await Promise.all([getCurrentProfile(), ladeStartseitenDaten()])
+  const [profile, daten, freigaben] = await Promise.all([
+    getCurrentProfile(),
+    ladeStartseitenDaten(),
+    getModulFreigaben(),
+  ])
   const isAdmin = !!profile?.is_admin
 
-  const sichtbareModule = visibleModules(isAdmin)
+  const sichtbareModule = visibleModules(isAdmin, freigaben)
   // Nur aktive Module. Die geplanten (`coming_soon`) standen bis 31.08.2026 als
   // Zeile „In Vorbereitung" unter der Modulübersicht; sie bleiben in
   // src/lib/modules.ts als Fahrplan stehen, erscheinen aber nirgends mehr in
@@ -57,8 +61,9 @@ export default async function StartseitePage() {
   const zeigeRohstoff = sichtbar('rohstoff') && rohstoffsignale.length > 0
   const zeigeStudien = sichtbar('studien') && studien.length > 0
   const zeigeImpulse = sichtbar('produkt') && impulse.length > 0
-  // Kundenradar: adminOnly bis zur Sichtung (ADR 0007) — `sichtbar` hält den
-  // Block für alle anderen geschlossen, auch wenn RLS die Zeilen lesen lässt.
+  // Kundenradar: adminOnly bis zur Sichtung (ADR 0007), plus einzelne
+  // Freigaben (modul_freigaben) — `sichtbar` hält den Block für alle anderen
+  // geschlossen, auch wenn RLS die Zeilen lesen lässt.
   const zeigeKunden = sichtbar('kunden') && kundensignale.length > 0
   const leer = !zeigeSignale && !zeigeRohstoff && !zeigeStudien && !zeigeImpulse && !zeigeKunden
 

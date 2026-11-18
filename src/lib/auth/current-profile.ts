@@ -53,3 +53,23 @@ export const getCurrentProfile = cache(async (): Promise<UserProfile | null> => 
 export async function isCurrentUserAdmin(): Promise<boolean> {
   return !!(await getCurrentProfile())?.is_admin
 }
+
+/**
+ * Module, die für diesen Nutzer einzeln freigeschaltet sind (Tabelle
+ * `modul_freigaben`, Migration 022). Leer, solange die Tabelle fehlt oder
+ * nichts freigegeben ist — der Code darf also vor der Migration live gehen.
+ */
+export const getModulFreigaben = cache(async (): Promise<string[]> => {
+  const user = await getCurrentUser()
+  if (!user) return []
+
+  const supabase = await createClient()
+  const { data } = await supabase.from('modul_freigaben').select('module_id').eq('user_id', user.id)
+  return (data ?? []).map((r) => r.module_id as string)
+})
+
+/** Darf der Nutzer dieses Modul sehen? Admins immer, sonst nur mit Freigabe. */
+export async function darfModul(moduleId: string): Promise<boolean> {
+  const [profile, freigaben] = await Promise.all([getCurrentProfile(), getModulFreigaben()])
+  return !!profile?.is_admin || freigaben.includes(moduleId)
+}

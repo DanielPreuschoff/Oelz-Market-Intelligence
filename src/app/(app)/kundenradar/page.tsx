@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
+import { darfModul } from '@/lib/auth/current-profile'
 import { HaendlerKacheln, type KachelStand } from '@/components/kundenradar/haendler-kacheln'
 import { NeuAusErhebung, type NeuEintrag } from '@/components/kundenradar/neu-aus-erhebung'
 import { isCollectionRecent, NEW_WINDOW_DAYS } from '@/types/ingredient-signals'
@@ -21,17 +21,19 @@ type SignalZeile = {
  *
  * Spec: docs/kundenradar-spec.md, Entscheidung: docs/adr/0007-kundenradar-eigenes-modul.md.
  *
- * Ausrollstufe: nur für Admins, bis der Erstlauf gesichtet ist. `adminOnly`
- * in modules.ts blendet Navigation und Startseite aus; diese Prüfung sperrt
- * die Route selbst. Die Daten sind für Angemeldete lesbar (Migration 019) —
- * Freischalten braucht dann kein SQL.
+ * Ausrollstufe: nur für Admins und einzeln freigeschaltete Nutzer
+ * (`modul_freigaben`, Migration 022). `adminOnly` in modules.ts blendet
+ * Navigation und Startseite aus; diese Prüfung sperrt die Route selbst. Die
+ * Daten sind für Angemeldete lesbar (Migration 019) — einen Nutzer
+ * freizuschalten ist eine Zeile in `modul_freigaben`, für alle freischalten
+ * heißt `adminOnly` entfernen.
  *
  * „Neu" folgt der Plattform-Regel (Startseite, Rohstoff-Radar): was mit der
  * letzten Erhebung veröffentlicht wurde, solange diese selbst frisch ist.
  * Nicht am Lesestand — warum, steht in neu-aus-erhebung.tsx.
  */
 export default async function KundenradarPage() {
-  if (!(await isCurrentUserAdmin())) notFound()
+  if (!(await darfModul('kunden'))) notFound()
 
   const supabase = await createClient()
   const [{ data: haendlerRoh }, { data: signaleRoh }] = await Promise.all([
