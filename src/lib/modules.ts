@@ -34,9 +34,13 @@ export interface IntelligenceModule {
   subItems?: ModuleSubItem[]
 }
 
-/** Module, die dieser Nutzer sehen darf. */
-export function visibleModules(isAdmin: boolean): IntelligenceModule[] {
-  return MODULES.filter((m) => !m.adminOnly || isAdmin)
+/**
+ * Module, die dieser Nutzer sehen darf. `freigaben` sind einzeln
+ * freigeschaltete Module aus `modul_freigaben` (Migration 022) — so sieht ein
+ * Nutzer ein Modul der Ausrollstufe, ohne Admin zu sein.
+ */
+export function visibleModules(isAdmin: boolean, freigaben: readonly string[] = []): IntelligenceModule[] {
+  return MODULES.filter((m) => !m.adminOnly || isAdmin || freigaben.includes(m.id))
 }
 
 /**
@@ -110,8 +114,9 @@ export const MODULES: IntelligenceModule[] = [
     description: 'Strategische Bewegungen der Handelskunden — je Händler und Land, mit dem Satz, was sie für Ölz heißen.',
     icon: 'ShoppingCart',
     // Seit 27.10.2026, Idee von Simon Greiner (Vertrieb). Löst den
-    // Retailer-Radar-Prototyp ab (ADR 0007). Nur für Admins, bis der Erstlauf
-    // gesichtet ist; die Routen prüfen zusätzlich.
+    // Retailer-Radar-Prototyp ab (ADR 0007). Nur für Admins und einzeln
+    // freigeschaltete Nutzer (modul_freigaben, seit 18.11.2026 Kai vorab);
+    // die Routen prüfen zusätzlich über darfModul('kunden').
     status: 'active',
     adminOnly: true,
     href: '/kundenradar',

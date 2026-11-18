@@ -3,7 +3,7 @@ import { AppNav } from '@/components/nav/app-nav'
 import { ModuleNav } from '@/components/nav/module-nav'
 import { HauptSpalte } from '@/components/nav/haupt-spalte'
 import { ModulbesuchMelder } from '@/components/nav/modulbesuch-melder'
-import { getCurrentUser, getCurrentProfile } from '@/lib/auth/current-profile'
+import { getCurrentUser, getCurrentProfile, getModulFreigaben } from '@/lib/auth/current-profile'
 import { getModuleStats } from '@/lib/module-stats'
 
 export default async function AppLayout({
@@ -22,13 +22,17 @@ export default async function AppLayout({
   // Die Kennzahlen tragen den Neu-Zähler in der Seitenleiste. Sie laufen
   // parallel zueinander und kosten damit zusammen eine Netzwerkrunde — gelesen
   // wird je Modul nur die Datumsspalte.
-  const [profile, moduleStats] = await Promise.all([getCurrentProfile(), getModuleStats()])
+  const [profile, moduleStats, freigaben] = await Promise.all([
+    getCurrentProfile(),
+    getModuleStats(),
+    getModulFreigaben(),
+  ])
 
   return (
     <div className="min-h-screen bg-background">
-      <AppNav profile={profile} moduleStats={moduleStats} />
+      <AppNav profile={profile} moduleStats={moduleStats} freigaben={freigaben} />
       <div className="flex">
-        <ModuleNav isAdmin={!!profile?.is_admin} stats={moduleStats} />
+        <ModuleNav isAdmin={!!profile?.is_admin} freigaben={freigaben} stats={moduleStats} />
         <HauptSpalte>{children}</HauptSpalte>
       </div>
       {/* Schreibt den Lesestand, sobald eine Modulseite im Browser steht —

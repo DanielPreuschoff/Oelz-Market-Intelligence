@@ -34,9 +34,11 @@ const ICONS: Record<string, (props: { className?: string }) => React.ReactNode> 
  */
 export function MobileModuleNav({
   isAdmin = false,
+  freigaben = [],
   stats,
 }: {
   isAdmin?: boolean
+  freigaben?: string[]
   stats?: Record<string, ModuleStats>
 }) {
   const pathname = usePathname()
@@ -67,7 +69,7 @@ export function MobileModuleNav({
     return () => window.removeEventListener('keydown', onKey)
   }, [open])
 
-  const modules = visibleModules(isAdmin).filter((m) => m.status === 'active')
+  const modules = visibleModules(isAdmin, freigaben).filter((m) => m.status === 'active')
   const startseiteAktiv = pathname === '/'
 
   return (

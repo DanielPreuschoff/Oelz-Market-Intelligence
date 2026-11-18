@@ -35,9 +35,11 @@ interface AppNavProps {
   profile: UserProfile | null
   /** Für die Neu-Zähler in der Schublade auf schmalen Bildschirmen. */
   moduleStats?: Record<string, ModuleStats>
+  /** Einzeln freigeschaltete Module (modul_freigaben). */
+  freigaben?: string[]
 }
 
-export function AppNav({ profile, moduleStats }: AppNavProps) {
+export function AppNav({ profile, moduleStats, freigaben = [] }: AppNavProps) {
   const router = useRouter()
 
   async function handleSignOut() {
@@ -51,7 +53,7 @@ export function AppNav({ profile, moduleStats }: AppNavProps) {
     <header className="sticky top-0 z-40 bg-oelz-orange">
       <div className="w-full px-4 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2 sm:gap-8">
-          <MobileModuleNav isAdmin={!!profile?.is_admin} stats={moduleStats} />
+          <MobileModuleNav isAdmin={!!profile?.is_admin} freigaben={freigaben} stats={moduleStats} />
           <Link href="/" className="flex items-center gap-3 group">
             <Image
               src="/oelz-logo.png"

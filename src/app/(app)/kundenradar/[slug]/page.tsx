@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import { de } from 'date-fns/locale'
 import { ArrowLeft, ExternalLink } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
-import { isCurrentUserAdmin } from '@/lib/auth/current-profile'
+import { darfModul } from '@/lib/auth/current-profile'
 import { cn } from '@/lib/utils'
 import { KundensignalKarte } from '@/components/kundenradar/kundensignal-karte'
 import { TypFilter } from '@/components/kundenradar/typ-filter'
@@ -34,7 +34,7 @@ interface PageProps {
  * braucht Breite für die Kacheln, das Dossier ist Lesetext.
  */
 export default async function DossierPage({ params, searchParams }: PageProps) {
-  if (!(await isCurrentUserAdmin())) notFound()
+  if (!(await darfModul('kunden'))) notFound()
   const [{ slug }, { typ: typRoh }] = await Promise.all([params, searchParams])
   // Ein unbekannter Typ wäre kein Fehler, nur eine leere Liste — stumm ignorieren.
   const typ = (SIGNALTYPEN as readonly string[]).includes(typRoh ?? '') ? (typRoh as Signaltyp) : undefined
