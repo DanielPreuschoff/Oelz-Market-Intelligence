@@ -21,8 +21,8 @@ fällt beim Durchsehen auf.
 
 | | |
 |---|---|
-| Bisherige Explorationsläufe | 3 |
-| Nächste Linse | **4 — Frühphase** |
+| Bisherige Explorationsläufe | 4 |
+| Nächste Linse | **5 — Angrenzende Kategorien** |
 
 Die Linse rotiert nach Zahl der Läufe, nicht nach Kalendermonat — ein ausgefallener Monat
 verschiebt die Reihenfolge dadurch nicht. Reihenfolge siehe
@@ -53,6 +53,11 @@ Linse, 17 aus den Funktionsläufen), Dubletten über Läufe zusammengeführt (Pr
 PowderGel und Meala doppelt, Xylanase NZYM-FB bei Gemini und Perplexity). Sichtung in
 `research/2026-11/SICHTUNGSLISTE-ROHSTOFF.md`. Radar danach: 124 veröffentlicht, 0 Entwürfe — die älteren Zeilen mit „Entwurf“ sind inzwischen
 alle veröffentlicht; der Status in dieser Tabelle bildet den Stand beim Import ab.
+
+Vierter Explorationslauf (26.11.2026, Linse 4 „Frühphase“, Zeitraum 1. Januar bis 26. November, weil die
+Linse zum ersten Mal lief): ChatGPT (6 Signale) und Gemini (Fließtext ohne Links, Ausschlussliste ignoriert —
+Funde per Websuche belegt) → **9 Entwürfe**, noch nicht veröffentlicht (`research/2026-12/import-rohstoffe-2026-12.json`,
+Sichtung in `research/2026-12/SICHTUNGSLISTE-ROHSTOFF.md`). Zya und MicroLub fanden beide Dienste.
 
 | Gegenstand | Art | Erhebung | Funktionen | Ergebnis |
 |---|---|---|---|---|
@@ -201,6 +206,20 @@ alle veröffentlicht; der Status in dieser Tabelle bildet den Stand beim Import 
 | Blue Galdieria Extract (Algenblau, EFSA) | Ingredient | 2026-11 | — | wartet auf Funktion: Färbung |
 | Hesperetin-Dihydrochalcon (Aromastoff, VO 2026/175) | Ingredient | 2026-11 | — | wartet auf Funktion: Aroma |
 | BfR 008/2026 Azofarbstoff-Spuren in Papier-Backformen | Technologie | 2026-11 | — | verworfen: Kontaktmaterial, gehört ins Regulatorik-Radar |
+| Convero, Inulosucrase-Enzym von Zya | Ingredient | 2026-12 | Zuckerreduktion, Ballaststoffanreicherung | Entwurf |
+| MicroLub, proteinbasierte Mikroschmierstoffe | Ingredient | 2026-12 | Textur & Mundgefühl, Rohstoffersatz, Proteinanreicherung | Entwurf |
+| Gasbasierte Biokonservierung von BioBlends | Technologie | 2026-12 | Frischhaltung, Clean Label | Entwurf |
+| Edo und Edonization-Verfahren von Edonia | Ingredient | 2026-12 | Proteinanreicherung, Clean Label | Entwurf |
+| Protein Micro-Architecting von EdiMembre | Verfahren | 2026-12 | Proteinanreicherung, Textur & Mundgefühl | Entwurf |
+| Perfat Soft (Perfat Technologies) | Ingredient | 2026-12 | Rohstoffersatz, Ballaststoffanreicherung | Entwurf |
+| Hefebasiertes Kakaobutter-Ersatzfett von Sun Bear Biofuture | Ingredient | 2026-12 | Rohstoffersatz | Entwurf |
+| Kohlenstoffbasierte Fette von Savor, Kooperation mit AAK | Ingredient | 2026-12 | Rohstoffersatz | Entwurf |
+| Nukoko, kakaofreie Schokoladenalternative (Döhler) | Ingredient | 2026-12 | Rohstoffersatz | Entwurf |
+| DigiFoundry 2.0 (ÄIO / TFTAK), mikrobielle Spezialfette | Technologie | 2026-12 | — | verworfen: Förderprojekt für eine Entwicklungsplattform, kein Fett in Sicht |
+| Clean Food Group, Hefeöle aus Lebensmittelabfällen | Ingredient | 2026-12 | — | verworfen: Lebensmittelzulassung offen, zuerst Kosmetik; Hefefett über Sun Bear erfasst |
+| Neggst, pflanzliches Ei (Übernahme durch Greenforce) | Ingredient | 2026-12 | — | verworfen: Übernahme ohne neuen Befund zur Backfähigkeit |
+| Kokumesan / Kokumi-Peptide (Ferm Labs) | Ingredient | 2026-12 | — | wartet auf Funktion: Aroma |
+| Ohmsches Backen, Radiofrequenz-Erhitzung, Kaltplasma nach dem Backen | Verfahren | 2026-12 | — | verworfen: Reviews und Forschung ohne Frühphasen-Ereignis |
 
 **Ergebnis** ist einer von:
 `veröffentlicht` · `Entwurf` · `verworfen: <Grund>` · `wartet auf Funktion: <welche>`
@@ -221,6 +240,10 @@ Rohstoffersatz-Lauf im November.
 **Nachtrag (29.10.2026):** Der erste Rohstoffersatz-Lauf meldete Perfat Soft nicht; als
 Fettersatz kam stattdessen ein Candelillawachs-Oleogel (Laborstudie). Neue Kandidaten für
 weitere Funktionen: Färbung (Algenblau) und Aroma (Hesperetin-DHC) — je ein Fund, noch kein Muster.
+
+**Nachtrag (26.11.2026):** Linse 4 brachte vor allem Rohstoffersatz für Fett und Kakao (Perfat Soft, Sun Bear,
+Savor × AAK, Nukoko/Döhler). Aroma fehlt zum zweiten Mal als Funktion (Hesperetin-DHC im Oktober, Kokumi jetzt) —
+beim nächsten Fund ist eine neunte Funktion „Aroma“ zu entscheiden.
 
 ---
 

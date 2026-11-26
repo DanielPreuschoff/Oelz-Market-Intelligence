@@ -22,8 +22,8 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 
 | | |
 |---|---|
-| Bisherige Läufe | 4 — Probelauf 10. August 2026 (Fenster Juli/August), Lauf 31. August 2026 (Fenster August), Lauf 29./30. September 2026 (Fenster September, dazu Trend Hunter), Lauf 29. Oktober 2026 (Fenster Oktober, dazu Trend Hunter) |
-| Nächster Lauf | Ende November 2026 (Fenster: November) |
+| Bisherige Läufe | 5 — Probelauf 10. August 2026 (Fenster Juli/August), Lauf 31. August 2026 (Fenster August), Lauf 29./30. September 2026 (Fenster September, dazu Trend Hunter), Lauf 29. Oktober 2026 (Fenster Oktober, dazu Trend Hunter), Lauf 26. November 2026 (Fenster 1.–26. November, ChatGPT und Gemini erstmals von Claude im Browser gefahren, dazu Trend Hunter) |
+| Nächster Lauf | Ende Dezember 2026 (Fenster: 27. November bis Ende Dezember) |
 
 ---
 
@@ -209,6 +209,33 @@ bevor sie erscheinen können.
 | Heiße Schokolade wird zum Mini-Muffin | Saison | 2026-11 | USA | Veröffentlicht |
 | Maisbrot-Muffins werden zur fertigen Festtagsbeilage | Saison | 2026-11 | USA | Veröffentlicht |
 
+### Lauf 26. November 2026 (Fenster 1.–26. November)
+
+Erster Lauf, den Claude selbst in Daniels Konten gefahren hat: Marktscan und Transferradar je in ChatGPT
+(Projekt „D-Ö“) und Gemini, dazu Trend Hunter Food (333 Beiträge vom 30.10. bis 26.11., 6 übernommen).
+24 Rohfunde → **16 Entwürfe** (`research/2026-12/import-impulse-2026-12.json`), 15 mit Bild, noch nicht
+veröffentlicht. Sichtung in `research/2026-12/SICHTUNGSLISTE-PRODUKT.md`. Das Fenster endet am 26.11.;
+der Januarlauf beginnt am 27.11.
+
+| Konzept | Radar-Typ | Erhebung | Markt | Ergebnis |
+|---|---|---|---|---|
+| Döner-Croissant springt nach Österreich | Internationaler Vorläufer | 2026-12 | Deutschland → Österreich | Entwurf |
+| Weihnachtsklassiker ziehen ins Croissant ein | Saison | 2026-12 | Großbritannien | Entwurf |
+| Apple Crumble wird zur Füllung für Brioche und Plunder | Rezeptur & Genuss | 2026-12 | Großbritannien | Entwurf |
+| Karamellkruste wird zum Knackmoment auf Croissant und Plunder | Rezeptur & Genuss | 2026-12 | USA, Japan | Entwurf |
+| Drei Zutaten werden zum Toastbrot-Versprechen | Claim | 2026-12 | Großbritannien | Entwurf |
+| Sauerteig trägt eine ganze Familie gefüllter Snackrollen | Format | 2026-12 | Großbritannien | Entwurf |
+| Schokolade macht den Frühstückslaib zum süßen Toast | Rezeptur & Genuss | 2026-12 | Großbritannien | Entwurf |
+| Italienische Sfogliatelle kommen ins US-Tiefkühlregal | Internationaler Vorläufer | 2026-12 | Italien → USA | Entwurf |
+| Gefüllter Toaststapel wird gebacken statt gekühlt | Format | 2026-12 | Japan | Entwurf |
+| Nur der weiche Kern der Zimtschnecke kommt auf den Teller | Format | 2026-12 | Großbritannien | Entwurf |
+| Protein erreicht das Festtagsgebäck | Claim | 2026-12 | Brasilien | Entwurf |
+| Buttermarke wird zum Absender des Gebäcks | Claim | 2026-12 | USA | Entwurf |
+| Wärmebox bringt warmes Gebäck ins Büro | Verpackung | 2026-12 | USA | Entwurf |
+| „Ohne Saatenöl“ wird zum Claim für Laugengebäck | Claim | 2026-12 | USA | Entwurf |
+| Drive-in-Kaffeekette steigt ins Gebäck ein | Handel | 2026-12 | USA | Entwurf |
+| Dot Cakes springen in den US-Großhandel | Internationaler Vorläufer | 2026-12 | Spezialbäckerei → US-Großhandel | Entwurf |
+
 ## Verworfen
 
 | Konzept | Erhebung | Grund |
@@ -262,3 +289,14 @@ bevor sie erscheinen können.
 | Krispy Kreme Looney Tunes, Crumbl-Rotationen, Pop-Tarts × Liquid Death, M&S Colin | 2026-11 | Geschmacks- oder Saisonvarianten (Trend Hunter) |
 | Protein-Cookies und -Riegel (Apollon, Swolfoods, Barebells, IQBAR, Fayn) | 2026-11 | Riegel/Keks, kein Feingebäck-Konzept (Trend Hunter) |
 | Kolache Factory Birria, Lola's Bento Cake, Oroweat-Relaunch | 2026-11 | zu weit weg oder kein neues Konzept (Trend Hunter) |
+| Mochi-Eis wird als Brot nachgebaut (Pasco × Lotte) | 2026-12 | Mochi-Textur im Gebäck seit August mehrfach erfasst |
+| „Long Long“-Churro (Paris Baguette Korea) | 2026-12 | Längenvariante eines Bestsellers, kein neues Konzept |
+| Bread Ahead eröffnet in Manila | 2026-12 | Sprung nach Südostasien, für Ölz zu weit weg |
+| Better Bread Roggenbrote (UK) | 2026-12 | Einzelner Newcomer, Roggenbrot fern vom Ölz-Sortiment |
+| M&S Pistazien-Honig-Choux-Kranz (Trend Hunter) | 2026-12 | Choux-Kränze gibt es schon (Tesco Finest); Geschmacksvariante |
+| Dupe Loops, allergenfreie Mini-Donuts (Trend Hunter) | 2026-12 | Meldung vom 26.10., vor dem Fenster |
+| Krispy Kreme Thanksgiving/Rudolph/Holiday, Hostess Snickerdoodle Twinkies, Kodiak-Muffins, Shipley-Box, Great American Cookies | 2026-12 | Geschmacks- oder Saisonvarianten (Trend Hunter) |
+| Crumbl Scoopable Cookie Dough, Swolfoods Cake Pops, Legion Crispy Treats, Bendu-Wafer | 2026-12 | Rotation oder Riegel, kein Feingebäck-Konzept (Trend Hunter) |
+| Milk Bar × Kiri Cinnamon Roll Cake | 2026-12 | nur über Trend Hunter belegt; Zutatenmarken-Gedanke steckt im Plugrà-Impuls |
+| Calise High-Fiber Kaiser Rolls, Toufayan Sauerteig-Pita | 2026-12 | Ballaststoff-Brot und Sauerteig in neuen Formaten schon erfasst (Trend Hunter) |
+| Cottage Grove Bakery Cart Pop-In | 2026-12 | Einzelbäckerei, wenig übertragbar (Trend Hunter) |
