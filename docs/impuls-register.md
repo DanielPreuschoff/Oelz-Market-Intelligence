@@ -22,7 +22,7 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 
 | | |
 |---|---|
-| Bisherige Läufe | 5 — Probelauf 10. August 2026 (Fenster Juli/August), Lauf 31. August 2026 (Fenster August), Lauf 29./30. September 2026 (Fenster September, dazu Trend Hunter), Lauf 29. Oktober 2026 (Fenster Oktober, dazu Trend Hunter), Lauf 26. November 2026 (Fenster 1.–26. November, ChatGPT und Gemini erstmals von Claude im Browser gefahren, dazu Trend Hunter) |
+| Bisherige Läufe | 5 — Probelauf 10. August 2026 (Fenster Juli/August), Lauf 31. August 2026 (Fenster August), Lauf 29./30. September 2026 (Fenster September, dazu Trend Hunter), Lauf 29. Oktober 2026 (Fenster Oktober, dazu Trend Hunter), Lauf 26. November 2026 (Fenster 1.–26. November, ChatGPT und Gemini erstmals von Claude im Browser gefahren, dazu Trend Hunter; Nachtrag 27. November über zwei Claude-Recherchen) |
 | Nächster Lauf | Ende Dezember 2026 (Fenster: 27. November bis Ende Dezember) |
 
 ---
@@ -213,28 +213,41 @@ bevor sie erscheinen können.
 
 Erster Lauf, den Claude selbst in Daniels Konten gefahren hat: Marktscan und Transferradar je in ChatGPT
 (Projekt „D-Ö“) und Gemini, dazu Trend Hunter Food (333 Beiträge vom 30.10. bis 26.11., 6 übernommen).
-24 Rohfunde → **16 Entwürfe** (`research/2026-12/import-impulse-2026-12.json`), 15 mit Bild, noch nicht
+24 Rohfunde → **16 Impulse** (`research/2026-12/import-impulse-2026-12.json`), 15 mit Bild am 27.11.2026
 veröffentlicht. Sichtung in `research/2026-12/SICHTUNGSLISTE-PRODUKT.md`. Das Fenster endet am 26.11.;
 der Januarlauf beginnt am 27.11.
 
 | Konzept | Radar-Typ | Erhebung | Markt | Ergebnis |
 |---|---|---|---|---|
-| Döner-Croissant springt nach Österreich | Internationaler Vorläufer | 2026-12 | Deutschland → Österreich | Entwurf |
-| Weihnachtsklassiker ziehen ins Croissant ein | Saison | 2026-12 | Großbritannien | Entwurf |
-| Apple Crumble wird zur Füllung für Brioche und Plunder | Rezeptur & Genuss | 2026-12 | Großbritannien | Entwurf |
-| Karamellkruste wird zum Knackmoment auf Croissant und Plunder | Rezeptur & Genuss | 2026-12 | USA, Japan | Entwurf |
-| Drei Zutaten werden zum Toastbrot-Versprechen | Claim | 2026-12 | Großbritannien | Entwurf |
-| Sauerteig trägt eine ganze Familie gefüllter Snackrollen | Format | 2026-12 | Großbritannien | Entwurf |
-| Schokolade macht den Frühstückslaib zum süßen Toast | Rezeptur & Genuss | 2026-12 | Großbritannien | Entwurf |
-| Italienische Sfogliatelle kommen ins US-Tiefkühlregal | Internationaler Vorläufer | 2026-12 | Italien → USA | Entwurf |
-| Gefüllter Toaststapel wird gebacken statt gekühlt | Format | 2026-12 | Japan | Entwurf |
-| Nur der weiche Kern der Zimtschnecke kommt auf den Teller | Format | 2026-12 | Großbritannien | Entwurf |
-| Protein erreicht das Festtagsgebäck | Claim | 2026-12 | Brasilien | Entwurf |
-| Buttermarke wird zum Absender des Gebäcks | Claim | 2026-12 | USA | Entwurf |
-| Wärmebox bringt warmes Gebäck ins Büro | Verpackung | 2026-12 | USA | Entwurf |
-| „Ohne Saatenöl“ wird zum Claim für Laugengebäck | Claim | 2026-12 | USA | Entwurf |
-| Drive-in-Kaffeekette steigt ins Gebäck ein | Handel | 2026-12 | USA | Entwurf |
-| Dot Cakes springen in den US-Großhandel | Internationaler Vorläufer | 2026-12 | Spezialbäckerei → US-Großhandel | Entwurf |
+| Döner-Croissant springt nach Österreich | Internationaler Vorläufer | 2026-12 | Deutschland → Österreich | Veröffentlicht |
+| Weihnachtsklassiker ziehen ins Croissant ein | Saison | 2026-12 | Großbritannien | Entwurf (kein öffentliches Produktbild) |
+| Apple Crumble wird zur Füllung für Brioche und Plunder | Rezeptur & Genuss | 2026-12 | Großbritannien | Veröffentlicht |
+| Karamellkruste wird zum Knackmoment auf Croissant und Plunder | Rezeptur & Genuss | 2026-12 | USA, Japan | Veröffentlicht |
+| Drei Zutaten werden zum Toastbrot-Versprechen | Claim | 2026-12 | Großbritannien | Veröffentlicht |
+| Sauerteig trägt eine ganze Familie gefüllter Snackrollen | Format | 2026-12 | Großbritannien | Veröffentlicht |
+| Schokolade macht den Frühstückslaib zum süßen Toast | Rezeptur & Genuss | 2026-12 | Großbritannien | Veröffentlicht |
+| Italienische Sfogliatelle kommen ins US-Tiefkühlregal | Internationaler Vorläufer | 2026-12 | Italien → USA | Veröffentlicht |
+| Gefüllter Toaststapel wird gebacken statt gekühlt | Format | 2026-12 | Japan | Veröffentlicht |
+| Nur der weiche Kern der Zimtschnecke kommt auf den Teller | Format | 2026-12 | Großbritannien | Veröffentlicht |
+| Protein erreicht das Festtagsgebäck | Claim | 2026-12 | Brasilien | Veröffentlicht |
+| Buttermarke wird zum Absender des Gebäcks | Claim | 2026-12 | USA | Veröffentlicht |
+| Wärmebox bringt warmes Gebäck ins Büro | Verpackung | 2026-12 | USA | Veröffentlicht |
+| „Ohne Saatenöl“ wird zum Claim für Laugengebäck | Claim | 2026-12 | USA | Veröffentlicht |
+| Drive-in-Kaffeekette steigt ins Gebäck ein | Handel | 2026-12 | USA | Veröffentlicht |
+| Dot Cakes springen in den US-Großhandel | Internationaler Vorläufer | 2026-12 | Spezialbäckerei → US-Großhandel | Veröffentlicht |
+
+**Nachtrag 27. November 2026** (Fenster 1.–27. November): Auf Daniels Wunsch fünf weitere Impulse über zwei
+Claude-Recherchen (UK/Europa, USA/Asien), gegen Register, die 16 Impulse oben und die Verwerfungen abgeglichen
+(`research/2026-12/import-impulse-2026-12-nachtrag.json`, Berichte `produkt-nachtrag.*.claude.md`). Mehr
+Belastbares gab das Fenster nicht her; aufgefüllt wurde nicht.
+
+| Konzept | Radar-Typ | Erhebung | Markt | Ergebnis |
+|---|---|---|---|---|
+| Bäckereikette backt Snackgebäck erst nach der Bestellung | Occasion | 2026-12 | Südkorea | Veröffentlicht |
+| Plunderhülle umschließt saftigen Brotkern | Format | 2026-12 | Japan | Veröffentlicht |
+| Leser wählen Kardamom-Bun, Natural Lawson backt sie im Laden | Internationaler Vorläufer | 2026-12 | Japan (Gebäcktyp aus Skandinavien) | Veröffentlicht |
+| Brioche-Bun wird als Einzelteil für den Selbstbau-Burger verkauft | Handel | 2026-12 | Südkorea | Entwurf (kein öffentliches Produktbild) |
+| Convenience-Shop verkauft Bake-off-Gebäck zum Fertigbacken daheim | Handel | 2026-12 | Großbritannien | Veröffentlicht |
 
 ## Verworfen
 
@@ -300,3 +313,13 @@ der Januarlauf beginnt am 27.11.
 | Milk Bar × Kiri Cinnamon Roll Cake | 2026-12 | nur über Trend Hunter belegt; Zutatenmarken-Gedanke steckt im Plugrà-Impuls |
 | Calise High-Fiber Kaiser Rolls, Toufayan Sauerteig-Pita | 2026-12 | Ballaststoff-Brot und Sauerteig in neuen Formaten schon erfasst (Trend Hunter) |
 | Cottage Grove Bakery Cart Pop-In | 2026-12 | Einzelbäckerei, wenig übertragbar (Trend Hunter) |
+| Saint Marc Café „Snack Pie“ (Japan) | 2026-12 | Variante von Churro-Stick und Swirlies |
+| 7-Eleven Japan Focaccia mit Ofen-Finish, 7-Eleven Korea Dacquoise- und Mochi-Sando | 2026-12 | Einzelprodukte bzw. Frucht-Sando und Mochi-Textur schon erfasst |
+| Suntory Craft Boss Croissant Latte, Dia „Turrón de croissant“ | 2026-12 | Croissant als Aroma schon erfasst |
+| Pasco PANORAMA COLLECTION für Endkunden | 2026-12 | Ankündigung vom 29.10., vor dem Fenster |
+| Ferrero Pain au Nutella und Nutella Cookies, Qé! × Nocilla, Bridor × Milka / La Vache qui rit | 2026-12 | Markenfüllung bzw. Co-Branding schon erfasst |
+| Gelfinor Blätterteigkrone, St Pierre Pretzel- und Brioche-Rolls | 2026-12 | gehören zu Vandemoortele bzw. Bimbo (Wettbewerbsmodul) |
+| Waitrose Croissant Cubes, Tesco Panettone-Style Roll | 2026-12 | Mai bzw. Oktober, vor dem Fenster |
+| M&S Toasties und Lasagne Cups, Aldi Cookie Dough Pudding, Jus-Rol Sticky Caramel Buns | 2026-12 | Varianten erfasster Konzepte bzw. Fertigteig ohne neues Konzept |
+| US-Saisonvarianten (Starbucks, Entenmann's, King's Hawaiian, Caribou, Tous les Jours, Sheetz) | 2026-12 | Geschmacks- oder Saisonvarianten |
+| Rückzug von Ballaststoff-Produkten in UK (New York Bakery Bagel, Warburtons Fibre Fix) | 2026-12 | Rückzug statt Neuheit; als Warnsignal zum Ballaststoff-Impuls gemerkt |

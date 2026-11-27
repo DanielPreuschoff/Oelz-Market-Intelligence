@@ -19,9 +19,9 @@ Wird beim Aufbereiten der Berichte fortgeschrieben, nicht von Hand gepflegt.
 
 | | |
 |---|---|
-| Bisherige Läufe | 3 — Erstlauf 05.11.2026 (Fenster 01.01.–31.10.2026), ChatGPT + Gemini (statt Perplexity), plus Lückensuche für acht Händler: 53 Signale, 21 Kurzprofile. Erstbefüllung der 36 neuen Händler am 10.11.2026 (Lauf „11/2026 E“, Fenster ab 01.01.2026): ChatGPT, Gemini (Kais neun) und Claude-Ergänzung, 44 Berichte → 122 Signale veröffentlicht, 1 Entwurf, 36 Kurzprofile. Erster Monatslauf am 26.11.2026 (Lauf „12/2026“, Fenster 01.–26.11.2026): ChatGPT für DE, AT, CH, CZ, SK, SI, HR, RO; danach ChatGPT-Kontingent erschöpft, HU, UK, FR, IT, ES, US über Gemini, HU per Websuche belegt; Gemini zusätzlich für DE → 13 Berichte, 21 Entwürfe (nicht veröffentlicht) |
+| Bisherige Läufe | 3 — Erstlauf 05.11.2026 (Fenster 01.01.–31.10.2026), ChatGPT + Gemini (statt Perplexity), plus Lückensuche für acht Händler: 53 Signale, 21 Kurzprofile. Erstbefüllung der 36 neuen Händler am 10.11.2026 (Lauf „11/2026 E“, Fenster ab 01.01.2026): ChatGPT, Gemini (Kais neun) und Claude-Ergänzung, 44 Berichte → 122 Signale veröffentlicht, 1 Entwurf, 36 Kurzprofile. Erster Monatslauf am 26.11.2026 (Lauf „12/2026“, Fenster 01.–26.11.2026): ChatGPT für DE, AT, CH, CZ, SK, SI, HR, RO; danach ChatGPT-Kontingent erschöpft, HU, UK, FR, IT, ES, US über Gemini, HU per Websuche belegt; Gemini zusätzlich für DE → 13 Berichte, 21 Entwürfe. Nachtrag 27.11.: Gemini als Zweitquelle für AT, CH, CZ, SK, SI, HR, RO (2 weitere) und Claude-Recherche für HU, UK, FR, IT, ES, US statt ChatGPT (4 weitere) → 27 Signale, am 27.11.2026 veröffentlicht |
 | Händler | 57 in 14 Ländern — Export (Spec §3), seit 27.10.2026 die Inlandskunden aus Simons Mail, seit 06.11.2026 neun aus Kais Liste (Migration 020), seit 10.11.2026 Simons A-Kunden im Export (Migration 021, 27 neu, Ungarn als neues Land, Erstbefüllung am 10.11.2026) |
-| Nächster Lauf | Ende Dezember 2026, Fenster 27.11.–Ende Dezember; vorher Gemini als Zweitquelle für AT, CH, CZ, SK, SI, HR, RO nachholen |
+| Nächster Lauf | Ende Dezember 2026, Fenster 27.11.–Ende Dezember; wieder ChatGPT + Gemini je Land |
 
 ## Händler
 
@@ -277,27 +277,33 @@ seiner Liste. Weiter offen:
 | US | Costco | Costco macht seine Auftragsbäckerei landesweit lieferfähig | Sortimentskonzept | 2026-08-26 | 11/2026 E | veröffentlicht |
 | US | Costco | Costco verdoppelt Pastry-Umsatz mit neuen Genussartikeln | Sortimentskonzept | 2026-09-25 | 11/2026 E | veröffentlicht |
 | US | Costco | Costco hält an rund 30 neuen Warehouses pro Jahr fest | Investition & Expansion | 2026-09-25 | 11/2026 E | veröffentlicht |
-| AT | BILLA | BILLA Unterwegs bleibt bis 2036 an Shell-Tankstellen | Format & Fläche | 2026-11-03 | 12/2026 | Entwurf |
-| CH | Aldi | Aldi bündelt Schweizer Bio unter «Saveurs Suisses» | Strategie | 2026-11-26 | 12/2026 | Entwurf |
-| CZ | Penny | Penny verankert Eigenmarken als zentralen Sortimentspfeiler | Strategie | 2026-11-24 | 12/2026 | Entwurf |
-| DE | Edeka | Edeka flaggt 39 Tegut-Märkte im November um | Investition & Expansion | 2026-11-04 | 12/2026 | Entwurf |
-| DE | REWE | REWE darf sechs weitere Tegut-Märkte übernehmen | Investition & Expansion | 2026-11-12 | 12/2026 | Entwurf |
-| DE | Edeka | Edeka Nordwest baut Bio-Großhandel weiter aus | Strategie | 2026-11-12 | 12/2026 | Entwurf |
-| DE | REWE | REWE beendet Testphase seiner kassenlosen Pick & Go-Läden | Format & Fläche | 2026-11-24 | 12/2026 | Entwurf |
-| FR | Carrefour | Carrefour baut über 100 Hypermärkte um und schafft Tiefkühlzonen | Format & Fläche | 2026-11-17 | 12/2026 | Entwurf |
-| FR | Carrefour | Carrefour lanciert Gus & Mia und Bahnhofsformat Étape Express | Investition & Expansion | 2026-11-18 | 12/2026 | Entwurf |
-| HR | Studenac | Studenac normalisiert Lieferungen mit neuen Lieferantenkonditionen | Lieferkette | 2026-11-03 | 12/2026 | Entwurf |
-| HR | Tommy | Tommy startet IPO zur Finanzierung von Filialen und Bobis-Ausbau | Investition & Expansion | 2026-11-13 | 12/2026 | Entwurf |
-| HU | Lidl | Lidl Ungarn holt nach dem Margenstopp verschobene Neuheiten nach | Strategie | 2026-11-24 | 12/2026 | Entwurf |
-| IT | Conad | Todis (Conad) plant zwölf neue Märkte und Ausbau von Progetto Rione | Investition & Expansion | 2026-11-24 | 12/2026 | Entwurf |
-| IT | Conad | Conad Nord Ovest führt digitale EUDR-Lieferkettenplattform ein | Strategie | 2026-11-12 | 12/2026 | Entwurf |
-| SI | Mercator | Mercator startet Investitionszyklus mit neuen Märkten | Investition & Expansion | 2026-11-23 | 12/2026 | Entwurf |
-| SK | Coop Jednota | COOP Jednota baut das Tempo-Supermarktformat landesweit aus | Format & Fläche | 2026-11-11 | 12/2026 | Entwurf |
-| UK | Marks & Spencer | M&S will Food-Umsatz langfristig verdoppeln | Strategie | 2026-11-10 | 12/2026 | Entwurf |
-| UK | Aldi | Aldi streicht Marken- und Nischenartikel zugunsten von Eigenmarken | Sortimentskonzept | 2026-11-24 | 12/2026 | Entwurf |
-| US | Walmart | Walmart bindet über 2.700 Restaurants in Express-Lieferung ein | Strategie | 2026-11-19 | 12/2026 | Entwurf |
-| US | Walmart | Walmart nutzt Zollrückerstattungen für 7.700 Preis-Rollbacks | Strategie | 2026-11-19 | 12/2026 | Entwurf |
-| US | Walmart | Walmart baut Drohnenlieferung mit Zipline auf 300 Standorte aus | Investition & Expansion | 2026-11-06 | 12/2026 | Entwurf |
+| AT | BILLA | BILLA Unterwegs bleibt bis 2036 an Shell-Tankstellen | Format & Fläche | 2026-11-03 | 12/2026 | veröffentlicht |
+| AT | BILLA | BILLA stoppt aggressive Filialexpansion und setzt auf Umbauten | Investition & Expansion | 2026-11-12 | 12/2026 | veröffentlicht |
+| CH | Aldi | Aldi bündelt Schweizer Bio unter «Saveurs Suisses» | Strategie | 2026-11-26 | 12/2026 | veröffentlicht |
+| CZ | Penny | Penny verankert Eigenmarken als zentralen Sortimentspfeiler | Strategie | 2026-11-24 | 12/2026 | veröffentlicht |
+| DE | Edeka | Edeka flaggt 39 Tegut-Märkte im November um | Investition & Expansion | 2026-11-04 | 12/2026 | veröffentlicht |
+| DE | REWE | REWE darf sechs weitere Tegut-Märkte übernehmen | Investition & Expansion | 2026-11-12 | 12/2026 | veröffentlicht |
+| DE | Edeka | Edeka Nordwest baut Bio-Großhandel weiter aus | Strategie | 2026-11-12 | 12/2026 | veröffentlicht |
+| DE | REWE | REWE beendet Testphase seiner kassenlosen Pick & Go-Läden | Format & Fläche | 2026-11-24 | 12/2026 | veröffentlicht |
+| FR | Carrefour | Carrefour baut über 100 Hypermärkte um und schafft Tiefkühlzonen | Format & Fläche | 2026-11-17 | 12/2026 | veröffentlicht |
+| FR | Carrefour | Carrefour lanciert Gus & Mia und Bahnhofsformat Étape Express | Investition & Expansion | 2026-11-18 | 12/2026 | veröffentlicht |
+| FR | E.Leclerc | E.Leclerc legt erweiterten KMU-Plan für französische Lieferanten auf | Strategie | 2026-11-26 | 12/2026 | veröffentlicht |
+| HR | Studenac | Studenac normalisiert Lieferungen mit neuen Lieferantenkonditionen | Lieferkette | 2026-11-03 | 12/2026 | veröffentlicht |
+| HR | Tommy | Tommy startet IPO zur Finanzierung von Filialen und Bobis-Ausbau | Investition & Expansion | 2026-11-13 | 12/2026 | veröffentlicht |
+| HU | Lidl | Lidl Ungarn holt nach dem Margenstopp verschobene Neuheiten nach | Strategie | 2026-11-24 | 12/2026 | veröffentlicht |
+| HU | Lidl | Lidl Ungarn will Importe durch heimische Lieferanten ersetzen | Strategie | 2026-11-21 | 12/2026 | veröffentlicht |
+| IT | Conad | Todis (Conad) plant zwölf neue Märkte und Ausbau von Progetto Rione | Investition & Expansion | 2026-11-24 | 12/2026 | veröffentlicht |
+| IT | Conad | Conad Nord Ovest führt digitale EUDR-Lieferkettenplattform ein | Strategie | 2026-11-12 | 12/2026 | veröffentlicht |
+| SI | Mercator | Mercator startet Investitionszyklus mit neuen Märkten | Investition & Expansion | 2026-11-23 | 12/2026 | veröffentlicht |
+| SK | Coop Jednota | COOP Jednota baut das Tempo-Supermarktformat landesweit aus | Format & Fläche | 2026-11-11 | 12/2026 | veröffentlicht |
+| SK | Lidl | Lidl verankert dauerhafte Preissenkungen strategisch im Sortiment | Strategie | 2026-11-20 | 12/2026 | veröffentlicht |
+| UK | Marks & Spencer | M&S will Food-Umsatz langfristig verdoppeln | Strategie | 2026-11-10 | 12/2026 | veröffentlicht |
+| UK | Aldi | Aldi streicht Marken- und Nischenartikel zugunsten von Eigenmarken | Sortimentskonzept | 2026-11-24 | 12/2026 | veröffentlicht |
+| UK | Asda | Asda eröffnet bis Ende 2027 15 neue Express-Märkte | Investition & Expansion | 2026-11-18 | 12/2026 | veröffentlicht |
+| UK | Tesco | Tesco fordert 400 Großlieferanten zur Abgabe von Emissionsdaten auf | Strategie | 2026-11-13 | 12/2026 | veröffentlicht |
+| US | Walmart | Walmart bindet über 2.700 Restaurants in Express-Lieferung ein | Strategie | 2026-11-19 | 12/2026 | veröffentlicht |
+| US | Walmart | Walmart nutzt Zollrückerstattungen für 7.700 Preis-Rollbacks | Strategie | 2026-11-19 | 12/2026 | veröffentlicht |
+| US | Walmart | Walmart baut Drohnenlieferung mit Zipline auf 300 Standorte aus | Investition & Expansion | 2026-11-06 | 12/2026 | veröffentlicht |
 
 ## Verworfen
 
@@ -351,5 +357,4 @@ seiner Liste. Weiter offen:
 | CZ | Tesco | Backwarenkampagne „Chuť rozhoduje“ | 11/2026 E | 01.10.2025, außerhalb des Fensters |
 | FR | E.Leclerc | Marie-Blachère-Foodcourt an einer Autobahnraststätte; Eurelec-Bußgeld 33,5 Mio. € | 11/2026 E | einzelner Standort bzw. Strafe ohne Richtungsentscheid |
 | HU | Aldi | Dementi eines Marktaustritts, 189. Filiale geplant (Gemini) | 12/2026 | nicht belegbar, keine Quelle auffindbar |
-| HU | Lidl | Fokus auf rund 500 ungarische Lieferanten (HVG-Interview, Gemini) | 12/2026 | Interview im November nicht auffindbar; Lieferantenzahl stammt aus 2025 |
 | DE | REWE | Sechs weitere Tegut-Märkte (Gemini) | 12/2026 | Dublette zum ChatGPT-Fund, beim Upload übersprungen |
