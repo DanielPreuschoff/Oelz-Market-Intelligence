@@ -1,5 +1,6 @@
 import { cache } from 'react'
 import { createClient } from '@/lib/supabase/server'
+import { MODULES } from '@/lib/modules'
 import type { UserProfile } from '@/types/database'
 
 /**
@@ -68,8 +69,18 @@ export const getModulFreigaben = cache(async (): Promise<string[]> => {
   return (data ?? []).map((r) => r.module_id as string)
 })
 
-/** Darf der Nutzer dieses Modul sehen? Admins immer, sonst nur mit Freigabe. */
+/**
+ * Darf der Nutzer dieses Modul sehen? Ein Modul ohne `adminOnly` (modules.ts)
+ * ist für alle Angemeldeten offen. Steht es in der Ausrollstufe, dann Admins
+ * immer, alle anderen nur mit Freigabe in `modul_freigaben`.
+ *
+ * Bis 27.11.2026 fehlte die erste Prüfung: `adminOnly` zu entfernen hätte das
+ * Modul in Navigation und Startseite gezeigt, die Route aber weiter mit 404
+ * gesperrt — die beiden Stellen müssen dieselbe Regel lesen.
+ */
 export async function darfModul(moduleId: string): Promise<boolean> {
+  const modul = MODULES.find((m) => m.id === moduleId)
+  if (modul && !modul.adminOnly) return true
   const [profile, freigaben] = await Promise.all([getCurrentProfile(), getModulFreigaben()])
   return !!profile?.is_admin || freigaben.includes(moduleId)
 }
