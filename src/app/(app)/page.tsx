@@ -61,9 +61,8 @@ export default async function StartseitePage() {
   const zeigeRohstoff = sichtbar('rohstoff') && rohstoffsignale.length > 0
   const zeigeStudien = sichtbar('studien') && studien.length > 0
   const zeigeImpulse = sichtbar('produkt') && impulse.length > 0
-  // Kundenradar: adminOnly bis zur Sichtung (ADR 0007), plus einzelne
-  // Freigaben (modul_freigaben) — `sichtbar` hält den Block für alle anderen
-  // geschlossen, auch wenn RLS die Zeilen lesen lässt.
+  // Kundenradar: seit 27.11.2026 für alle; `sichtbar` greift wieder, falls
+  // das Modul je zurück in eine Ausrollstufe (adminOnly) geht.
   const zeigeKunden = sichtbar('kunden') && kundensignale.length > 0
   const leer = !zeigeSignale && !zeigeRohstoff && !zeigeStudien && !zeigeImpulse && !zeigeKunden
 

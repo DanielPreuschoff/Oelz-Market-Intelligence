@@ -114,11 +114,11 @@ export const MODULES: IntelligenceModule[] = [
     description: 'Strategische Bewegungen der Handelskunden — je Händler und Land, mit dem Satz, was sie für Ölz heißen.',
     icon: 'ShoppingCart',
     // Seit 27.10.2026, Idee von Simon Greiner (Vertrieb). Löst den
-    // Retailer-Radar-Prototyp ab (ADR 0007). Nur für Admins und einzeln
-    // freigeschaltete Nutzer (modul_freigaben, seit 18.11.2026 Kai vorab);
-    // die Routen prüfen zusätzlich über darfModul('kunden').
+    // Retailer-Radar-Prototyp ab (ADR 0007). Zuerst nur für Admins, ab
+    // 18.11.2026 Kai vorab über modul_freigaben; am 27.11.2026 von Daniel
+    // für alle freigeschaltet. Die Routen prüfen über darfModul('kunden'),
+    // das dieselbe adminOnly-Regel liest.
     status: 'active',
-    adminOnly: true,
     href: '/kundenradar',
     iconBg: 'bg-orange-100',
     iconColor: 'text-orange-700',

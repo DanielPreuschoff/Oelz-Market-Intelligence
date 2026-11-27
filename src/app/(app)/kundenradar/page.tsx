@@ -21,12 +21,11 @@ type SignalZeile = {
  *
  * Spec: docs/kundenradar-spec.md, Entscheidung: docs/adr/0007-kundenradar-eigenes-modul.md.
  *
- * Ausrollstufe: nur für Admins und einzeln freigeschaltete Nutzer
- * (`modul_freigaben`, Migration 022). `adminOnly` in modules.ts blendet
- * Navigation und Startseite aus; diese Prüfung sperrt die Route selbst. Die
- * Daten sind für Angemeldete lesbar (Migration 019) — einen Nutzer
- * freizuschalten ist eine Zeile in `modul_freigaben`, für alle freischalten
- * heißt `adminOnly` entfernen.
+ * Seit 27.11.2026 für alle Angemeldeten offen (`adminOnly` in modules.ts
+ * entfernt). Die Prüfung über darfModul bleibt: Kommt das Modul je wieder in
+ * eine Ausrollstufe, sperrt sie die Route mit derselben Regel, die Navigation
+ * und Startseite ausblendet. Die Daten sind für Angemeldete lesbar
+ * (Migration 019).
  *
  * „Neu" folgt der Plattform-Regel (Startseite, Rohstoff-Radar): was mit der
  * letzten Erhebung veröffentlicht wurde, solange diese selbst frisch ist.
